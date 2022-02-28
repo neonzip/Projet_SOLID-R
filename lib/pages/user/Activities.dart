@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+
+class Activities extends StatefulWidget {
+  const Activities({Key? key}) : super(key: key);
+
+  @override
+  _ActivitiesState createState() => _ActivitiesState();
+}
+
+class _ActivitiesState extends State<Activities> {
+  // List in the dropdown list that we have to replace by the list in the database
+  final items = ['Basketball', 'Vélo', 'Running'];
+
+  // string for next selected value in the dropdown list
+  String? value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0725A5),
+        title: const Text("Suivi d'activité"),
+        centerTitle: true,
+        ),
+      body: Container(
+        margin: const EdgeInsets.all(10),
+        child: Column(
+        children: [
+          const Text("Quel sport allez-vous pratiquer ?"),
+          /* Display the dropdown list with the activities that the user can do. */
+          dropDownActivities(),
+        ],
+      ),
+      )
+    );
+  }
+
+  /// Widget which builds the dropdown with the list of activities.
+  Widget dropDownActivities() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          value: value,
+          isExpanded: true,
+          hint: const Text("Choisir un sport"),
+          items: items.map(buildMenuItem).toList(),
+          onChanged: (value) => setState(() => this.value = value),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the menu inside the dropdown
+  /// And sets the first element of the container to the value selected previously.
+  DropdownMenuItem<String> buildMenuItem(String item) {
+    return DropdownMenuItem(
+      value: item,
+        child: Text(
+          item,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          )
+        )
+    );
+  }
+}
