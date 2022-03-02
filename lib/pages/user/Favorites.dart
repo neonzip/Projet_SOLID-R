@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../CustomWidgets/CustomDropdownButton.dart';
@@ -11,11 +14,12 @@ class Favorites extends StatefulWidget {
 }
 
 class _FavoritesState extends State<Favorites> {
+
+  bool isFavorite = false;
   // List in the dropdown list
   final items = ['A', 'B', 'C'];
   late String _myActivity;
   late String _myActivityResult;
-  final formKey = GlobalKey<FormState>();
 
   // future selected value in the dropdown list
   String? value;
@@ -40,33 +44,25 @@ class _FavoritesState extends State<Favorites> {
         centerTitle: true,
       ),
       body: Center(
-          child: Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 4,
-            ),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 2,
-                )
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                isDense: true,
-                value: value,
-                isExpanded: true,
-                //hint: Text(items.first),
-                items: items.map(buildMenuItem).toList(),
-                onChanged: (value) => setState(() => this.value = value),
-              ),
-            ),
-          )
-
+          child: buttonFavorite()
       ),
-
     );
+  }
+
+  Widget buttonFavorite() {
+    return IconButton(
+        icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+        onPressed: () {
+          // Setting the state
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        });
+  }
+
+  void setStateFavorite() {
+    isFavorite = !isFavorite;
+    log("isFav ? ", error: isFavorite);
   }
 
 }

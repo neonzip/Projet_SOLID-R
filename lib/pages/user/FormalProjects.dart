@@ -69,7 +69,6 @@ class _FormalProjectsState extends State<FormalProjects> {
       height: 60,
       child: FloatingActionButton.extended(
         onPressed: _scrollToTop,
-        //Navigator.pushNamed(context, "/projects/section=formal");
         isExtended: false,
         extendedPadding: const EdgeInsets.all(10),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

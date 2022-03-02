@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/Projects.dart';
 
@@ -13,8 +12,6 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   bool? filterAll = false;
   bool? filterRunning = false;
   bool? filterFinished = false;
-
-
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -62,7 +59,6 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
       height: 60,
       child: FloatingActionButton.extended(
         onPressed: _scrollToTop,
-        //Navigator.pushNamed(context, "/projects/section=formal");
         isExtended: false,
         extendedPadding: const EdgeInsets.all(10),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -76,7 +72,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
 
   bool _showBackToTopButton = false;        // false to hide the button, true to show it
 
-  late ScrollController _scrollController;  // Scroll controler that we will use
+  late ScrollController _scrollController;  // Scroll controller that we will use
 
   /// Shows or not the button. It depends on where we are in the page.
   @override
@@ -130,7 +126,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   }
 
   Widget addListProjects() {
-    Projects projects = Projects(context, filterTemplate(), _scrollController, 8);
+    Projects projects = Projects(context, filterTemplate(), _scrollController, 1);
     return projects.templateProjects();
   }
 }
