@@ -9,10 +9,14 @@ class Activities extends StatefulWidget {
 
 class _ActivitiesState extends State<Activities> {
   // List in the dropdown list that we have to replace by the list in the database
-  final items = ['Basketball', 'Vélo', 'Running'];
+  var items = ['Basketball', 'Vélo', 'Running'];
 
   // string for next selected value in the dropdown list
-  String? value;
+  String? _dropdownValue;
+
+  // string which contains the selected sport that the user want to do for real.
+  String? theSport;
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +56,29 @@ class _ActivitiesState extends State<Activities> {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-          value: value,
+          elevation: 1,
           isExpanded: true,
+          value: items.first,
+          focusColor: Colors.yellow,
           hint: const Text("Choisir un sport"),
           items: items.map(buildMenuItem).toList(),
-          onChanged: (value) => setState(() => this.value = value),
+          onChanged: dropDownCallback,
         ),
       ),
     );
+  }
+
+  /// Called when a new item in the list is selected.
+  void dropDownCallback(String? selectedValue) {
+    if (selectedValue is String) {
+      setState(() {
+        _dropdownValue = selectedValue;
+        var itemSelected = selectedValue;
+        items.remove(itemSelected);
+        items.insert(0, itemSelected);
+      }
+      );
+    }
   }
 
   /// Builds the menu inside the dropdown

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../CustomWidgets/CustomDropdownButton.dart';
+
+
 class Favorites extends StatefulWidget {
   const Favorites({Key? key}) : super(key: key);
 
@@ -10,6 +13,9 @@ class Favorites extends StatefulWidget {
 class _FavoritesState extends State<Favorites> {
   // List in the dropdown list
   final items = ['A', 'B', 'C'];
+  late String _myActivity;
+  late String _myActivityResult;
+  final formKey = GlobalKey<FormState>();
 
   // future selected value in the dropdown list
   String? value;
@@ -48,6 +54,7 @@ class _FavoritesState extends State<Favorites> {
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
+                isDense: true,
                 value: value,
                 isExpanded: true,
                 //hint: Text(items.first),
@@ -61,4 +68,5 @@ class _FavoritesState extends State<Favorites> {
 
     );
   }
+
 }
