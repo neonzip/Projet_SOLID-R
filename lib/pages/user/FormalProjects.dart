@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/Projects.dart';
 
+const int statusAllFormal = 0;
+
 class FormalProjects extends StatefulWidget {
   const FormalProjects({Key? key}) : super(key: key);
 
@@ -131,12 +133,13 @@ class _FormalProjectsState extends State<FormalProjects> {
       /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-      body: addListProjects(),
+      body: addListProjects(),         // Displays the specific projects of the chosen section on the screen
     );
   }
 
+  /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(context, filterTemplate(), _scrollController, 10);
+    Projects projects = Projects(statusAllFormal, context, filterTemplate(), _scrollController, 10);
     return projects.templateProjects();
   }
 }

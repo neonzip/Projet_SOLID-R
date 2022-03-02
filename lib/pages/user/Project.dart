@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 
 /// Class of one instance of project.
 class Project {
-  late bool isFavoriteProject;
-  late BuildContext context;
-  late String nameProject;
-  late String logoProject;
-  late String textProject;
-  late int idProject;
+  /// //////////////////////////////////////////////////////////////////////////
+  /// Some attributes we need to create one project.
+  /// Below, a constructor.
+  /// //////////////////////////////////////////////////////////////////////////
+  late bool isFavoriteProject;    // True if it is a favorite project, false then
+  late BuildContext context;      // Context we need to redirect to the detailled page of the project
+  late String nameProject;        // Project's name
+  late String logoProject;        // Project's logo
+  late String textProject;        // Project's text introduction
+  late int idProject;             // Project's ID
 
+  /// Constructor
   Project (int id, bool isFavorite, BuildContext contextProject, String name, String logo, String text) {
     idProject = id;
     isFavoriteProject = isFavorite;
@@ -48,6 +53,7 @@ class Project {
                 )
             ),
 
+            /* Displays the progress bar */
             SizedBox(
                 width: 300,
                 child: Column(
@@ -80,11 +86,11 @@ class Project {
                           ]
                       ),
                     )
-
                   ],
                 )
             ),
 
+             /* Displays the introduction's project */
              SizedBox(
                 child: Text(
                   textProject,
@@ -112,6 +118,8 @@ class Project {
     );
   }
 
+  /// Button to donate to the specific project.
+  /// Called "Donner".
   Widget buttonDonate() {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -132,7 +140,7 @@ class Project {
     );
   }
 
-  /// Button to see more details about a specific project.
+  /// Button to see more details about a=the specific project.
   /// Called "Voir plus".
   Widget buttonSeeMore() {
     return Padding(
@@ -155,6 +163,10 @@ class Project {
     );
   }
 
+  /*
+  * Favorite button.
+  * Must work, but not in the table...
+  */
   Widget buttonFavorite() {
     return IconButton(
         icon: Icon(isFavoriteProject ? Icons.favorite : Icons.favorite_border),
@@ -163,12 +175,18 @@ class Project {
           setStateFavorite();
         });
   }
+  ///https://stackoverflow.com/questions/60799348/activate-and-deactivate-favorite-icons-in-flutter
 
-
+  /* Change the state of the favorite button. */
   setStateFavorite() {
     isFavoriteProject = !isFavoriteProject;
   }
 
+  /// //////////////////////////////////////////////////////////////////////////
+  /// Getters and setters
+  /// //////////////////////////////////////////////////////////////////////////
+
+  /// ///////////////////////////
   bool getFavoriteState() {
     return isFavoriteProject;
   }
@@ -176,6 +194,7 @@ class Project {
     isFavoriteProject = state;
   }
 
+  /// ///////////////////////////
   String getNameProject() {
     return nameProject;
   }
@@ -183,6 +202,7 @@ class Project {
     nameProject = name;
   }
 
+  /// ///////////////////////////
   String getLogoProject() {
     return logoProject;
   }
@@ -190,6 +210,7 @@ class Project {
     logoProject = logo;
   }
 
+  /// ///////////////////////////
   String getTextProject() {
     return textProject;
   }

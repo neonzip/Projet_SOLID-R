@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/Projects.dart';
 
+
+const int statusAllSolidarity = 1;
+
 class SolidarityProjects extends StatefulWidget {
   const SolidarityProjects({Key? key}) : super(key: key);
 
@@ -99,7 +102,8 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
     super.dispose();
   }
 
-  /* This function is triggered when the user presses the back-to-top button.
+  /*
+   * This function is triggered when the user presses the back-to-top button.
    * The scroll controller does its action. During 3 seconds, the screen is scrolling itself until the top of the page is reached.
    */
   void _scrollToTop() {
@@ -121,12 +125,13 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
       /* Here is called our button to go back at the top of the page. */
       floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-      body: addListProjects(),
+      body: addListProjects(),    // Displays the specific projects of the chosen section on the screen
     );
   }
 
+  /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(context, filterTemplate(), _scrollController, 1);
+    Projects projects = Projects(statusAllSolidarity, context, filterTemplate(), _scrollController, 1);
     return projects.templateProjects();
   }
 }
