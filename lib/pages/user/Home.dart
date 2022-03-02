@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
       ),
       label: const Text("Projets"),
       onPressed: () {
-        Navigator.pushNamed(context, "/projects");
+        Navigator.pushNamed(context, "/projects/section=solidarity");
       },
     );
   }

@@ -1,17 +1,20 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/Projects.dart';
 
-class FormalProjects extends StatefulWidget {
-  const FormalProjects({Key? key}) : super(key: key);
+class SolidarityProjects extends StatefulWidget {
+  const SolidarityProjects({Key? key}) : super(key: key);
 
   @override
-  _FormalProjectsState createState() => _FormalProjectsState();
+  _SolidarityProjectsState createState() => _SolidarityProjectsState();
 }
 
-class _FormalProjectsState extends State<FormalProjects> {
+class _SolidarityProjectsState extends State<SolidarityProjects> {
   bool? filterAll = false;
   bool? filterRunning = false;
   bool? filterFinished = false;
+
+
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -37,7 +40,7 @@ class _FormalProjectsState extends State<FormalProjects> {
           },
         ),
         CheckboxListTile(
-          title: const Text('En cours'),
+          title: const Text('Favoris'),
           value: filterRunning,
           onChanged: (value) {
             setState(() {
@@ -45,19 +48,9 @@ class _FormalProjectsState extends State<FormalProjects> {
             });
           },
         ),
-        CheckboxListTile(
-          title: const Text('Terminés'),
-          value: filterFinished,
-          onChanged: (value) {
-            setState(() {
-              filterFinished = value;
-            });
-          },
-        ),
       ],
     );
   }
-
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /// https://www.kindacode.com/article/flutter-make-a-scroll-back-to-top-button/
   /// Several parts about the button which drives us to the top of the page are in this section.
@@ -124,20 +117,20 @@ class _FormalProjectsState extends State<FormalProjects> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF0725A5),
-          title: const Text("Projets soutenus"),
-          centerTitle: true,
-        ),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0725A5),
+        title: const Text("Projets solidaires"),
+        centerTitle: true,
+      ),
       /* Here is called our button to go back at the top of the page. */
-        floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
+      floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
       body: addListProjects(),
     );
   }
 
   Widget addListProjects() {
-    Projects projects = Projects(context, filterTemplate(), _scrollController, 10);
+    Projects projects = Projects(context, filterTemplate(), _scrollController, 8);
     return projects.templateProjects();
   }
 }
