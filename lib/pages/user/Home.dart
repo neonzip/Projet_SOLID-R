@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                     )
                 ),
 
-                Text(" €",
+                Text(" km",
                     style: TextStyle(fontSize: 20)
                 ),
               ],
@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
               ),
 
               Text(
-                  " km",
+                  " €",
                   style: TextStyle(fontSize: 20)
               ),
             ],

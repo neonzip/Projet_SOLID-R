@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 
 /// Class of one instance of project.
 class Project {
@@ -46,7 +49,8 @@ class Project {
                             maxLines: 2,
                           ),
                           Image.asset(logoProject, height: 60, width: 60,),
-                          buttonFavorite(),
+                          //buttonFavorite(),
+                          FavoriteButton(isFav:isFavoriteProject),
                         ]
                     ),
                   ],
@@ -180,6 +184,7 @@ class Project {
   /* Change the state of the favorite button. */
   setStateFavorite() {
     isFavoriteProject = !isFavoriteProject;
+    log("isFav ? ", error: isFavoriteProject);
   }
 
   /// //////////////////////////////////////////////////////////////////////////

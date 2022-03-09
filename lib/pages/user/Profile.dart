@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               Text(
-                  " km",
+                  " €",
                   style: TextStyle(fontSize: fontSize)
               ),
             ],
@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
                     )
                 ),
                 Text(
-                  " euros",
+                  " €",
                   style: TextStyle(
                       fontSize: fontSize
                   ),
