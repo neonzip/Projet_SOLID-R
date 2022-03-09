@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:projet_solid_r/pages/user/Project.dart';
+import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 
 class ProjectDetailed extends StatefulWidget {
-  const ProjectDetailed({Key? key}) : super(key: key);
+ // Project projectToSee;
+  const ProjectDetailed({Key? key,/* required this.projectToSee */}) : super(key: key);
 
   @override
   _ProjectDetailedState createState() => _ProjectDetailedState();
@@ -139,21 +142,35 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                     margin: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                     child: const Text("Association qui propose"),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                      },
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow)),
-                      label: const Text(
-                        "Donner",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      icon: const Icon(Icons.volunteer_activism, color: Colors.black),
-                    ),
-                  ),
+                  const Text(""),
                 ]
-            )
+            ),
+            TableRow(
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                  child:
+                  FavoriteButton(
+                    isFav: true,    // Value to change in function of the project we use
+                  ),
+                ),
+
+                Container(
+                  margin: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                    },
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow)),
+                    label: const Text(
+                      "Donner",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    icon: const Icon(Icons.volunteer_activism, color: Colors.black),
+                  ),
+                ),
+              ]
+            ),
+
           ]
       ),
     );
