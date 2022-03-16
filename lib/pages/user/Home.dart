@@ -33,33 +33,47 @@ class _HomeState extends State<Home> {
 
   /// Widget building the favorites button.
   Widget buttonHomeFavoritesTemplate() {
-    return TextButton.icon(
-      style: TextButton.styleFrom(
-        primary: Colors.black,
-        minimumSize: const Size(0, 80),
-        //padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-      ),
-      icon: const Icon(Icons.favorite),
-      label: const Text("Favoris"),
+    return FloatingActionButton(
       onPressed: () {
         Navigator.pushNamed(context, "/favorites");
       },
+      tooltip: 'Favoris',
+      splashColor: Colors.yellow,
+      backgroundColor: Colors.transparent,
+      focusElevation: 0,
+      highlightElevation: 0,
+      elevation: 0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.favorite, color: Colors.black,),
+          Text("Favoris",
+          style: TextStyle(color: Colors.black),),
+        ],
+      ),
     );
   }
 
   /// Widget building the projects button.
   Widget buttonHomeProjectsTemplate() {
-    return TextButton.icon(
-      icon: const Icon(Icons.list_alt),
-      style: TextButton.styleFrom(
-        primary: Colors.black,
-        minimumSize: const Size(0, 80),
-        //padding: const EdgeInsets.fromLTRB(0, 0, 40, 0),
-      ),
-      label: const Text("Projets"),
+    return FloatingActionButton(
       onPressed: () {
         Navigator.pushNamed(context, "/projects/section=solidarity");
       },
+      tooltip: 'Projets',
+      splashColor: Colors.indigo,
+      backgroundColor: Colors.transparent,
+      focusElevation: 0,
+      highlightElevation: 0,
+      elevation: 0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.list_alt, color: Colors.black,),
+          Text("Projets",
+            style: TextStyle(color: Colors.black),),
+        ],
+      ),
     );
   }
 
@@ -235,16 +249,6 @@ class _HomeState extends State<Home> {
         )
       ),
 
-      /* Floating button for Activities. */
-      /*floatingActionButton: SizedBox(
-        height: 100,
-        width: 100,
-        child: buttonHomeActivitiesTemplate(),
-    ),*/
-
-      /* Position in the middle our button "Activités". */
-     // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
       /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
@@ -254,8 +258,13 @@ class _HomeState extends State<Home> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /* Favorites button. */
-            buttonHomeFavoritesTemplate(),
+            SizedBox(
+              height: 100,
+              width: 100,
+              child:
+              /* Favorites button. */
+              buttonHomeFavoritesTemplate(),
+            ),
 
             SizedBox(
               height: 100,
@@ -263,8 +272,13 @@ class _HomeState extends State<Home> {
               child: buttonHomeActivitiesTemplate(),
             ),
 
-            /* Projects button. */
-            buttonHomeProjectsTemplate(),        //TextButton.icon: const Icon(Icons.menu), onPressed: () {},),
+            SizedBox(
+              height: 100,
+              width: 100,
+              child:
+              /* Projects button. */
+              buttonHomeProjectsTemplate(),
+            ),
           ],
         ),
       )
