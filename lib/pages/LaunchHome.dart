@@ -88,14 +88,16 @@ class _LaunchHomeState extends State<LaunchHome> {
           title: Image.asset('assets/logo_solid_R.png'),
         ),
         body: SingleChildScrollView(
-          child: SizedBox(
-            width: 500,
-            child: Column(
-              children: [
-                buttonSigninTemplate(),
-                buttonSignupTemplate(),
-              ],
-            ),
+          child: Center(
+            child: SizedBox(
+              width: 500,
+              child: Column(
+                children: [
+                  buttonSigninTemplate(),
+                  buttonSignupTemplate(),
+                ],
+              ),
+            )
           )
         )
     );

@@ -102,16 +102,18 @@ class _MyInformationState extends State<MyInformation> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: SizedBox(
-          width: 500,
-          child: Column(
-            children: [
-              textFieldTemplate("Email :", "aaa@bbb.ccc"),
-              textFieldTemplate("Pseudo :", "pseudo"),
-              textFieldTemplate("Mot de passe :", "mdp"),
-              buttonValidationTemplate(),
-            ],
-          ),
+        child: Center(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                textFieldTemplate("Email :", "aaa@bbb.ccc"),
+                textFieldTemplate("Pseudo :", "pseudo"),
+                textFieldTemplate("Mot de passe :", "mdp"),
+                buttonValidationTemplate(),
+              ],
+            ),
+          )
         )
       )
     );
