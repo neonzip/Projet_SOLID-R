@@ -26,16 +26,18 @@ class _ActivitiesState extends State<Activities> {
         title: const Text("Suivi d'activité"),
         centerTitle: true,
         ),
-      body: Container(
-        width: 500,
-        margin: const EdgeInsets.all(10),
-        child: Column(
-        children: [
-          const Text("Quel sport allez-vous pratiquer ?"),
-          /* Display the dropdown list with the activities that the user can do. */
-          dropDownActivities(),
-        ],
-      ),
+      body: Center(
+        child: Container(
+          width: 500,
+          margin: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              const Text("Quel sport allez-vous pratiquer ?"),
+              /* Display the dropdown list with the activities that the user can do. */
+              dropDownActivities(),
+            ],
+          ),
+        )
       )
     );
   }

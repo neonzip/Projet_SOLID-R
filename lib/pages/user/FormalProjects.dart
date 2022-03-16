@@ -133,7 +133,10 @@ class _FormalProjectsState extends State<FormalProjects> {
       /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-      body: addListProjects(),         // Displays the specific projects of the chosen section on the screen
+      body: Center(
+        child: addListProjects(),         // Displays the specific projects of the chosen section on the screen
+      )
+
     );
   }
 
