@@ -94,6 +94,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonProjectsTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
       ElevatedButton.icon(
         onPressed: () {
@@ -113,6 +114,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonDoneActionsTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
       ElevatedButton.icon(
         onPressed: () {},
@@ -130,6 +132,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonAProposTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
       ElevatedButton.icon(
         onPressed: () {},
@@ -147,6 +150,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonInformationTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
       ElevatedButton.icon(
         onPressed: () {
@@ -166,6 +170,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonNotificationTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
       ElevatedButton.icon(
         onPressed: () {
@@ -185,6 +190,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonLogOutTemplate() {
     return SizedBox(
       width: widthButtons,
+      height: 50,
       child:
         ElevatedButton.icon(
           onPressed: () {
@@ -210,7 +216,8 @@ class _ProfileState extends State<Profile> {
       ),
       body: Center (
         child: SingleChildScrollView(
-          child: SizedBox (
+          child: Container (
+            padding: const EdgeInsets.all(10),
             width: 500,
             child: Column(
               children: [
@@ -241,29 +248,70 @@ class _ProfileState extends State<Profile> {
                 ),
 
                 /* List of buttons */
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        /* Button "Mes informations" */
-                        buttonInformationTemplate(),
+                Table(
+                  children: [
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: /* Button "Mes informations" */
+                            buttonInformationTemplate(),
+                          )
 
-                        /* Button "Notifications */
-                        buttonNotificationTemplate(),
+                        ]
+                    ),
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child:
+                            /* Button "Notifications */
+                            buttonNotificationTemplate(),
+                          )
+                        ]
+                    ),
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child:
+                            /* Button "Actions réalisées */
+                            buttonDoneActionsTemplate(),
+                          )
+                        ]
+                    ),
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child:
+                            /* Button "Projets soutenus" */
+                            buttonProjectsTemplate(),
+                          )
+                        ]
+                    ),
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child:
+                            /* Button "A propos" */
+                            buttonAProposTemplate(),
+                          )
+                        ]
+                    ),
+                    TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child:
+                            /* Button "Déconnexion" to log out */
+                            buttonLogOutTemplate(),
+                          )
 
-                        /* Button "Actions réalisées */
-                        buttonDoneActionsTemplate(),
-
-                        /* Button "Projets soutenus" */
-                        buttonProjectsTemplate(),
-
-                        /* Button "A propos" */
-                        buttonAProposTemplate(),
-
-                        /* Button "Déconnexion" to log out */
-                        buttonLogOutTemplate(),
-                      ],
-                    )
+                        ]
+                    ),
+                  ],
                 ),
               ],
             ),
