@@ -10,17 +10,24 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   Widget buttonHomeActivitiesTemplate() {
-    return FloatingActionButton.extended(
-      onPressed: () {
-        Navigator.pushNamed(context, "/activities");
-      },
-      tooltip: 'Activité',
-      splashColor: Colors.yellow,
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      icon: const Icon(Icons.directions_run),
-      backgroundColor: const Color(0xFF0725A5),
-      label: const Text("Activité"),
-      elevation: 2.0,
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/activities");
+        },
+        tooltip: 'Activité',
+        splashColor: Colors.yellow,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.directions_run),
+            Text("Activité"),
+          ],
+        ),
+        backgroundColor: const Color(0xFF0725A5),
+        elevation: 5,
+      )
     );
   }
 
@@ -30,7 +37,7 @@ class _HomeState extends State<Home> {
       style: TextButton.styleFrom(
         primary: Colors.black,
         minimumSize: const Size(0, 80),
-        padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+        //padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
       ),
       icon: const Icon(Icons.favorite),
       label: const Text("Favoris"),
@@ -47,7 +54,7 @@ class _HomeState extends State<Home> {
       style: TextButton.styleFrom(
         primary: Colors.black,
         minimumSize: const Size(0, 80),
-        padding: const EdgeInsets.fromLTRB(0, 0, 40, 0),
+        //padding: const EdgeInsets.fromLTRB(0, 0, 40, 0),
       ),
       label: const Text("Projets"),
       onPressed: () {
@@ -169,7 +176,6 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       )
-
                     ),
                 ],
               ),
@@ -230,24 +236,32 @@ class _HomeState extends State<Home> {
       ),
 
       /* Floating button for Activities. */
-      floatingActionButton: SizedBox(
+      /*floatingActionButton: SizedBox(
         height: 100,
         width: 100,
         child: buttonHomeActivitiesTemplate(),
-    ),
+    ),*/
 
       /* Position in the middle our button "Activités". */
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+     // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
       bottomNavigationBar: BottomAppBar(
-        child: Row(
+        color: Colors.transparent,
+        elevation: 0,
+        child:
+        Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             /* Favorites button. */
             buttonHomeFavoritesTemplate(),
+
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: buttonHomeActivitiesTemplate(),
+            ),
 
             /* Projects button. */
             buttonHomeProjectsTemplate(),        //TextButton.icon: const Icon(Icons.menu), onPressed: () {},),
