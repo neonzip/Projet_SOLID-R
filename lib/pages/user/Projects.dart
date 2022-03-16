@@ -37,35 +37,39 @@ class Projects {
   /// Widget which creates the cards with the information of each Project.
   Widget templateProjects() {
     return
-       CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          SliverAppBar(
-            floating:false,
-            automaticallyImplyLeading: false,
-            elevation: 2,
-            pinned: true,
-            expandedHeight: 210,
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-             flexibleSpace:
+    SizedBox(
+      width: 500,
+      child: CustomScrollView(
+          controller: _scrollController,
+          slivers: <Widget>[
+            SliverAppBar(
+                floating:false,
+                automaticallyImplyLeading: false,
+                elevation: 2,
+                pinned: true,
+                expandedHeight: 210,
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                flexibleSpace:
                 /* Adding filter to the app. */
                 SingleChildScrollView(
-                child: filterToUse,
+                  child: filterToUse,
                 )
-          ),
-
-          /* Adding Cards to the app. To change with real function : Creation of many projects. */
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (context, index) => ListTile(
-                title: listProjects()?.elementAt(index).projectTemplate(),
-              ),
-              childCount: listProjects()?.length,
             ),
-          )
-        ]
-       );
+
+            /* Adding Cards to the app. To change with real function : Creation of many projects. */
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) => ListTile(
+                  title: listProjects()?.elementAt(index).projectTemplate(),
+                ),
+                childCount: listProjects()?.length,
+              ),
+            )
+          ]
+      )
+    );
+
   }
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +102,7 @@ class Projects {
    */
   void _scrollToTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(seconds: 3), curve: Curves.linear);
+        duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

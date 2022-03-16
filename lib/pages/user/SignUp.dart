@@ -66,19 +66,23 @@ class _SignUpState extends State<SignUp> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              textFieldTemplate("Email :", "Entrez votre email"),
-              textFieldTemplate("Pseudo :", "Entrez votre pseudo"),
-              textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
-              const Text(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                textFieldTemplate("Email :", "Entrez votre email"),
+                textFieldTemplate("Pseudo :", "Entrez votre pseudo"),
+                textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
+                const Text(
                   "En vous inscrivant, vous acceptez nos conditions d'utilisation",
-                textAlign: TextAlign.center,
-              ),
-              buttonSubmitTemplate(),
-              const Text("Déjà membre ? " "Se connecter"),
-            ],
-          ),
+                  textAlign: TextAlign.center,
+                ),
+                buttonSubmitTemplate(),
+                const Text("Déjà membre ? " "Se connecter"),
+              ],
+            ),
+          )
+
         )
     );
   }

@@ -27,6 +27,7 @@ class _ActivitiesState extends State<Activities> {
         centerTitle: true,
         ),
       body: Container(
+        width: 500,
         margin: const EdgeInsets.all(10),
         child: Column(
         children: [

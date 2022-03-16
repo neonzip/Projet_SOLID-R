@@ -256,25 +256,28 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(5),
-        child: Column(
-          children: [
+        child: SizedBox(
+          width: 500,
+          child: Column(
+            children: [
             globalInformationTemplate(),
-            participationInformationTemplate(),
-            meceneInformationTemplate(),
-            /* Blue horizontal line separating the two parts of the main page. */
-            const Divider(
-              color: Colors.blue,
-              thickness: 1,
-              indent: 10,
-              endIndent: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 500,
-              padding: const EdgeInsets.all(5),
-              child: projectDetailedNavigation(),
-            )
-          ],
+        participationInformationTemplate(),
+        meceneInformationTemplate(),
+        /* Blue horizontal line separating the two parts of the main page. */
+        const Divider(
+          color: Colors.blue,
+          thickness: 1,
+          indent: 10,
+          endIndent: 10,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 500,
+          padding: const EdgeInsets.all(5),
+          child: projectDetailedNavigation(),
+        )
+        ],
+      )
         )
       ),
     );

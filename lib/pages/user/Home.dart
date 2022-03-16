@@ -181,48 +181,51 @@ class _HomeState extends State<Home> {
 
       body: Center (
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                  padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.all(5),
-                  child: const Text("Bonjour pseudo",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                      )
-                  )
-              ),
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(5),
+                    child: const Text("Bonjour pseudo",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        )
+                    )
+                ),
 
-              /* Yellow bubble containing the kilometers traveled. */
-              yellowBubbleKilometers(),
+                /* Yellow bubble containing the kilometers traveled. */
+                yellowBubbleKilometers(),
 
-              /* Yellow bubble containing the donations that the user made. */
-              yellowBubbleDonations(),
+                /* Yellow bubble containing the donations that the user made. */
+                yellowBubbleDonations(),
 
-              /* Blue horizontal line separating the two parts of the main page. */
-              const Divider(
-                color: Colors.blue,
-                height: 50,
-                thickness: 1,
-                indent: 20,
-                endIndent: 20,
-              ),
+                /* Blue horizontal line separating the two parts of the main page. */
+                const Divider(
+                  color: Colors.blue,
+                  height: 50,
+                  thickness: 1,
+                  indent: 20,
+                  endIndent: 20,
+                ),
 
-              /* Text "Ils nous font confiance". */
-              Container(
-                  alignment: Alignment.topLeft,
-                  padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.all(5),
-                  child: const Text("Ils nous font confiance : ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                      )
-                  )
-              ),
-            ],
-          ),
+                /* Text "Ils nous font confiance". */
+                Container(
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(5),
+                    child: const Text("Ils nous font confiance : ",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        )
+                    )
+                ),
+              ],
+            ),
+          )
         )
       ),
 

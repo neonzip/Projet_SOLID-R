@@ -210,61 +210,64 @@ class _ProfileState extends State<Profile> {
       ),
       body: Center (
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                  padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.all(5),
-                  child: const Text("Mon pseudo",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: fontSize,
-                      )
-                  )
-              ),
+          child: SizedBox (
+            width: 500,
+            child: Column(
+              children: [
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(5),
+                    child: const Text("Mon pseudo",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: fontSize,
+                        )
+                    )
+                ),
 
-              /* Yellow bubble containing the pool. */
-              bubblePool(),
+                /* Yellow bubble containing the pool. */
+                bubblePool(),
 
-              /* Yellow bubble containing the donations that the user has already made. */
-              bubbleDonationsDone(),
+                /* Yellow bubble containing the donations that the user has already made. */
+                bubbleDonationsDone(),
 
-              /* Blue horizontal line separating the two parts of the account page. */
-              const Divider(
-                color: Colors.blue,
-                height: 50,
-                thickness: 1,
-                indent: 20,
-                endIndent: 20,
-              ),
+                /* Blue horizontal line separating the two parts of the account page. */
+                const Divider(
+                  color: Colors.blue,
+                  height: 50,
+                  thickness: 1,
+                  indent: 20,
+                  endIndent: 20,
+                ),
 
-              /* List of buttons */
-              Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      /* Button "Mes informations" */
-                      buttonInformationTemplate(),
+                /* List of buttons */
+                Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        /* Button "Mes informations" */
+                        buttonInformationTemplate(),
 
-                      /* Button "Notifications */
-                      buttonNotificationTemplate(),
+                        /* Button "Notifications */
+                        buttonNotificationTemplate(),
 
-                      /* Button "Actions réalisées */
-                      buttonDoneActionsTemplate(),
+                        /* Button "Actions réalisées */
+                        buttonDoneActionsTemplate(),
 
-                      /* Button "Projets soutenus" */
-                      buttonProjectsTemplate(),
+                        /* Button "Projets soutenus" */
+                        buttonProjectsTemplate(),
 
-                      /* Button "A propos" */
-                      buttonAProposTemplate(),
+                        /* Button "A propos" */
+                        buttonAProposTemplate(),
 
-                      /* Button "Déconnexion" to log out */
-                      buttonLogOutTemplate(),
-                    ],
-                  )
-              ),
-            ],
-          ),
+                        /* Button "Déconnexion" to log out */
+                        buttonLogOutTemplate(),
+                      ],
+                    )
+                ),
+              ],
+            ),
+          )
         )
 
       ),

@@ -68,20 +68,23 @@ class _SignInState extends State<SignIn> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              textFieldTemplate("Email :", "Entrez votre email"),
-              textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
-              buttonSigninTemplate(),
-              TextButton(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                textFieldTemplate("Email :", "Entrez votre email"),
+                textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
+                buttonSigninTemplate(),
+                TextButton(
                   onPressed: () {
 
                   },
                   child: const Text("Mot de passe oublié ? "),
-              ),
-              const Text("Pas encore de compte ? " "S'inscrire"),
-            ],
-          ),
+                ),
+                const Text("Pas encore de compte ? " "S'inscrire"),
+              ],
+            ),
+          )
         )
     );
   }
