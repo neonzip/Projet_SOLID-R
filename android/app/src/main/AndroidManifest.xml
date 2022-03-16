@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projet_solid_r">
    <application
-        android:label="projet_solid_r"
+        android:label="Sport SOLID'R"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
