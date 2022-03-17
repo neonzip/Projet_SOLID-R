@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+// For the podometer
+    <key>NSMotionUsageDescription</key>
+    <string>This application tracks your steps</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>processing</string>
+    </array>
+
+// For the location
+// This is probably the only one you need. Background location is supported
+// by this -- the caveat is that a blue badge is shown in the status bar
+// when the app is using location service while in the background.
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>track location</string>
+    <key>UIBackgroundModes</key>
+    <string>location</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

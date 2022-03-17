@@ -36,6 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.12
   auto_size_text: ^3.0.0
+  pedometer: ^3.0.0
+  mobility_features: ^3.1.0
+  location: ^4.3.0
+  vector_math: ^2.1.1
+  flutter_launcher_icons: ^0.9.2
+  flutter_local_notifications: ^9.3.3
+  flutter_isolate: ^2.0.0
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +70,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/logo_solid_R.png
+   - assets/json.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
