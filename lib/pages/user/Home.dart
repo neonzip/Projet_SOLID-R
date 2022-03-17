@@ -265,7 +265,6 @@ class _HomeState extends State<Home> {
               /* Favorites button. */
               buttonHomeFavoritesTemplate(),
             ),
-
             SizedBox(
               height: 100,
               width: 100,

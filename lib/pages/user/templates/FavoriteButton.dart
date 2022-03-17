@@ -9,14 +9,6 @@ class FavoriteButton extends StatefulWidget {
   FavoriteButton({Key? key, required this.isFav}) : super(key: key);
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
-/*
-  bool getFav() {
-    return isFav;
-  }
-
-  void setFav(bool b) {
-    isFav = b;
-  }*/
 }
 
 class _FavoriteButtonState extends State<FavoriteButton> {

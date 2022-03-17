@@ -4,28 +4,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 
-/// Class of one instance of project.
-class Project {
-  /// //////////////////////////////////////////////////////////////////////////
-  /// Some attributes we need to create one project.
-  /// Below, a constructor.
-  /// //////////////////////////////////////////////////////////////////////////
-  late bool isFavoriteProject;    // True if it is a favorite project, false then
-  late BuildContext context;      // Context we need to redirect to the detailled page of the project
-  late String nameProject;        // Project's name
-  late String logoProject;        // Project's logo
-  late String textProject;        // Project's text introduction
-  late int idProject;             // Project's ID
+import '../model/ProjectModel.dart';
 
-  /// Constructor
-  Project (int id, bool isFavorite, BuildContext contextProject, String name, String logo, String text) {
-    idProject = id;
-    isFavoriteProject = isFavorite;
-    context = contextProject;
-    nameProject = name;
-    logoProject = logo;
-    textProject = text;
-  }
+/// Class of one instance of project.
+class ProjectView extends ProjectModel{
+  ProjectView(int id, bool isFavorite, BuildContext contextProject, String name, String text) : super(id, isFavorite, contextProject, name, text);
 
   /// Widget for one card which is containing the information about a project.
    Widget projectTemplate(){
@@ -44,11 +27,11 @@ class Project {
                     TableRow(
                         children: [
                           AutoSizeText(
-                            nameProject,
+                            projectName,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                             maxLines: 2,
                           ),
-                          Image.asset(logoProject, height: 60, width: 60,),
+                          Image.asset(associationProject.associationLogo, height: 60, width: 60,),
                           //buttonFavorite(),
                           FavoriteButton(isFav:isFavoriteProject),
                         ]
@@ -97,7 +80,7 @@ class Project {
              /* Displays the introduction's project */
              SizedBox(
                 child: Text(
-                  textProject,
+                  projectDescription,
                   textAlign: TextAlign.justify,
                 )
             ),
@@ -185,41 +168,5 @@ class Project {
   setStateFavorite() {
     isFavoriteProject = !isFavoriteProject;
     log("isFav ? ", error: isFavoriteProject);
-  }
-
-  /// //////////////////////////////////////////////////////////////////////////
-  /// Getters and setters
-  /// //////////////////////////////////////////////////////////////////////////
-
-  /// ///////////////////////////
-  bool getFavoriteState() {
-    return isFavoriteProject;
-  }
-  setFavoriteState(bool state) {
-    isFavoriteProject = state;
-  }
-
-  /// ///////////////////////////
-  String getNameProject() {
-    return nameProject;
-  }
-  setNameProject(String name) {
-    nameProject = name;
-  }
-
-  /// ///////////////////////////
-  String getLogoProject() {
-    return logoProject;
-  }
-  setLogoProject(String logo) {
-    logoProject = logo;
-  }
-
-  /// ///////////////////////////
-  String getTextProject() {
-    return textProject;
-  }
-  setTextProject(String text) {
-    textProject = text;
   }
 }

@@ -4,9 +4,9 @@ import 'package:projet_solid_r/pages/SignIn.dart';
 import 'package:projet_solid_r/pages/user/Activities.dart';
 import 'package:projet_solid_r/pages/user/Favorites.dart';
 import 'package:projet_solid_r/pages/user/MyInformation.dart';
-import 'package:projet_solid_r/pages/user/ProjectDetailed.dart';
-import 'package:projet_solid_r/pages/user/SignUp.dart';
-import 'package:projet_solid_r/pages/user/SolidarityProjects.dart';
+import 'package:projet_solid_r/pages/user/view/ProjectDetailed.dart';
+import 'package:projet_solid_r/pages/SignUp.dart';
+import 'package:projet_solid_r/pages/user/view/SolidarityProjects.dart';
 import 'pages/user/Profile.dart';
 import 'pages/user/FormalProjects.dart';
 import 'pages/user/Home.dart';
@@ -14,7 +14,7 @@ import 'pages/user/Activities.dart';
 import 'pages/user/Notifications.dart';
 import 'pages/user/Favorites.dart';
 import 'pages/user/MyInformation.dart';
-import 'pages/user/SolidarityProjects.dart';
+import 'pages/user/view/SolidarityProjects.dart';
 
 void main() => runApp(MaterialApp(
   theme: ThemeData(
