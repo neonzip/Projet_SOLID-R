@@ -117,6 +117,8 @@ class Projects {
         return listFormalProjects();
       case statusAllSolidarity:
         return listSolidarityProjects();
+      case statusFavoriteSolidarity:
+        return listFavoriteSolidarityProjects();
       default:
         return null;
     }
@@ -138,8 +140,19 @@ class Projects {
     ProjectView project2 = ProjectView(6, true, context, "NameProject22", "Ceci est un text pour décrire le but de l'association2.");
     ProjectView project3 = ProjectView(7, false, context, "NameProject33", "Ceci est un text pour décrire le but de l'association3.");
     ProjectView project4 = ProjectView(8, true, context, "NameProject44", "Ceci est un text pour décrire le but de l'association4.");
-    List<ProjectView> listProjectsFormal = <ProjectView>[project1, project2, project3, project4];
-    return listProjectsFormal;
+    List<ProjectView> listSolidarityProjects = <ProjectView>[project1, project2, project3, project4];
+    return listSolidarityProjects;
+  }
+
+  /* Creates and returns the list of the favorite solidarity projects. */
+  List<ProjectView> listFavoriteSolidarityProjects() {
+    List<ProjectView> listFavoriteProjects = [];
+    for (int i = 0; i < listSolidarityProjects().length; i ++) {
+      if (listSolidarityProjects()[i].isFavoriteProject == true) {
+        listFavoriteProjects.add(listSolidarityProjects()[i]);
+      }
+    }
+    return listFavoriteProjects;
   }
 /// ///////////////////////////////////////////////////////////
 

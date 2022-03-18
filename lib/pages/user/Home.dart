@@ -13,6 +13,7 @@ class _HomeState extends State<Home> {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: FloatingActionButton(
+        heroTag: "activity",
         onPressed: () {
           Navigator.pushNamed(context, "/activities");
         },
@@ -34,6 +35,7 @@ class _HomeState extends State<Home> {
   /// Widget building the favorites button.
   Widget buttonHomeFavoritesTemplate() {
     return FloatingActionButton(
+      heroTag: "favorites",
       onPressed: () {
         Navigator.pushNamed(context, "/favorites");
       },
@@ -57,6 +59,7 @@ class _HomeState extends State<Home> {
   /// Widget building the projects button.
   Widget buttonHomeProjectsTemplate() {
     return FloatingActionButton(
+      heroTag: "projects",
       onPressed: () {
         Navigator.pushNamed(context, "/projects/section=solidarity");
       },

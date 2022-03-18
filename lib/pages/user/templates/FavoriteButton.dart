@@ -21,7 +21,6 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   /*
   * Favorite button.
-  * Must work, but not in the table...
   */
   Widget buttonFavorite() {
     return IconButton(

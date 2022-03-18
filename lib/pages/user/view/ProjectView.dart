@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/DonationButton.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 
 import '../model/ProjectModel.dart';
@@ -96,7 +97,8 @@ class ProjectView extends ProjectModel{
                 buttonSeeMore(),
                 const Spacer(),
                 /* Button "Donner" */
-                buttonDonate(),
+                //buttonDonate(),
+                const DonationButton(),
               ],
             )
           ],
@@ -107,7 +109,7 @@ class ProjectView extends ProjectModel{
 
   /// Button to donate to the specific project.
   /// Called "Donner".
-  Widget buttonDonate() {
+  /*Widget buttonDonate() {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         child:
@@ -125,7 +127,7 @@ class ProjectView extends ProjectModel{
           ),
         )
     );
-  }
+  }*/
 
   /// Button to see more details about a=the specific project.
   /// Called "Voir plus".

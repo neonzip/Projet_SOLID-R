@@ -35,6 +35,13 @@ class _ActivitiesState extends State<Activities> {
               const Text("Quel sport allez-vous pratiquer ?"),
               /* Display the dropdown list with the activities that the user can do. */
               dropDownActivities(),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/activityAxel");
+                  },
+                  child: Text(
+                    "Commencer l'activité"
+                  ))
             ],
           ),
         )

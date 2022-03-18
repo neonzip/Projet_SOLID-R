@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:projet_solid_r/pages/user/templates/DonationButton.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 
 class ProjectDetailed extends StatefulWidget {
@@ -153,20 +154,8 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                     isFav: true,    // Value to change in function of the project we use
                   ),
                 ),
-
-                Container(
-                  margin: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                    },
-                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow)),
-                    label: const Text(
-                      "Donner",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    icon: const Icon(Icons.volunteer_activism, color: Colors.black),
-                  ),
-                ),
+                
+                const DonationButton(),
               ]
             ),
 

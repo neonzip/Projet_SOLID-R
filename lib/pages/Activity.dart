@@ -445,7 +445,7 @@ class _ActivityState extends State<Activity> {
 
             // Location.speed
             const Text("Vitesse actuelle :",style: TextStyle(fontSize: 30)),
-            _calculateSpeedBetweenLocations(),
+            //_calculateSpeedBetweenLocations(),
 
             //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
             FlatButton.icon(
@@ -454,7 +454,6 @@ class _ActivityState extends State<Activity> {
                       ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
                       : 0} KM/h");
                   },
-
                 icon: const Icon(Icons.notification_important_rounded),
                 label: const Text("test"))
           ],
@@ -462,5 +461,4 @@ class _ActivityState extends State<Activity> {
       ),
     );
   }
-
 }
