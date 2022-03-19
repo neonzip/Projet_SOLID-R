@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/templates/LogoutButton.dart';
 import 'package:projet_solid_r/pages/user/templates/ProfileButton.dart';
+import 'package:projet_solid_r/pages/user/templates/Separator.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -179,13 +180,7 @@ class _ProfileState extends State<Profile> {
                 bubbleDonationsDone(),
 
                 /* Blue horizontal line separating the two parts of the account page. */
-                const Divider(
-                  color: Colors.blue,
-                  height: 50,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
+                Separator(),
 
                 /* List of buttons */
                 Table(

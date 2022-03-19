@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 class DonationButton extends StatefulWidget {
-  const DonationButton({Key? key}) : super(key: key);
+  int idProject;
+  void Function()? onPressedButton;
+
+  DonationButton({Key? key, required this.idProject, required this.onPressedButton}) : super(key: key);
   @override
   _DonationButtonState createState() => _DonationButtonState();
 }
@@ -23,8 +26,7 @@ class _DonationButtonState extends State<DonationButton> {
         SizedBox(
           child:
           ElevatedButton.icon(
-            onPressed: () {
-            },
+            onPressed: widget.onPressedButton,
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow), ),
             label: const Text(
               "Donner",

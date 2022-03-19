@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/Separator.dart';
+import 'package:projet_solid_r/pages/user/templates/YellowBubbleDonations.dart';
+import 'package:projet_solid_r/pages/user/templates/YellowBubbleKilometers.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -80,80 +83,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  /// Yellow bubble containing the kilometers traveled.
-  Widget yellowBubbleKilometers() {
-    return Container(
-      child:
-      Column (
-          children: [
-            const Text("Kilomètres parcourus :",
-                style: TextStyle(fontSize: 20)
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text("12000",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold
-                    )
-                ),
-
-                Text(" km",
-                    style: TextStyle(fontSize: 20)
-                ),
-              ],
-            ),
-          ]
-      ),
-      padding: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      margin: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      decoration: BoxDecoration(
-        color: Colors.yellow,
-        borderRadius: BorderRadius.circular(10),
-        //more than 50% of width makes circle
-      ),
-    );
-  }
-
-  /// Yellow bubble containing the donations that the user made.
-  Widget yellowBubbleDonations() {
-    return Container(
-      child:
-      Column(
-        children: [
-          const Text(
-              "Dons réalisés :",
-              style: TextStyle(fontSize: 20)
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                  "43",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold)
-              ),
-
-              Text(
-                  " €",
-                  style: TextStyle(fontSize: 20)
-              ),
-            ],
-          ),
-        ],
-      ),
-      decoration: BoxDecoration(
-          color: Colors.yellow,
-          borderRadius: BorderRadius.circular(10)
-        //more than 50% of width makes circle
-      ),
-      padding: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      margin: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,19 +149,17 @@ class _HomeState extends State<Home> {
                 ),
 
                 /* Yellow bubble containing the kilometers traveled. */
-                yellowBubbleKilometers(),
+                YellowBubbleKilometers(
+                    valueKilometers: 2500.toString(),
+                ),
 
                 /* Yellow bubble containing the donations that the user made. */
-                yellowBubbleDonations(),
+                YellowBubbleDonations(
+                    valueDonations: 500.toString(),
+                ),
 
                 /* Blue horizontal line separating the two parts of the main page. */
-                const Divider(
-                  color: Colors.blue,
-                  height: 50,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
+                Separator(),
 
                 /* Text "Ils nous font confiance". */
                 Container(

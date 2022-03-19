@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/templates/DonationButton.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
+import 'package:projet_solid_r/pages/user/templates/ProjectProgressBar.dart';
 
 import '../model/ProjectModel.dart';
 
@@ -46,23 +45,8 @@ class ProjectView extends ProjectModel{
                 width: 300,
                 child: Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                          borderRadius: const BorderRadius.all(Radius.circular(20.0))
-                      ),
-                      child: const ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: LinearProgressIndicator(
-                          minHeight: 15,
-                          color: Color(0xFF0725A5),
-                          backgroundColor: Colors.white,
-                          value: 0.1, // % so between 0 and 1
-                        ),
-                      ),
+                    ProjectProgressBar(
+                        valueBar: 0.5, // %
                     ),
 
                     Container (
@@ -98,7 +82,11 @@ class ProjectView extends ProjectModel{
                 const Spacer(),
                 /* Button "Donner" */
                 //buttonDonate(),
-                const DonationButton(),
+                DonationButton(
+                  onPressedButton: () {
+                  },
+                  idProject: projectID,
+                ),
               ],
             )
           ],
@@ -106,28 +94,6 @@ class ProjectView extends ProjectModel{
       ),
     );
   }
-
-  /// Button to donate to the specific project.
-  /// Called "Donner".
-  /*Widget buttonDonate() {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child:
-        SizedBox(
-          child:
-          ElevatedButton.icon(
-            onPressed: () {
-            },
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow), ),
-            label: const Text(
-              "Donner",
-              style: TextStyle(color: Colors.black),
-            ),
-            icon: const Icon(Icons.volunteer_activism, color: Colors.black),
-          ),
-        )
-    );
-  }*/
 
   /// Button to see more details about a=the specific project.
   /// Called "Voir plus".
@@ -150,25 +116,5 @@ class ProjectView extends ProjectModel{
           ),
         )
     );
-  }
-
-  /*
-  * Favorite button.
-  * Must work, but not in the table...
-  */
-  Widget buttonFavorite() {
-    return IconButton(
-        icon: Icon(isFavoriteProject ? Icons.favorite : Icons.favorite_border),
-        onPressed: () {
-          // Setting the state
-          setStateFavorite();
-        });
-  }
-  ///https://stackoverflow.com/questions/60799348/activate-and-deactivate-favorite-icons-in-flutter
-
-  /* Change the state of the favorite button. */
-  setStateFavorite() {
-    isFavoriteProject = !isFavoriteProject;
-    log("isFav ? ", error: isFavoriteProject);
   }
 }

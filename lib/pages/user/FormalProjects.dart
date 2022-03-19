@@ -84,7 +84,7 @@ class _FormalProjectsState extends State<FormalProjects> {
 
   bool _showBackToTopButton = false;        // false to hide the button, true to show it
 
-  late ScrollController _scrollController;  // Scroll controler that we will use
+  late ScrollController _scrollController;  // Scroll controller that we will use
 
   /// Shows or not the button. It depends on where we are in the page.
   @override

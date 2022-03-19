@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:projet_solid_r/pages/user/templates/DonationButton.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
+import 'package:projet_solid_r/pages/user/templates/ProjectProgressBar.dart';
 
 class ProjectDetailed extends StatefulWidget {
  // Project projectToSee;
@@ -31,25 +32,9 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
           const AutoSizeText("80 €",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Container(
-            margin: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-                borderRadius: const BorderRadius.all(Radius.circular(10.0))
+            ProjectProgressBar(
+                valueBar: 0.2
             ),
-            child: const ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: LinearProgressIndicator(
-                minHeight: 15,
-                color: Color(0xFF0725A5),
-                backgroundColor: Colors.white,
-                value: 0.1, // % so between 0 and 1
-              ),
-            ),
-          ),
             const AutoSizeText(
               "Cagnotte remplie en " "XX" " jours",
             textAlign: TextAlign.center,
@@ -155,10 +140,12 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                   ),
                 ),
                 
-                const DonationButton(),
+                DonationButton(
+                  idProject: 0,
+                  onPressedButton: () {  },
+                ),
               ]
             ),
-
           ]
       ),
     );
