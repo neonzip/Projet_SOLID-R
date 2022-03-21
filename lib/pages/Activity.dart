@@ -1,14 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_isolate/flutter_isolate.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
-import 'package:projet_solid_r/Functions/ActivityBack.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:projet_solid_r/pages/user/templates/ActivityButton.dart';
+import 'package:projet_solid_r/pages/user/templates/FinishedActivityAlert.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter
@@ -78,7 +76,7 @@ class _ActivityState extends State<Activity> {
 
   // Timer
   Timer? timer;
-  Duration duration = Duration();
+  Duration duration = const Duration();
   /////////////////////////////////////////
 
   @override
@@ -120,7 +118,9 @@ class _ActivityState extends State<Activity> {
       } catch (e) {
         debugPrint(e.toString());
       }
-      print(_bgModeEnabled); //True!
+      if (kDebugMode) {
+        print(_bgModeEnabled);
+      } //True!
       return _bgModeEnabled;
     }
   }
@@ -232,10 +232,14 @@ class _ActivityState extends State<Activity> {
   }
   void _onDone() {}
   void _onError(error) {
-    print("Flutter Pedometer Error: $error");
+    if (kDebugMode) {
+      print("Flutter Pedometer Error: $error");
+    }
   }
   void onStepCount(StepCount event) {
-    print("onStepCount : $event");
+    if (kDebugMode) {
+      print("onStepCount : $event");
+    }
     if(_isFirstTime == true) {
       _initSteps = event.steps + 0.0;
       _isFirstTime = false;
@@ -246,23 +250,33 @@ class _ActivityState extends State<Activity> {
     setState(() {
       _steps = event.steps.toString();
     });
-    print("stepsWalk : " +_stepsWalk + " kmWalk : " + _kmWalk);
+    if (kDebugMode) {
+      print("stepsWalk : " +_stepsWalk + " kmWalk : " + _kmWalk);
+    }
   }
   void onPedestrianStatusChanged(PedestrianStatus event) {
-    print("OnPedestrianStatusChanged : $event");
+    if (kDebugMode) {
+      print("OnPedestrianStatusChanged : $event");
+    }
     setState(() {
       _status = event.status;
     });
   }
   void onPedestrianStatusError(error) {
-    print('onPedestrianStatusError: $error');
+    if (kDebugMode) {
+      print('onPedestrianStatusError: $error');
+    }
     setState(() {
       _status = 'Pedestrian Status not available';
     });
-    print(_status);
+    if (kDebugMode) {
+      print(_status);
+    }
   }
   void onStepCountError(error) {
-    print('onStepCountError: $error');
+    if (kDebugMode) {
+      print('onStepCountError: $error');
+    }
     setState(() {
       _steps = 'Step Count not available';
     });
@@ -304,13 +318,6 @@ class _ActivityState extends State<Activity> {
 
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      /*
-      appBar: AppBar(
-        backgroundColor: Colors.blue[900],
-        title: const Text("Activity"),
-        centerTitle: true,
-      ),
-       */
       body: SafeArea(
         child: Column(
           children: [
@@ -338,75 +345,6 @@ class _ActivityState extends State<Activity> {
                     ? const TextStyle(fontSize: 30)
                     : const TextStyle(fontSize: 20, color: Colors.red),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Visibility(
-                  visible: _isPlayed,
-                  child: FlatButton(
-                    onPressed: () {
-                      _isPlayed = false;
-                      //_stop();
-                      showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Félicitations !'),
-                          content: Text("Vous avez parcouru $_kmWalk durant votre séance. Cela vous a permis de gagner $_coin ! \n Cette somme va être ajoutée a votre cagnotte. Vous pourrez la verser au projet de votre choix a tout moment."),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                _stopListen();
-                                Navigator.popUntil(context, ModalRoute.withName("/selectActivity"));
-                                },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
-                      );},
-                    child: const Icon(
-                      Icons.stop,
-                      color: Colors.red,
-                      size: 75,
-                    ),
-
-                  ),
-                ),
-                Visibility(
-                  visible: !_isPlayed,
-                  child: FlatButton(
-                    onPressed: () {
-                      //reset();
-                      //_resume();
-                      setState(() {
-                        _isPlayed = !_isPlayed;
-                      });
-                    },
-                    child: Icon(
-                      Icons.play_circle_fill,
-                      color: Colors.blue[900],
-                      size: 75,
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: _isPlayed,
-                  child: FlatButton(
-                    onPressed: () {
-                      //_pause();
-                      setState(() {
-                        _isPlayed = !_isPlayed;
-                      });
-                    },
-                    child: Icon(
-                      Icons.pause_circle_filled,
-                      color: Colors.blue[900],
-                      size: 75,
-                    ),
-
-                  ),
-                ),
-              ],
             ),
 
             //Pour afficher le nombre de pas effectués
@@ -445,17 +383,75 @@ class _ActivityState extends State<Activity> {
 
             // Location.speed
             const Text("Vitesse actuelle :",style: TextStyle(fontSize: 30)),
-            //_calculateSpeedBetweenLocations(),
+            _calculateSpeedBetweenLocations(),
 
             //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
-            FlatButton.icon(
+            IconButton(
+              tooltip: "Notif",
                 onPressed: () {
                   sendNotification(title: "Votre activité actuelle", body: "Vous avez parcouru $_kmWalk en $_actualTime secondes. Votre vitesse est de ${_location.speed != null && _location.speed! * 3600 / 1000 > 0
                       ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
                       : 0} KM/h");
                   },
                 icon: const Icon(Icons.notification_important_rounded),
-                label: const Text("test"))
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Visibility(
+                  visible: _isPlayed,
+                  child: ActivityButton(
+                    icon: Icons.stop,
+                    onPressedButton: () {
+                      _isPlayed = false;
+                      //_stop();
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) =>
+                        FinishedActivityAlert(
+                            coins: _coin,
+                            onPressedButton: () {
+                              _stopListen();
+                            },
+                            kilometers: _kmWalk,
+                        )
+                      );
+                    },
+                    color: Colors.red,
+                    tooltip: 'Arrêter',
+                  ),
+                ),
+                Visibility(
+                    visible: !_isPlayed,
+                    child: ActivityButton(
+                      onPressedButton: () {
+                        //reset();
+                        //_resume();
+                        setState(() {
+                          _isPlayed = !_isPlayed;
+                        });
+                      },
+                      icon: Icons.play_circle_fill,
+                      color: Colors.blue[900],
+                      tooltip: 'Commencer',
+                    )
+                ),
+                Visibility(
+                    visible: _isPlayed,
+                    child: ActivityButton(
+                      icon: Icons.pause_circle_filled,
+                      onPressedButton: () {
+                        //_pause();
+                        setState(() {
+                          _isPlayed = !_isPlayed;
+                        });
+                      },
+                      color: Colors.blue[900],
+                      tooltip: 'Faire une pause',
+                    )
+                ),
+              ],
+            ),
           ],
         ),
       ),

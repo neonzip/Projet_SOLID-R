@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/ActivityButton.dart';
+
+import '../Activity.dart';
 
 class Activities extends StatefulWidget {
   const Activities({Key? key}) : super(key: key);
@@ -14,9 +17,13 @@ class _ActivitiesState extends State<Activities> {
   // string for next selected value in the dropdown list
   String? _dropdownValue;
 
+  // string of the current sport chosen
+  String? currentActivity;
+
   // string which contains the selected sport that the user want to do for real.
   String? theSport;
 
+  bool isStarted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +34,49 @@ class _ActivitiesState extends State<Activities> {
         centerTitle: true,
         ),
       body: Center(
-        child: Container(
-          width: 500,
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              const Text("Quel sport allez-vous pratiquer ?"),
-              /* Display the dropdown list with the activities that the user can do. */
-              dropDownActivities(),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/activityAxel");
-                  },
-                  child: Text(
-                    "Commencer l'activité"
-                  ))
-            ],
-          ),
-        )
+        child: choseCurrentScreen(),
       )
+    );
+  }
+
+  /// If the activity is going to start, it displays the screen with the information about our activity.
+  /// Else, we have the list of the activities that we can choose.
+  Widget choseCurrentScreen() {
+    if (isStarted == true) {
+      return const Activity();
+    }
+    else {
+      return displaySelectionActivity();
+    }
+  }
+
+  /// Display the screen in which we can select and launch an activity.
+  Widget displaySelectionActivity() {
+    currentActivity = items.first.toString();
+    return Container(
+      width: 500,
+      margin: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          const Text("Quel sport allez-vous pratiquer ?"),
+          /* Display the dropdown list with the activities that the user can do. */
+          dropDownActivities(),
+          const Spacer(),
+          ActivityButton(
+            onPressedButton: () {
+              //Navigator.pushNamed(context, "/activityAxel");
+              setState(() {
+                isStarted = !isStarted;
+              });
+            },
+            icon: Icons.play_circle_fill,
+            color: Colors.blue[900],
+            tooltip: 'Commencer',
+          ),
+          Text("Démarrer la séance de $currentActivity"),
+          const Spacer(),
+        ],
+      ),
     );
   }
 
@@ -86,6 +117,7 @@ class _ActivitiesState extends State<Activities> {
         var itemSelected = selectedValue;
         items.remove(itemSelected);
         items.insert(0, itemSelected);
+        currentActivity = selectedValue;
       }
       );
     }

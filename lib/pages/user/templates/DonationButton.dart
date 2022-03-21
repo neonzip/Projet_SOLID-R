@@ -37,5 +37,4 @@ class _DonationButtonState extends State<DonationButton> {
         )
     );
   }
-///https://stackoverflow.com/questions/60799348/activate-and-deactivate-favorite-icons-in-flutter
 }
