@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Projects.dart';
+import 'package:projet_solid_r/pages/user/view/ProjectsView.dart';
 
 const int statusAllFormal = 0;
 

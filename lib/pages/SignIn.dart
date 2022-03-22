@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/SigninButton.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -39,26 +41,6 @@ class _SignInState extends State<SignIn> {
       );
   }
 
-  /// Widget building the button to signin.
-  Widget buttonSigninTemplate() {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      width: double.infinity,
-      height: 50,
-      child:
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/home");
-        },
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-        child: const Text(
-          "Se connecter",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,14 +58,28 @@ class _SignInState extends State<SignIn> {
                 children: [
                   textFieldTemplate("Email :", "Entrez votre email"),
                   textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
-                  buttonSigninTemplate(),
+                  SigninButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
+                  ),
                   TextButton(
                     onPressed: () {
-
                     },
                     child: const Text("Mot de passe oublié ? "),
                   ),
-                  const Text("Pas encore de compte ? " "S'inscrire"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Pas encore de compte ? "),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/signup");
+                        },
+                        child: const Text("S'inscrire"),
+                      ),
+                    ],
+                  )
                 ],
               ),
             )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ProjectView.dart';
+import 'ProjectsView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Constants for every possible status to list the Projects (easier and communicates with the filters.
@@ -36,40 +37,11 @@ class Projects {
 
   /// Widget which creates the cards with the information of each Project.
   Widget templateProjects() {
-    return
-    SizedBox(
-      width: 500,
-      child: CustomScrollView(
-          controller: _scrollController,
-          slivers: <Widget>[
-            SliverAppBar(
-                floating:false,
-                automaticallyImplyLeading: false,
-                elevation: 2,
-                pinned: true,
-                expandedHeight: 210,
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                flexibleSpace:
-                /* Adding filter to the app. */
-                SingleChildScrollView(
-                  child: filterToUse,
-                )
-            ),
-
-            /* Adding Cards to the app. To change with real function : Creation of many projects. */
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) => ListTile(
-                  title: listProjects()?.elementAt(index).projectTemplate(),
-                ),
-                childCount: listProjects()?.length,
-              ),
-            )
-          ]
-      )
+    return ProjectsView(
+      listProjects: listProjects(),
+      filter: filterToUse,
+      controller: _scrollController,
     );
-
   }
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +55,7 @@ class Projects {
       width: 60,
       height: 60,
       child: FloatingActionButton.extended(
+        tooltip: "Aller en haut",
         onPressed: _scrollToTop,
         //Navigator.pushNamed(context, "/projects/section=formal");
         isExtended: false,

@@ -47,11 +47,12 @@ class _ActivityState extends State<Activity> {
   ////////////////////////////////////////
 
   // Location
+  Location location = Location();
+
   late LocationData _location;
   late StreamSubscription<LocationData> _locationSubscription;
   late String _error;
 
-  Location location = Location();
 
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
@@ -188,21 +189,24 @@ class _ActivityState extends State<Activity> {
         duration = Duration(seconds: seconds);
 
         _actualTime = "";
+        if (duration.inHours != 0) {
+          setState(() {
+            _actualTime += "${twoDigit(duration.inHours)}:";
+          });
+        }
+
+        if(duration.inMinutes != 0) {
+          setState(() {
+            _actualTime += "${twoDigit(duration.inMinutes.remainder(60))}:";
+          });
+        }
+
+        setState(() {
+          _actualTime += twoDigit(duration.inSeconds.remainder(60));
+        });
 
       });
-      if (duration.inHours != 0) {
-        setState(() {
-          _actualTime += "${twoDigit(duration.inHours)}:";
-        });
-      }
-      if(duration.inMinutes != 0) {
-        setState(() {
-          _actualTime += "${twoDigit(duration.inMinutes.remainder(60))}:";
-        });
-      }
-      setState(() {
-        _actualTime += twoDigit(duration.inSeconds.remainder(60));
-      });
+
     }
 
     //_getCurrentLocation();
@@ -418,7 +422,7 @@ class _ActivityState extends State<Activity> {
                       );
                     },
                     color: Colors.red,
-                    tooltip: 'Arrêter',
+                    tooltip: 'Arrêter l\'activité',
                   ),
                 ),
                 Visibility(
@@ -433,7 +437,7 @@ class _ActivityState extends State<Activity> {
                       },
                       icon: Icons.play_circle_fill,
                       color: Colors.blue[900],
-                      tooltip: 'Commencer',
+                      tooltip: 'Commencer ou continuer l\'activité',
                     )
                 ),
                 Visibility(

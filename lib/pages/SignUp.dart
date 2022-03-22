@@ -74,12 +74,26 @@ class _SignUpState extends State<SignUp> {
                   textFieldTemplate("Email :", "Entrez votre email"),
                   textFieldTemplate("Pseudo :", "Entrez votre pseudo"),
                   textFieldTemplate("Mot de passe :", "Entrez votre mot de passe"),
-                  const Text(
-                    "En vous inscrivant, vous acceptez nos conditions d'utilisation",
-                    textAlign: TextAlign.center,
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(10, 40, 10, 10),
+                    child: const Text(
+                      "En vous inscrivant, vous acceptez nos conditions d'utilisation",
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   buttonSubmitTemplate(),
-                  const Text("Déjà membre ? " "Se connecter"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Déjà membre ? "),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/signin");
+                        },
+                        child: const Text("Se connecter"),
+                      ),
+                    ],
+                  )
                 ],
               ),
             )

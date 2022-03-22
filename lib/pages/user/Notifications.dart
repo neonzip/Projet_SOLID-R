@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/NotificationFrequencyButton.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -9,28 +10,6 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
 
-  ElevatedButton buttonConstructor(String primaryTitle, String secondaryTitle) {
-    return ElevatedButton(
-        onPressed: () {},
-        style: //ButtonStyle
-        ElevatedButton.styleFrom(
-          primary: Colors.white,
-          side: const BorderSide(width: 1.0, color: Colors.black),
-          padding: const EdgeInsets.all(10),
-        ),
-        child: Column (
-          children: [
-            Text(
-              primaryTitle),
-            Text(
-              secondaryTitle,
-              style: const TextStyle(color: Colors.black),
-              textAlign: TextAlign.center,
-            )
-          ],
-        )
-    );
-  }
   /// Widget building the part with the question about the frequency of reminder to donate.
   Widget containerFrequency() {
     return Column(
@@ -46,6 +25,7 @@ class _NotificationsState extends State<Notifications> {
               Row (
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    /* "Jamais" */
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 10, 5, 5),
                       width: 120,
@@ -66,35 +46,31 @@ class _NotificationsState extends State<Notifications> {
                     ),
 
                     /* 10 km */
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(5, 10, 5, 5),
-                      width: 120,
-                      height: 80,
-                      child: buttonConstructor("10 km", "Sportif occasionnel"),
+                    NotificationFrequencyButton(
+                      onPressed: () {},
+                      primaryTitle: "Sportif occasionnel",
+                      secondaryTitle:  "10 km",
                     ),
 
                     /* 20 km */
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(5, 10, 5, 5),
-                      width: 120,
-                      height: 80,
-                      child: buttonConstructor("20 km", "Sportif du dimanche"),
+                    NotificationFrequencyButton(
+                      onPressed: () {},
+                      primaryTitle: "Sportif du dimanche",
+                      secondaryTitle: "20 km",
                     ),
 
                     /* 40 km */
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(5, 10, 5, 5),
-                      width: 120,
-                      height: 80,
-                      child: buttonConstructor("40 km", "Sportif au top"),
+                    NotificationFrequencyButton(
+                      onPressed: () {},
+                      secondaryTitle: "40 km",
+                      primaryTitle: "Sportif au top",
                     ),
 
                     /* 60 km */
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(5, 10, 0, 5),
-                      width: 120,
-                      height: 80,
-                      child: buttonConstructor("60 km", "Niveau des champions"),
+                    NotificationFrequencyButton(
+                      onPressed: () {},
+                      secondaryTitle: "60 km",
+                      primaryTitle: "Niveau des champions",
                     ),
                   ]
               )

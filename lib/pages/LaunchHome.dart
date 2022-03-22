@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/SigninButton.dart';
+import 'package:projet_solid_r/pages/user/templates/SignupButton.dart';
 
 class LaunchHome extends StatefulWidget {
   const LaunchHome({Key? key}) : super(key: key);
@@ -39,46 +41,6 @@ class _LaunchHomeState extends State<LaunchHome> {
       );
   }
 
-  /// Widget building the button to signin.
-  Widget buttonSigninTemplate() {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      width: double.infinity,
-      height: 50,
-      child:
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/signin");
-        },
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-        child: const Text(
-          "Se connecter",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
-  /// Widget building the button to signup.
-  Widget buttonSignupTemplate() {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      width: double.infinity,
-      height: 50,
-      child:
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/signup");
-        },
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow)),
-        child: const Text(
-          "S'inscrire avec un email",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,8 +55,12 @@ class _LaunchHomeState extends State<LaunchHome> {
               width: 500,
               child: Column(
                 children: [
-                  buttonSigninTemplate(),
-                  buttonSignupTemplate(),
+                  SigninButton(
+                    onPressed:  () {
+                      Navigator.pushNamed(context, "/signin");
+                    },
+                  ),
+                  const SignupButton(),
                 ],
               ),
             )

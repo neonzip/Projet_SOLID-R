@@ -40,26 +40,14 @@ class _FavoritesState extends State<Favorites> {
         title: const Text("Projets favoris"),
         centerTitle: true,
       ),
-      body: Center(
-          child: buttonFavorite()
+      body: const Center(
+          child: Text("heuu"),
       ),
     );
-  }
-
-  Widget buttonFavorite() {
-    return IconButton(
-        icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
-        onPressed: () {
-          // Setting the state
-          setState(() {
-            isFavorite = !isFavorite;
-          });
-        });
   }
 
   void setStateFavorite() {
     isFavorite = !isFavorite;
     log("isFav ? ", error: isFavorite);
   }
-
 }
