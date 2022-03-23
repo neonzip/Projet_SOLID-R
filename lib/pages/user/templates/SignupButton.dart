@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 class SignupButton extends StatefulWidget {
-  const SignupButton({Key? key}) : super(key: key);
+  void Function()? onPressed;
+  String text;
+
+  SignupButton({Key? key, required this.onPressed, required this.text}) : super(key: key);
   @override
   _SignupButtonState createState() => _SignupButtonState();
 }
@@ -23,13 +26,11 @@ class _SignupButtonState extends State<SignupButton> {
       height: 50,
       child:
       ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/signup");
-        },
+        onPressed: widget.onPressed,
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow)),
-        child: const Text(
-          "S'inscrire avec un email",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        child: Text(
+          widget.text,
+          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
     );

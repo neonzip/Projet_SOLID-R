@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/FormTextField.dart';
 
 class MyInformation extends StatefulWidget {
   const MyInformation({Key? key}) : super(key: key);
@@ -107,9 +108,21 @@ class _MyInformationState extends State<MyInformation> {
             width: 500,
             child: Column(
               children: [
-                textFieldTemplate("Email :", "aaa@bbb.ccc"),
-                textFieldTemplate("Pseudo :", "pseudo"),
-                textFieldTemplate("Mot de passe :", "mdp"),
+                FormTextField(
+                    errorMessage: "Champ vide.",
+                    labelHint: "aaa@bbb.ccc",
+                    label: "Email :"
+                ),
+                FormTextField(
+                    errorMessage: "Champ vide.",
+                    labelHint: "pseudo",
+                    label: "Pseudo :"
+                ),
+                FormTextField(
+                    errorMessage: "Champ vide.",
+                    labelHint: "mdp",
+                    label: "Mot de passe :"
+                ),
                 buttonValidationTemplate(),
               ],
             ),

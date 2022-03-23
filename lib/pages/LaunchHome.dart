@@ -60,7 +60,11 @@ class _LaunchHomeState extends State<LaunchHome> {
                       Navigator.pushNamed(context, "/signin");
                     },
                   ),
-                  const SignupButton(),
+                  SignupButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/signup");
+                    }, text: "S'inscrire avec un email",
+                  ),
                 ],
               ),
             )
