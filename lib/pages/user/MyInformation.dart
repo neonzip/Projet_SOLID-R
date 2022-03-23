@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/templates/FormTextField.dart';
+import 'package:projet_solid_r/pages/user/templates/MessageSnackbar.dart';
 
 class MyInformation extends StatefulWidget {
   const MyInformation({Key? key}) : super(key: key);
@@ -41,36 +42,16 @@ class _MyInformationState extends State<MyInformation> {
       );
   }
 
-  /// Action done when the button to validate changges is clicked.
+  /// Action done when the button to validate changes is clicked.
   void buttonSubmitChanges() {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.white,
-          content: Container(
-            margin: const EdgeInsets.all(10),
-            child: Column (
-              mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text(
-                "Modifications validées\n",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                ),
-              ),
-              Text(
-                "Les modifications du profil ont bien été prises en compte.",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+          content: MessageSnackbar(
+            title: 'Modifications validées\n',
+            text: "Les modifications du profil ont bien été prises en compte.",
           ),
           duration: const Duration(seconds: 5),
-
         )
     );
   }

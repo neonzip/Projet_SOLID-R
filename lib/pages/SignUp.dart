@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/templates/FormTextField.dart';
+import 'package:projet_solid_r/pages/user/templates/MessageSnackbar.dart';
 import 'package:projet_solid_r/pages/user/templates/SignupButton.dart';
 
 class SignUp extends StatefulWidget {
@@ -48,9 +49,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SignupButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/");
-                    }, text: 'S\'inscrire',
+                    onPressed: submitSignup,
+                    text: 'S\'inscrire',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +68,20 @@ class _SignUpState extends State<SignUp> {
               ),
             )
           )
+        )
+    );
+  }
+
+  void submitSignup () {
+    Navigator.pushNamed(context, "/");
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.white,
+          content: MessageSnackbar(
+            title: 'Inscription réalisée\n',
+            text: "Bienvenue sur SOLID'R !\n\nVous pouvez dès à présent vous connecter sur votre espace.",
+          ),
+          duration: const Duration(seconds: 5),
         )
     );
   }
