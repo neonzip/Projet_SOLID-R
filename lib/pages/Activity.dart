@@ -39,6 +39,7 @@ class _ActivityState extends State<Activity> {
   String _kmWalk = "0";
   String _actualTime = "0";
   String _status = '?', _steps = '?';
+  bool isFinished = false;
   ////////////////////////////////////////////
 
   // sensors
@@ -89,7 +90,6 @@ class _ActivityState extends State<Activity> {
 
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       addTime();
-
       /*
       ActivityBack activity = ActivityBack(_kmWalk, _actualTime, _location.speed);
       String json = jsonEncode(activity);
@@ -100,6 +100,9 @@ class _ActivityState extends State<Activity> {
       print(await file.readAsString());
       await file.writeAsString(json);
       */
+      if (isFinished == true) {
+        timer.cancel();
+      }
     });
   }
 
@@ -184,6 +187,8 @@ class _ActivityState extends State<Activity> {
   void addTime() {
     const addSeconds = 1;
     if (_isPlayed) {
+      print("CEST RELOUUUU");
+
       setState(() {
         final seconds = duration.inSeconds + addSeconds;
         duration = Duration(seconds: seconds);
@@ -408,6 +413,7 @@ class _ActivityState extends State<Activity> {
                     icon: Icons.stop,
                     onPressedButton: () {
                       _isPlayed = false;
+                      isFinished = true;
                       //_stop();
                       showDialog<String>(
                         context: context,
