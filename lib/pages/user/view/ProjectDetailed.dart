@@ -142,7 +142,8 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                 
                 DonationButton(
                   idProject: 0,
-                  onPressedButton: () {  },
+                  onPressedButton: showDonationDialog,
+                  text: 'Donner',
                 ),
               ]
             ),
@@ -255,6 +256,65 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
       )
         )
       ),
+    );
+  }
+
+  void showDonationDialog() {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+            title: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "Don réalisé !",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            content: SingleChildScrollView(
+              child:  Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: const Text(
+                      "Félicitation, vous avez donné " "1.08" "€ au projet ! "
+                          "\n\nContinuez d'enregistrer vos activités sportives pour soutenir d'autres projets.",
+                    ),
+                  ),
+                  DonationButton(
+                    idProject: 0,
+                    onPressedButton: () {
+                      Navigator.of(context).pop();
+                    },
+                    text: 'Confirmer le don',
+                  ),
+                  shareButton(),
+                ],
+              ),
+            )
+        ),
+      );
+  }
+
+  Widget shareButton() {
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+        child:
+        SizedBox(
+          child:
+          ElevatedButton.icon(
+            onPressed: () {
+
+            },
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0725A5)), ),
+            label: const Text(
+              "Partager",
+              style: TextStyle(color: Colors.white),
+            ),
+            icon: const Icon(Icons.share, color: Colors.white),
+          ),
+        )
     );
   }
 }
