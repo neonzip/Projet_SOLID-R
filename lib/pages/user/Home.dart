@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
 
       /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
       bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
+        color: Colors.white,
         elevation: 0,
         child:
         Row(

@@ -57,7 +57,6 @@ class Projects {
       child: FloatingActionButton.extended(
         tooltip: "Aller en haut",
         onPressed: _scrollToTop,
-        //Navigator.pushNamed(context, "/projects/section=formal");
         isExtended: false,
         extendedPadding: const EdgeInsets.all(10),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
