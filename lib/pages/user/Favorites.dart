@@ -40,9 +40,32 @@ class _FavoritesState extends State<Favorites> {
         title: const Text("Projets favoris"),
         centerTitle: true,
       ),
-      body: const Center(
-          child: Text("heuu"),
-      ),
+      body: Stack(children: <Widget>[
+        Container(
+            decoration: const BoxDecoration(
+            color: Colors.transparent,
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage(
+                'assets/exampleSport.png',
+              ),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              gradient: LinearGradient(
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  colors: [
+                    Colors.grey.withOpacity(0.5),
+                    Colors.white,
+                  ],
+              )
+          ),
+        )
+      ])
     );
   }
 

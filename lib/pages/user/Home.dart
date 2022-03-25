@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/ContainerWithBackground.dart';
 import 'package:projet_solid_r/pages/user/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/templates/YellowBubbleDonations.dart';
 import 'package:projet_solid_r/pages/user/templates/YellowBubbleKilometers.dart';
@@ -131,52 +132,54 @@ class _HomeState extends State<Home> {
       //////////////////////////////////////////////////////
       //////////////////////////////////////////////////////
 
-      body: Center (
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: 500,
-            child: Column(
-              children: [
-                Container(
-                    padding: const EdgeInsets.all(20),
-                    margin: const EdgeInsets.all(5),
-                    child: const Text("Bonjour pseudo",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                        )
-                    )
-                ),
+      body: ContainerWithBackground(
+        content: Center (
+            child: SingleChildScrollView(
+                child: SizedBox(
+                  width: 500,
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          margin: const EdgeInsets.all(5),
+                          child: const Text("Bonjour pseudo",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              )
+                          )
+                      ),
 
-                /* Yellow bubble containing the kilometers traveled. */
-                YellowBubbleKilometers(
-                    valueKilometers: 2500.toString(),
-                ),
+                      /* Yellow bubble containing the kilometers traveled. */
+                      YellowBubbleKilometers(
+                        valueKilometers: 2500.toString(),
+                      ),
 
-                /* Yellow bubble containing the donations that the user made. */
-                YellowBubbleDonations(
-                    valueDonations: 500.toString(),
-                ),
+                      /* Yellow bubble containing the donations that the user made. */
+                      YellowBubbleDonations(
+                        valueDonations: 500.toString(),
+                      ),
 
-                /* Blue horizontal line separating the two parts of the main page. */
-                Separator(),
+                      /* Blue horizontal line separating the two parts of the main page. */
+                      Separator(),
 
-                /* Text "Ils nous font confiance". */
-                Container(
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(20),
-                    margin: const EdgeInsets.all(5),
-                    child: const Text("Ils nous font confiance : ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                        )
-                    )
-                ),
-              ],
-            ),
-          )
-        )
+                      /* Text "Ils nous font confiance". */
+                      Container(
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.all(20),
+                          margin: const EdgeInsets.all(5),
+                          child: const Text("Ils nous font confiance : ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              )
+                          )
+                      ),
+                    ],
+                  ),
+                )
+            )
+        ),
       ),
 
       /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
