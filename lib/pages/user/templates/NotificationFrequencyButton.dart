@@ -1,12 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class NotificationFrequencyButton extends StatefulWidget {
   String primaryTitle;
   String secondaryTitle;
+  bool isSelected;
   void Function()? onPressed;
-  NotificationFrequencyButton({Key? key, required this.primaryTitle, required this.secondaryTitle, required this.onPressed}) : super(key: key);
+  NotificationFrequencyButton({Key? key, required this.primaryTitle, required this.secondaryTitle, required this.onPressed, required this.isSelected}) : super(key: key);
   @override
   _NotificationFrequencyButtonState createState() => _NotificationFrequencyButtonState();
 }
@@ -21,28 +20,34 @@ class _NotificationFrequencyButtonState extends State<NotificationFrequencyButto
   /// Widget building the notifcation frequency button.
   Widget buttonNotificationTemplate() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(5, 10, 5, 5),
-      width: 120,
-      height: 80,
+      margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+      height: 50,
       child: ElevatedButton(
           onPressed: widget.onPressed,
-          style: //ButtonStyle
+          style:
           ElevatedButton.styleFrom(
-            primary: Colors.white,
-            side: const BorderSide(width: 1.0, color: Colors.black),
+            primary: widget.isSelected ? const Color(0xFF0725A5) : Colors.white,
+            side: BorderSide(
+                width: 1.0,
+                color: widget.isSelected ? const Color(0xFF0725A5) : Colors.black,
+            ),
             padding: const EdgeInsets.all(10),
           ),
-          child: Column (
+          child: Row (
             children: [
               Text(
                 widget.primaryTitle,
-                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(
+                    color: widget.isSelected ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15
+                ),
                 textAlign: TextAlign.center,
               ),
+              const Spacer(),
               Text(
                 widget.secondaryTitle,
-                style: const TextStyle(color: Colors.black),
-                textAlign: TextAlign.center,
+                style: TextStyle(color: widget.isSelected ? Colors.white : Colors.black),
               )
             ],
           )

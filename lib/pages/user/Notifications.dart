@@ -9,71 +9,95 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
+  bool isNever = false;
+  bool is10km = true;
+  bool is20km = false;
+  bool is40km = false;
+  bool is60km = false;
+
+  /////////////////////
+
+  bool isNo = false;
+  bool isYes = true;
 
   /// Widget building the part with the question about the frequency of reminder to donate.
   Widget containerFrequency() {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Fréquence des rappels de dons :",
-            textAlign: TextAlign.justify,
+          Container(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: const Text(
+              "Fréquence des rappels de dons :",
+              textAlign: TextAlign.justify,
+            ),
           ),
-          SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child:
-              Row (
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    /* "Jamais" */
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 10, 5, 5),
-                      width: 120,
-                      height: 80,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: //ButtonStyle
-                        ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          side: const BorderSide(width: 1.0, color: Colors.black),
-                          padding: const EdgeInsets.all(10),
-                        ),
-                        child: const Text(
-                          "Jamais",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
+          Column (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                /* Never */
+                NotificationFrequencyButton(
+                  onPressed: () {
+                    setState(() {
+                      is10km = is20km = is40km = is60km = false;
+                      isNever = true;
+                    });
+                  },
+                  primaryTitle: "Jamais",
+                  secondaryTitle:  "",
+                  isSelected: isNever,
+                ),
 
-                    /* 10 km */
-                    NotificationFrequencyButton(
-                      onPressed: () {},
-                      primaryTitle: "Sportif occasionnel",
-                      secondaryTitle:  "10 km",
-                    ),
+                /* 10 km */
+                NotificationFrequencyButton(
+                  onPressed: () {
+                    setState(() {
+                      isNever = is20km = is40km = is60km = false;
+                      is10km = true;
+                    });
+                  },
+                  primaryTitle: "Sportif occasionnel",
+                  secondaryTitle:  "10 km",
+                  isSelected: is10km,
+                ),
 
-                    /* 20 km */
-                    NotificationFrequencyButton(
-                      onPressed: () {},
-                      primaryTitle: "Sportif du dimanche",
-                      secondaryTitle: "20 km",
-                    ),
+                /* 20 km */
+                NotificationFrequencyButton(
+                  onPressed: () {
+                    setState(() {
+                      isNever = is10km = is40km = is60km = false;
+                      is20km = true;                    });
+                  },
+                  primaryTitle: "Sportif du dimanche",
+                  secondaryTitle: "20 km",
+                  isSelected: is20km,
+                ),
 
-                    /* 40 km */
-                    NotificationFrequencyButton(
-                      onPressed: () {},
-                      secondaryTitle: "40 km",
-                      primaryTitle: "Sportif au top",
-                    ),
+                /* 40 km */
+                NotificationFrequencyButton(
+                  onPressed: () {
+                    setState(() {
+                      isNever = is20km = is10km = is60km = false;
+                      is40km = true;                    });
+                  },
+                  secondaryTitle: "40 km",
+                  primaryTitle: "Sportif au top",
+                  isSelected: is40km,
+                ),
 
-                    /* 60 km */
-                    NotificationFrequencyButton(
-                      onPressed: () {},
-                      secondaryTitle: "60 km",
-                      primaryTitle: "Niveau des champions",
-                    ),
-                  ]
-              )
+                /* 60 km */
+                NotificationFrequencyButton(
+                  onPressed: () {
+                    setState(() {
+                      isNever = is20km = is40km = is10km = false;
+                      is60km = true;
+                    });
+                  },
+                  secondaryTitle: "60 km",
+                  primaryTitle: "Niveau des champions",
+                  isSelected: is60km,
+                ),
+              ]
           )
         ]
     );
@@ -96,16 +120,27 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isNo = false;
+                      isYes = true;
+                    });
+
+                  },
                   style: //ButtonStyle
                   ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: const BorderSide(width: 1.0, color: Colors.black),
+                    primary: isYes ? const Color(0xFF0725A5) : Colors.white,
+                    side: BorderSide(
+                        width: 1.0,
+                        color: isYes ? const Color(0xFF0725A5) : Colors.black
+                    ),
                     padding: const EdgeInsets.all(10),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Oui",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: isYes? Colors.white : Colors.black
+                    ),
                   ),
                 ),
               ),
@@ -113,16 +148,27 @@ class _NotificationsState extends State<Notifications> {
                 margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
                 child:
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isYes = false;
+                      isNo = true;
+                    });
+
+                  },
                   style: //ButtonStyle
                   ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: const BorderSide(width: 1.0, color: Colors.black),
+                    primary: isNo ? const Color(0xFF0725A5) : Colors.white,
+                    side: BorderSide(
+                        width: 1.0,
+                        color: isNo ? const Color(0xFF0725A5) : Colors.black,
+                    ),
                     padding: const EdgeInsets.all(10),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Non",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: isNo? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
               ),
@@ -141,19 +187,22 @@ class _NotificationsState extends State<Notifications> {
         title: const Text("Notifications"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: Center(
         child: SingleChildScrollView (
           child:
-          Column(
-            children: [
-              /* Part about frequency of reminder for donation. */
-              containerFrequency(),
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
+                width: 500,
+                child: Column(
+                  children: [
+                    /* Part about frequency of reminder for donation. */
+                    containerFrequency(),
 
-              /* Part about notifications when a project reached its goal pool. */
-              containerPoolNotification(),
-            ],
-          ),
+                    /* Part about notifications when a project reached its goal pool. */
+                    containerPoolNotification(),
+                  ],
+                ),
+              ),
         ),
       ),
     );
