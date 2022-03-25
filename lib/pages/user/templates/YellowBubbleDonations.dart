@@ -48,7 +48,7 @@ class _YellowBubbleDonationsState extends State<YellowBubbleDonations> {
         boxShadow:[
           BoxShadow(
             color: Colors.black.withOpacity(0.6), //color of shadow
-            blurRadius: 7, // blur radius
+            blurRadius: 3, // blur radius
             offset: const Offset(0, 1), // changes position of shadow
             //first paramerter of offset is left-right
             //second parameter is top to down

@@ -144,6 +144,13 @@ class _HomeState extends State<Home> {
                           margin: const EdgeInsets.all(5),
                           child: const Text("Bonjour pseudo",
                               style: TextStyle(
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    offset: Offset(1.0, 1.0),
+                                    blurRadius: 2.0,
+                                    color: Colors.black,
+                                  ),
+                                ],
                                 color: Colors.black,
                                 fontSize: 20.0,
                               )
