@@ -43,9 +43,17 @@ class _YellowBubbleDonationsState extends State<YellowBubbleDonations> {
         ],
       ),
       decoration: BoxDecoration(
-          color: Colors.yellow,
-          borderRadius: BorderRadius.circular(10)
-        //more than 50% of width makes circle
+        color: Colors.yellow,
+        borderRadius: BorderRadius.circular(10), //border corner radius
+        boxShadow:[
+          BoxShadow(
+            color: Colors.black.withOpacity(0.6), //color of shadow
+            blurRadius: 7, // blur radius
+            offset: const Offset(0, 1), // changes position of shadow
+            //first paramerter of offset is left-right
+            //second parameter is top to down
+          ),
+        ],
       ),
       padding: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
       margin: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
