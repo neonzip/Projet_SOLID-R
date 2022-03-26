@@ -6,7 +6,7 @@ class Separator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Divider(
-      color: Colors.blue,
+      color: Color(0xFF0725A5),
       height: 50,
       thickness: 1,
       indent: 20,

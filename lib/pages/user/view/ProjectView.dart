@@ -165,7 +165,7 @@ class ProjectView extends ProjectModel{
             onPressed: () {
 
             },
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0725A5)), ),
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)), ),
             label: const Text(
               "Partager",
               style: TextStyle(color: Colors.white),

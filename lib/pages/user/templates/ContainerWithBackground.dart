@@ -23,7 +23,7 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/exampleSport.png",
+            "assets/Martin.png",
           ),
           fit: BoxFit.cover,
         ),
@@ -47,7 +47,7 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
                 begin: FractionalOffset.topCenter,
                 end: FractionalOffset.bottomCenter,
                 colors: [
-                  Colors.grey.withOpacity(0.0),
+                  Colors.white.withOpacity(0.0),
                   Colors.white,
                 ],
               )
@@ -60,7 +60,7 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
           begin: FractionalOffset.bottomCenter,
           end: FractionalOffset.topCenter,
           colors: [
-            Colors.grey.withOpacity(0.0),
+            Colors.white.withOpacity(0.0),
             Colors.white,
           ],
         )

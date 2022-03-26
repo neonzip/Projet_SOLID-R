@@ -47,7 +47,7 @@ class _FavoritesState extends State<Favorites> {
             image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage(
-                'assets/exampleSport.png',
+                'assets/Martin.png',
               ),
             ),
           ),
