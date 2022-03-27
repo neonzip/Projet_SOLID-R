@@ -40,7 +40,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
               )
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 15,
             child: Separator(),
           ),

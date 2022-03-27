@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Separator extends StatelessWidget {
+  const Separator({Key? key}) : super(key: key);
+
 
   /* Blue horizontal line separating the two parts of the main page. */
   @override

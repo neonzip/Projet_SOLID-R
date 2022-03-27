@@ -241,7 +241,7 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
         participationInformationTemplate(),
         meceneInformationTemplate(),
         /* Blue horizontal line separating the two parts of the main page. */
-        Separator(),
+        const Separator(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: 500,
@@ -303,7 +303,7 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
             onPressed: () {
 
             },
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0725A5)), ),
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)), ),
             label: const Text(
               "Partager",
               style: TextStyle(color: Colors.white),

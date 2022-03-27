@@ -118,7 +118,8 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.update,
         onPressedButton: () {
           Navigator.pushNamed(context, "/projects/section=formal");
-        }
+        },
+      positionButton: 3,
     );
   }
 
@@ -128,7 +129,8 @@ class _ProfileState extends State<Profile> {
         onPressedButton: () {},
         widthButton: widthButtons,
         textButton: "Activités réalisées",
-        iconButton: Icons.insights
+        iconButton: Icons.insights,
+      positionButton: 2,
     );
   }
 
@@ -139,6 +141,7 @@ class _ProfileState extends State<Profile> {
         textButton: "A propos",
         iconButton: Icons.info_outline,
         onPressedButton: () {},
+      positionButton: 4,
     );
   }
 
@@ -151,6 +154,7 @@ class _ProfileState extends State<Profile> {
         onPressedButton: () {
           Navigator.pushNamed(context, "/myInformation");
         },
+        positionButton: 0,
     );
   }
 
@@ -162,7 +166,8 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.notifications_none,
         onPressedButton: () {
           Navigator.pushNamed(context, "/notifications");
-        });
+        }, positionButton: 1,
+    );
   }
 
   @override
@@ -199,7 +204,7 @@ class _ProfileState extends State<Profile> {
                 bubbleDonationsDone(),
 
                 /* Blue horizontal line separating the two parts of the account page. */
-                Separator(),
+                const Separator(),
 
                 /* List of buttons */
                 Table(
@@ -207,7 +212,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child: /* Button "Mes informations" */
                             buttonInformationTemplate(),
                           )
@@ -216,7 +221,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child:
                             /* Button "Notifications */
                             buttonNotificationTemplate(),
@@ -226,7 +231,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child:
 
                             /* Button "Actions réalisées */
@@ -237,7 +242,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child:
 
                             /* Button "Projets soutenus" */
@@ -248,7 +253,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child:
                             /* Button "A propos" */
                             buttonAProposTemplate(),
@@ -258,7 +263,7 @@ class _ProfileState extends State<Profile> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            padding: const EdgeInsets.symmetric(vertical: 20),
                             child:
 
                             /* Button "Déconnexion" to log out */
