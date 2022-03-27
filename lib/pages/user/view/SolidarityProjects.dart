@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Projects.dart';
 
+import '../templates/Separator.dart';
+
 
 const int statusAllSolidarity = 1;
 
@@ -13,42 +15,67 @@ class SolidarityProjects extends StatefulWidget {
 
 class _SolidarityProjectsState extends State<SolidarityProjects> {
   bool? filterAll = false;
-  bool? filterRunning = false;
-  bool? filterFinished = false;
+  bool? filterFavorite = false;
+  bool isExpanded = false;
 
   /// Widget for filter.
   Widget filterTemplate() {
-    return Column (
-      children: [
-        Padding(
-            padding: const EdgeInsets.fromLTRB(15, 20, 0, 0),
-            child: Row(
-              children: const [
-                Text("Filtrer"),
-                Icon(Icons.arrow_drop_down),
-              ],
-            )
-        ),
+    return SizedBox(
+      height: 190,
+        child: Column (
+        children: [
+          Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 0, 5),
+              child: Row(
+                children: [
+                  const Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5))),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      icon: Icon(isExpanded? Icons.arrow_drop_up : Icons.arrow_drop_down, color: const Color(0xFF0725A5),)
+                  )],
+              )
+          ),
 
-        CheckboxListTile(
-          title: const Text('Tous'),
-          value: filterAll,
-          onChanged: (value) {
-            setState(() {
-              filterAll = value;
-            });
-          },
-        ),
-        CheckboxListTile(
-          title: const Text('Favoris'),
-          value: filterRunning,
-          onChanged: (value) {
-            setState(() {
-              filterRunning = value;
-            });
-          },
-        ),
-      ],
+          SizedBox(
+            height: 15,
+            child: Separator(),
+          ),
+          SizedBox(
+            height: 35,
+            child: CheckboxListTile(
+              side: const BorderSide(color: Color(0xFF0725A5)),
+              activeColor: const Color(0xFF0725A5),
+              checkColor: Colors.yellow,
+              title: const Text('Tous', style: TextStyle(color: Color(0xFF0725A5))),
+              value: filterAll,
+              onChanged: (value) {
+                setState(() {
+                  filterAll = value;
+                });
+              },
+            ),
+          ),
+          SizedBox(
+            height: 35,
+            child: CheckboxListTile(
+              side: const BorderSide(color: Color(0xFF0725A5)),
+              activeColor: const Color(0xFF0725A5),
+              checkColor: Colors.yellow,
+              title: const Text('Favoris', style: TextStyle(color: Color(0xFF0725A5))),
+              value: filterFavorite,
+              onChanged: (value) {
+                setState(() {
+                  filterFavorite = value;
+                });
+              },
+            ),
+          ),
+        ],
+      )
     );
   }
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +160,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
 
   /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(statusAllSolidarity, context, filterTemplate(), _scrollController, 1);
+    Projects projects = Projects(statusAllSolidarity, context, filterTemplate(), _scrollController, 1, isExpanded);
     return projects.templateProjects();
   }
 }

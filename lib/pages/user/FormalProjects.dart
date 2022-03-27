@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/Projects.dart';
-import 'package:projet_solid_r/pages/user/view/ProjectsView.dart';
 
 const int statusAllFormal = 0;
 
@@ -15,49 +15,82 @@ class _FormalProjectsState extends State<FormalProjects> {
   bool? filterAll = false;
   bool? filterRunning = false;
   bool? filterFinished = false;
+  bool isExpanded = false;
 
   /// Widget for filter.
   Widget filterTemplate() {
-    return Column (
-      children: [
-        Padding(
-            padding: const EdgeInsets.fromLTRB(15, 20, 0, 0),
-            child: Row(
-              children: const [
-                Text("Filtrer"),
-                Icon(Icons.arrow_drop_down),
-              ],
-            )
-        ),
-
-        CheckboxListTile(
-          title: const Text('Tous'),
-          value: filterAll,
-          onChanged: (value) {
-            setState(() {
-              filterAll = value;
-            });
-          },
-        ),
-        CheckboxListTile(
-          title: const Text('En cours'),
-          value: filterRunning,
-          onChanged: (value) {
-            setState(() {
-              filterRunning = value;
-            });
-          },
-        ),
-        CheckboxListTile(
-          title: const Text('Terminés'),
-          value: filterFinished,
-          onChanged: (value) {
-            setState(() {
-              filterFinished = value;
-            });
-          },
-        ),
-      ],
+    return Container(
+      color: const Color(0xFFFFF7E0),
+      child: Column (
+        children: [
+          Padding(
+              padding: const EdgeInsets.fromLTRB(15, 5, 0, 0),
+              child: Row(
+                children: [
+                  const Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5))),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      icon: Icon(isExpanded? Icons.arrow_drop_up : Icons.arrow_drop_down, color: const Color(0xFF0725A5),
+                  )
+              ),
+                ],
+              )
+          ),
+          SizedBox(
+            height: 15,
+            child: Separator(),
+          ),
+          SizedBox(
+            height: 35,
+            child: CheckboxListTile(
+              side: const BorderSide(color: Color(0xFF0725A5)),
+              activeColor: const Color(0xFF0725A5),
+              checkColor: Colors.yellow,
+              title: const Text('Tous', style: TextStyle(color: Color(0xFF0725A5))),
+              value: filterAll,
+              onChanged: (value) {
+                setState(() {
+                  filterAll = value;
+                });
+              },
+            ),
+          ),
+          SizedBox(
+            height: 35,
+            child: CheckboxListTile(
+              side: const BorderSide(color: Color(0xFF0725A5)),
+              activeColor: const Color(0xFF0725A5),
+              checkColor: Colors.yellow,
+              title: const Text('En cours', style: TextStyle(color: Color(0xFF0725A5))),
+              value: filterRunning,
+              onChanged: (value) {
+                setState(() {
+                  filterRunning = value;
+                });
+              },
+            ),
+          ),
+          SizedBox(
+            height: 35,
+            child: CheckboxListTile(
+              side: const BorderSide(color: Color(0xFF0725A5)),
+              activeColor: const Color(0xFF0725A5),
+              checkColor: Colors.yellow,
+              title: const Text('Terminés', style: TextStyle(color: Color(0xFF0725A5))),
+              value: filterFinished,
+              onChanged: (value) {
+                setState(() {
+                  filterFinished = value;
+                });
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -117,7 +150,7 @@ class _FormalProjectsState extends State<FormalProjects> {
    */
   void _scrollToTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(seconds: 3), curve: Curves.linear);
+        duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +176,7 @@ class _FormalProjectsState extends State<FormalProjects> {
 
   /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(statusAllFormal, context, filterTemplate(), _scrollController, 10);
+    Projects projects = Projects(statusAllFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
     return projects.templateProjects();
   }
 }

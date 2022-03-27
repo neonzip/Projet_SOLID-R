@@ -14,9 +14,10 @@ const int statusFinishedFormal = 4;       // To get the list of finished formal 
 class ProjectsView extends StatefulWidget {
   List<ProjectView>? listProjects;
   Widget filter;
+  bool isExpandedFilter;
   ScrollController controller;
 
-  ProjectsView({Key? key, required this.listProjects, required this.filter, required this.controller}) : super(key: key);
+  ProjectsView({Key? key, required this.listProjects, required this.filter, required this.isExpandedFilter, required this.controller}) : super(key: key);
 
   @override
   _ProjectsViewState createState() => _ProjectsViewState();
@@ -35,9 +36,8 @@ class _ProjectsViewState extends State<ProjectsView> {
                     automaticallyImplyLeading: false,
                     elevation: 2,
                     pinned: true,
-                    expandedHeight: 210,
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
+                collapsedHeight: widget.isExpandedFilter? 190 : 60,
+                backgroundColor: const Color(0xFFFFF7E0),
                 flexibleSpace:
                 /* Adding filter to the app. */
                 SingleChildScrollView(

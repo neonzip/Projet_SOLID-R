@@ -24,20 +24,23 @@ class Projects {
   late Widget filterToUse;
   late int nbProjects; // To change with the list after
   late int statusSection;
+  late bool isExpandedFilter;
 
 
   /// Constructor called in the files where we need it.
-  Projects(int section, BuildContext contextB, Widget filterToUseB, ScrollController controller, int nbProj) {
+  Projects(int section, BuildContext contextB, Widget filterToUseB, ScrollController controller, int nbProj, bool isExpanded) {
     context = contextB;
     statusSection = section;
     filterToUse = filterToUseB;
     nbProjects = nbProj;
     _scrollController = controller;
+    isExpandedFilter = isExpanded;
   }
 
   /// Widget which creates the cards with the information of each Project.
   Widget templateProjects() {
     return ProjectsView(
+      isExpandedFilter: isExpandedFilter,
       listProjects: listProjects(),
       filter: filterToUse,
       controller: _scrollController,
