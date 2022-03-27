@@ -84,6 +84,7 @@ class _MyInformationState extends State<MyInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEBF1FF),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0725A5),
         title: const Text("Mes informations"),
