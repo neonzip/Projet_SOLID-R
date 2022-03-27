@@ -20,7 +20,7 @@ class _FormalProjectsState extends State<FormalProjects> {
   /// Widget for filter.
   Widget filterTemplate() {
     return Container(
-      color: const Color(0xFFFFF7E0),
+      color: Colors.white,
       child: Column (
         children: [
           Padding(

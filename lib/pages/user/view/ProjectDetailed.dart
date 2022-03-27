@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:projet_solid_r/pages/user/templates/DonationButton.dart';
 import 'package:projet_solid_r/pages/user/templates/FavoriteButton.dart';
 import 'package:projet_solid_r/pages/user/templates/ProjectProgressBar.dart';
+import 'package:projet_solid_r/pages/user/templates/Separator.dart';
 
 class ProjectDetailed extends StatefulWidget {
  // Project projectToSee;
@@ -240,12 +241,7 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
         participationInformationTemplate(),
         meceneInformationTemplate(),
         /* Blue horizontal line separating the two parts of the main page. */
-        const Divider(
-          color: Colors.blue,
-          thickness: 1,
-          indent: 10,
-          endIndent: 10,
-        ),
+        Separator(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: 500,

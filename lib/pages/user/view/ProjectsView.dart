@@ -26,7 +26,8 @@ class _ProjectsViewState extends State<ProjectsView> {
   @override
   Widget build(BuildContext context) {
     return
-      SizedBox(
+      Container(
+        color: const Color(0xFFD7E1FF),
           width: 500,
           child: CustomScrollView(
               controller: widget.controller,
@@ -37,7 +38,8 @@ class _ProjectsViewState extends State<ProjectsView> {
                     elevation: 2,
                     pinned: true,
                 collapsedHeight: widget.isExpandedFilter? 190 : 60,
-                backgroundColor: const Color(0xFFFFF7E0),
+                backgroundColor: Colors.white,
+                forceElevated: true,
                 flexibleSpace:
                 /* Adding filter to the app. */
                 SingleChildScrollView(
