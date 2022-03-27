@@ -131,7 +131,7 @@ class _NotificationsState extends State<Notifications> {
                   ElevatedButton.styleFrom(
                     primary: isYes ? const Color(0xFF0725A5) : Colors.white,
                     side: BorderSide(
-                        width: 1.0,
+                        width: 0.5,
                         color: isYes ? const Color(0xFF0725A5) : Colors.black
                     ),
                     padding: const EdgeInsets.all(10),
@@ -159,7 +159,7 @@ class _NotificationsState extends State<Notifications> {
                   ElevatedButton.styleFrom(
                     primary: isNo ? const Color(0xFF0725A5) : Colors.white,
                     side: BorderSide(
-                        width: 1.0,
+                        width: 0.5,
                         color: isNo ? const Color(0xFF0725A5) : Colors.black,
                     ),
                     padding: const EdgeInsets.all(10),

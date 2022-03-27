@@ -28,7 +28,7 @@ class _NotificationFrequencyButtonState extends State<NotificationFrequencyButto
           ElevatedButton.styleFrom(
             primary: widget.isSelected ? const Color(0xFF0725A5) : Colors.white,
             side: BorderSide(
-                width: 1.0,
+                width: 0.5,
                 color: widget.isSelected ? const Color(0xFF0725A5) : Colors.black,
             ),
             padding: const EdgeInsets.all(10),
