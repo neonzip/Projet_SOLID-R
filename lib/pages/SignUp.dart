@@ -76,7 +76,13 @@ class _SignUpState extends State<SignUp> {
     Navigator.pushNamed(context, "/");
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Colors.white,
+            behavior: SnackBarBehavior.floating,
+            padding: const EdgeInsets.all(0),
+            margin: const EdgeInsets.all(5),
+            backgroundColor: Colors.white,
+            shape: const Border(
+              bottom: BorderSide(color: Colors.yellow),
+            ),
           content: MessageSnackbar(
             title: 'Inscription réalisée\n',
             text: "Bienvenue sur SOLID'R !\n\nVous pouvez dès à présent vous connecter sur votre espace.",

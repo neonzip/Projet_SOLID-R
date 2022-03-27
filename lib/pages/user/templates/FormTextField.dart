@@ -35,10 +35,10 @@ class _FormTextFieldState extends State<FormTextField> {
               TextField(
                 decoration: InputDecoration(
                   focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow, width: 2.0),
+                    borderSide: BorderSide(color: Colors.yellow, width: 1.0),
                   ),
                   enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                    borderSide: BorderSide(color: Colors.black, width: 1.0),
                   ),
                   suffixIcon: const Icon(Icons.create_outlined, color: Colors.black,), //icon at tail of input
                   hintText: widget.labelHint,

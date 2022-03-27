@@ -46,7 +46,13 @@ class _MyInformationState extends State<MyInformation> {
   void buttonSubmitChanges() {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          behavior: SnackBarBehavior.floating,
+          padding: const EdgeInsets.all(0),
+          margin: const EdgeInsets.all(5),
           backgroundColor: Colors.white,
+          shape: const Border(
+              bottom: BorderSide(color: Colors.yellow),
+          ),
           content: MessageSnackbar(
             title: 'Modifications validées\n',
             text: "Les modifications du profil ont bien été prises en compte.",
