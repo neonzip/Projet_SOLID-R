@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/Projects.dart';
+import 'package:projet_solid_r/pages/user/Projects.dart';
 
-import '../templates/Separator.dart';
+import 'templates/Separator.dart';
 
 
 const int statusAllSolidarity = 1;
@@ -160,7 +160,21 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
 
   /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(statusAllSolidarity, context, filterTemplate(), _scrollController, 1, isExpanded);
-    return projects.templateProjects();
+
+    // If filter is set to favorite projects
+    if (filterFavorite == true) {
+      filterAll = false;
+      Projects projects = Projects(statusFavoriteSolidarity, context, filterTemplate(), _scrollController, 1, isExpanded);
+      return projects.templateProjects();
+    }
+
+    // If filter is set to all projects
+    else {
+      if (filterAll == true){
+        filterFavorite = false;
+      }
+      Projects projects = Projects(statusAllSolidarity, context, filterTemplate(), _scrollController, 1, isExpanded);
+      return projects.templateProjects();
+    }
   }
 }

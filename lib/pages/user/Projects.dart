@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'ProjectView.dart';
-import 'ProjectsView.dart';
+import 'view/ProjectView.dart';
+import 'view/ProjectsView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Constants for every possible status to list the Projects (easier and communicates with the filters.
@@ -93,6 +93,7 @@ class Projects {
       case statusAllSolidarity:
         return listSolidarityProjects();
       case statusFavoriteSolidarity:
+        print("OUEPPP\n\n");
         return listFavoriteSolidarityProjects();
       default:
         return null;
@@ -121,10 +122,10 @@ class Projects {
 
   /* Creates and returns the list of the favorite solidarity projects. */
   List<ProjectView> listFavoriteSolidarityProjects() {
-    List<ProjectView> listFavoriteProjects = [];
+    List<ProjectView> listFavoriteProjects = <ProjectView>[];
     for (int i = 0; i < listSolidarityProjects().length; i ++) {
-      if (listSolidarityProjects()[i].isFavoriteProject == true) {
-        listFavoriteProjects.add(listSolidarityProjects()[i]);
+      if (listSolidarityProjects().elementAt(i).getFavoriteState() == true) {
+        listFavoriteProjects.add(listSolidarityProjects().elementAt(i));
       }
     }
     return listFavoriteProjects;
