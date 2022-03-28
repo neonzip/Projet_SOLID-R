@@ -22,7 +22,7 @@ class Projects {
   late BuildContext context;
   late ScrollController _scrollController;  // Scroll controler that we will use
   late Widget filterToUse;
-  late int nbProjects; // To change with the list after
+  late int nbProjects; // To change with the list after --> useLess ?
   late int statusSection;
   late bool isExpandedFilter;
 
@@ -95,6 +95,10 @@ class Projects {
       case statusFavoriteSolidarity:
         print("OUEPPP\n\n");
         return listFavoriteSolidarityProjects();
+      case statusFinishedFormal:
+        return listFinishedFormalProjects();
+      case statusRunningFormal:
+        return listRunningFormalProjects();
       default:
         return null;
     }
@@ -106,6 +110,10 @@ class Projects {
     ProjectView project2 = ProjectView(2, true, context, "NameProject2", "Ceci est un text pour décrire le but de l'association2.");
     ProjectView project3 = ProjectView(3, false, context, "NameProject3",  "Ceci est un text pour décrire le but de l'association3.");
     ProjectView project4 = ProjectView(4, true, context, "NameProject4", "Ceci est un text pour décrire le but de l'association4.");
+    project1.setResultProject(97.5);
+    project2.setResultProject(12.6);
+    project3.setResultProject(100);
+    project2.setResultProject(63.9);
     List<ProjectView> listProjectsFormal = <ProjectView>[project1, project2, project3, project4];
     return listProjectsFormal;
   }
@@ -116,6 +124,10 @@ class Projects {
     ProjectView project2 = ProjectView(6, true, context, "NameProject22", "Ceci est un text pour décrire le but de l'association2.");
     ProjectView project3 = ProjectView(7, false, context, "NameProject33", "Ceci est un text pour décrire le but de l'association3.");
     ProjectView project4 = ProjectView(8, true, context, "NameProject44", "Ceci est un text pour décrire le but de l'association4.");
+    project1.setResultProject(90.5);
+    project2.setResultProject(40.6);
+    project3.setResultProject(100);
+    project2.setResultProject(24.9);
     List<ProjectView> listSolidarityProjects = <ProjectView>[project1, project2, project3, project4];
     return listSolidarityProjects;
   }
@@ -130,6 +142,26 @@ class Projects {
     }
     return listFavoriteProjects;
   }
-/// ///////////////////////////////////////////////////////////
 
+  /* Creates and returns the list of the finished projects for formal projects. */
+  List<ProjectView> listFinishedFormalProjects() {
+    List<ProjectView> listFinishedFormalProjects = <ProjectView>[];
+    for (int i = 0; i < listFormalProjects().length; i ++) {
+      if (listFormalProjects().elementAt(i).getResultProject() == 100) {
+        listFinishedFormalProjects.add(listFormalProjects().elementAt(i));
+      }
+    }
+    return listFinishedFormalProjects;
+  }
+
+  List<ProjectView> listRunningFormalProjects() {
+    List<ProjectView> listRunningFormalProjects = <ProjectView>[];
+    for (int i = 0; i < listFormalProjects().length; i ++) {
+      if (listFormalProjects().elementAt(i).getResultProject() < 100) {
+        listRunningFormalProjects.add(listFormalProjects().elementAt(i));
+      }
+    }
+    return listRunningFormalProjects;
+  }
+/// ///////////////////////////////////////////////////////////
 }

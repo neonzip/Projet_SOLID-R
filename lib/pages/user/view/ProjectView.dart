@@ -46,7 +46,7 @@ class ProjectView extends ProjectModel{
                 child: Column(
                   children: [
                     ProjectProgressBar(
-                        valueBar: 0.5, // %
+                        valueBar: getResultProject() / 100, // %
                     ),
 
                     Container (

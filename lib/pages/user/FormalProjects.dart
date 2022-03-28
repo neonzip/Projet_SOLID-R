@@ -176,7 +176,27 @@ class _FormalProjectsState extends State<FormalProjects> {
 
   /* Widget which displays the specific projects of the chosen section on the screen. */
   Widget addListProjects() {
-    Projects projects = Projects(statusAllFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
-    return projects.templateProjects();
+    if (filterFinished == true) {
+      filterAll = false;
+      filterRunning = false;
+      Projects projects = Projects(statusFinishedFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
+      return projects.templateProjects();
+    }
+    else if (filterRunning == true) {
+      filterAll = false;
+      filterFinished = false;
+      Projects projects = Projects(statusRunningFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
+      return projects.templateProjects();
+    }
+    else {
+      if (filterAll == true) {
+        filterFinished = false;
+        filterRunning = false;
+      }
+      Projects projects = Projects(
+          statusAllFormal, context, filterTemplate(), _scrollController, 10,
+          isExpanded);
+      return projects.templateProjects();
+    }
   }
 }

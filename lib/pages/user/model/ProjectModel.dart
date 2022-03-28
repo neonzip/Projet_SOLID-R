@@ -13,7 +13,7 @@ class ProjectModel {
   late String projectName;        // Project's name
   late String projectDescription; // Project's description
   late String donationGoalProject;// Project's goal for donation
-  late String resultProject;      // Project's result when it is finished
+  late double resultProject;      // Project's result when it is finished
   late DateTime startDateProject; // Date when the project begins
   late bool isFavoriteProject;    // True if it is a favorite project, false then
 
@@ -29,6 +29,8 @@ class ProjectModel {
     projectDescription = descriptionProject;
 
     isFavoriteProject = isFavorite;
+
+    resultProject = 0;
 
     associationProject = AssociationModel();
     entityProject = EntityModel();
@@ -82,10 +84,10 @@ class ProjectModel {
   }
 
   /// /////////////////////////////
-  String getResultProject() {
+  double getResultProject() {
     return resultProject;
   }
-  setResultProject(String result) {
+  setResultProject(double result) {
     resultProject = result;
   }
 
