@@ -7,4 +7,13 @@ class ActivityModel {
   late int activityDistance;
 
   late SportModel activitySport;
+
+  //////////////////////////
+
+  ActivityModel (int activity, DateTime activityStart) {
+    activityID = activity;
+    activityStartDate = activityStart;
+    activityEndDate = DateTime(0);
+    activityDistance = 0;
+  }
 }

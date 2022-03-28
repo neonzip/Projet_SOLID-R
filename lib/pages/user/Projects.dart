@@ -93,7 +93,6 @@ class Projects {
       case statusAllSolidarity:
         return listSolidarityProjects();
       case statusFavoriteSolidarity:
-        print("OUEPPP\n\n");
         return listFavoriteSolidarityProjects();
       case statusFinishedFormal:
         return listFinishedFormalProjects();
