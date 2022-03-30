@@ -44,6 +44,8 @@ dependencies:
   flutter_local_notifications: ^9.3.3
   flutter_isolate: ^2.0.0
   path_provider: ^2.0.9
+  firebase_database: ^9.0.8
+  firebase_auth: ^3.3.11
 
 dev_dependencies:
   flutter_test:

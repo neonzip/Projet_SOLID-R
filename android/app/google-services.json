@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "787807178010",
+    "project_id": "sport-solid-r-test",
+    "storage_bucket": "sport-solid-r-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787807178010:android:f1e4e16fb5187477a330a3",
+        "android_client_info": {
+          "package_name": "com.example.projet_solid_r"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787807178010-a92irg4obrjpp2rheo33qu7a959ji8f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAnF6ZZWK7ZuUrEHqYaePS-ZAYrjtk2w0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787807178010-a92irg4obrjpp2rheo33qu7a959ji8f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
