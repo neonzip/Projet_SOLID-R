@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
-import 'package:projet_solid_r/pages/LaunchHome.dart';
+import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
+import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn.dart';
-import 'package:projet_solid_r/pages/user/Activities.dart';
-import 'package:projet_solid_r/pages/user/Favorites.dart';
-import 'package:projet_solid_r/pages/user/MyInformation.dart';
-import 'package:projet_solid_r/pages/user/view/ProjectDetailed.dart';
+import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
+import 'package:projet_solid_r/pages/user/bazar/Project/Favorites.dart';
+import 'package:projet_solid_r/pages/user/bazar/Project/FormalProjects.dart';
+import 'package:projet_solid_r/pages/user/view/Home.dart';
+import 'package:projet_solid_r/pages/user/bazar/Profile/MyInformation.dart';
+import 'package:projet_solid_r/pages/user/bazar/Profile/Notifications.dart';
+import 'package:projet_solid_r/pages/user/bazar/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/SignUp.dart';
-import 'package:projet_solid_r/pages/user/SolidarityProjects.dart';
-import 'pages/user/Profile.dart';
-import 'pages/user/FormalProjects.dart';
-import 'pages/user/Home.dart';
-import 'pages/user/Activities.dart';
-import 'pages/user/Notifications.dart';
-import 'pages/user/Favorites.dart';
-import 'pages/user/MyInformation.dart';
-import 'pages/user/SolidarityProjects.dart';
+import 'pages/user/bazar/Activity/Activities.dart';
 
 void main() => runApp(MaterialApp(
   theme: ThemeData(
@@ -34,7 +30,7 @@ void main() => runApp(MaterialApp(
     "/profile": (context) => const Profile(),
     "/projects/section=formal": (context) => const FormalProjects(),
     "/projects/section=solidarity": (context) => const SolidarityProjects(),
-    "/projects/section=formal" "/name=" "nomProjet": (context) => const ProjectDetailed(),
+   // "/projects/section=formal" "/name=" "nomProjet": (context) => const ProjectDetailedView(),
 
     "/notifications": (context) => const Notifications(),
   },

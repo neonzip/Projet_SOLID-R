@@ -72,6 +72,10 @@ flutter:
    - assets/logo_solid_R.png
    - assets/json.json
    - assets/Martin.png
+   - assets/LogoAssociation/logo1.jpg
+   - assets/LogoAssociation/logo2.jpg
+   - assets/LogoAssociation/logo3.jpg
+   - assets/LogoAssociation/logo4.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

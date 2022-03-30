@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
 
-class AssociationModel {
-  late int associationID;                    // Association's ID
+class AssociationModel extends EntityModel {
   late String associationLogo;               // Association's logo
   late String associationWebSiteURL;         // Association's website
-  late String associationDescription;        // Association's description
 
-  AssociationModel() {
-    associationLogo = "assets/logo_solid_R.png";  // Just by default
+  AssociationModel (int id, String name, String description, String logo) : super(id, name, description) {
+    associationLogo = logo;
   }
 
   /// ////////////////////////////
@@ -20,17 +18,17 @@ class AssociationModel {
 
   /// ////////////////////////////
   int getAssociationId() {
-    return associationID;
+    return entityID;
   }
   setAssociationId(int id) {
-    associationID = id;
+    entityID = id;
   }
 
   /// ////////////////////////////
   String getAssociationDescription(){
-    return associationDescription;
+    return entityDescription;
   }
   setAssociationDescription(String description) {
-    associationDescription = description;
+    setEntityDescription(description);
   }
 }

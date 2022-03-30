@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
-import 'package:projet_solid_r/pages/user/templates/ActivityButton.dart';
-import 'package:projet_solid_r/pages/user/templates/FinishedActivityAlert.dart';
+import 'package:projet_solid_r/pages/user/view/templates/Activity/ActivityButton.dart';
+import 'package:projet_solid_r/pages/user/view/templates/Activity/FinishedActivityAlert.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter

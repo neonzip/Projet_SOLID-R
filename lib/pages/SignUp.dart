@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/templates/FormTextField.dart';
-import 'package:projet_solid_r/pages/user/templates/MessageSnackbar.dart';
-import 'package:projet_solid_r/pages/user/templates/SignupButton.dart';
+import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
+import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
+import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -27,17 +27,17 @@ class _SignUpState extends State<SignUp> {
               width: 500,
               child: Column(
                 children: [
-                  FormTextField(
+                  const FormTextField(
                       errorMessage: "Champ vide.",
                       labelHint: "Email :",
                       label: "Entrez votre email"
                   ),
-                  FormTextField(
+                  const FormTextField(
                       errorMessage: "Champ vide.",
                       labelHint: "Pseudo :",
                       label: "Entrez votre pseudo"
                   ),
-                  FormTextField(
+                  const FormTextField(
                       errorMessage: "Champ vide.",
                       labelHint: "Mot de passe :",
                       label: "Entrez votre mot de passe"
@@ -76,19 +76,19 @@ class _SignUpState extends State<SignUp> {
   void submitSignup () {
     Navigator.pushNamed(context, "/");
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
             behavior: SnackBarBehavior.floating,
-            padding: const EdgeInsets.all(0),
-            margin: const EdgeInsets.all(5),
+            padding: EdgeInsets.all(0),
+            margin: EdgeInsets.all(5),
             backgroundColor: Colors.white,
-            shape: const Border(
+            shape: Border(
               bottom: BorderSide(color: Colors.yellow),
             ),
           content: MessageSnackbar(
             title: 'Inscription réalisée\n',
             text: "Bienvenue sur SOLID'R !\n\nVous pouvez dès à présent vous connecter sur votre espace.",
           ),
-          duration: const Duration(seconds: 5),
+          duration: Duration(seconds: 5),
         )
     );
   }

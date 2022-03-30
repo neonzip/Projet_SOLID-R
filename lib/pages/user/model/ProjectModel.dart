@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
-
+import 'AssociationModel.dart';
 import 'EntityModel.dart';
 
 /// Class of one instance of project.
@@ -12,30 +10,28 @@ class ProjectModel {
   late int projectID;             // Project's ID
   late String projectName;        // Project's name
   late String projectDescription; // Project's description
-  late String donationGoalProject;// Project's goal for donation
-  late double resultProject;      // Project's result when it is finished
-  late DateTime startDateProject; // Date when the project begins
-  late bool isFavoriteProject;    // True if it is a favorite project, false then
+  late String projectDonationGoal;// Project's goal for donation
 
-  late AssociationModel associationProject;   // Association of the project
-  late EntityModel entityProject;      // Entity which collaborates for this project
+  late double projectResult;      // Project's progression
+  late String projectResultDescription; // Project's result description when it is finished
 
-  late BuildContext context;      // Context we need to redirect to the detailled page of the project
+  late DateTime projectStartDate; // Date when the project begins
+
+  late bool projectIsFavorite;    // True if it is a favorite project, false then
+
+  late AssociationModel projectAssociation;   // Association of the project
+  late EntityModel projectEntity;      // Entity which collaborates for this project
 
   /// Constructor
-  ProjectModel(int idProject, bool isFavorite, BuildContext contextProject, String nameProject, String descriptionProject) {
+  ProjectModel(int idProject, bool isFavorite, String nameProject, String descriptionProject) {
     projectID = idProject;
     projectName = nameProject;
     projectDescription = descriptionProject;
+    projectResultDescription = "";
 
-    isFavoriteProject = isFavorite;
+    projectIsFavorite = isFavorite;
 
-    resultProject = 0;
-
-    associationProject = AssociationModel();
-    entityProject = EntityModel();
-
-    context = contextProject;
+    projectResult = 0;
   }
 
 
@@ -45,10 +41,10 @@ class ProjectModel {
 
   /// ///////////////////////////
   bool getFavoriteState() {
-    return isFavoriteProject;
+    return projectIsFavorite;
   }
   setFavoriteState(bool state) {
-    isFavoriteProject = state;
+    projectIsFavorite = state;
   }
 
   /// ///////////////////////////
@@ -77,33 +73,41 @@ class ProjectModel {
 
   /// ////////////////////////////
   String getDonationGoalProject() {
-    return donationGoalProject;
+    return projectDonationGoal;
   }
   setDonationGoalProject(String goal) {
-    donationGoalProject = goal;
+    projectDonationGoal = goal;
   }
 
   /// /////////////////////////////
   double getResultProject() {
-    return resultProject;
+    return projectResult;
   }
   setResultProject(double result) {
-    resultProject = result;
+    projectResult = result;
   }
 
   /// /////////////////////////////
   AssociationModel getAssociationProject() {
-    return associationProject;
+    return projectAssociation;
   }
   setAssociationProject(AssociationModel association) {
-    associationProject = association;
+    projectAssociation = association;
   }
 
   /// /////////////////////////////
   EntityModel getEntityProject() {
-    return entityProject;
+    return projectEntity;
   }
   setEntityProject(EntityModel entity) {
-    entityProject = entity;
+    projectEntity = entity;
+  }
+
+  /// /////////////////////////////
+  String getResultDescriptionProject() {
+    return projectResultDescription;
+  }
+  setResultDescriptionProject(String resultDescription) {
+    projectResultDescription = resultDescription;
   }
 }

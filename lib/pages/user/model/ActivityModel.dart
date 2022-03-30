@@ -1,4 +1,5 @@
 import 'SportModel.dart';
+import 'UserModel.dart';
 
 class ActivityModel {
   late int activityID;
@@ -7,6 +8,8 @@ class ActivityModel {
   late int activityDistance;
 
   late SportModel activitySport;
+
+  late UserModel activityUser;
 
   //////////////////////////
 

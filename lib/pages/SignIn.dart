@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/templates/FormTextField.dart';
-import 'package:projet_solid_r/pages/user/templates/SigninButton.dart';
+import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
+import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -28,12 +27,12 @@ class _SignInState extends State<SignIn> {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
               child: Column(
                 children: [
-                  FormTextField(
+                  const FormTextField(
                       errorMessage: "Champ vide.",
                       labelHint: "Email :",
                       label: "Entrez votre email"
                   ),
-                  FormTextField(
+                  const FormTextField(
                       errorMessage: "Champ vide.",
                       labelHint: "Mot de passe :",
                       label: "Entrez votre mot de passe"

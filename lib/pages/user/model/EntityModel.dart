@@ -7,6 +7,13 @@ class EntityModel {
 
   late AdvertisementModel advertisementEntity;
 
+
+  EntityModel(int id, String name, String description) {
+    entityID = id;
+    entityName = name;
+    entityDescription = description;
+  }
+
   /// ////////////////////////////
   int getEntityId() {
     return entityID;
