@@ -17,26 +17,26 @@ import 'pages/user/Favorites.dart';
 import 'pages/user/MyInformation.dart';
 import 'pages/user/SolidarityProjects.dart';
 
-void main() => runApp(MaterialApp(
-  theme: ThemeData(
-    fontFamily: "Metropolis",
-  ),
-  initialRoute: "/",
-  routes: {
-    "/": (context) => const LaunchHome(),
-    "/signup": (context) => const SignUp(),
-    "/signin": (context) => const SignIn(),
-    "/myInformation": (context) => const MyInformation(),
-    "/home": (context) => const Home(),
-    "/favorites": (context) => const Favorites(),
-    "/activities": (context) => const Activities(),
-    "/activityAxel": (context) => const Activity(),
-    "/profile": (context) => const Profile(),
-    "/projects/section=formal": (context) => const FormalProjects(),
-    "/projects/section=solidarity": (context) => const SolidarityProjects(),
-    "/projects/section=formal" "/name=" "nomProjet": (context) => const ProjectDetailed(),
+void main() async => runApp(MaterialApp(
+    theme: ThemeData(
+      fontFamily: "Metropolis",
+    ),
+    initialRoute: "/",
+    routes: {
+      "/": (context) => const LaunchHome(),
+      "/signup": (context) => const SignUp(),
+      "/signin": (context) => const SignIn(),
+      "/myInformation": (context) => const MyInformation(),
+      "/home": (context) => const Home(),
+      "/favorites": (context) => const Favorites(),
+      "/activities": (context) => const Activities(),
+      "/activityAxel": (context) => const Activity(),
+      "/profile": (context) => const Profile(),
+      "/projects/section=formal": (context) => const FormalProjects(),
+      "/projects/section=solidarity": (context) => const SolidarityProjects(),
+      "/projects/section=formal" "/name=" "nomProjet": (
+          context) => const ProjectDetailed(),
 
-    "/notifications": (context) => const Notifications(),
-  },
-));
-
+      "/notifications": (context) => const Notifications(),
+    },
+  ));
