@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
+import '../../view/Project/ProjectView.dart';
+import '../../view/templates/ItemFilter.dart';
 import '../../view/templates/Separator.dart';
 import '../../view/Project/ProjectsView.dart';
-
-
-const int statusAllSolidarity = 1;
-const int statusFavoriteSolidarity = 2;   // To get the list of the favorite solidarity projects
-
 
 class SolidarityProjects extends StatefulWidget {
   const SolidarityProjects({Key? key,}) : super(key: key);
@@ -17,9 +14,11 @@ class SolidarityProjects extends StatefulWidget {
 }
 
 class _SolidarityProjectsState extends State<SolidarityProjects> {
-  bool? filterAll = false;
+  bool? filterAll = true;
   bool? filterFavorite = false;
   bool isExpanded = false;
+
+  List<ProjectView> listProjects = <ProjectView>[];
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -47,35 +46,31 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
             height: 15,
             child: Separator(),
           ),
-          SizedBox(
-            height: 35,
-            child: CheckboxListTile(
-              side: const BorderSide(color: Color(0xFF0725A5)),
-              activeColor: const Color(0xFF0725A5),
-              checkColor: Colors.yellow,
-              title: const Text('Tous', style: TextStyle(color: Color(0xFF0725A5))),
-              value: filterAll,
+          ItemFilter(
+              isSelected: filterAll,
+              textItem: 'Tous',
               onChanged: (value) {
                 setState(() {
                   filterAll = value;
+                  filterFavorite = false;
+                  if (filterAll == true) {
+                    listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                  }
                 });
-              },
-            ),
+              }
           ),
-          SizedBox(
-            height: 35,
-            child: CheckboxListTile(
-              side: const BorderSide(color: Color(0xFF0725A5)),
-              activeColor: const Color(0xFF0725A5),
-              checkColor: Colors.yellow,
-              title: const Text('Favoris', style: TextStyle(color: Color(0xFF0725A5))),
-              value: filterFavorite,
+          ItemFilter(
+              isSelected: filterFavorite,
+              textItem: 'Favoris',
               onChanged: (value) {
                 setState(() {
                   filterFavorite = value;
+                  filterAll = false;
+                  if (filterFavorite == true) {
+                    listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                  }
                 });
-              },
-            ),
+              }
           ),
         ],
       )
@@ -110,6 +105,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
+    listProjects = DataProjectTest().getListSolidarityProjectsViews();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -138,7 +134,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
    */
   void _scrollToTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(seconds: 3), curve: Curves.linear);
+        duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,9 +154,9 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
         body: Center(
         child: ProjectsView(
           filter: filterTemplate(),
-          isExpandedFilter: true,
+          isExpandedFilter: isExpanded,
           controller: _scrollController,
-          listProjects: DataProjectTest().getListSolidarityProjectsViews(),
+          listProjects: listProjects,
         ),     // Displays the specific projects of the chosen section on the screen
       )
     );

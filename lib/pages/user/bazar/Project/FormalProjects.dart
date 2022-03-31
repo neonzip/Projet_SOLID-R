@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../controller/fakeDataTest/DataProjectTest.dart';
+import '../../view/Project/ProjectView.dart';
 import '../../view/Project/ProjectsView.dart';
+import '../../view/templates/ItemFilter.dart';
 import '../../view/templates/Separator.dart';
-import 'Projects.dart';
 
 class FormalProjects extends StatefulWidget {
   const FormalProjects({Key? key}) : super(key: key);
@@ -12,11 +13,15 @@ class FormalProjects extends StatefulWidget {
   _FormalProjectsState createState() => _FormalProjectsState();
 }
 
+
+bool isExpanded = false;
+
 class _FormalProjectsState extends State<FormalProjects> {
-  bool? filterAll = false;
+  bool? filterAll = true;
   bool? filterRunning = false;
   bool? filterFinished = false;
-  bool isExpanded = false;
+
+  List<ProjectView> listProjects = <ProjectView>[];
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -45,51 +50,48 @@ class _FormalProjectsState extends State<FormalProjects> {
             height: 15,
             child: Separator(),
           ),
-          SizedBox(
-            height: 35,
-            child: CheckboxListTile(
-              side: const BorderSide(color: Color(0xFF0725A5)),
-              activeColor: const Color(0xFF0725A5),
-              checkColor: Colors.yellow,
-              title: const Text('Tous', style: TextStyle(color: Color(0xFF0725A5))),
-              value: filterAll,
+          ItemFilter(
+            isSelected: filterAll,
+            textItem: 'Tous',
               onChanged: (value) {
                 setState(() {
                   filterAll = value;
+                  if (filterAll == true) {
+                    filterRunning = false;
+                    filterFinished = false;
+                    listProjects = DataProjectTest().getListFormalProjectsViews();
+                  }
                 });
-              },
-            ),
+            }
           ),
-          SizedBox(
-            height: 35,
-            child: CheckboxListTile(
-              side: const BorderSide(color: Color(0xFF0725A5)),
-              activeColor: const Color(0xFF0725A5),
-              checkColor: Colors.yellow,
-              title: const Text('En cours', style: TextStyle(color: Color(0xFF0725A5))),
-              value: filterRunning,
+          ItemFilter(
+            isSelected: filterRunning,
+            textItem: 'En cours',
               onChanged: (value) {
                 setState(() {
                   filterRunning = value;
+                  if (filterRunning == true) {
+                    filterFinished = false;
+                    filterAll = false;
+                    listProjects = DataProjectTest().getListRunningFormalProjectsViews();
+                  }
                 });
-              },
-            ),
+            }
           ),
-          SizedBox(
-            height: 35,
-            child: CheckboxListTile(
-              side: const BorderSide(color: Color(0xFF0725A5)),
-              activeColor: const Color(0xFF0725A5),
-              checkColor: Colors.yellow,
-              title: const Text('Terminés', style: TextStyle(color: Color(0xFF0725A5))),
-              value: filterFinished,
+          ItemFilter(
+            isSelected: filterFinished,
+              textItem: 'Terminés',
               onChanged: (value) {
                 setState(() {
                   filterFinished = value;
+                  if (filterFinished == true) {
+                    filterAll = false;
+                    filterRunning = false;
+                    listProjects = DataProjectTest().getListFinishedFormalProjectsViews();
+                  }
                 });
-              },
-            ),
-          )
+            }
+          ),
         ],
       ),
     );
@@ -124,6 +126,7 @@ class _FormalProjectsState extends State<FormalProjects> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
+    listProjects = DataProjectTest().getListFormalProjectsViews();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -171,35 +174,11 @@ class _FormalProjectsState extends State<FormalProjects> {
       body: Center(
         child: ProjectsView(
           filter: filterTemplate(),
-          isExpandedFilter: true,
+          isExpandedFilter: isExpanded,
           controller: _scrollController,
-          listProjects: DataProjectTest().getListFormalProjectsViews(),
+          listProjects: listProjects,
         ),    // Displays the specific projects of the chosen section on the screen
       )
     );
-  }
-
-  /* Widget which displays the specific projects of the chosen section on the screen. */
-  Widget addListProjects() {
-    if (filterFinished == true) {
-      filterAll = false;
-      filterRunning = false;
-      Projects projects = Projects(statusFinishedFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
-      return Text("r");//projects.templateProjects();
-    }
-    else if (filterRunning == true) {
-      filterAll = false;
-      filterFinished = false;
-      //Projects projects = Projects(statusRunningFormal, context, filterTemplate(), _scrollController, 10, isExpanded);
-      return Text("r");//projects.templateProjects();
-    }
-    else {
-      if (filterAll == true) {
-        filterFinished = false;
-        filterRunning = false;
-      }
-      //Projects projects = Projects(statusAllFormal, context, filterTemplate(), _scrollController, 10,isExpanded);
-      return Text("r");//projects.templateProjects();
-    }
   }
 }

@@ -129,9 +129,9 @@ class DataProjectTest {
   /// Gets the list of all the favorite solidarity projects.
   List<ProjectModel> getListFavoriteSolidarityProjects() {
     List<ProjectModel> listFavoriteProjects = <ProjectModel>[];
-    for (int i = 0; i < listFavoriteProjects.length; i ++) {
-      if (listFavoriteProjects.elementAt(i).getFavoriteState() == true) {
-        listFavoriteProjects.add(listFavoriteProjects.elementAt(i));
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      if (solidarityProjectdataList.elementAt(i).getFavoriteState() == true) {
+        listFavoriteProjects.add(solidarityProjectdataList.elementAt(i));
       }
     }
     return listFavoriteProjects;
@@ -183,5 +183,44 @@ class DataProjectTest {
       }
     }
     return null;
+  }
+
+  /// Creates and gets the list of all the finished formal projects.
+  List<ProjectView> getListFinishedFormalProjectsViews() {
+    List<ProjectView> list = <ProjectView>[];
+    for (int i = 0; i < getListFinishedFormalProjects().length; i ++) {
+      ProjectView projectView = ProjectView(
+        project: getListFinishedFormalProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the running formal projects.
+  List<ProjectView> getListRunningFormalProjectsViews() {
+    List<ProjectView> list = <ProjectView>[];
+    for (int i = 0; i < getListRunningFormalProjects().length; i ++) {
+      ProjectView projectView = ProjectView(
+        project: getListRunningFormalProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the favorite solidarity projects.
+  List<ProjectView> getListFavoriteSolidarityProjectsViews() {
+    List<ProjectView> list = <ProjectView>[];
+    for (int i = 0; i < getListFavoriteSolidarityProjects().length; i ++) {
+      ProjectView projectView = ProjectView(
+        project: getListFavoriteSolidarityProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
   }
 }
