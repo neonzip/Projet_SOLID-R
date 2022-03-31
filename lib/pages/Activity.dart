@@ -7,6 +7,7 @@ import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Activity/ActivityButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Activity/FinishedActivityAlert.dart';
+import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter
@@ -174,8 +175,8 @@ class _ActivityState extends State<Activity> {
       '${_location.speed != null && _location.speed! * 3600 / 1000 > 0
           ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
           : 0} KM/h',
-      style: TextStyle(
-        color: Colors.lightGreen[500],
+      style: const TextStyle(
+        color: Colors.grey,
         fontSize: 50,
         letterSpacing: 4,
       ),
@@ -187,8 +188,6 @@ class _ActivityState extends State<Activity> {
   void addTime() {
     const addSeconds = 1;
     if (_isPlayed) {
-      print("CEST RELOUUUU");
-
       setState(() {
         final seconds = duration.inSeconds + addSeconds;
         duration = Duration(seconds: seconds);
@@ -326,38 +325,60 @@ class _ActivityState extends State<Activity> {
     ]);
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-      body: SafeArea(
-        child: Column(
-          children: [
-
-            const Text(
+      persistentFooterButtons: [
+        getFooter(),
+      ],
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              /*const Text(
               'Statut de marche :',
               style: TextStyle(fontSize: 30),
             ),
             Icon(
-              _status == 'walking'
+              (_status == 'walking')
                   ? Icons.directions_walk
                   : _status == 'stopped'
                   ? Icons.accessibility_new
                   : Icons.airline_seat_recline_normal,
-              size: 100,
+              size: 50,
             ),
             Center(
               child: Text(
-                _status == "walking"
-                  ? "Marche"
-                  : _status == "stopped"
-                  ? "Arrêt"
-                  : "A l'arrêt",
-                style: _status == 'walking' || _status == 'stopped'
-                    ? const TextStyle(fontSize: 30)
-                    : const TextStyle(fontSize: 20, color: Colors.red),
+                (_status == "walking")
+                    ? "Marche" : _status == "stopped"
+                    ? "Arrêt" : "Arrêt",
+                style: const TextStyle(color: Colors.red),
               ),
-            ),
+            ),*/
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                  "Séance de Basketball",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 150,),
+              Column(
+                children: [
+                  Text(
+                    '$_coin €',
+                    style: const TextStyle(fontSize: 45),
+                  ),
+                  const Text("Argent obtenu"),
+                ],
+              ),
+              const SizedBox(
+                height: 60,
+              ),
 
-            //Pour afficher le nombre de pas effectués
-            /*
+              //Pour afficher le nombre de pas effectués
+              /*
             const Text(
               'nombre de pas actuels:',
               style: TextStyle(fontSize: 30),
@@ -367,104 +388,106 @@ class _ActivityState extends State<Activity> {
               style: const TextStyle(fontSize: 60),
             ),
             */
-            const Text(
-              'km actuel:',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              _kmWalk,
-              style: const TextStyle(fontSize: 60),
-            ),
 
-            const Text(
-              'Temps actif:',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              _actualTime,
-              style: const TextStyle(fontSize: 80),
-            ),
-            const Divider(
-              height: 30,
-              thickness: 0,
-              color: Colors.white,
-            ),
-
-            // Location.speed
-            const Text("Vitesse actuelle :",style: TextStyle(fontSize: 30)),
-            _calculateSpeedBetweenLocations(),
-
-            //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
-            IconButton(
-              tooltip: "Notif",
-                onPressed: () {
-                  sendNotification(title: "Votre activité actuelle", body: "Vous avez parcouru $_kmWalk en $_actualTime secondes. Votre vitesse est de ${_location.speed != null && _location.speed! * 3600 / 1000 > 0
-                      ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
-                      : 0} KM/h");
-                  },
-                icon: const Icon(Icons.notification_important_rounded),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Visibility(
-                  visible: _isPlayed,
-                  child: ActivityButton(
-                    icon: Icons.stop,
-                    onPressedButton: () {
-                      _isPlayed = false;
-                      isFinished = true;
-                      //_stop();
-                      showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) =>
-                        FinishedActivityAlert(
-                            coins: _coin,
-                            onPressedButton: () {
-                              _stopListen();
-                            },
-                            kilometers: _kmWalk,
-                        )
-                      );
-                    },
-                    color: Colors.red,
-                    tooltip: 'Arrêter l\'activité',
-                  ),
-                ),
-                Visibility(
-                    visible: !_isPlayed,
-                    child: ActivityButton(
-                      onPressedButton: () {
-                        //reset();
-                        //_resume();
-                        setState(() {
-                          _isPlayed = !_isPlayed;
-                        });
-                      },
-                      icon: Icons.play_circle_fill,
-                      color: Colors.blue[900],
-                      tooltip: 'Commencer ou continuer l\'activité',
+              Table(
+                  children: [
+                    TableRow(
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                _actualTime,
+                                style: const TextStyle(fontSize: 40),
+                              ),
+                              const Text('Temps'),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "$_kmWalk km",
+                                style: const TextStyle(fontSize: 40),
+                              ),
+                              const Text('Distance parcourue',),
+                            ],
+                          )
+                        ]
                     )
-                ),
-                Visibility(
-                    visible: _isPlayed,
-                    child: ActivityButton(
-                      icon: Icons.pause_circle_filled,
-                      onPressedButton: () {
-                        //_pause();
-                        setState(() {
-                          _isPlayed = !_isPlayed;
-                        });
-                      },
-                      color: Colors.blue[900],
-                      tooltip: 'Faire une pause',
-                    )
-                ),
-              ],
-            ),
-          ],
-        ),
+                  ]
+              ),
+
+              // Location.speed
+              //const Text("Vitesse actuelle :",style: TextStyle(fontSize: 30, color: Colors.grey)),
+              //_calculateSpeedBetweenLocations(),
+
+              //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
+            ],
+          ),
+        )
       ),
+    );
+  }
+
+  /// Returns a widget with the action buttons play/pause/stop
+  Widget getFooter() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Visibility(
+          visible: true,
+          child: ActivityButton(
+            icon: Icons.stop,
+            onPressedButton: () {
+              _isPlayed = false;
+              isFinished = true;
+              //_stop();
+              showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      FinishedActivityAlert(
+                        coins: _coin,
+                        onPressedButton: () {
+                          _stopListen();
+                        },
+                        kilometers: _kmWalk,
+                      )
+              );
+            },
+            color: Colors.red,
+            tooltip: 'Arrêter l\'activité',
+          ),
+        ),
+        (_isPlayed == true)?
+        Visibility(
+            visible: true,
+            child: ActivityButton(
+              icon: Icons.pause_circle_filled,
+              onPressedButton: () {
+                //_pause();
+                setState(() {
+                  _isPlayed = !_isPlayed;
+                });
+              },
+              color: Colors.blue[900],
+              tooltip: 'Faire une pause',
+            )
+        ):Visibility(
+            visible: true,
+            child: ActivityButton(
+              onPressedButton: () {
+                //reset();
+                //_resume();
+                setState(() {
+                  _isPlayed = !_isPlayed;
+                });
+              },
+              icon: Icons.play_circle_fill,
+              color: Colors.blue[900],
+              tooltip: 'Commencer ou continuer l\'activité',
+            )
+        ),
+      ],
     );
   }
 }
