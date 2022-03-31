@@ -71,7 +71,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                     margin: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                     child:
                     FavoriteButton(
-                      isFav: true,    // Value to change in function of the project we use
+                      isFav: widget.project.projectIsFavorite,    // Value to change in function of the project we use
                     ),
                   ),
                   (widget.project.projectResult < 100)?
