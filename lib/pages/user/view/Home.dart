@@ -86,140 +86,145 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF0725A5),
-          title: Container(
-            padding: const EdgeInsets.all(0),
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: const Color(0xFF0725A5),
+            title: Container(
+              padding: const EdgeInsets.all(0),
               margin: const EdgeInsets.all(0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                    const Image(
-                        alignment: Alignment.centerLeft,
-                        image: AssetImage("assets/logo_solid_R.png")
-                    ),
-                    const Text("Accueil",
-                      textAlign: TextAlign.center,
-                    ),
-                    Container(
+                  const Image(
+                      alignment: Alignment.centerLeft,
+                      image: AssetImage("assets/logo_solid_R.png")
+                  ),
+                  const Text("Accueil",
+                    textAlign: TextAlign.center,
+                  ),
+                  Container(
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.all(10),
                       child: FittedBox(
                         child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/profile");
-                        },
-                        child: Column(
-                          children: const [
-                            Icon(
-                                Icons.account_circle_outlined,
-                                color: Colors.white),
-                            Text(
-                                "Profil",
-                                style: TextStyle(color:Colors.white))
-                          ],
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/profile");
+                          },
+                          child: Column(
+                            children: const [
+                              Icon(
+                                  Icons.account_circle_outlined,
+                                  color: Colors.white),
+                              Text(
+                                  "Profil",
+                                  style: TextStyle(color:Colors.white))
+                            ],
+                          ),
                         ),
-                      ),
                       )
-                    ),
+                  ),
                 ],
               ),
+            ),
           ),
-      ),
 
-      //////////////////////////////////////////////////////
-      //////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////
 
-      body: ContainerWithBackground(
-        content: Center (
-            child: SingleChildScrollView(
-                child: SizedBox(
-                  width: 500,
-                  child: Column(
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.all(20),
-                          margin: const EdgeInsets.all(5),
-                          child: const Text("Bonjour pseudo",
-                              style: TextStyle(
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: Offset(1.0, 1.0),
-                                    blurRadius: 2.0,
+          body: ContainerWithBackground(
+            content: Center (
+                child: SingleChildScrollView(
+                    child: SizedBox(
+                      width: 500,
+                      child: Column(
+                        children: [
+                          Container(
+                              padding: const EdgeInsets.all(20),
+                              margin: const EdgeInsets.all(5),
+                              child: const Text("Bonjour pseudo",
+                                  style: TextStyle(
+                                    shadows: <Shadow>[
+                                      Shadow(
+                                        offset: Offset(1.0, 1.0),
+                                        blurRadius: 2.0,
+                                        color: Colors.black,
+                                      ),
+                                    ],
                                     color: Colors.black,
-                                  ),
-                                ],
-                                color: Colors.black,
-                                fontSize: 20.0,
+                                    fontSize: 20.0,
+                                  )
                               )
-                          )
-                      ),
+                          ),
 
-                      /* Yellow bubble containing the kilometers traveled. */
-                      YellowBubbleKilometers(
-                        valueKilometers: 2500.toString(),
-                      ),
+                          /* Yellow bubble containing the kilometers traveled. */
+                          YellowBubbleKilometers(
+                            valueKilometers: 2500.toString(),
+                          ),
 
-                      /* Yellow bubble containing the donations that the user made. */
-                      YellowBubbleDonations(
-                        valueDonations: 500.toString(),
-                      ),
+                          /* Yellow bubble containing the donations that the user made. */
+                          YellowBubbleDonations(
+                            valueDonations: 500.toString(),
+                          ),
 
-                      /* Blue horizontal line separating the two parts of the main page. */
-                      const Separator(),
+                          /* Blue horizontal line separating the two parts of the main page. */
+                          const Separator(),
 
-                      /* Text "Ils nous font confiance". */
-                      Container(
-                          alignment: Alignment.topLeft,
-                          padding: const EdgeInsets.all(20),
-                          margin: const EdgeInsets.all(5),
-                          child: const Text("Ils nous font confiance : ",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.0,
+                          /* Text "Ils nous font confiance". */
+                          Container(
+                              alignment: Alignment.topLeft,
+                              padding: const EdgeInsets.all(20),
+                              margin: const EdgeInsets.all(5),
+                              child: const Text("Ils nous font confiance : ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.0,
+                                  )
                               )
-                          )
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    )
                 )
-            )
-        ),
-      ),
+            ),
+          ),
 
-      /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        elevation: 0,
-        child:
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 100,
-              width: 100,
-              child:
-              /* Favorites button. */
-              buttonHomeFavoritesTemplate(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: buttonHomeActivitiesTemplate(),
-            ),
+          /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
+          bottomNavigationBar: BottomAppBar(
+            color: Colors.white,
+            elevation: 0,
+            child:
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 100,
+                  width: 100,
+                  child:
+                  /* Favorites button. */
+                  buttonHomeFavoritesTemplate(),
+                ),
+                SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: buttonHomeActivitiesTemplate(),
+                ),
 
-            SizedBox(
-              height: 100,
-              width: 100,
-              child:
-              /* Projects button. */
-              buttonHomeProjectsTemplate(),
+                SizedBox(
+                  height: 100,
+                  width: 100,
+                  child:
+                  /* Projects button. */
+                  buttonHomeProjectsTemplate(),
+                ),
+              ],
             ),
-          ],
-        ),
+          )
       )
     );
   }

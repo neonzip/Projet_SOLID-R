@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
-import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Activity/ActivityButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Activity/FinishedActivityAlert.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter
@@ -84,6 +82,7 @@ class _ActivityState extends State<Activity> {
 
   @override
   void initState() {
+    _coin = 0;
     super.initState();
     _listenLocation1();
 
@@ -145,7 +144,6 @@ class _ActivityState extends State<Activity> {
         return;
       }
     }
-
 
     _locationSubscription =
         location.onLocationChanged.handleError((dynamic err) {
@@ -320,10 +318,6 @@ class _ActivityState extends State<Activity> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-
     return Scaffold(
       persistentFooterButtons: [
         getFooter(),

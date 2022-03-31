@@ -126,7 +126,9 @@ class _ProfileState extends State<Profile> {
   /// Widget building the actions button.
   Widget buttonDoneActionsTemplate() {
     return ProfileButton(
-        onPressedButton: () {},
+        onPressedButton: () {
+          Navigator.pushNamed(context, "/activityHistory");
+        },
         widthButton: widthButtons,
         textButton: "Activités réalisées",
         iconButton: Icons.insights,
@@ -234,7 +236,7 @@ class _ProfileState extends State<Profile> {
                             padding: const EdgeInsets.symmetric(vertical: 2.5),
                             child:
 
-                            /* Button "Actions réalisées */
+                            /* Button "Activités réalisées */
                             buttonDoneActionsTemplate(),
                           )
                         ]

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import '../../../bazar/Activity/ActivityView.dart';
 
 const rowSpacer = TableRow(
@@ -24,23 +25,34 @@ class OneWeekCompletedActivityContainer extends StatefulWidget {
 class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActivityContainer> {
   @override
   Widget build(BuildContext context) {
-    return Table(
-      /* columnWidths: const {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+            "DATE semaine :",
+          style: TextStyle(color: Color(0xFF0725A5)),
+          textAlign: TextAlign.left,
+        ),
+      Table(
+        /* columnWidths: const {
           0: FlexColumnWidth(2),
           1: FlexColumnWidth(1),
           2: FlexColumnWidth(2),
         },*/
-        children: [
-          ActivityView(1, DateTime.now()).activityTemplate(),
-          rowSpacer,
-          ActivityView(1, DateTime.now()).activityTemplate(),
-          rowSpacer,
-          ActivityView(1, DateTime.now()).activityTemplate(),
-          rowSpacer,
-          ActivityView(1, DateTime.now()).activityTemplate(),
-          rowSpacer,
-          ActivityView(1, DateTime.now()).activityTemplate(),
-        ]
+          children: [
+            ActivityView(1, DateTime.now()).activityTemplate(),
+            rowSpacer,
+            ActivityView(1, DateTime.now()).activityTemplate(),
+            rowSpacer,
+            ActivityView(1, DateTime.now()).activityTemplate(),
+            rowSpacer,
+            ActivityView(1, DateTime.now()).activityTemplate(),
+            rowSpacer,
+            ActivityView(1, DateTime.now()).activityTemplate(),
+          ]
+      ),
+        const Separator(),
+      ],
     );
   }
 }

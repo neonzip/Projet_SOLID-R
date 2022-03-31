@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
+import 'package:projet_solid_r/pages/user/bazar/Activity/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn.dart';
@@ -13,8 +14,10 @@ import 'package:projet_solid_r/pages/user/bazar/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/SignUp.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
-void main() => runApp(MaterialApp(
-  theme: ThemeData(
+void main() => runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
     fontFamily: "Metropolis",
   ),
   initialRoute: "/",
@@ -27,10 +30,10 @@ void main() => runApp(MaterialApp(
     "/favorites": (context) => const Favorites(),
     "/activities": (context) => const Activities(),
     "/activityAxel": (context) => const Activity(),
+    "/activityHistory": (context) => const HistoryActivity(),
     "/profile": (context) => const Profile(),
     "/projects/section=formal": (context) => const FormalProjects(),
     "/projects/section=solidarity": (context) => const SolidarityProjects(),
-   // "/projects/section=formal" "/name=" "nomProjet": (context) => const ProjectDetailedView(),
 
     "/notifications": (context) => const Notifications(),
   },

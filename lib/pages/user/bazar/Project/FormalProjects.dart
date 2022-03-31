@@ -75,6 +75,8 @@ class _FormalProjectsState extends State<FormalProjects> {
                     filterAll = false;
                     listProjects = DataProjectTest().getListRunningFormalProjectsViews();
                   }
+                  else {
+                  }
                 });
             }
           ),

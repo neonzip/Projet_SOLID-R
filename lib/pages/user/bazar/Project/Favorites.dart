@@ -56,6 +56,11 @@ class _FavoritesState extends State<Favorites> {
                     if (filterAll == true) {
                       listProjects = DataProjectTest().getListSolidarityProjectsViews();
                     }
+                    else {
+                      if (filterFavorite == false) {
+                        filterAll = true;
+                      }
+                    }
                   });
                 }
             ),
@@ -65,9 +70,13 @@ class _FavoritesState extends State<Favorites> {
                 onChanged: (value) {
                   setState(() {
                     filterFavorite = value;
-                    filterAll = false;
                     if (filterFavorite == true) {
+                      filterAll = false;
                       listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                    }
+                    else{
+                      filterAll = true;
+                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
                     }
                   });
                 }
