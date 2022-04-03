@@ -1,5 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:linkable/linkable.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class APropos extends StatefulWidget {
   const APropos({Key? key}) : super(key: key);
@@ -150,25 +153,38 @@ class _AProposState extends State<APropos> {
                   padding: const EdgeInsets.all(30),
                   child:
                   Column(
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                           "TOUS ENSEMBLE, TOUS SOLIDAIRE\nSPORT SOLID’R\n\nFaisons équipe dans ce projet pour soutenir ensemble de belles causes !\n",
                         style: TextStyle(color: Colors.yellow),
                         textAlign: TextAlign.center,
                       ),
-                      Text(
-                          "assotstd92@gmail.com\n",
-                        style: TextStyle(color: Colors.yellow),
+                      Linkable(
+                          text: "assotstd92@gmail.com\n",
+                        textColor: Colors.yellow,
+                        linkColor: Colors.yellow,
                       ),
-                      Text(
-                          "Tél : 06 76 86 47 97\n",
-                        style: TextStyle(color: Colors.yellow),
+                      Linkable(
+                          text: "Tél : 0676864797\n",
+                          textColor: Colors.yellow,
+                          linkColor: Colors.yellow,
                       ),
-                      Text(
-                          "assotstd.com\n\n\n",
-                        style: TextStyle(color: Colors.yellow),
+                      RichText(
+                        text: TextSpan(
+                          text: "assotstd.com\n\n\n",
+                          style: const TextStyle(color: Colors.yellow),
+                          recognizer: TapGestureRecognizer()..onTap = () async {
+                            var url = "https://assotstd.com/";
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            }
+                            else {
+                              throw("cannot launch URL");
+                            }
+                          }
+                        )
                       ),
-                      Text(
+                      const Text(
                         "sportsoldr©2021 All rights reserved\n\nProgrammes soutenus par Women Innovated & Commit et le Village des Experts",
                         style: TextStyle(color: Colors.yellow),
                         textAlign: TextAlign.center,
