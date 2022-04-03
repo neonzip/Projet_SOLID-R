@@ -64,7 +64,8 @@ class _SignUpState extends State<SignUp> {
                         child: const Text("Se connecter"),
                       ),
                     ],
-                  )
+                  ),
+                  Image.asset("assets/footer.png")
                 ],
               ),
             )

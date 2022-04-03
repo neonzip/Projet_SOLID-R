@@ -81,6 +81,7 @@ class _MyInformationState extends State<MyInformation> {
                     label: "Mot de passe :"
                 ),
                 buttonValidationTemplate(),
+                Image.asset("assets/footer.png")
               ],
             ),
           )

@@ -57,6 +57,9 @@ class _SignInState extends State<SignIn> {
                         child: const Text("S'inscrire"),
                       ),
                     ],
+                  ),
+                  Image.asset(
+                    "assets/footer.png"
                   )
                 ],
               ),

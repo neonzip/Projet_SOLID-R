@@ -23,6 +23,7 @@ class _LaunchHomeState extends State<LaunchHome> {
           backgroundColor: const Color(0xFF0725A5),
           title: Center(child:Image.asset('assets/logo_solid_R.png',)),
         ),
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -82,7 +83,8 @@ class _LaunchHomeState extends State<LaunchHome> {
                     const Separator(),
                   ]
                 ),
-              )
+              ),
+              Image.asset("assets/footerWhite.png")
             ]),
         )
     );
