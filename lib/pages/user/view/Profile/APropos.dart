@@ -147,11 +147,12 @@ class _AProposState extends State<APropos> {
                 ),
                 Container(
                   color: const Color(0xFF0725A5),
+                  padding: const EdgeInsets.all(30),
                   child:
                   Column(
                     children: const [
                       Text(
-                          "\nTOUS ENSEMBLE, TOUS SOLIDAIRE\nSPORT SOLID’R\n\nFaisons équipe dans ce projet pour soutenir ensemble de belles causes !\n",
+                          "TOUS ENSEMBLE, TOUS SOLIDAIRE\nSPORT SOLID’R\n\nFaisons équipe dans ce projet pour soutenir ensemble de belles causes !\n",
                         style: TextStyle(color: Colors.yellow),
                         textAlign: TextAlign.center,
                       ),
@@ -168,7 +169,7 @@ class _AProposState extends State<APropos> {
                         style: TextStyle(color: Colors.yellow),
                       ),
                       Text(
-                        "sportsoldr©2021 All rights reserved\n\nProgrammes soutenus par Women Innovated & Commit et le Village des Experts\n\n",
+                        "sportsoldr©2021 All rights reserved\n\nProgrammes soutenus par Women Innovated & Commit et le Village des Experts",
                         style: TextStyle(color: Colors.yellow),
                         textAlign: TextAlign.center,
                       )
