@@ -160,6 +160,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
         /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
+        backgroundColor: const Color(0xFFD7E1FF),
         body: Center(
         child: ProjectsView(
           filter: filterTemplate(),

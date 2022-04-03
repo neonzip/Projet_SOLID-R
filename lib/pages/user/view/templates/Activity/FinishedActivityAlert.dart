@@ -23,7 +23,7 @@ class _FinishedActivityAlertState extends State<FinishedActivityAlert> {
     num coin = widget.coins;
     return AlertDialog(
       title: const Text('Félicitations !'),
-      content: Text("Vous avez parcouru $km durant votre séance. Cela vous a permis de gagner $coin ! \n Cette somme va être ajoutée a votre cagnotte. Vous pourrez la verser au projet de votre choix a tout moment."),
+      content: Text("Vous avez parcouru $km km durant votre séance. Cela vous a permis de gagner $coin € ! \n Cette somme va être ajoutée a votre cagnotte. Vous pourrez la verser au projet de votre choix a tout moment."),
       actions: <Widget>[
         TextButton(
           onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ProjectView.dart';
@@ -17,9 +18,8 @@ class _ProjectsViewState extends State<ProjectsView> {
   @override
   Widget build(BuildContext context) {
     return
-      Container(
-        color: const Color(0xFFD7E1FF),
-          width: 500,
+      SizedBox(
+          width: 700,
           child: CustomScrollView(
               controller: widget.controller,
               slivers: <Widget>[

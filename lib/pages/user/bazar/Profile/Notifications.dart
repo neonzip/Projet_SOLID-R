@@ -67,7 +67,8 @@ class _NotificationsState extends State<Notifications> {
                   onPressed: () {
                     setState(() {
                       isNever = is10km = is40km = is60km = false;
-                      is20km = true;                    });
+                      is20km = true;
+                    });
                   },
                   primaryTitle: "Sportif du dimanche",
                   secondaryTitle: "20 km",

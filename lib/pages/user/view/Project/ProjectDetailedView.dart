@@ -128,34 +128,36 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(5),
-        child: SizedBox(
-          width: 500,
-          child: Column(
-            children: [
-              GlobalInformation(
-                project: widget.project,
-                  goalDate: DateTime.now(),
-                onPressed: showDonationDialog,
-              ),
-            //globalInformationTemplate(),
-        participationInformationTemplate(),
-        MeceneInformation(project: widget.project),
+      body: Center(
+        child: SingleChildScrollView(
+            padding: const EdgeInsets.all(5),
+            child: SizedBox(
+                width: 500,
+                child: Column(
+                  children: [
+                    GlobalInformation(
+                      project: widget.project,
+                      goalDate: DateTime.now(),
+                      onPressed: showDonationDialog,
+                    ),
+                    //globalInformationTemplate(),
+                    participationInformationTemplate(),
+                    MeceneInformation(project: widget.project),
 
-        /* Blue horizontal line separating the two parts of the main page. */
-        const Separator(),
+                    /* Blue horizontal line separating the two parts of the main page. */
+                    const Separator(),
 
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 500,
-          padding: const EdgeInsets.all(5),
-          child: projectDetailedNavigation(),
-        )
-        ],
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 500,
+                      padding: const EdgeInsets.all(5),
+                      child: projectDetailedNavigation(),
+                    )
+                  ],
+                )
+            )
+        ),
       )
-        )
-      ),
     );
   }
 
