@@ -142,7 +142,9 @@ class _ProfileState extends State<Profile> {
         widthButton: widthButtons,
         textButton: "A propos",
         iconButton: Icons.info_outline,
-        onPressedButton: () {},
+        onPressedButton: () {
+          Navigator.pushNamed(context, "/APropos");
+        },
       positionButton: 4,
     );
   }

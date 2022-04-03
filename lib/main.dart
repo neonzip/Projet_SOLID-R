@@ -12,6 +12,7 @@ import 'package:projet_solid_r/pages/user/bazar/Profile/MyInformation.dart';
 import 'package:projet_solid_r/pages/user/bazar/Profile/Notifications.dart';
 import 'package:projet_solid_r/pages/user/bazar/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/SignUp.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
 void main() => runApp(
@@ -26,6 +27,7 @@ void main() => runApp(
     "/signup": (context) => const SignUp(),
     "/signin": (context) => const SignIn(),
     "/myInformation": (context) => const MyInformation(),
+    "/APropos": (context) => const APropos(),
     "/home": (context) => const Home(),
     "/favorites": (context) => const Favorites(),
     "/activities": (context) => const Activities(),
