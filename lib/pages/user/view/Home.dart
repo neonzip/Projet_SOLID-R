@@ -44,9 +44,11 @@ class _HomeState extends State<Home> {
         Navigator.pushNamed(context, "/favorites");
       },
       tooltip: 'Favoris',
-      splashColor: Colors.yellow,
+      splashColor: Colors.indigo,
       backgroundColor: Colors.transparent,
       focusElevation: 0,
+      hoverElevation: 0,
+      hoverColor: Colors.yellow,
       highlightElevation: 0,
       elevation: 0,
       child: Column(
@@ -70,8 +72,10 @@ class _HomeState extends State<Home> {
       tooltip: 'Projets',
       splashColor: Colors.indigo,
       backgroundColor: Colors.transparent,
+      hoverColor: Colors.yellow,
       focusElevation: 0,
       highlightElevation: 0,
+      hoverElevation: 0,
       elevation: 0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
