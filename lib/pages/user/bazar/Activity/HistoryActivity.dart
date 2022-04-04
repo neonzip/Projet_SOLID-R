@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/ActivityView.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Profile/OneWeekCompletedActivityContainer.dart';
+import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 
 class HistoryActivity extends StatefulWidget {
   const HistoryActivity({Key? key}) : super(key: key);
@@ -20,12 +21,24 @@ class _HistoryActivityState extends State<HistoryActivity> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: OneWeekCompletedActivityContainer(
-            startWeek: DateTime.now(),
-            listCompletedActivity: [ActivityView(1, DateTime.now())],
-            endWeek: DateTime.now(),
-          ),
-          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              OneWeekCompletedActivityContainer(
+                startWeek: DateTime.now(),
+                listCompletedActivity: [ActivityView(1, DateTime.now())],
+                endWeek: DateTime.now(),
+              ),
+              OneWeekCompletedActivityContainer(
+                startWeek: DateTime.now(),
+                listCompletedActivity: [ActivityView(1, DateTime.now())],
+                endWeek: DateTime.now(),
+              ),
+              const SizedBox(
+                width: 500,
+                child: Separator(),
+              )
+            ],
+          )
         )
     );
   }

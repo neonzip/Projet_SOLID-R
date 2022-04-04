@@ -53,7 +53,6 @@ class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActi
                     ActivityView(1, DateTime.now()).activityTemplate(),
                   ]
               ),
-              const Separator(),
             ],
           )
       )
