@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
+import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
 
@@ -80,7 +81,9 @@ class _LaunchHomeState extends State<LaunchHome> {
                         Navigator.pushNamed(context, "/signup");
                       }, text: "S'inscrire avec un email",
                     ),
-                    const Separator(),
+                    const SeparatorWithText(
+                      text: "OU"
+                    ),
                     Image.asset("assets/footerWhite.png")
                   ]
                 ),
