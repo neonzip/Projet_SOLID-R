@@ -81,10 +81,10 @@ class _LaunchHomeState extends State<LaunchHome> {
                       }, text: "S'inscrire avec un email",
                     ),
                     const Separator(),
+                    Image.asset("assets/footerWhite.png")
                   ]
                 ),
               ),
-              Image.asset("assets/footerWhite.png")
             ]),
         )
     );
