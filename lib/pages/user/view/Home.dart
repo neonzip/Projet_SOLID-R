@@ -104,10 +104,6 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  /*const Image(
-                      alignment: Alignment.centerLeft,
-                      image: AssetImage("assets/logo_solid_R.png")
-                  ),*/
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, "/APropos");
