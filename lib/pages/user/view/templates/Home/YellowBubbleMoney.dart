@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class YellowBubbleDonations extends StatefulWidget {
-  final String valueDonations;
+class YellowBubbleMoney extends StatefulWidget {
+  final String value;
 
-  const YellowBubbleDonations({Key? key, required this.valueDonations}) : super(key: key);
+  const YellowBubbleMoney({Key? key, required this.value}) : super(key: key);
   @override
-  _YellowBubbleDonationsState createState() => _YellowBubbleDonationsState();
+  _YellowBubbleMoneyState createState() => _YellowBubbleMoneyState();
 }
 
-class _YellowBubbleDonationsState extends State<YellowBubbleDonations> {
+class _YellowBubbleMoneyState extends State<YellowBubbleMoney> {
   @override
   Widget build(BuildContext context) {
-    return yellowBubbleDonations();
+    return yellowBubbleMoney();
   }
 
 
-  /// Yellow bubble containing the donations that the user made.
-  Widget yellowBubbleDonations() {
+  /// Yellow bubble containing the money that the user have and that he can give to a project.
+  Widget yellowBubbleMoney() {
     return GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, "/projects/section=formal");
@@ -26,14 +26,14 @@ class _YellowBubbleDonationsState extends State<YellowBubbleDonations> {
           Column(
             children: [
               const Text(
-                  "Dons réalisés :",
+                  "Cagnotte :",
                   style: TextStyle(fontSize: 20)
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      widget.valueDonations,
+                      widget.value,
                       style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold)

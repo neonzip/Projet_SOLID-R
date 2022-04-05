@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/templates/Home/YellowBubbleMoney.dart';
 import '../../view/templates/Profile/LogoutButton.dart';
 import '../../view/templates/Profile/ProfileButton.dart';
 import '../../view/templates/Separator.dart';
@@ -66,48 +67,10 @@ class _ProfileState extends State<Profile> {
 
   /// Widget building the yellow bubble which contains the user's pool.
   Widget bubblePool () {
-    return Container(
-      child:
-      Column (
-          children: [
-            const Text("Cagnotte :",
-                style: TextStyle(fontSize: fontSize)
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text("1.00",
-                    style: TextStyle(
-                        fontSize: fontSize + 5,
-                        fontWeight: FontWeight.bold
-                    )
-                ),
-                Text(
-                  " €",
-                  style: TextStyle(
-                      fontSize: fontSize
-                  ),
-                ),
-              ],
-            ),
-          ]
-      ),
-      padding: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      margin: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      decoration: BoxDecoration(
-        color: Colors.yellow,
-        borderRadius: BorderRadius.circular(10), //border corner radius
-        boxShadow:[
-          BoxShadow(
-            color: Colors.black.withOpacity(0.6), //color of shadow
-            blurRadius: 3, // blur radius
-            offset: const Offset(0, 1), // changes position of shadow
-            //first paramerter of offset is left-right
-            //second parameter is top to down
-          ),
-        ],
-      ),
-    );
+    return /* Yellow bubble containing the money that the user can make to a project. */
+      YellowBubbleMoney(
+        value: 500.toString(),
+      );
   }
 
   /// Widget building the projects button.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'templates/Home/ContainerWithBackground.dart';
-import 'templates/Home/YellowBubbleDonations.dart';
+import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
 import 'templates/Separator.dart';
 
@@ -177,14 +177,14 @@ class _HomeState extends State<Home> {
                               )
                           ),
 
+                          /* Yellow bubble containing the money that the user can make to a project. */
+                          YellowBubbleMoney(
+                            value: 500.toString(),
+                          ),
+
                           /* Yellow bubble containing the kilometers traveled. */
                           YellowBubbleKilometers(
                             valueKilometers: 2500.toString(),
-                          ),
-
-                          /* Yellow bubble containing the donations that the user made. */
-                          YellowBubbleDonations(
-                            valueDonations: 500.toString(),
                           ),
 
                           /* Blue horizontal line separating the two parts of the main page. */
