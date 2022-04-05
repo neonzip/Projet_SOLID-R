@@ -104,9 +104,25 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Image(
+                  /*const Image(
                       alignment: Alignment.centerLeft,
                       image: AssetImage("assets/logo_solid_R.png")
+                  ),*/
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/APropos");
+                    },
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/logo_solid_R.png"),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: const Color(0xFF0725A5),
+                      ),
+                    ),
                   ),
                   const Text("Accueil",
                     textAlign: TextAlign.center,
