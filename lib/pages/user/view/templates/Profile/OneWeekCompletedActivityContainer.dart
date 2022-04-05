@@ -3,15 +3,13 @@ import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import '../../../bazar/Activity/ActivityView.dart';
 
-/*
-// DOES NOT WORK
 const TableRow rowSpacer = TableRow(
     children: [
       SizedBox(height: 20,),
-      Spacer(),
-      Spacer(),
+      SizedBox(height: 20,),
+      SizedBox(height: 20,),
     ]
-);*/
+);
 
 /// Table/Container which contains a list of completed activities.
 /// We call it to build a table for every week in the "Activités réalisée" page.
@@ -29,7 +27,8 @@ class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActi
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
           width: 500,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,13 +44,13 @@ class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActi
         },*/
                   children: [
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    //rowSpacer,
+                    rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    //rowSpacer,
+                    rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    //rowSpacer,
+                    rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    //rowSpacer,
+                    rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
                   ]
               ),

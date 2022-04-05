@@ -140,7 +140,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonAProposTemplate() {
     return ProfileButton(
         widthButton: widthButtons,
-        textButton: "A propos",
+        textButton: "À propos",
         iconButton: Icons.info_outline,
         onPressedButton: () {
           Navigator.pushNamed(context, "/APropos");
