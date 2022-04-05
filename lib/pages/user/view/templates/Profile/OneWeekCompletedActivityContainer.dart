@@ -3,13 +3,15 @@ import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import '../../../bazar/Activity/ActivityView.dart';
 
-const rowSpacer = TableRow(
+/*
+// DOES NOT WORK
+const TableRow rowSpacer = TableRow(
     children: [
       SizedBox(height: 20,),
       Spacer(),
       Spacer(),
     ]
-);
+);*/
 
 /// Table/Container which contains a list of completed activities.
 /// We call it to build a table for every week in the "Activités réalisée" page.
@@ -43,13 +45,13 @@ class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActi
         },*/
                   children: [
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    rowSpacer,
+                    //rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    rowSpacer,
+                    //rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    rowSpacer,
+                    //rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
-                    rowSpacer,
+                    //rowSpacer,
                     ActivityView(1, DateTime.now()).activityTemplate(),
                   ]
               ),

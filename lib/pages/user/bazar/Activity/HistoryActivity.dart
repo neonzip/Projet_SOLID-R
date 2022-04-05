@@ -17,7 +17,7 @@ class _HistoryActivityState extends State<HistoryActivity> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF0725A5),
-          title: const Text("Suivi d'activité"),
+          title: const Text("Activités réalisées"),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
