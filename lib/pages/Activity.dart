@@ -25,7 +25,6 @@ class _ActivityState extends State<Activity> {
   /*late FlutterIsolate isolate;
 
   Future<void> _start() async {
-    print("PAAAAAAAAAAAAAAAAAAASSE");
     isolate = await FlutterIsolate.spawn(isolate1, "test");
 
   }
@@ -243,11 +242,7 @@ class _ActivityState extends State<Activity> {
     });
   }
   void _onDone() {}
-  void _onError(error) {
-    if (kDebugMode) {
-      print("Flutter Pedometer Error: $error");
-    }
-  }
+  void _onError(error) { if (kDebugMode) { print("Flutter Pedometer Error: $error"); } }
   void onStepCount(StepCount event) {
     if (kDebugMode) {
       print("onStepCount : $event");
@@ -298,25 +293,19 @@ class _ActivityState extends State<Activity> {
     distance = num.parse(distance.toStringAsFixed(2)); //dos decimales
     var distancekmx = distance * 34;
     distancekmx = num.parse(distancekmx.toStringAsFixed(2));
-    //print(distance.runtimeType);
-    num coiny = ((_numerox * 125) / 100000);
-    coiny = num.parse(coiny.toStringAsFixed(2));
 
     _stepsWalkx = _numerox - _initSteps;
     _kmWalkx = ((_stepsWalkx * 76) / 100000);
+    num coiny = (_kmWalkx * 10);
+    coiny = num.parse(coiny.toStringAsFixed(2));
+  print(_kmWalkx.toString()+ " //// "+ _kmWalkx.toStringAsFixed(2).toString());
     setState(() {
       _km = "$distance";
-      _kmWalk = "$_kmWalkx";
-      _stepsWalk = "$_stepsWalkx";
-      //print(_km);
-    });
-    setState(() {
-      _kmx = num.parse(distancekmx.toStringAsFixed(2));
-    });
 
-    setState(() {
+      _kmWalk = _kmWalkx.toStringAsFixed(2);
+      _stepsWalk = "$_stepsWalkx";
+      _kmx = num.parse(distancekmx.toStringAsFixed(2));
       _coin = num.parse(coiny.toStringAsFixed(2));
-      //print(_coiny);
     });
   }
   /////////////////////////////////
@@ -336,18 +325,20 @@ class _ActivityState extends State<Activity> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
+              Icon(
+                Icons.circle,
+                size: 20,
+                color: (_status == 'walking')
+                    ? Colors.green
+                    : _status == 'stopped'
+                    ? Colors.red
+                    : Colors.blue,
+              ),
               /*const Text(
               'Statut de marche :',
               style: TextStyle(fontSize: 30),
             ),
-            Icon(
-              (_status == 'walking')
-                  ? Icons.directions_walk
-                  : _status == 'stopped'
-                  ? Icons.accessibility_new
-                  : Icons.airline_seat_recline_normal,
-              size: 50,
-            ),
+
             Center(
               child: Text(
                 (_status == "walking")
