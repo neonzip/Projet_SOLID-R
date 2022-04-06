@@ -274,6 +274,8 @@ class _HomeState extends State<Home> {
         _buildImageWidget("assets/LogoAssociation/logo3.jpg"),
         _buildImageWidget("assets/LogoAssociation/logo2.jpg"),
         _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
+        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
+        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
         _buildImageWidget("assets/logo_solid_R.png"),
 
        /* const Card(
