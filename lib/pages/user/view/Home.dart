@@ -262,6 +262,7 @@ class _HomeState extends State<Home> {
 
   Widget loadImages() {
     return GridView(
+      scrollDirection: Axis.horizontal,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 150,
         mainAxisSpacing: 10,
