@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
+import 'package:projet_solid_r/pages/user/view/templates/SigninWithOtherAccountButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
 
 class LaunchHome extends StatefulWidget {
@@ -83,6 +83,16 @@ class _LaunchHomeState extends State<LaunchHome> {
                     ),
                     const SeparatorWithText(
                       text: "OU"
+                    ),
+                    SigninWithOtherAccountButton(
+                        onPressed: () {},
+                        name: "Facebook",
+                        logo: "assets/LogoNetworks/facebook.png"
+                    ),
+                    SigninWithOtherAccountButton(
+                        onPressed: () {},
+                        name: "Google",
+                        logo: "assets/LogoNetworks/google.png"
                     ),
                     Image.asset("assets/footerWhite.png")
                   ]
