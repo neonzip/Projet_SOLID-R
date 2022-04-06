@@ -194,8 +194,12 @@ class _HomeState extends State<Home> {
 
                           /* Building a grid with the logos of associations. */
                           Container(
-                            padding: const EdgeInsets.all(10),
-                            height: 500,
+                            decoration: BoxDecoration(
+                              color: const Color(0x54FFFFFF),
+                              borderRadius: BorderRadius.circular(10), //border corner radius
+                            ),
+                            margin: const EdgeInsets.all(30),
+                            height: 300,
                             child: loadImages(),
                           ),
                         ],
@@ -241,9 +245,14 @@ class _HomeState extends State<Home> {
     );
   }
 
+  /// /////////////////////////////////////////////////////////////
+  /// ALL methods to builde the gridView with the images/assets ///
+  /// /////////////////////////////////////////////////////////////
+  /// https://himdeve.com/flutter-tutorials/flutter-tutorials-1-9-gridview-slivergrid-gallery/
+
   Widget _buildImageWidget(String imagePath) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -262,9 +271,10 @@ class _HomeState extends State<Home> {
 
   Widget loadImages() {
     return GridView(
-      scrollDirection: Axis.horizontal,
+      primary: false,
+      scrollDirection: Axis.vertical,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 150,
+        maxCrossAxisExtent: 100,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
       ),
@@ -277,40 +287,8 @@ class _HomeState extends State<Home> {
         _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
         _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
         _buildImageWidget("assets/logo_solid_R.png"),
-
-       /* const Card(
-          color: Colors.teal,
-          //child: Image.asset("assets/LogoAssociation/logo2.jpg"),
-        ),
-        const Card(
-          color: Colors.cyan,
-        ),
-        const Card(
-          color: Colors.red,
-        ),
-        const Card(
-          color: Colors.yellow,
-        ),
-        const Card(
-          color: Colors.purpleAccent,
-        ),
-        const Card(
-          color: Colors.indigo,
-        ),
-        const Card(
-          color: Colors.black,
-        ),
-        const Card(
-          color: Colors.pinkAccent,
-        ),
-        const Card(
-          color: Colors.yellowAccent,
-        ),
-        const Card(
-          color: Colors.deepOrange,
-        ),*/
       ],
     );
   }
-
+/// /////////////////////////////////////////////////////////////
 }
