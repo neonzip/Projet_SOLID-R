@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 import '../../view/templates/FormTextField.dart';
 import '../../view/templates/MessageSnackbar.dart';
 
@@ -59,33 +61,40 @@ class _MyInformationState extends State<MyInformation> {
         title: const Text("Mes informations"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: SizedBox(
-            width: 500,
-            child: Column(
-              children: [
-                const FormTextField(
-                    errorMessage: "Champ vide.",
-                    labelHint: "aaa@bbb.ccc",
-                    label: "Email :"
+      body: FooterView(
+        footer: Footer(
+          padding: const EdgeInsets.all(0),
+          child: Image.asset(
+              "assets/footer.png"
+          ),
+        ),
+        children: [
+          Center(
+              child: SizedBox(
+                width: 500,
+                child: Column(
+                  children: [
+                    const FormTextField(
+                        errorMessage: "Champ vide.",
+                        labelHint: "aaa@bbb.ccc",
+                        label: "Email :"
+                    ),
+                    const FormTextField(
+                        errorMessage: "Champ vide.",
+                        labelHint: "pseudo",
+                        label: "Pseudo :"
+                    ),
+                    const FormTextField(
+                        errorMessage: "Champ vide.",
+                        labelHint: "mdp",
+                        label: "Mot de passe :"
+                    ),
+                    buttonValidationTemplate(),
+                  ],
                 ),
-                const FormTextField(
-                    errorMessage: "Champ vide.",
-                    labelHint: "pseudo",
-                    label: "Pseudo :"
-                ),
-                const FormTextField(
-                    errorMessage: "Champ vide.",
-                    labelHint: "mdp",
-                    label: "Mot de passe :"
-                ),
-                buttonValidationTemplate(),
-                Image.asset("assets/footer.png")
-              ],
-            ),
+              )
           )
-        )
+        ],
       )
     );
   }

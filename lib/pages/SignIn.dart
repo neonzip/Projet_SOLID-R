@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 
@@ -20,52 +22,57 @@ class _SignInState extends State<SignIn> {
           title: const Text("Connexion"),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Container(
-              width: 500,
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-              child: Column(
-                children: [
-                  const FormTextField(
-                      errorMessage: "Champ vide.",
-                      labelHint: "Email :",
-                      label: "Entrez votre email"
-                  ),
-                  const FormTextField(
-                      errorMessage: "Champ vide.",
-                      labelHint: "Mot de passe :",
-                      label: "Entrez votre mot de passe"
-                  ),                  SigninButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/home");
-                    },
-                  ),
-                  TextButton(
-                    onPressed: () {
-                    },
-                    child: const Text("Mot de passe oublié ? "),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+        body: FooterView(
+          footer: Footer(
+            padding: const EdgeInsets.all(0),
+            child: Image.asset(
+                "assets/footer.png"
+            ),
+          ),
+          children: [
+            Center(
+                child: Container(
+                  width: 500,
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  child: Column(
                     children: [
-                      const Text("Pas encore de compte ? "),
+                      const FormTextField(
+                          errorMessage: "Champ vide.",
+                          labelHint: "Email :",
+                          label: "Entrez votre email"
+                      ),
+                      const FormTextField(
+                          errorMessage: "Champ vide.",
+                          labelHint: "Mot de passe :",
+                          label: "Entrez votre mot de passe"
+                      ),                  SigninButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/home");
+                        },
+                      ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/signup");
                         },
-                        child: const Text("S'inscrire"),
+                        child: const Text("Mot de passe oublié ? "),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Pas encore de compte ? "),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, "/signup");
+                            },
+                            child: const Text("S'inscrire"),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  Image.asset(
-                    "assets/footer.png"
-                  )
-                ],
-              ),
+                )
             )
-          )
-        )
+          ],
+        ),
     );
   }
 }

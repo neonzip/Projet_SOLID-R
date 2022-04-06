@@ -4,6 +4,8 @@ import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart'
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninWithOtherAccountButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 
 class LaunchHome extends StatefulWidget {
   const LaunchHome({Key? key}) : super(key: key);
@@ -25,51 +27,54 @@ class _LaunchHomeState extends State<LaunchHome> {
           title: Center(child:Image.asset('assets/logo_solid_R.png',)),
         ),
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 200,
-                child: Stack(children: <Widget>[
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          'assets/Martin.png',
-                        ),
+        body: FooterView(
+          footer: Footer(
+            padding: const EdgeInsets.all(0),
+            child: Image.asset("assets/footerWhite.png"),
+          ),
+          children: <Widget>[
+            SizedBox(
+              height: 200,
+              child: Stack(children: <Widget>[
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/Martin.png',
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xFF0725A5),
-                        gradient: RadialGradient(
-                          radius: 0.6,
-                          colors: [
-                            const Color(0xFF0725A5).withOpacity(0.8),
-                            const Color(0xFF0725A5),
-                          ],
-                        )
-                    ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF0725A5),
+                      gradient: RadialGradient(
+                        radius: 0.6,
+                        colors: [
+                          const Color(0xFF0725A5).withOpacity(0.8),
+                          const Color(0xFF0725A5),
+                        ],
+                      )
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        AutoSizeText("Avancons ensemble vers un sport\n", style: TextStyle(fontSize: 15, color: Colors.white)),
-                        AutoSizeText("+ inclusif\n+ responsable\n+ solidaire", style: TextStyle(fontSize: 15, color: Colors.yellow)),
-                      ],
-                    ),
-                  )
-                ]),
-              ),
-              SizedBox(
-                width: 500,
-                child: Column(
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      AutoSizeText("Avancons ensemble vers un sport\n", style: TextStyle(fontSize: 15, color: Colors.white)),
+                      AutoSizeText("+ inclusif\n+ responsable\n+ solidaire", style: TextStyle(fontSize: 15, color: Colors.yellow)),
+                    ],
+                  ),
+                )
+              ]),
+            ),
+            SizedBox(
+              width: 500,
+              child: Column(
                   children: [
                     SigninButton(
                       onPressed:  () {
@@ -82,7 +87,7 @@ class _LaunchHomeState extends State<LaunchHome> {
                       }, text: "S'inscrire avec un email",
                     ),
                     const SeparatorWithText(
-                      text: "OU"
+                        text: "OU"
                     ),
                     SigninWithOtherAccountButton(
                         onPressed: () {},
@@ -94,12 +99,12 @@ class _LaunchHomeState extends State<LaunchHome> {
                         name: "Google",
                         logo: "assets/LogoNetworks/google.png"
                     ),
-                    Image.asset("assets/footerWhite.png")
                   ]
-                ),
               ),
-            ]),
-        )
+            ),
+
+          ]
+        ),
     );
   }
 }

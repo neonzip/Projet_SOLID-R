@@ -143,7 +143,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
    */
   void _scrollToTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(seconds: 1), curve: Curves.linear);
+        duration: const Duration(milliseconds: 50), curve: Curves.linear);
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

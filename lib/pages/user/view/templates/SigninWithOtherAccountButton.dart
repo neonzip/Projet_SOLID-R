@@ -28,7 +28,7 @@ class _SigninWithOtherAccountButtonState extends State<SigninWithOtherAccountBut
       ElevatedButton(
         onPressed: widget.onPressed,
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(
-            0xFFECECEC))),
+            0xFFF8F8F8))),
         child: Row(
           children: [
             Text(
