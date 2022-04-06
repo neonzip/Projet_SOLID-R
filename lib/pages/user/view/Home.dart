@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'templates/Home/ContainerWithBackground.dart';
 import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
@@ -188,19 +190,13 @@ class _HomeState extends State<Home> {
                           ),
 
                           /* Blue horizontal line separating the two parts of the main page. */
-                          const Separator(),
+                          const SeparatorWithText(text: "Ils nous font confiance"),
 
-                          /* Text "Ils nous font confiance". */
+                          /* Building a grid with the logos of associations. */
                           Container(
-                              alignment: Alignment.topLeft,
-                              padding: const EdgeInsets.all(20),
-                              margin: const EdgeInsets.all(5),
-                              child: const Text("Ils nous font confiance : ",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                  )
-                              )
+                            padding: const EdgeInsets.all(10),
+                            height: 500,
+                            child: loadImages(),
                           ),
                         ],
                       ),
@@ -244,4 +240,74 @@ class _HomeState extends State<Home> {
       )
     );
   }
+
+  Widget _buildImageWidget(String imagePath) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.cover,
+          height: 10,
+          width: 10,
+        ),
+      ),
+    );
+  }
+
+  Widget loadImages() {
+    return GridView(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 150,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+      ),
+      padding: const EdgeInsets.all(10),
+      children: [
+        _buildImageWidget("assets/LogoAssociation/logo4.jpg"),
+        _buildImageWidget("assets/LogoAssociation/logo3.jpg"),
+        _buildImageWidget("assets/LogoAssociation/logo2.jpg"),
+        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
+        _buildImageWidget("assets/logo_solid_R.png"),
+
+       /* const Card(
+          color: Colors.teal,
+          //child: Image.asset("assets/LogoAssociation/logo2.jpg"),
+        ),
+        const Card(
+          color: Colors.cyan,
+        ),
+        const Card(
+          color: Colors.red,
+        ),
+        const Card(
+          color: Colors.yellow,
+        ),
+        const Card(
+          color: Colors.purpleAccent,
+        ),
+        const Card(
+          color: Colors.indigo,
+        ),
+        const Card(
+          color: Colors.black,
+        ),
+        const Card(
+          color: Colors.pinkAccent,
+        ),
+        const Card(
+          color: Colors.yellowAccent,
+        ),
+        const Card(
+          color: Colors.deepOrange,
+        ),*/
+      ],
+    );
+  }
+
 }

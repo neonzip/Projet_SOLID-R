@@ -33,7 +33,7 @@ class _ActivitiesState extends State<Activities> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF0725A5),
-        title: const Text("Suivi d'activité"),
+        title: const Text("Activité"),
         centerTitle: true,
         ),
       body: Center(
