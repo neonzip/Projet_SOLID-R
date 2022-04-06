@@ -80,7 +80,7 @@ class _ProfileState extends State<Profile> {
         textButton: "Projets soutenus",
         iconButton: Icons.update,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/projects/section=formal");
+          Navigator.pushNamed(context, "/user/projects/section=formal");
         },
       positionButton: 3,
     );
@@ -90,7 +90,7 @@ class _ProfileState extends State<Profile> {
   Widget buttonDoneActionsTemplate() {
     return ProfileButton(
         onPressedButton: () {
-          Navigator.pushNamed(context, "/activityHistory");
+          Navigator.pushNamed(context, "/user/activityHistory");
         },
         widthButton: widthButtons,
         textButton: "Activités réalisées",
@@ -106,7 +106,7 @@ class _ProfileState extends State<Profile> {
         textButton: "À propos",
         iconButton: Icons.info_outline,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/APropos");
+          Navigator.pushNamed(context, "/user/APropos");
         },
       positionButton: 4,
     );
@@ -119,7 +119,7 @@ class _ProfileState extends State<Profile> {
         textButton: "Mes informations",
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/myInformation");
+          Navigator.pushNamed(context, "/user/myInformation");
         },
         positionButton: 0,
     );
@@ -132,7 +132,7 @@ class _ProfileState extends State<Profile> {
         textButton: "Notifications",
         iconButton: Icons.notifications_none,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/notifications");
+          Navigator.pushNamed(context, "/user/notifications");
         }, positionButton: 1,
     );
   }

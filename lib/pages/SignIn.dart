@@ -47,7 +47,7 @@ class _SignInState extends State<SignIn> {
                           label: "Entrez votre mot de passe"
                       ),                  SigninButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/home");
+                          Navigator.pushNamed(context, "/user/home");
                         },
                       ),
                       TextButton(

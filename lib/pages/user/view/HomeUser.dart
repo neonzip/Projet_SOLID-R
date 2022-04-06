@@ -6,14 +6,14 @@ import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
 import 'templates/Separator.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeUser extends StatefulWidget {
+  const HomeUser({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeUserState createState() => _HomeUserState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeUserState extends State<HomeUser> {
 
   Widget buttonHomeActivitiesTemplate() {
     return Padding(
@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
       child: FloatingActionButton(
         heroTag: "activity",
         onPressed: () {
-          Navigator.pushNamed(context, "/activities");
+          Navigator.pushNamed(context, "/user/activities");
         },
         tooltip: 'Activité',
         splashColor: Colors.yellow,
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
     return FloatingActionButton(
       heroTag: "favorites",
       onPressed: () {
-        Navigator.pushNamed(context, "/favorites");
+        Navigator.pushNamed(context, "/user/favorites");
       },
       tooltip: 'Favoris',
       splashColor: Colors.indigo,
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
     return FloatingActionButton(
       heroTag: "projects",
       onPressed: () {
-        Navigator.pushNamed(context, "/projects/section=solidarity");
+        Navigator.pushNamed(context, "/user/projects/section=solidarity");
       },
       tooltip: 'Projets',
       splashColor: Colors.indigo,
@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, "/APropos");
+                      Navigator.pushNamed(context, "/user/APropos");
                     },
                     child: Container(
                       alignment: Alignment.centerLeft,
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                       child: FittedBox(
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/profile");
+                            Navigator.pushNamed(context, "/user/profile");
                           },
                           child: Column(
                             children: const [

@@ -17,7 +17,7 @@ class _YellowBubbleKilometersState extends State<YellowBubbleKilometers> {
   Widget yellowBubbleKilometers() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/activityHistory");
+        Navigator.pushNamed(context, "/user/activityHistory");
       },
       child: Container(
         decoration: BoxDecoration(

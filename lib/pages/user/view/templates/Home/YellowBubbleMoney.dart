@@ -19,7 +19,7 @@ class _YellowBubbleMoneyState extends State<YellowBubbleMoney> {
   Widget yellowBubbleMoney() {
     return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, "/projects/section=formal");
+          Navigator.pushNamed(context, "/user/projects/section=formal");
         },
         child: Container(
           child:
