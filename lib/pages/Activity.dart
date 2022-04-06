@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_isolate/flutter_isolate.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:projet_solid_r/Functions/ActivityBack.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:projet_solid_r/Test_Health.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter
@@ -87,6 +89,7 @@ class _ActivityState extends State<Activity> {
     _listenLocation1();
 
     initPlatformState();
+
 
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       addTime();
@@ -298,9 +301,6 @@ class _ActivityState extends State<Activity> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
 
     return Scaffold(
       backgroundColor: Colors.grey[50],
@@ -450,6 +450,9 @@ class _ActivityState extends State<Activity> {
             //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
             FlatButton.icon(
                 onPressed: () {
+                  Navigator.pushNamed(context, "/activities/activity/DailyStepsScreen");
+
+                  //testHealth();
                   sendNotification(title: "Votre activité actuelle", body: "Vous avez parcouru $_kmWalk en $_actualTime secondes. Votre vitesse est de ${_location.speed != null && _location.speed! * 3600 / 1000 > 0
                       ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
                       : 0} KM/h");
@@ -457,6 +460,8 @@ class _ActivityState extends State<Activity> {
 
                 icon: const Icon(Icons.notification_important_rounded),
                 label: const Text("test"))
+
+            ,
           ],
         ),
       ),

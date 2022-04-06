@@ -1,4 +1,8 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Activities extends StatefulWidget {
   const Activities({Key? key}) : super(key: key);
@@ -18,6 +22,7 @@ class _ActivitiesState extends State<Activities> {
   String? theSport;
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +40,26 @@ class _ActivitiesState extends State<Activities> {
               const Text("Quel sport allez-vous pratiquer ?"),
               /* Display the dropdown list with the activities that the user can do. */
               dropDownActivities(),
+              FlatButton.icon(
+                  onPressed: () async {
+                    if (Platform.isAndroid) {
+                      final permissionStatus = Permission.activityRecognition.request();
+                      if (await permissionStatus.isDenied ||
+                      await permissionStatus.isPermanentlyDenied) {
+                        Fluttertoast.showToast(
+                            msg: "This is Center Short Toast",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            fontSize: 16.0
+                        );
+                        return;
+                      }
+                    }
+                    Navigator.pushNamed(context, "/activities/activity");
+                  },
+                  icon: const Icon(Icons.notification_important_rounded),
+                  label: const Text("test"))
             ],
           ),
         )

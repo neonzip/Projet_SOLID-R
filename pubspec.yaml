@@ -44,6 +44,11 @@ dependencies:
   flutter_local_notifications: ^9.3.3
   flutter_isolate: ^2.0.0
   path_provider: ^2.0.9
+  health: ^3.0.4
+  permission_handler: ^9.2.0
+  fluttertoast: ^8.0.9
+  oauth2_client: ^2.3.3
+  health_android: ^0.0.2
 
 dev_dependencies:
   flutter_test:
