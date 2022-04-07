@@ -90,7 +90,9 @@ class _LaunchHomeState extends State<LaunchHome> {
                         text: "OU"
                     ),
                     SigninWithOtherAccountButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/admin/home");
+                        },
                         name: "Facebook",
                         logo: "assets/LogoNetworks/facebook.png"
                     ),
