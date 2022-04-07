@@ -34,8 +34,12 @@ class _HomeState extends State<Home> {
                 Tab(
                   icon: Icon(FontAwesomeIcons.solidChartBar),
                 ),
-                Tab(icon: Icon(FontAwesomeIcons.chartPie)),
-                Tab(icon: Icon(FontAwesomeIcons.chartLine)),
+                Tab(
+                    icon: Icon(FontAwesomeIcons.chartPie)
+                ),
+                Tab(
+                    icon: Icon(FontAwesomeIcons.chartLine)
+                ),
               ],
             ),
             title: Text('Flutter Charts'),
