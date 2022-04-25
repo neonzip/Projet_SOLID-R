@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>787807178010-mj2d1hnv6pbce8oopmarovrlhrrvfi2q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.787807178010-mj2d1hnv6pbce8oopmarovrlhrrvfi2q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBEIrIitqxFehGtuIR1oRiYHvRvro2K8lM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>787807178010</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.projetSolidr</string>
+	<key>PROJECT_ID</key>
+	<string>sport-solid-r-test</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sport-solid-r-test.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:787807178010:ios:a8804b625f10d30aa330a3</string>
+	<key>DATABASE_URL</key>
+	<string>https://sport-solid-r-test-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
