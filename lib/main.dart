@@ -25,7 +25,7 @@ void main() async {
   AuthentificationService _auth = AuthentificationService();
   await _auth.signIn("sport.solidr.test@gmail.com", "abmmtijm");
   DataBase db = DataBase();
-  db.SetData("UserSettings", 8);
+  db.SetData("UserSettings", "Coucou !!!!!!");
   db.GetData("UserSettings");
   return runApp(
     MaterialApp(
