@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
+import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
+import 'package:projet_solid_r/pages/user/controller/Database.dart';
 import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
@@ -16,7 +19,15 @@ import 'package:projet_solid_r/pages/SignUp.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
-void main() => runApp(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseApp firebaseApp = await Firebase.initializeApp();
+  AuthentificationService _auth = AuthentificationService();
+  await _auth.signIn("sport.solidr.test@gmail.com", "abmmtijm");
+  DataBase db = DataBase();
+  db.SetData("UserSettings", "Coucou !!!!!!");
+  db.GetData("UserSettings");
+  return runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -60,5 +71,5 @@ void main() => runApp(
     /* HOME */
     "/admin/home": (context) => const HomeAdmin(),
   },
-));
+));}
 
