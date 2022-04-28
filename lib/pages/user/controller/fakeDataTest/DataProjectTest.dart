@@ -57,14 +57,14 @@ class DataProjectTest {
     project7.projectEntity = entitiesMecene.entitydataList.elementAt(0);
     project8.projectEntity = entitiesMecene.entitydataList.elementAt(1);
     /////////
-    project1.projectAssociation = association.assodataList.elementAt(0);
-    project2.projectAssociation = association.assodataList.elementAt(1);
-    project3.projectAssociation = association.assodataList.elementAt(2);
-    project4.projectAssociation = association.assodataList.elementAt(0);
-    project5.projectAssociation = association.assodataList.elementAt(1);
-    project6.projectAssociation = association.assodataList.elementAt(2);
-    project7.projectAssociation = association.assodataList.elementAt(0);
-    project8.projectAssociation = association.assodataList.elementAt(1);
+    project1.projectAssociation = association.assoDataList.elementAt(0);
+    project2.projectAssociation = association.assoDataList.elementAt(1);
+    project3.projectAssociation = association.assoDataList.elementAt(2);
+    project4.projectAssociation = association.assoDataList.elementAt(0);
+    project5.projectAssociation = association.assoDataList.elementAt(1);
+    project6.projectAssociation = association.assoDataList.elementAt(2);
+    project7.projectAssociation = association.assoDataList.elementAt(0);
+    project8.projectAssociation = association.assoDataList.elementAt(1);
     /////////
     project7.setResultDescriptionProject("Description résultat 7");
 

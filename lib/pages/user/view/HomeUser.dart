@@ -15,6 +15,7 @@ class HomeUser extends StatefulWidget {
 
 class _HomeUserState extends State<HomeUser> {
 
+  /// Floating action button "Activités"
   Widget buttonHomeActivitiesTemplate() {
     return Padding(
       padding: const EdgeInsets.all(5),

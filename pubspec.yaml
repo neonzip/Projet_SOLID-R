@@ -49,6 +49,7 @@ dependencies:
   firebase_database: ^9.0.8
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
+  video_player: ^2.2.18
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
    - assets/
    - assets/LogoAssociation/
    - assets/LogoNetworks/
+   - assets/AdvertisementNetworks/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

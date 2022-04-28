@@ -5,13 +5,14 @@ class EntityModel {
   late String entityName;
   late String entityDescription;
 
-  late AdvertisementModel advertisementEntity;
+  late AdvertisementModel entityAdvertisement;
 
 
-  EntityModel(int id, String name, String description) {
+  EntityModel(int id, String name, String description, AdvertisementModel ad) {
     entityID = id;
     entityName = name;
     entityDescription = description;
+    entityAdvertisement = ad;
   }
 
   /// ////////////////////////////
@@ -40,9 +41,17 @@ class EntityModel {
 
   /// /////////////////////////////
   AdvertisementModel getEntityAdvertisement() {
-    return advertisementEntity;
+    return entityAdvertisement;
   }
-  setResultProject(AdvertisementModel add) {
-    advertisementEntity = add;
+  setEntityAdvertisement(AdvertisementModel ad) {
+    entityAdvertisement = ad;
+  }
+
+  /// /////////////////////////////
+  AdvertisementModel getEntityAdvertisementURL() {
+    return entityAdvertisement;
+  }
+  setEntityAdvertisementURL(String adURL) {
+    entityAdvertisement.setAdvertisementURL(adURL);
   }
 }

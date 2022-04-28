@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/ProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/SeeMoreButton.dart';
+import 'package:video_player/video_player.dart';
 import '../templates/DonationButton.dart';
 import '../templates/Project/ProjectProgressBar.dart';
 import '../templates/Project/FavoriteButton.dart';
@@ -19,6 +20,7 @@ class ProjectView extends StatefulWidget {
 
 /// Class of one instance of project.
 class _ProjectViewState extends State<ProjectView>{
+  late VideoPlayerController controller;
 
   /// Widget for one card which is containing the information about a project.
   Widget projectTemplate(){
@@ -139,7 +141,9 @@ class _ProjectViewState extends State<ProjectView>{
                   idProject: 0,
                   onPressedButton: () {
                     Navigator.of(context).pop();
-                  },
+
+                    showVideoDialog();
+                    },
                   text: 'Confirmer le don',
                 ),
                 shareButton(),
@@ -147,6 +151,90 @@ class _ProjectViewState extends State<ProjectView>{
             ),
           )
       ),
+    );
+  }
+
+  /// https://www.fluttercampus.com/guide/268/play-video-flutter-example/
+  /// Displays the add with a button to quit the page.
+  void showVideoDialog() {
+    controller.initialize().then((value) => {
+      setState(() {
+
+      })
+    });
+    controller.play();
+
+    /// Normally, we get a 20 second video in the DB, but to but sure, we stop time to 20 seconds here
+    controller.seekTo(const Duration(seconds: 20));
+
+    showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext buildContext,
+          Animation animation,
+          Animation secondaryAnimation) => Scaffold(
+          backgroundColor: Colors.black,
+          body: WillPopScope(
+            onWillPop: () async {
+              if (controller.value.isPlaying) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Vous devez attendre la fin de la vidéo pour pouvoir quitter.')));
+                return false;
+              }
+              else {
+                /// We can quit the page and return to the home page
+                Navigator.pushNamed(context, "/user/home");
+              }
+              return true;
+            },
+            child: Column(
+              children: [
+                VideoProgressIndicator(
+                    controller,  //video player controller
+                    allowScrubbing: false,
+                    colors: const VideoProgressColors( //video player progress bar
+                      backgroundColor: Color(0xFF0725A5),
+                      playedColor: Colors.yellow,
+                      bufferedColor: Color(0xFF0725A5),
+                    )
+                ),
+                AspectRatio(
+                  aspectRatio: controller.value.aspectRatio,
+                  child: VideoPlayer(
+                    controller,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+          floatingActionButton:
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      controller.seekTo(const Duration(seconds:0));
+                      controller.play();
+                    },
+                    icon: const Icon(Icons.refresh, color: Colors.blue),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if (controller.value.isPlaying) {
+                        /// We have to wait that the video finishes
+                        ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Vous devez attendre la fin de la vidéo pour pouvoir quitter.')));
+                      }
+                      else {
+                        /// We can quit the page and return to the home page
+                        Navigator.pushNamed(context, "/user/home");
+                      }
+                    },
+                    icon: const Icon(Icons.close, color: Colors.yellow),
+                  ),
+                ],
+              )
+          ),
     );
   }
 
@@ -160,7 +248,11 @@ class _ProjectViewState extends State<ProjectView>{
             onPressed: () {
 
             },
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)), ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)),
+              elevation: MaterialStateProperty.all<double?>(0.0),
+              shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
+            ),
             label: const Text(
               "Partager",
               style: TextStyle(color: Colors.white),
@@ -174,5 +266,14 @@ class _ProjectViewState extends State<ProjectView>{
   @override
   Widget build(BuildContext context) {
     return projectTemplate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// Initializes the video in case the user confirms the donation
+    /// If we do it with a link, replace the word "asset" by "network" in the function below
+    controller = VideoPlayerController.asset(widget.project.projectAssociation.associationAdvertisementURL);
   }
 }

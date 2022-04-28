@@ -41,8 +41,28 @@ class _HomeAdminState extends State<HomeAdmin> {
                     const Text("Accueil",
                       textAlign: TextAlign.left,
                     ),
-                    const Text(""),
-                    ],
+                    const Text(""),Container(
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.all(10),
+                        child: FittedBox(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, "/user/profile");
+                            },
+                            child: Column(
+                              children: const [
+                                Icon(
+                                    Icons.account_circle_outlined,
+                                    color: Colors.white),
+                                Text(
+                                    "Profil",
+                                    style: TextStyle(color:Colors.white))
+                              ],
+                            ),
+                          ),
+                        )
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -98,14 +118,57 @@ class _HomeAdminState extends State<HomeAdmin> {
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                 ),
                               ),
-                            )
+                            ),
                           ]
                       ),
                     ),
                   )
-              )
+              ),
           ),
+            /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
+            bottomNavigationBar: BottomAppBar(
+              color: Colors.white,
+              elevation: 0,
+              child:
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                    child:
+                    /* Projects button. */
+                    buttonHomeProjectsTemplate(),
+                  ),
+                ],
+              ),
+            )
     )
+    );
+  }
+
+  /// Floating action button for projects
+  Widget buttonHomeProjectsTemplate() {
+    return Padding(
+        padding: const EdgeInsets.all(5),
+        child: FloatingActionButton(
+          heroTag: "projects",
+          onPressed: () {
+            Navigator.pushNamed(context, "/admin/projects");
+          },
+          tooltip: 'Projets',
+          splashColor: Colors.yellow,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.analytics),
+              Text("Projets"),
+            ],
+          ),
+          backgroundColor: const Color(0xFF0725A5),
+          elevation: 5,
+        )
     );
   }
 }
