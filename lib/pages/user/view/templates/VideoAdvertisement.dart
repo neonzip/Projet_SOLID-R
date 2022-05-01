@@ -79,6 +79,7 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text("Publicité", style: TextStyle(color: Colors.white),),
             /// Allows the user to go to the association's website by clicking in the video
             GestureDetector(
               onTap:
