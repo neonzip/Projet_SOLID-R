@@ -30,14 +30,14 @@ class DataProjectTest {
     DataAssociationTest association = DataAssociationTest();
 
     // Specific to data project
-    ProjectModel project1 = ProjectModel(1, true, "NameProject1", "1Ceci est un text pour décrire le but de l'association1.");
-    ProjectModel project2 = ProjectModel(2, true, "NameProject2", "2Ceci est un text pour décrire le but de l'association2.");
-    ProjectModel project3 = ProjectModel(3, false, "NameProject3",  "3Ceci est un text pour décrire le but de l'association3.");
-    ProjectModel project4 = ProjectModel(4, true, "NameProject4", "4Ceci est un text pour décrire le but de l'association4.");
-    ProjectModel project5 = ProjectModel(5, true, "NameProject5", "5Ceci est un text pour décrire le but de l'association1.");
-    ProjectModel project6 = ProjectModel(6, true, "NameProject6", "6Ceci est un text pour décrire le but de l'association2.");
-    ProjectModel project7 = ProjectModel(7, false, "NameProject7",  "7Ceci est un text pour décrire le but de l'association3.");
-    ProjectModel project8 = ProjectModel(8, true, "NameProject8", "8Ceci est un text pour décrire le but de l'association4.");
+    ProjectModel project1 = ProjectModel(1, true, "NameProject1", "1Ceci est un text pour décrire le but du projet1.");
+    ProjectModel project2 = ProjectModel(2, true, "NameProject2", "2Ceci est un text pour décrire le but du projet2.");
+    ProjectModel project3 = ProjectModel(3, false, "NameProject3",  "3Ceci est un text pour décrire le but du projet3.");
+    ProjectModel project4 = ProjectModel(4, true, "NameProject4", "4Ceci est un text pour décrire le but du projet4.");
+    ProjectModel project5 = ProjectModel(5, true, "NameProject5", "5Ceci est un text pour décrire le but du projet5.");
+    ProjectModel project6 = ProjectModel(6, true, "NameProject6", "6Ceci est un text pour décrire le but du projet6.");
+    ProjectModel project7 = ProjectModel(7, false, "NameProject7",  "7Ceci est un text pour décrire le but du projet7.");
+    ProjectModel project8 = ProjectModel(8, true, "NameProject8", "8Ceci est un text pour décrire le but du projet8.");
     /////////
     project1.setResultProject(97.5);
     project2.setResultProject(12.6);
@@ -220,6 +220,22 @@ class DataProjectTest {
         contribution: 0,
       );
       list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the solidarity projects of a specific association.
+  List<ProjectView> getListSolidarityProjectsOfAssociationViews(int associationID) {
+    List<ProjectView> list = <ProjectView>[];
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      if (solidarityProjectdataList[i].projectAssociation.entityID == associationID) {
+        ProjectView projectView = ProjectView(
+          project: solidarityProjectdataList.elementAt(i),
+          contribution: 0,
+        );
+
+        list.add(projectView);
+      }
     }
     return list;
   }

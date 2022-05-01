@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/bazar/Project/SelectedAssociationProjects.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'templates/Home/ContainerWithBackground.dart';
 import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
-import 'templates/Separator.dart';
 
 class HomeUser extends StatefulWidget {
   const HomeUser({Key? key}) : super(key: key);
@@ -247,25 +247,39 @@ class _HomeUserState extends State<HomeUser> {
   }
 
   /// /////////////////////////////////////////////////////////////
-  /// ALL methods to builde the gridView with the images/assets ///
+  /// ALL methods to build the gridView with the images/assets ///
   /// /////////////////////////////////////////////////////////////
   /// https://himdeve.com/flutter-tutorials/flutter-tutorials-1-9-gridview-slivergrid-gallery/
 
-  Widget _buildImageWidget(String imagePath) {
+  Widget _buildImageWidget(String imagePath, int associationID) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.cover,
-          height: 10,
-          width: 10,
+      child:
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size.zero, // Set this
+          padding: EdgeInsets.zero, // and this
+          elevation: 0,
+          primary: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Image.asset(
+            imagePath,
+            fit: BoxFit.cover,
+            //height: 10,
+            //width: 10,
+          ),
+
+        ),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> SelectedAssociationProjects(associationID: associationID)));
+        },
       ),
     );
   }
@@ -281,13 +295,12 @@ class _HomeUserState extends State<HomeUser> {
       ),
       padding: const EdgeInsets.all(10),
       children: [
-        _buildImageWidget("assets/LogoAssociation/logo4.jpg"),
-        _buildImageWidget("assets/LogoAssociation/logo3.jpg"),
-        _buildImageWidget("assets/LogoAssociation/logo2.jpg"),
-        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
-        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
-        _buildImageWidget("assets/LogoAssociation/logo1.jpg"),
-        _buildImageWidget("assets/logo_solid_R.png"),
+        // TODO : To change with the images of the DB.
+        // TODO : Place the images in the folder written below for example.
+
+        _buildImageWidget("assets/LogoAssociation/logo4.jpg", 3),
+        _buildImageWidget("assets/LogoAssociation/logo2.jpg", 2),
+        _buildImageWidget("assets/LogoAssociation/logo1.jpg", 1),
       ],
     );
   }
