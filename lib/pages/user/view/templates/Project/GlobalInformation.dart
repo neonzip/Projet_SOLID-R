@@ -76,7 +76,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                   ),
                   (widget.project.projectResult < 100)?
                   DonationButton(
-                    idProject: 0,
+                    idProject: widget.project.projectID,
                     onPressedButton: widget.onPressed,//showDonationDialog,
                     text: 'Donner',
                   ): const Text(""),

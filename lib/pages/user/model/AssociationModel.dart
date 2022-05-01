@@ -7,9 +7,10 @@ class AssociationModel extends EntityModel {
 
   late String associationAdvertisementURL;   // Association's ad URL
 
-  AssociationModel (int id, String name, String description, String logo, AdvertisementModel ad) : super(id, name, description, ad) {
+  AssociationModel (int id, String name, String description, String logo, AdvertisementModel ad, String websiteURL) : super(id, name, description, ad) {
     associationLogo = logo;
     associationAdvertisementURL = ad.advertisementURL;
+    associationWebSiteURL = websiteURL;
   }
 
   /// ////////////////////////////

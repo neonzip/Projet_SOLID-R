@@ -6,6 +6,7 @@ import '../../model/ProjectModel.dart';
 import '../templates/DonationButton.dart';
 import '../templates/Project/ProjectProgressBar.dart';
 import '../templates/Separator.dart';
+import '../templates/VideoAdvertisement.dart';
 
 class ProjectDetailed extends StatefulWidget {
  // Project projectToSee;
@@ -186,9 +187,12 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                   ),
                   (widget.project.projectResult < 100)?
                   DonationButton(
-                    idProject: 0,
+                    idProject: widget.project.projectID,
                     onPressedButton: () {
                       Navigator.of(context).pop();
+
+                      /// Send the user to the advertisement
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> VideoAdvertisement(project: widget.project)));
                     },
                     text: 'Confirmer le don',
                   ): const Text(""),
