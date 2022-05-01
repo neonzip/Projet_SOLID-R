@@ -1,12 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/ProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/SeeMoreButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/VideoAdvertisement.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
 import '../templates/DonationButton.dart';
 import '../templates/Project/ProjectProgressBar.dart';
 import '../templates/Project/FavoriteButton.dart';
@@ -24,6 +21,7 @@ class ProjectView extends StatefulWidget {
 
 /// Class of one instance of project.
 class _ProjectViewState extends State<ProjectView>{
+  double valueDonation = 0.0;
 
   /// Widget for one card which is containing the information about a project.
   Widget projectTemplate(){
@@ -105,7 +103,7 @@ class _ProjectViewState extends State<ProjectView>{
                 /* Button "Donner" is displayed if it is not finished, then nothing. */
                 (widget.project.projectResult < 100)?
                 DonationButton(
-                  onPressedButton: showDonationDialog,
+                  onPressedButton: showDonationInputDialog,
                   idProject: widget.project.projectID,
                   text: 'Donner',
                 ) :const Text(""),
@@ -117,6 +115,7 @@ class _ProjectViewState extends State<ProjectView>{
     );
   }
 
+  /// Displays the next dialog (after the input for donation) to confirm the donation.
   void showDonationDialog() {
     showDialog(
       context: context,
@@ -135,13 +134,13 @@ class _ProjectViewState extends State<ProjectView>{
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  child: const Text(
-                    "Félicitation, vous avez donné " "1.08" "€ au projet ! "
+                  child: Text(
+                    "Félicitation, vous avez donné " + valueDonation.toString() + " € au projet ! "
                         "\n\nContinuez d'enregistrer vos activités sportives pour soutenir d'autres projets.",
                   ),
                 ),
                 DonationButton(
-                  idProject: 0,
+                  idProject: widget.project.projectID,
                   onPressedButton: () {
                     Navigator.of(context).pop();
 
@@ -151,7 +150,69 @@ class _ProjectViewState extends State<ProjectView>{
                   text: 'Confirmer le don',
                 ),
                 ShareButton(
-                  onPressedButton: () {  },
+                  onPressedButton: () {
+                    // TODO : API to share on another app the donation
+                  },
+                ),
+              ],
+            ),
+          )
+      ),
+    );
+  }
+
+  /// Display the dialog where the user can set the amount of the donaition.
+  void showDonationInputDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+          title: Container(
+            alignment: Alignment.center,
+            child: const Text(
+              "Faire un don",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child:  Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                    "Montant du don :",
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF0725A5), width: 1.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 1.0),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.right,
+                    onChanged: (value) {
+                      valueDonation = double.parse(value);
+                    },
+                  ),
+                ),
+                DonationButton(
+                  idProject: widget.project.projectID,
+                  onPressedButton: () {
+                    // TODO : Here we have to take the value of valueDonation and sum it in the project's amount
+                    // TODO : We also have to make sure that the input is correct. If it is not, display a message for the user.
+                    // TODO : You can use the widget.project.whatever to get the selected project and do your things in the DB
+
+                    /// After these things, we can pop the dialog and go to the next one for confirmation
+                    Navigator.of(context).pop();
+
+                    /// Send the user to the next dialog about the confirmation of the donation
+                    showDonationDialog();
+                  },
+                  text: 'Donner ce montant',
                 ),
               ],
             ),
