@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../user/view/templates/Home/ContainerWithBackground.dart';
 

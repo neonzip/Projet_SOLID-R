@@ -165,27 +165,6 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
     );
   }
 
-  Widget shareButton() {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child:
-        SizedBox(
-          child:
-          ElevatedButton.icon(
-            onPressed: () {
-
-            },
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)), ),
-            label: const Text(
-              "Partager",
-              style: TextStyle(color: Colors.white),
-            ),
-            icon: const Icon(Icons.share, color: Colors.white),
-          ),
-        )
-    );
-  }
-
   /// Displays the next dialog (after the input for donation) to confirm the donation.
   void showDonationDialog() {
     showDialog(
@@ -221,9 +200,8 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                   text: 'Confirmer le don',
                 ),
                 ShareButton(
-                  onPressedButton: () {
-                    // TODO : Maybe API to share the donation on another app
-                  },
+                  valueDonation: valueDonation,
+                  nomProjet: widget.project.projectName,
                 ),
               ],
             ),

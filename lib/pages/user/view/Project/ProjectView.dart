@@ -150,9 +150,8 @@ class _ProjectViewState extends State<ProjectView>{
                   text: 'Confirmer le don',
                 ),
                 ShareButton(
-                  onPressedButton: () {
-                    // TODO : API to share on another app the donation
-                  },
+                  valueDonation: valueDonation,
+                  nomProjet: widget.project.projectName,
                 ),
               ],
             ),

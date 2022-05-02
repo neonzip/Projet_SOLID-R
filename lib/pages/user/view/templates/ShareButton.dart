@@ -1,20 +1,18 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
+import 'package:share/share.dart';
 
-import '../../model/ProjectModel.dart';
-
+/// Link for sharing datas in another app : https://www.codewithflutter.com/flutter-share-data-to-another-application/#:~:text=%20Flutter%20Share%20Data%20to%20Another%20Application%20,a%20simple%20example.%20If%20you%20are...%20More%20
 class ShareButton extends StatefulWidget {
-  final void Function()? onPressedButton;
+  final double valueDonation;     // Value of the current donation
+  final String nomProjet;
 
-  const ShareButton({Key? key, required this.onPressedButton, }) : super(key: key);
+
+  const ShareButton({Key? key, required this.valueDonation, required this.nomProjet}) : super(key: key);
   @override
   _ShareButtonState createState() => _ShareButtonState();
 }
 
 class _ShareButtonState extends State<ShareButton> {
-  late VideoPlayerController controller;    // Controller of the video ad
 
   @override
   void initState() {
@@ -26,9 +24,13 @@ class _ShareButtonState extends State<ShareButton> {
     return buttonShare();
   }
 
+  void shareDonation() {
+    Share.share("Sport SOLID'R :\nJe viens de faire un don de " + widget.valueDonation.toString() + " euros pour le projet " + widget.nomProjet + " !\n\nTélécharge toi aussi l'application Sport SOLID'R et pratique une activité physique engagée !\n\n\nDisponible sur Google Play et Apple Store.", subject: "DON EFFECTUÉ");
+  }
 
-  /// Button to donate to the specific project.
-  /// Called "Donner".
+
+  /// Button to share a donation.
+  /// Called "Partager".
   Widget buttonShare() {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -37,6 +39,7 @@ class _ShareButtonState extends State<ShareButton> {
           child:
           ElevatedButton.icon(
             onPressed: () {
+              shareDonation();
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5)),

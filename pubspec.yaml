@@ -50,6 +50,7 @@ dependencies:
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
   video_player: ^2.2.18
+  share: ^2.0.1
 
 dev_dependencies:
   flutter_test:

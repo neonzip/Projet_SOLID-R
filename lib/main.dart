@@ -70,6 +70,9 @@ void main() async {
 
     /* HOME */
     "/admin/home": (context) => const HomeAdmin(),
+
+    /* PROJECTS */
+   // "/admin/projects": (context) =>
   },
 ));}
 
