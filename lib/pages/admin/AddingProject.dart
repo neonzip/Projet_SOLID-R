@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/FormAddingAssociation.dart';
 import 'package:projet_solid_r/pages/admin/FormAssociation.dart';
 import 'package:projet_solid_r/pages/admin/FormConfirmation.dart';
 import 'package:projet_solid_r/pages/admin/FormMecene.dart';
@@ -27,8 +26,7 @@ class _AddingProjectState extends State<AddingProject> {
     const FormProject(),
 
     // Page for association information
-    //const FormAssociation(),
-    const FormAddingAssociation(),
+    const FormAssociation(),
 
     // Page for mecene information
     const FormMecene(),
@@ -138,18 +136,18 @@ class _AddingProjectState extends State<AddingProject> {
                       ),
                     ],
                   ),
-
-                  Visibility(
-                    visible: currentPageValue != pages.length - 1
-                        ? true
-                        : false,
-                    child: TextButton(
-                      onPressed: () {
-                        currentPageValue ++;
-                        controller.jumpToPage(currentPageValue);
-                      },
-                      child: const Text("Suivant >", style: TextStyle(color: Color(0xFF0725A5), fontWeight: FontWeight.bold),),
-                    ),
+                  (currentPageValue != pages.length - 1) ? TextButton(
+                    onPressed: () {
+                      currentPageValue ++;
+                      controller.jumpToPage(currentPageValue);
+                    },
+                    child: const Text("Suivant >", style: TextStyle(color: Color(0xFF0725A5), fontWeight: FontWeight.bold),),
+                  )
+                  :
+                  TextButton(
+                    onPressed: () {
+                    },
+                    child: const Text("Annuler", style: TextStyle(color: Color(0xFF0725A5), fontWeight: FontWeight.bold),),
                   ),
                 ]
               )
