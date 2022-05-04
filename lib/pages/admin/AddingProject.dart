@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/FormAssociation.dart';
+import 'package:projet_solid_r/pages/admin/FormConfirmation.dart';
+import 'package:projet_solid_r/pages/admin/FormMecene.dart';
+import 'package:projet_solid_r/pages/admin/FormProject.dart';
 
 class AddingProject extends StatefulWidget {
   const AddingProject({Key? key}) : super(key: key);
@@ -15,26 +19,25 @@ class _AddingProjectState extends State<AddingProject> {
   /// An other one for the mecene
   /// The last to confirm changes
   /// https://www.woolha.com/tutorials/flutter-creating-pageview-with-pagecontroller-examples#:~:text=In%20Flutter%2C%20PageView%20is%20a%20scrollable%20list%20that,%28pages%29%2C%20the%20user%20needs%20to%20scroll%20the%20list.
+  /// https://medium.com/aubergine-solutions/create-an-onboarding-page-indicator-in-3-minutes-in-flutter-a2bd97ceeaff
   List<Widget> pages = [
 
     // Page for project information
-    const Text("Projet"),
-
+    const FormProject(),
 
     // Page for association information
-    const Text("Association"),
-
+    const FormAssociation(),
 
     // Page for mecene information
-    const Text("Mécène"),
+    const FormMecene(),
 
     // Page for confirmation
-    const Text("Confirmation"),
+    const FormConfirmation(),
   ];
 
   /// Page controller
   static final controller = PageController(
-    initialPage: 1, // First page by default
+    initialPage: 0, // First page by default
   );
 
   int currentPageValue = 0;
