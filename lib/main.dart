@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
+import 'package:projet_solid_r/pages/admin/AddingProject.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
@@ -72,7 +73,7 @@ void main() async {
     "/admin/home": (context) => const HomeAdmin(),
 
     /* PROJECTS */
-   // "/admin/projects": (context) =>
+    "/admin/projects": (context) => const AddingProject(),
   },
 ));}
 
