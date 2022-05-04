@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/FormAddingAssociation.dart';
 import 'package:projet_solid_r/pages/admin/FormAssociation.dart';
 import 'package:projet_solid_r/pages/admin/FormConfirmation.dart';
 import 'package:projet_solid_r/pages/admin/FormMecene.dart';
@@ -26,7 +27,8 @@ class _AddingProjectState extends State<AddingProject> {
     const FormProject(),
 
     // Page for association information
-    const FormAssociation(),
+    //const FormAssociation(),
+    const FormAddingAssociation(),
 
     // Page for mecene information
     const FormMecene(),

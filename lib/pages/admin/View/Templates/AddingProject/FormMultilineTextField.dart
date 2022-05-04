@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 
-class FormTextField extends StatefulWidget {
+class FormMultilineTextField extends StatefulWidget {
   final String errorMessage;
   final String label;
   final String labelHint;
 
-  final TextInputType inputType;
-
-  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType}) : super(key: key);
+  const FormMultilineTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label}) : super(key: key);
   @override
-  _FormTextFieldState createState() => _FormTextFieldState();
+  _FormMultilineTextFieldState createState() => _FormMultilineTextFieldState();
 }
 
-class _FormTextFieldState extends State<FormTextField> {
+class _FormMultilineTextFieldState extends State<FormMultilineTextField> {
 
   @override
   Widget build(BuildContext context) {
     return textFieldTemplate();
   }
 
-  /// Widget which contributes to create a textfield.
+  /// Widget which contributes to create a text area.
   Widget textFieldTemplate() {
     return
       Container(
@@ -38,7 +36,8 @@ class _FormTextFieldState extends State<FormTextField> {
                   color: Colors.white,
                 ),
                 child: TextField(
-                  keyboardType: widget.inputType,
+                  maxLines: 10,
+                  //textAlign: TextAlign.justify,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.yellow, width: 1.0),
