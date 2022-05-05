@@ -11,6 +11,7 @@ import 'package:projet_solid_r/Functions/Notification.dart';
 import 'package:location/location.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:projet_solid_r/Test_Health.dart';
+import 'package:projet_solid_r/pages/GoogleApis.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter
@@ -450,13 +451,14 @@ class _ActivityState extends State<Activity> {
             //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
             FlatButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/activities/activity/DailyStepsScreen");
-
+                  //Navigator.pushNamed(context, "/activities/activity/DailyStepsScreen"
+                  DownloadFromGoogle();
                   //testHealth();
-                  sendNotification(title: "Votre activité actuelle", body: "Vous avez parcouru $_kmWalk en $_actualTime secondes. Votre vitesse est de ${_location.speed != null && _location.speed! * 3600 / 1000 > 0
+                  /*sendNotification(title: "Votre activité actuelle", body: "Vous avez parcouru $_kmWalk en $_actualTime secondes. Votre vitesse est de ${_location.speed != null && _location.speed! * 3600 / 1000 > 0
                       ? (_location.speed! * 3600 / 1000).toStringAsFixed(2)
                       : 0} KM/h");
-                  },
+                   */
+                },
 
                 icon: const Icon(Icons.notification_important_rounded),
                 label: const Text("test"))

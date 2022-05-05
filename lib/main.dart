@@ -41,6 +41,7 @@ void main() => runApp(MaterialApp(
     "/projects/section=solidarity": (context) => const SolidarityProjects(),
     "/projects/section=formal" "/name=" "nomProjet": (context) => const ProjectDetailed(),
 
+
   },
 ));
 
