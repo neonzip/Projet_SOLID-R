@@ -10,7 +10,8 @@ class FormMecene extends StatefulWidget {
   _FormMeceneState createState() => _FormMeceneState();
 }
 
-class _FormMeceneState extends State<FormMecene> {
+/// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
+class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMixin<FormMecene>{
   bool alreadyExist = true;
 
   @override
@@ -100,4 +101,7 @@ class _FormMeceneState extends State<FormMecene> {
         )
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

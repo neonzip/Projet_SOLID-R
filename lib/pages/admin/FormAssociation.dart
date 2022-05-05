@@ -10,7 +10,8 @@ class FormAssociation extends StatefulWidget {
   _FormAssociationState createState() => _FormAssociationState();
 }
 
-class _FormAssociationState extends State<FormAssociation> {
+/// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
+class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAliveClientMixin<FormAssociation> {
   bool alreadyExist = true;
 
   @override
@@ -107,4 +108,7 @@ class _FormAssociationState extends State<FormAssociation> {
         )
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

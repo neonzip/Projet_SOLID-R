@@ -8,7 +8,8 @@ class FormConfirmation extends StatefulWidget {
   _FormConfirmationState createState() => _FormConfirmationState();
 }
 
-class _FormConfirmationState extends State<FormConfirmation> {
+/// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
+class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepAliveClientMixin<FormConfirmation> {
   bool isYesForAdding = true;
   bool isNoForAdding = false;
 
@@ -196,4 +197,7 @@ class _FormConfirmationState extends State<FormConfirmation> {
         )
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

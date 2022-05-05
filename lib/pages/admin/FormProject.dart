@@ -10,7 +10,8 @@ class FormProject extends StatefulWidget {
   _FormProjectState createState() => _FormProjectState();
 }
 
-class _FormProjectState extends State<FormProject> {
+/// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
+class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClientMixin<FormProject>{
 
   @override
   Widget build(BuildContext context) {
@@ -50,4 +51,7 @@ class _FormProjectState extends State<FormProject> {
         )
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

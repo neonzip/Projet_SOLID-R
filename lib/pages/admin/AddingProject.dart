@@ -20,7 +20,7 @@ class _AddingProjectState extends State<AddingProject> {
   /// The last to confirm changes
   /// https://www.woolha.com/tutorials/flutter-creating-pageview-with-pagecontroller-examples#:~:text=In%20Flutter%2C%20PageView%20is%20a%20scrollable%20list%20that,%28pages%29%2C%20the%20user%20needs%20to%20scroll%20the%20list.
   /// https://medium.com/aubergine-solutions/create-an-onboarding-page-indicator-in-3-minutes-in-flutter-a2bd97ceeaff
-  List<Widget> pages = [
+  static final List<Widget> pages = [
 
     // Page for project information
     const FormProject(),
