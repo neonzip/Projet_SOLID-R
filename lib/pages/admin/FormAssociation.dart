@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextField.dart';
 import 'View/Templates/AddingProject/FormMultilineTextField.dart';
+import 'View/Templates/CarousselPictures.dart';
 
 class FormAssociation extends StatefulWidget {
   const FormAssociation({Key? key}) : super(key: key);
@@ -69,6 +70,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                       labelHint: "Entrez le courriel de l'association",
                       label: "Courriel",
                     ),
+                    const CarouselPictures(),
                   ],
                 )
                     :

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextField.dart';
 import 'View/Templates/AddingProject/FormMultilineTextField.dart';
+import 'View/Templates/CarousselPictures.dart';
 
 class FormMecene extends StatefulWidget {
   const FormMecene({Key? key}) : super(key: key);
@@ -62,6 +63,7 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
                         labelHint: "Entrez la description du mécène",
                         label: "Description"
                     ),
+                    const CarouselPictures(),
                   ],
                 )
                     :
