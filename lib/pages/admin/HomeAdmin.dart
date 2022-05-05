@@ -142,7 +142,18 @@ class _HomeAdminState extends State<HomeAdmin> {
                   ),
                 ],
               ),
-            )
+            ),
+          floatingActionButton: FloatingActionButton(
+            heroTag: "addProject",
+            onPressed: () {
+              Navigator.pushNamed(context, "/admin/project/add");
+            },
+            tooltip: 'Ajouter un projet',
+            splashColor: const Color(0xFF0725A5),
+            child: const Icon(Icons.add, color: Color(0xFF0725A5), ),
+            backgroundColor: Colors.yellow,
+            elevation: 5,
+          ),
     )
     );
   }
@@ -154,7 +165,7 @@ class _HomeAdminState extends State<HomeAdmin> {
         child: FloatingActionButton(
           heroTag: "projects",
           onPressed: () {
-            Navigator.pushNamed(context, "/admin/projects");
+            //Navigator.pushNamed(context, "/admin/projects");
           },
           tooltip: 'Projets',
           splashColor: Colors.yellow,

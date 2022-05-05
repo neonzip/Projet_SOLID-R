@@ -73,7 +73,10 @@ void main() async {
     "/admin/home": (context) => const HomeAdmin(),
 
     /* PROJECTS */
-    "/admin/projects": (context) => const AddingProject(),
+    //"/admin/projects": (context) => const AddingProject(),
+
+    /* FORMULAIRE D'AJOUT PROJET */
+    "/admin/project/add": (context) => const AddingProject(),
   },
 ));}
 

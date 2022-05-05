@@ -146,6 +146,7 @@ class _AddingProjectState extends State<AddingProject> {
                   :
                   TextButton(
                     onPressed: () {
+                      showAbandon();
                     },
                     child: const Text("Annuler", style: TextStyle(color: Color(0xFF0725A5), fontWeight: FontWeight.bold),),
                   ),
@@ -173,5 +174,79 @@ class _AddingProjectState extends State<AddingProject> {
   void getChangedPageAndMoveBar(int page) {
     currentPageValue = page;
     setState(() {});
+  }
+
+
+  void showAbandon() {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+            title: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "Êtes-vous sûr de vouloir tout abandonner ?",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            content: SingleChildScrollView(
+              child:  Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                      padding: EdgeInsets.only(bottom: 50),
+                  child:Text(
+                    "Votre saisie sera complètement effacée.",
+                  ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child:
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.yellow,
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          ),
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName("/admin/home"));
+                          },
+                          child: const Text(
+                            "Oui",
+                            style: TextStyle(
+                              color: Color(0xFF0725A5),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child:
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary:const Color(0xFF0725A5),
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            },
+                            child: const Text(
+                            "Non",
+                            style: TextStyle(
+                              color: Colors.yellow,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ))
+    );
   }
 }

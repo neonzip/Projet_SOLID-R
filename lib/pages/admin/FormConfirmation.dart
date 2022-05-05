@@ -113,7 +113,6 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                                     isNoForPublication = false;
                                     isYesForPublication = true;
                                   });
-
                                 },
                                 style: //ButtonStyle
                                 ElevatedButton.styleFrom(
@@ -170,7 +169,7 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
-
+                      showConfirmation();
                     },
                     style: //ButtonStyle
                     ElevatedButton.styleFrom(
@@ -200,4 +199,76 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
 
   @override
   bool get wantKeepAlive => true;
+
+  void showConfirmation() {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+            title: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "Votre projet a été ajouté !",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            content: SingleChildScrollView(
+              child:  Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Votre projet a bien été créé.",
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 200,
+                        margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child:
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.yellow,
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          ),
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName("/admin/home"));
+                          },
+                          child: const Text(
+                            "Retour à l'accueil",
+                            style: TextStyle(
+                              color: Color(0xFF0725A5),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 200,
+                        margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child:
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary:const Color(0xFF0725A5),
+                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          ),
+                          onPressed: () {
+                            // TODO : Renvoyer aux détails du projet créé.
+                          },
+                          child: const Text(
+                            "Voir le projet",
+                            style: TextStyle(
+                              color: Colors.yellow,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ))
+    );
+  }
 }

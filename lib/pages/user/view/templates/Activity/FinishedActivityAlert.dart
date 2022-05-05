@@ -28,7 +28,7 @@ class _FinishedActivityAlertState extends State<FinishedActivityAlert> {
         TextButton(
           onPressed: () {
             widget.onPressedButton;
-            Navigator.popUntil(context, ModalRoute.withName("/home"));
+            Navigator.popUntil(context, ModalRoute.withName("/user/home"));
           },
           child: const Text('OK'),
         ),
