@@ -52,6 +52,7 @@ dependencies:
   video_player: ^2.2.18
   share: ^2.0.1
   carousel_slider: ^4.1.1
+  marquee: ^1.6.1
 
 
 dev_dependencies:

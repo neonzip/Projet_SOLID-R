@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:marquee/marquee.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 import '../../model/ProjectModel.dart';
@@ -44,6 +45,7 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                 valueBar: widget.project.projectResult / 100, // %
             ),
             const AutoSizeText(
+              // TODO : Change the "XX" value by the real one.
               "Cagnotte remplie en " "XX" " jours",
             textAlign: TextAlign.center,
               maxLines: 2
@@ -72,11 +74,55 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                 borderRadius: BorderRadius.circular(10),
               ),
               tabs: [
-                const Tab(text: 'Projet',),
-                const Tab(text: 'Association',),
-                const Tab(text: 'Mécène',),
+                Tab(
+                  child: Marquee(
+                    showFadingOnlyWhenScrolling: true,
+                    fadingEdgeStartFraction: 0.1,
+                    fadingEdgeEndFraction: 0.5,
+                    text: 'Projet',
+                    blankSpace: 50.0,
+                    pauseAfterRound: const Duration(seconds: 4),
+                    accelerationDuration: const Duration(seconds: 2),
+                    decelerationDuration: const Duration(milliseconds: 500),
+                  ),
+                ),
+                Tab(
+                    child: Marquee(
+                      showFadingOnlyWhenScrolling: true,
+                      fadingEdgeStartFraction: 0.1,
+                      fadingEdgeEndFraction: 0.5,
+                      text: 'Association',
+                      blankSpace: 50.0,
+                      pauseAfterRound: const Duration(seconds: 4),
+                      accelerationDuration: const Duration(seconds: 2),
+                      decelerationDuration: const Duration(milliseconds: 500),
+                    )
+                ),
+                Tab(
+                    child: Marquee(
+                      showFadingOnlyWhenScrolling: true,
+                      fadingEdgeStartFraction: 0.1,
+                      fadingEdgeEndFraction: 0.5,
+                      text: 'Mécène',
+                      blankSpace: 50.0,
+                      pauseAfterRound: const Duration(seconds: 4),
+                      accelerationDuration: const Duration(seconds: 2),
+                      decelerationDuration: const Duration(milliseconds: 500),
+                    )
+                ),
                 if (widget.project.projectResult == 100)
-                const Tab(text: 'Résultats',),
+                Tab(
+                    child: Marquee(
+                      showFadingOnlyWhenScrolling: true,
+                      fadingEdgeStartFraction: 0.1,
+                      fadingEdgeEndFraction: 0.5,
+                      text: 'Résultats',
+                      blankSpace: 50.0,
+                      pauseAfterRound: const Duration(seconds: 4),
+                      accelerationDuration: const Duration(seconds: 2),
+                      decelerationDuration: const Duration(milliseconds: 500),
+                    )
+                ),
               ],
             ),
           ),
