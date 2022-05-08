@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormMultilineTextField.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextField.dart';
+import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextFieldAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 class FormProject extends StatefulWidget {
@@ -25,7 +25,7 @@ class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClient
                   padding: const EdgeInsets.all(10),
                   child: const Text("Projet", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                 ),
-                FormTextField(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.text,
                   errorMessage: "Champ vide",
@@ -38,7 +38,7 @@ class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClient
                     labelHint: "Entrez l'objectif du projet",
                     label: "Objectif"
                 ),
-                FormTextField(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.number,
                   errorMessage: "Champ vide",

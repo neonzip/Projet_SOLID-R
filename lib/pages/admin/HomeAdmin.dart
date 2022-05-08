@@ -46,7 +46,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                         child: FittedBox(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, "/user/profile");
+                              Navigator.pushNamed(context, "/admin/profile");
                             },
                             child: Column(
                               children: const [
@@ -165,7 +165,7 @@ class _HomeAdminState extends State<HomeAdmin> {
         child: FloatingActionButton(
           heroTag: "projects",
           onPressed: () {
-            //Navigator.pushNamed(context, "/admin/projects");
+            Navigator.pushNamed(context, "/admin/projects");
           },
           tooltip: 'Projets',
           splashColor: Colors.yellow,

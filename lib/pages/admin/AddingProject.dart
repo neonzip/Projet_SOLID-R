@@ -62,7 +62,7 @@ class _AddingProjectState extends State<AddingProject> {
                     child: FittedBox(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/user/profile");
+                          Navigator.pushNamed(context, "/admin/profile");
                         },
                         child: Column(
                           children: const [

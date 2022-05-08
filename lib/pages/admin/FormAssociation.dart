@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextField.dart';
+import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextFieldAdmin.dart';
 import 'View/Templates/AddingProject/FormMultilineTextField.dart';
 import 'View/Templates/CarousselPictures.dart';
 
@@ -50,7 +50,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                           ],
                         )
                     ),
-                    FormTextField(
+                    FormTextFieldAdmin(
                       key: widget.key,
                       inputType: TextInputType.text,
                       errorMessage: "Champ vide",
@@ -63,14 +63,64 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                         labelHint: "Entrez la description de l'association",
                         label: "Description"
                     ),
-                    FormTextField(
+                    FormTextFieldAdmin(
                       key: widget.key,
                       inputType: TextInputType.text,
                       errorMessage: "Champ vide",
                       labelHint: "Entrez le courriel de l'association",
                       label: "Courriel",
                     ),
-                    const CarouselPictures(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: const Text("Images"),
+                            padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
+                          ),
+                          Container(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  alreadyExist = false;
+                                });
+                              },
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                              child: const Text(
+                                "Ajouter une photo",
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            padding: const EdgeInsets.only(right:20.0, left:20.0),
+                          ),
+                          const CarouselPictures(),
+                        ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: const Text("Logo"),
+                          padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                alreadyExist = false;
+                              });
+                            },
+                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                            child: const Text(
+                              "Ajouter un logo",
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          padding: const EdgeInsets.only(right:20.0, left:20.0),
+                        ),
+                      ],
+                    )
                   ],
                 )
                     :

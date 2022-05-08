@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class FormTextField extends StatefulWidget {
+class FormTextFieldAdmin extends StatefulWidget {
   final String errorMessage;
   final String label;
   final String labelHint;
 
   final TextInputType inputType;
 
-  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType}) : super(key: key);
+  const FormTextFieldAdmin({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType}) : super(key: key);
   @override
-  _FormTextFieldState createState() => _FormTextFieldState();
+  _FormTextFieldAdminState createState() => _FormTextFieldAdminState();
 }
 
-class _FormTextFieldState extends State<FormTextField> {
+class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
 
   @override
   Widget build(BuildContext context) {
