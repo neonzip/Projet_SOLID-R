@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextFieldAdmin.dart';
-import 'View/Templates/AddingProject/FormMultilineTextField.dart';
-import 'View/Templates/CarousselPictures.dart';
+import '../Templates/AddingProject/FormMultilineTextField.dart';
+import '../Templates/AddingProject/CarousselPictures.dart';
 
 class FormMecene extends StatefulWidget {
   const FormMecene({Key? key}) : super(key: key);

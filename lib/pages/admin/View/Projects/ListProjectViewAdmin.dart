@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/View/Projects/AllProjectsView.dart';
 
 /// https://fr.acervolima.com/flutter-onglets/?msclkid=6e1bd9dcceda11ecaf1bccadbafa9671
-class ProjectsViewAdmin extends StatelessWidget {
-  const ProjectsViewAdmin({Key? key}) : super(key: key);
+class ListProjectViewAdmin extends StatelessWidget {
+  const ListProjectViewAdmin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +12,7 @@ class ProjectsViewAdmin extends StatelessWidget {
         initialIndex: 1,
         length: 3,
         child: Scaffold(
+          backgroundColor: const Color(0xFFD7E1FF),
           appBar: AppBar(
             bottom: const TabBar(
               indicatorColor: Colors.yellow,
@@ -62,8 +63,8 @@ class ProjectsViewAdmin extends StatelessWidget {
           body: const TabBarView(
             children: [
               Icon(Icons.music_note),
+              AllProjectsView(),
               Icon(Icons.music_video),
-              Icon(Icons.camera_alt),
             ],
           ),
         ),

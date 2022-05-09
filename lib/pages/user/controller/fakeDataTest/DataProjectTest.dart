@@ -2,6 +2,7 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociatio
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
+import '../../../admin/View/Projects/ProjectViewAdmin.dart';
 import '../../view/Project/ProjectView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,6 +218,19 @@ class DataProjectTest {
     for (int i = 0; i < getListFavoriteSolidarityProjects().length; i ++) {
       ProjectView projectView = ProjectView(
         project: getListFavoriteSolidarityProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the solidarity projects, publicated and not for the admin part.
+  List<ProjectViewAdmin> getListAllProjectsViewsAdmin() {
+    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
+    for (int i = 0; i < getListSolidarityProjects().length; i++) {
+      ProjectViewAdmin projectView = ProjectViewAdmin(
+        project: getListSolidarityProjects().elementAt(i),
         contribution: 0,
       );
       list.add(projectView);
