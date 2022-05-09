@@ -23,7 +23,6 @@ class ActivityModel {
         activityDistance = int.parse(json['distance'] as String);
 
 
-
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'startDate': activityStartDate.toString(),
     'endDate': activityEndDate.toString(),
