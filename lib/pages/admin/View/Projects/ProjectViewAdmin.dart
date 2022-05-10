@@ -21,11 +21,42 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
   double valueDonation = 0.0;
 
   /// Widget for one card which is containing the information about a project.
-  Widget projectTemplate(){
+  Widget projectTemplate() {
+    return Stack(
+      children: <Widget>[
+        Container(
+          margin: const EdgeInsets.only(left: 10.0, top: 10),
+          child: contentCard(),
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom:20),
+          alignment: FractionalOffset.topLeft,
+          child: const Image(
+            image: AssetImage("assets/logo_solid_R.png"),
+            height: 40.0,
+            width: 40.0,
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return projectTemplate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget contentCard() {
     double contribute = widget.contribution;
     double progressGoal = widget.project.projectResult;
+
     return Card(
-      color: Colors.red,
+      color: Colors.white,
       elevation: 5,
       margin: const EdgeInsets.all(5),
       child: Padding(
@@ -103,15 +134,5 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
         ),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return projectTemplate();
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 }
