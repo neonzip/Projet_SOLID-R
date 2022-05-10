@@ -74,7 +74,7 @@ void main() async {
     "/admin/home": (context) => const HomeAdmin(),
 
     /* PROJECTS */
-    "/admin/projects": (context) => ListProjectViewAdmin(),
+    "/admin/projects": (context) => const ListProjectViewAdmin(),
 
     /* FORMULAIRE D'AJOUT PROJET */
     "/admin/project/add": (context) => const AddingProject(),

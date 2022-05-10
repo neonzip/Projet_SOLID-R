@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/ProjectsViewAdmin.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../../../user/view/Project/ProjectsView.dart';
 import '../../../user/view/templates/ItemFilter.dart';
 import '../../../user/view/templates/Separator.dart';
 import 'ProjectViewAdmin.dart';
