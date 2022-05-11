@@ -35,6 +35,9 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
                 end: FractionalOffset.bottomCenter,
                 colors: [
                   Colors.white.withOpacity(0.0),
+                  Colors.white.withOpacity(0.2),
+                  Colors.white.withOpacity(0.3),
+                  Colors.white.withOpacity(0.3),
                   Colors.white,
                 ],
               )
@@ -48,7 +51,10 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
           end: FractionalOffset.topCenter,
           colors: [
             Colors.white.withOpacity(0.0),
+            Colors.white.withOpacity(0.1),
+            Colors.white.withOpacity(0.2),
             Colors.white,
+            //Colors.white,
           ],
         )
       ),
