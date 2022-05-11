@@ -74,8 +74,8 @@ class _HomeAdminState extends State<HomeAdmin> {
                     child: SizedBox(
                       width: 500,
                       child: Column(
-                          children: [
-                            const Text("Bonjour pseudo",
+                          children: const [
+                            Text("Bonjour pseudo",
                                 style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
@@ -88,21 +88,6 @@ class _HomeAdminState extends State<HomeAdmin> {
                                   fontSize: 20.0,
                                 )
                             ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(20, 50, 20, 20),
-                              width: double.infinity,
-                              height: 50,
-                              child:
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                                child: const Text(
-                                  "Se connecter en tant qu'administrateur",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-
                           ]
                       ),
                     ),

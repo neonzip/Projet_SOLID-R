@@ -21,7 +21,7 @@ class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/Martin.png",
+            "assets/background.png",
           ),
           fit: BoxFit.cover,
         ),

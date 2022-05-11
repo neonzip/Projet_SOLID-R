@@ -14,11 +14,11 @@ class CarouselPicturesState extends State<CarouselPictures> {
   late CarouselSlider carouselSlider;
   int _current = 0;
   List imgList = [
-    'assets/Martin.png',
-    'assets/Martin.png',
-    'assets/Martin.png',
-    'assets/Martin.png',
-    'assets/Martin.png'
+    'assets/background.png',
+    'assets/background.png',
+    'assets/background.png',
+    'assets/background.png',
+    'assets/background.png',
   ];
 
   List<T> map<T>(List list, Function handler) {

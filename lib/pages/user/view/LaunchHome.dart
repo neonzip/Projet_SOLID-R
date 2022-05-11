@@ -41,7 +41,7 @@ class _LaunchHomeState extends State<LaunchHome> {
                     color: Colors.transparent,
                     image: DecorationImage(
                       image: AssetImage(
-                        'assets/Martin.png',
+                        'assets/background.png',
                       ),
                     ),
                   ),
