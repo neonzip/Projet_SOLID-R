@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
+import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.dart';
@@ -77,11 +78,11 @@ void main() async {
     /* PROJECTS */
     "/admin/projects": (context) => const ListProjectViewAdmin(),
 
-    /* FORMULAIRE D'AJOUT PROJET */
+    /* FORM TO ADD PROJET */
     "/admin/project/add": (context) => const AddingProject(),
 
-    /* FORMULAIRE DE MODIFICATION PROJET */
-    //"/admin/project/update": (context) => const UpdatingProject(),
+    /* PROFIL */
+    "/admin/profile": (context) => const ProfileAdmin(),
 
   },
 ));}

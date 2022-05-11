@@ -102,22 +102,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                                 ),
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.all(20),
-                              width: double.infinity,
-                              height: 50,
-                              child:
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, "/user/home");
-                                },
-                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                                child: const Text(
-                                  "Se connecter en tant qu'utilisateur",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
+
                           ]
                       ),
                     ),

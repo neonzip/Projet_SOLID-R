@@ -5,9 +5,9 @@ import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.da
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 
-import '../user/model/ProjectModel.dart';
-import '../user/view/templates/Project/ProjectProgressBar.dart';
-import '../user/view/templates/Separator.dart';
+import '../../../user/model/ProjectModel.dart';
+import '../../../user/view/templates/Project/ProjectProgressBar.dart';
+import '../../../user/view/templates/Separator.dart';
 
 class ProjectDetailedContentAdmin extends StatefulWidget {
   // Project projectToSee;
