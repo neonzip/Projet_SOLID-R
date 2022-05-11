@@ -88,36 +88,6 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
                         const CarouselPictures(),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: const Text("Logo"),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
-                        ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                alreadyExist = false;
-                              });
-                            },
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                            child: const Text(
-                              "Ajouter un logo",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0),
-                        ),
-                        Padding(
-                          child: Image.asset('assets/logo_solid_R.png'),
-                          padding: const EdgeInsets.only(left:20, right:20, bottom: 20),
-                        )
-                      ],
-                    )
                   ],
                 )
                     :

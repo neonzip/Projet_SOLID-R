@@ -49,6 +49,15 @@ class DataProjectTest {
     project7.setResultProject(100);
     project8.setResultProject(35.9);
     /////////
+    project1.projectDonationGoal = 10000.50;
+    project2.projectDonationGoal = 1400.00;
+    project3.projectDonationGoal = 870.50;
+    project4.projectDonationGoal = 8540.00;
+    project5.projectDonationGoal = 1950.50;
+    project6.projectDonationGoal = 10068.00;
+    project7.projectDonationGoal = 8970.50;
+    project8.projectDonationGoal = 3500.50;
+    /////////
     project1.projectEntity = entitiesMecene.entitydataList.elementAt(0);
     project2.projectEntity = entitiesMecene.entitydataList.elementAt(1);
     project3.projectEntity = entitiesMecene.entitydataList.elementAt(2);

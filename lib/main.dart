@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
+import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.dart';
 import 'package:projet_solid_r/pages/admin/View/Projects/ListProjectViewAdmin.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
@@ -78,6 +79,10 @@ void main() async {
 
     /* FORMULAIRE D'AJOUT PROJET */
     "/admin/project/add": (context) => const AddingProject(),
+
+    /* FORMULAIRE DE MODIFICATION PROJET */
+    //"/admin/project/update": (context) => const UpdatingProject(),
+
   },
 ));}
 

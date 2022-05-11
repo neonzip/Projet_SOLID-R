@@ -10,7 +10,7 @@ class ProjectModel {
   late int projectID;             // Project's ID
   late String projectName;        // Project's name
   late String projectDescription; // Project's description
-  late String projectDonationGoal;// Project's goal for donation
+  late double projectDonationGoal;// Project's goal for donation
 
   late double projectResult;      // Project's progression
   late String projectResultDescription; // Project's result description when it is finished
@@ -72,10 +72,10 @@ class ProjectModel {
   }
 
   /// ////////////////////////////
-  String getDonationGoalProject() {
+  double getDonationGoalProject() {
     return projectDonationGoal;
   }
-  setDonationGoalProject(String goal) {
+  setDonationGoalProject(double goal) {
     projectDonationGoal = goal;
   }
 

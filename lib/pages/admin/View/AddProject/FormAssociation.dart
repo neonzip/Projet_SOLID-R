@@ -119,6 +119,10 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                           ),
                           padding: const EdgeInsets.only(right:20.0, left:20.0),
                         ),
+                        Padding(
+                          child: Image.asset('assets/logo_solid_R.png'),
+                          padding: const EdgeInsets.only(left:20, right:20, bottom: 20),
+                        ),
                       ],
                     )
                   ],

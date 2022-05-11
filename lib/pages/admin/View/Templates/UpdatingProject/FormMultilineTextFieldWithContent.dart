@@ -1,33 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FormTextFieldAdmin extends StatefulWidget {
+class FormMultilineTextFieldWithContent extends StatefulWidget {
+  final String text;
   final String errorMessage;
   final String label;
   final String labelHint;
 
-  final TextInputType inputType;
-
-  const FormTextFieldAdmin({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType}) : super(key: key);
-
+  const FormMultilineTextFieldWithContent({Key? key, required this.text, required this.errorMessage, required this.labelHint, required this.label}) : super(key: key);
   @override
-  _FormTextFieldAdminState createState() => _FormTextFieldAdminState();
+  _FormMultilineTextFieldWithContentState createState() => _FormMultilineTextFieldWithContentState();
 }
 
-class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
+class _FormMultilineTextFieldWithContentState extends State<FormMultilineTextFieldWithContent> {
+
   late TextEditingController textEditingController;
 
-  @override
-  void initState() {
-    textEditingController = TextEditingController();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return textFieldTemplate();
   }
 
-  /// Widget which contributes to create a textfield.
+
+  /// Widget which contributes to create a text area.
   Widget textFieldTemplate() {
     return
       Container(
@@ -47,7 +43,8 @@ class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
                 ),
                 child: TextField(
                   controller: textEditingController,
-                  keyboardType: widget.inputType,
+                  maxLines: 10,
+                  //textAlign: TextAlign.justify,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.yellow, width: 1.0),
@@ -69,5 +66,12 @@ class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
             ],
           )
       );
+  }
+
+  @override
+  void initState() {
+    textEditingController = TextEditingController();
+    textEditingController.text = widget.text;
+    super.initState();
   }
 }

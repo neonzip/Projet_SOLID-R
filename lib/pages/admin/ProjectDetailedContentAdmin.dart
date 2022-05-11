@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/admin/ProjectDetailedContentAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
@@ -10,17 +9,17 @@ import '../user/model/ProjectModel.dart';
 import '../user/view/templates/Project/ProjectProgressBar.dart';
 import '../user/view/templates/Separator.dart';
 
-class ProjectDetailedAdmin extends StatefulWidget {
+class ProjectDetailedContentAdmin extends StatefulWidget {
   // Project projectToSee;
   final ProjectModel project;
-  const ProjectDetailedAdmin({Key? key, required this.project}) : super(key: key);
+  const ProjectDetailedContentAdmin({Key? key, required this.project}) : super(key: key);
 
   @override
-  _ProjectDetailedAdminState createState() => _ProjectDetailedAdminState();
+  _ProjectDetailedContentAdminState createState() => _ProjectDetailedContentAdminState();
 }
 
 /// Widget which only contains the participation part that you can see in the first container of the detailed project page.
-class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
+class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmin> {
 
   Widget participationInformationTemplate() {
     return Container (
@@ -161,23 +160,128 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF0725A5),
-          title: Column (
-            children: [
-              const Text("Projets"),
-              Text(widget.project.projectName,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
-          centerTitle: true,
-        ),
-        body: ProjectDetailedContentAdmin(project: widget.project,),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 30,
+        backgroundColor: Colors.yellow,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> UpdatingProject(project: widget.project)));
+            },
+            child: const Text("Modifier", style: TextStyle(color: Color(0xFF0725A5))),
 
+          ),
+          const Spacer(),
+          TextButton(
+            onPressed: () {  },
+            child: const Text("Supprimer", style: TextStyle(color: Colors.red),),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+            child: SizedBox(
+                width: 500,
+                child: Column(
+                  children: [
+
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          GlobalInformation(
+                            project: widget.project,
+                            goalDate: DateTime.now(),
+                            onPressed: () {
+
+                            },
+                          ),
+                          //globalInformationTemplate(),
+                          participationInformationTemplate(),
+                          MeceneInformation(project: widget.project),
+
+                          /* Blue horizontal line separating the two parts of the main page. */
+                          const Separator(),
+
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 500,
+                            padding: const EdgeInsets.all(5),
+                            child: projectDetailedNavigation(),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
+            )
+        ),
+      )
     );
   }
 }
 
 
 
+
+
+/*Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 30,
+            backgroundColor: Colors.yellow,
+            leading: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> UpdatingProject(project: widget.project)));
+                  },
+                  child: const Text("Modifier", style: TextStyle(color: Color(0xFF0725A5))),
+
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {  },
+                  child: const Text("Supprimer", style: TextStyle(color: Colors.red),),
+                ),
+              ],
+            ),
+          ),
+          body: Center(
+              child: SizedBox(
+                  width: 500,
+                  child: Column(
+                    children: [
+
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            GlobalInformation(
+                              project: widget.project,
+                              goalDate: DateTime.now(),
+                              onPressed: () {
+
+                              },
+                            ),
+                            //globalInformationTemplate(),
+                            participationInformationTemplate(),
+                            MeceneInformation(project: widget.project),
+
+                            /* Blue horizontal line separating the two parts of the main page. */
+                            const Separator(),
+
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 500,
+                              padding: const EdgeInsets.all(5),
+                              child: projectDetailedNavigation(),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+              )
+          ),
+        )*/
