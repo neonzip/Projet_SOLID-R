@@ -160,21 +160,39 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF0725A5),
-          title: Column (
+    return DefaultTabController(
+      initialIndex: 1,
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              indicatorColor: Colors.yellow,
+              labelColor: Colors.yellow,
+              unselectedLabelColor: Colors.white60,
+              tabs: [
+                Tab(text: "Statistiques"),
+                Tab(text: "Projet",),
+              ],
+            ),
+            backgroundColor: const Color(0xFF0725A5),
+            title: Column (
+              children: [
+                const Text("Projet"),
+                Text(widget.project.projectName,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            centerTitle: true,
+          ),
+          body: TabBarView(
             children: [
-              const Text("Projets"),
-              Text(widget.project.projectName,
-                style: const TextStyle(fontSize: 16),
-              ),
+              const Text("Graph"),
+              ProjectDetailedContentAdmin(project: widget.project,),
             ],
           ),
-          centerTitle: true,
-        ),
-        body: ProjectDetailedContentAdmin(project: widget.project,),
 
+        )
     );
   }
 }
