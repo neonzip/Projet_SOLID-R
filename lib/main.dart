@@ -7,20 +7,20 @@ import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.dart';
 import 'package:projet_solid_r/pages/admin/View/Projects/ListProjectViewAdmin.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/HistoryActivity.dart';
-import 'package:projet_solid_r/pages/user/bazar/Project/SolidarityProjects.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
 import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
-import 'package:projet_solid_r/pages/user/bazar/Project/Favorites.dart';
-import 'package:projet_solid_r/pages/user/bazar/Project/FormalProjects.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorites.dart';
 import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
 import 'package:projet_solid_r/pages/user/bazar/Profile/MyInformation.dart';
 import 'package:projet_solid_r/pages/user/bazar/Profile/Notifications.dart';
 import 'package:projet_solid_r/pages/user/bazar/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/SignUp.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
+import 'package:projet_solid_r/pages/user/view/Project/FormalProject/FormalProjects.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
 void main() async {

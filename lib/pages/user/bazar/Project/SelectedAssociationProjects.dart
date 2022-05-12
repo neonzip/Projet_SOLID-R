@@ -164,8 +164,8 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
         backgroundColor: const Color(0xFFD7E1FF),
         body: Center(
           child: ProjectsView(
+            nbItemFilter: 2, // TODO:CHANGE this
             filter: filterTemplate(),
-            isExpandedFilter: isExpanded,
             controller: _scrollController,
             listProjects: listProjects,
           ),     // Displays the specific projects of the chosen section on the screen

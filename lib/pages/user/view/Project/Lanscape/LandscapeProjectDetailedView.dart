@@ -3,27 +3,29 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
-import '../../model/ProjectModel.dart';
-import '../templates/DonationButton.dart';
-import '../templates/Project/ProjectProgressBar.dart';
-import '../templates/Separator.dart';
-import '../templates/ShareButton.dart';
-import '../templates/VideoAdvertisement.dart';
+import '../../../model/ProjectModel.dart';
+import '../../templates/DonationButton.dart';
+import '../../templates/Project/ProjectProgressBar.dart';
+import '../../templates/Separator.dart';
+import '../../templates/ShareButton.dart';
+import '../../templates/VideoAdvertisement.dart';
 
-class ProjectDetailed extends StatefulWidget {
+class LandscapeProjectDetailedView extends StatefulWidget {
  // Project projectToSee;
   final ProjectModel project;
-  const ProjectDetailed({Key? key, required this.project}) : super(key: key);
+  const LandscapeProjectDetailedView({Key? key, required this.project}) : super(key: key);
 
   @override
-  _ProjectDetailedState createState() => _ProjectDetailedState();
+  _LandscapeProjectDetailedViewState createState() => _LandscapeProjectDetailedViewState();
 }
 
 /// Widget which only contains the participation part that you can see in the first container of the detailed project page.
-class _ProjectDetailedState extends State<ProjectDetailed> {
+class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedView> {
   double valueDonation = 0.0;
 
   Widget participationInformationTemplate() {
+    double progressGoal = widget.project.projectResult;
+
     return Container (
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -44,12 +46,13 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
             ProjectProgressBar(
                 valueBar: widget.project.projectResult / 100, // %
             ),
-            const AutoSizeText(
+          const AutoSizeText(
               // TODO : Change the "XX" value by the real one.
               "Cagnotte remplie en " "XX" " jours",
             textAlign: TextAlign.center,
               maxLines: 2
             ),
+          Text("$progressGoal % financés"),
         ],
       ),
     );
@@ -60,6 +63,7 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
       DefaultTabController(
         length: (widget.project.projectResult == 100)? 4 : 3,
         child: Scaffold(
+
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -111,18 +115,18 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
                     )
                 ),
                 if (widget.project.projectResult == 100)
-                Tab(
-                    child: Marquee(
-                      showFadingOnlyWhenScrolling: true,
-                      fadingEdgeStartFraction: 0.1,
-                      fadingEdgeEndFraction: 0.5,
-                      text: 'Résultats',
-                      blankSpace: 50.0,
-                      pauseAfterRound: const Duration(seconds: 4),
-                      accelerationDuration: const Duration(seconds: 2),
-                      decelerationDuration: const Duration(milliseconds: 500),
-                    )
-                ),
+                  Tab(
+                      child: Marquee(
+                        showFadingOnlyWhenScrolling: true,
+                        fadingEdgeStartFraction: 0.1,
+                        fadingEdgeEndFraction: 0.5,
+                        text: 'Résultats',
+                        blankSpace: 50.0,
+                        pauseAfterRound: const Duration(seconds: 4),
+                        accelerationDuration: const Duration(seconds: 2),
+                        decelerationDuration: const Duration(milliseconds: 500),
+                      )
+                  ),
               ],
             ),
           ),
@@ -166,18 +170,6 @@ class _ProjectDetailedState extends State<ProjectDetailed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0725A5),
-        title: Column (
-          children: [
-            const Text("Projets soutenus"),
-            Text(widget.project.projectName,
-            style: const TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-        centerTitle: true,
-      ),
       body: Center(
         child: SingleChildScrollView(
             padding: const EdgeInsets.all(5),

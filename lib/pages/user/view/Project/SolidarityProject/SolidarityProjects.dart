@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../../view/Project/ProjectView.dart';
-import '../../view/templates/ItemFilter.dart';
-import '../../view/templates/Separator.dart';
-import '../../view/Project/ProjectsView.dart';
+import '../ProjectView.dart';
+import '../../templates/ItemFilter.dart';
+import '../ProjectsView.dart';
 
 class SolidarityProjects extends StatefulWidget {
   const SolidarityProjects({Key? key,}) : super(key: key);
@@ -22,30 +21,11 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
 
   /// Widget for filter.
   Widget filterTemplate() {
-    return SizedBox(
-      height: 190,
+    return Container(
+        padding: const EdgeInsets.only(bottom: 15),
         child: Column (
+          mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 0, 5),
-              child: Row(
-                children: [
-                  const Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5))),
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      icon: Icon(isExpanded? Icons.arrow_drop_up : Icons.arrow_drop_down, color: const Color(0xFF0725A5),)
-                  )],
-              )
-          ),
-
-          const SizedBox(
-            height: 15,
-            child: Separator(),
-          ),
           ItemFilter(
               isSelected: filterAll,
               textItem: 'Tous',
@@ -147,12 +127,45 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  int selectedFilter = 1; // 1 for All and 2 for favorites in this case
 
   /// Builder for the page of projects in the app.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          (MediaQuery.of(context).size.width >= 600) ? PopupMenuButton(
+              tooltip: "Filtrer les projets",
+              padding: const EdgeInsets.all(0),
+              child: Row(
+                children: const [
+                  Text("Filtrer", style: TextStyle(color: Colors.yellow),),
+                  Icon(Icons.arrow_drop_down, color: Colors.yellow,),
+                ],
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    selectedFilter = 1;
+                    setState(() {
+                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    });
+                  },
+                  child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    selectedFilter = 2;
+                    setState(() {
+                      listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                    });
+                  },
+                  child:  Text('Favoris', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
+                ),
+              ]
+          ) : Container(),
+        ],
         backgroundColor: const Color(0xFF0725A5),
         title: const Text("Projets solidaires"),
         centerTitle: true,
@@ -163,8 +176,8 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
         backgroundColor: const Color(0xFFD7E1FF),
         body: Center(
         child: ProjectsView(
+          nbItemFilter: 2,
           filter: filterTemplate(),
-          isExpandedFilter: isExpanded,
           controller: _scrollController,
           listProjects: listProjects,
         ),     // Displays the specific projects of the chosen section on the screen

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
@@ -31,9 +32,8 @@ class _SignInState extends State<SignIn> {
           ),
           children: [
             Center(
-                child: Container(
+                child: SizedBox(
                   width: 500,
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   child: Column(
                     children: [
                       const FormTextField(
@@ -66,6 +66,9 @@ class _SignInState extends State<SignIn> {
                             child: const Text("S'inscrire"),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 100,
                       ),
                     ],
                   ),

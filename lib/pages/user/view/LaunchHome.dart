@@ -37,7 +37,7 @@ class _LaunchHomeState extends State<LaunchHome> {
               height: 200,
               child: Stack(children: <Widget>[
                 Container(
-                  decoration: const BoxDecoration(
+              decoration: const BoxDecoration(
                     color: Colors.transparent,
                     image: DecorationImage(
                       image: AssetImage(
@@ -104,7 +104,8 @@ class _LaunchHomeState extends State<LaunchHome> {
                         logo: "assets/LogoNetworks/facebook.png"
                     ),
                     SigninWithOtherAccountButton(
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                         name: "Google",
                         logo: "assets/LogoNetworks/google.png"
                     ),

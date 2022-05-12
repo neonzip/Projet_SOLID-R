@@ -36,9 +36,9 @@ class _GlobalInformationState extends State<GlobalInformation> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 5, 5),
                       alignment: Alignment.topLeft,
                       child: Column(
-                        children: const [
+                        children: [
                           AutoSizeText(
-                            "Projet au nom Projet au nom Projet au nom Projet au nom ",
+                            widget.project.projectName,
                             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             maxLines: 2,
                           ),

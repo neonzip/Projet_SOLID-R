@@ -158,53 +158,63 @@ class _HomeUserState extends State<HomeUser> {
           body: ContainerWithBackground(
             content: Center (
                 child: SingleChildScrollView(
-                    child: SizedBox(
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:10) : const EdgeInsets.only(top:150),
                       width: 500,
-                      child: Column(
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.all(20),
-                              margin: const EdgeInsets.all(5),
-                              child: const Text("Bonjour pseudo",
-                                  style: TextStyle(
-                                    shadows: <Shadow>[
-                                      Shadow(
-                                        offset: Offset(1.0, 1.0),
-                                        blurRadius: 2.0,
-                                        color: Colors.black,
-                                      ),
-                                    ],
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                  )
-                              )
-                          ),
-
-                          /* Yellow bubble containing the money that the user can make to a project. */
-                          YellowBubbleMoney(
-                            value: 500.toString(),
-                          ),
-
-                          /* Yellow bubble containing the kilometers traveled. */
-                          YellowBubbleKilometers(
-                            valueKilometers: 2500.toString(),
-                          ),
-
-                          /* Blue horizontal line separating the two parts of the main page. */
-                          const SeparatorWithText(text: "Ils nous font confiance"),
-
-                          /* Building a grid with the logos of associations. */
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0x54FFFFFF),
-                              borderRadius: BorderRadius.circular(10), //border corner radius
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:  const Color(0x6DFFFFFF),
+                          borderRadius: BorderRadius.circular(10), //border corner radius
+                        ),
+                        margin: const EdgeInsets.all(15),
+                        child: Column(
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.all(20),
+                                margin: const EdgeInsets.all(5),
+                                child: const Text("Bonjour pseudo",
+                                    style: TextStyle(
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 2.0,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                    )
+                                )
                             ),
-                            margin: const EdgeInsets.all(30),
-                            height: 300,
-                            child: loadImages(),
-                          ),
-                        ],
-                      ),
+
+                            /* Yellow bubble containing the money that the user can make to a project. */
+                            YellowBubbleMoney(
+                              value: 500.toString(),
+                            ),
+
+                            /* Yellow bubble containing the kilometers traveled. */
+                            YellowBubbleKilometers(
+                              valueKilometers: 2500.toString(),
+                            ),
+
+                            /* Blue horizontal line separating the two parts of the main page. */
+                            const SeparatorWithText(text: "Ils nous font confiance"),
+
+                            /* Building a grid with the logos of associations. */
+                            Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0x54FFFFFF),
+                                borderRadius: BorderRadius.circular(10), //border corner radius
+                              ),
+                              margin: const EdgeInsets.only(right: 30, left: 30, bottom: 30),
+                              height: 300,
+                              child: loadImages(),
+                            ),
+                          ],
+                        ),
+                      )
+
                     )
                 )
             ),

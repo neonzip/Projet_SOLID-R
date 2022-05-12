@@ -11,56 +11,51 @@ class ContainerWithBackground extends StatefulWidget {
 class _ContainerWithBackgroundState extends State<ContainerWithBackground> {
   @override
   Widget build(BuildContext context) {
-    return widgetTemplate();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: widgetTemplate()
+    );
+      widgetTemplate();
   }
 
   /// Button to donate to the specific project.
   /// Called "Donner".
   Widget widgetTemplate() {
+    return Stack(children: <Widget>[
+      getBackground(),
+      getGradient(),
+      widget.content,
+    ]);
+  }
+
+  Container getBackground() {
     return Container (
-      decoration: const BoxDecoration(
-        image: DecorationImage(
+        child: const Image(
           image: AssetImage(
             "assets/background.png",
           ),
           fit: BoxFit.cover,
+          height: 300.0,
         ),
-      ),
-      child: Stack(children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              gradient: LinearGradient(
-                begin: FractionalOffset.topCenter,
-                end: FractionalOffset.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.0),
-                  Colors.white.withOpacity(0.2),
-                  Colors.white.withOpacity(0.3),
-                  Colors.white.withOpacity(0.3),
-                  Colors.white,
-                ],
-              )
-          ),
-        ),
-    Container(
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 255, 255, 0.8),
-        gradient: LinearGradient(
-          begin: FractionalOffset.bottomCenter,
-          end: FractionalOffset.topCenter,
-          colors: [
-            Colors.white.withOpacity(0.0),
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.2),
+      constraints: const BoxConstraints.expand(height: 300.0),
+    );
+  }
+
+  Container getGradient() {
+    return Container(
+      margin: const EdgeInsets.only(top: 190.0),
+      height: 110.0,
+      decoration:  const BoxDecoration(
+        gradient:  LinearGradient(
+          colors: <Color>[
+            Color(0x00ffffff),
             Colors.white,
-            //Colors.white,
           ],
-        )
+          stops: [0.0, 0.9],
+          begin: FractionalOffset(0.0, 0.0),
+          end: FractionalOffset(0.0, 1.0),
+        ),
       ),
-    ),
-    widget.content,
-    ])
     );
   }
 }

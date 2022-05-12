@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/Project/ProjectDetailedView.dart';
+import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/SeeMoreButton.dart';
 import 'package:projet_solid_r/pages/user/view/templates/VideoAdvertisement.dart';
@@ -95,7 +95,7 @@ class _ProjectViewState extends State<ProjectView>{
                 /* Button "Voir plus" */
                 SeeMoreButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ProjectDetailed(project: widget.project,)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project,)));
                     },
                     idProject: widget.project.projectID,
                 ),
