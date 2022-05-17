@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/bazar/Project/SelectedAssociationProjects.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SelectedAssociationProjects.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'templates/Home/ContainerWithBackground.dart';
 import 'templates/Home/YellowBubbleMoney.dart';

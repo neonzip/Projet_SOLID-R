@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../../view/Project/ProjectView.dart';
-import '../../view/templates/ItemFilter.dart';
-import '../../view/templates/Separator.dart';
-import '../../view/Project/ProjectsView.dart';
+import 'ProjectView.dart';
+import '../templates/ItemFilter.dart';
+import '../templates/Separator.dart';
+import 'ProjectsView.dart';
 
 class SelectedAssociationProjects extends StatefulWidget {
   final int associationID;
