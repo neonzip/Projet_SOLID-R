@@ -25,6 +25,9 @@ class _GlobalInformationState extends State<GlobalInformation> {
   /// This represents the first part before the blue line.
   Widget globalInformationTemplate() {
     DateTime date = widget.goalDate;
+    int month = date.month;
+    int day = date.day;
+    int year = date.year;
 
     return Container(
       margin: const EdgeInsets.all(5),
@@ -39,7 +42,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                         children: [
                           AutoSizeText(
                             widget.project.projectName,
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             maxLines: 2,
                           ),
                         ],
@@ -50,7 +53,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                     margin: const EdgeInsets.fromLTRB(5, 0, 0, 5),
                     alignment: Alignment.topRight,
                     child: Text(
-                      "Objectif atteint le $date",
+                      "Objectif atteint le $day/$month/$year",
                       textAlign: TextAlign.end,
                     ),
                   )

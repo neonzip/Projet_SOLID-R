@@ -164,7 +164,7 @@ class _HomeUserState extends State<HomeUser> {
                       width: 500,
                       child: Container(
                         decoration: BoxDecoration(
-                          color:  const Color(0x6DFFFFFF),
+                          color: Colors.white.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(10), //border corner radius
                         ),
                         margin: const EdgeInsets.all(15),
@@ -204,11 +204,11 @@ class _HomeUserState extends State<HomeUser> {
                             /* Building a grid with the logos of associations. */
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0x54FFFFFF),
+                                color: Colors.white.withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(10), //border corner radius
                               ),
                               margin: const EdgeInsets.only(right: 30, left: 30, bottom: 30),
-                              height: 300,
+                              height: MediaQuery.of(context).size.height / 3,
                               child: loadImages(),
                             ),
                           ],

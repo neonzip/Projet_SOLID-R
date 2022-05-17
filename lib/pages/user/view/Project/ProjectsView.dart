@@ -25,6 +25,7 @@ class _ProjectsViewState extends State<ProjectsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEBF1FF),
       appBar: (MediaQuery.of(context).size.width <= 600) ? AppBar(
         toolbarHeight: (isExpanded && widget.nbItemFilter == 3) ? kToolbarHeight + 64 : (isExpanded && widget.nbItemFilter == 2) ? kToolbarHeight + 32 : kToolbarHeight,
         automaticallyImplyLeading: false,

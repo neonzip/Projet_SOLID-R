@@ -63,9 +63,8 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
       DefaultTabController(
         length: (widget.project.projectResult == 100)? 4 : 3,
         child: Scaffold(
-
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             elevation: 0,
             toolbarHeight: 0,
             bottom : TabBar(
@@ -133,33 +132,41 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
           body: TabBarView(
               children: [
                 Container(
+                  color: Colors.white,
                   padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectDescription,
-                    textAlign: TextAlign.justify,
+                  child: SingleChildScrollView(
+                    child: AutoSizeText(widget.project.projectDescription,
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectAssociation.entityDescription,
-                    textAlign: TextAlign.justify,
-                  ),
+                    color: Colors.white,
+                    padding: const EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: AutoSizeText(widget.project.projectAssociation.entityDescription,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectEntity.entityDescription,
-                    textAlign: TextAlign.justify,
-                  ),
+                    color: Colors.white,
+                    padding: const EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: AutoSizeText(widget.project.projectEntity.entityDescription,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
                 ),
                 if (widget.project.projectResult == 100)
                 Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectResultDescription,
-                    textAlign: TextAlign.justify,
-                  ),
+                    color: Colors.white,
+                    padding: const EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: AutoSizeText(widget.project.projectResultDescription,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
                 ),
               ]
           ),
@@ -170,11 +177,17 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xFFC1D4FF),
       body: Center(
         child: SingleChildScrollView(
-            padding: const EdgeInsets.all(5),
-            child: SizedBox(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            child: Container(
+              padding: const EdgeInsets.all(5),
                 width: 500,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Column(
                   children: [
                     GlobalInformation(
@@ -191,7 +204,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
 
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 500,
+                      height: MediaQuery.of(context).size.height / 2,
                       padding: const EdgeInsets.all(5),
                       child: projectDetailedNavigation(),
                     )

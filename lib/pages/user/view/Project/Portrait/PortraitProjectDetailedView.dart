@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
+import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 import '../../../model/ProjectModel.dart';
@@ -130,33 +131,42 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
               children: [
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectDescription,
-                    textAlign: TextAlign.justify,
+                  child: SingleChildScrollView(
+                    child: AutoSizeText(widget.project.projectDescription,
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectAssociation.entityDescription,
-                    textAlign: TextAlign.justify,
-                  ),
+                    padding: const EdgeInsets.all(10),
+                    child: SingleChildScrollView(
+                      child: AutoSizeText(widget.project.projectAssociation.entityDescription,
+                        textAlign: TextAlign.justify,
+                      ),
+                    )
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectEntity.entityDescription,
-                    textAlign: TextAlign.justify,
-                  ),
+                    padding: const EdgeInsets.all(10),
+                    child: SingleChildScrollView(
+                      child: Stack (
+                        children: [
+                          AutoSizeText(widget.project.projectEntity.entityDescription,
+                            textAlign: TextAlign.justify,
+                          ),
+                          const CarouselPictures(),
+                        ],
+                      )
+                    )
                 ),
                 if (widget.project.projectResult == 100)
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child:
-                  AutoSizeText(widget.project.projectResultDescription,
-                    textAlign: TextAlign.justify,
+                  Container(
+                      padding: const EdgeInsets.all(10),
+                      child: SingleChildScrollView(
+                        child: AutoSizeText(widget.project.projectResultDescription,
+                          textAlign: TextAlign.justify,
+                        ),
+                      )
                   ),
-                ),
               ]
           ),
         ),
@@ -199,7 +209,7 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
 
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 500,
+                      height: MediaQuery.of(context).size.height / 2,
                       padding: const EdgeInsets.all(5),
                       child: projectDetailedNavigation(),
                     )
