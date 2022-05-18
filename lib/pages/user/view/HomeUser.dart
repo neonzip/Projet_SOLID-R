@@ -194,12 +194,12 @@ class _HomeUserState extends State<HomeUser> {
 
                             /* Yellow bubble containing the money that the user can make to a project. */
                             YellowBubbleMoney(
-                              value: 500.toString(),
+                              value: widget.user.userPurse.toString(),
                             ),
 
                             /* Yellow bubble containing the kilometers traveled. */
                             YellowBubbleKilometers(
-                              valueKilometers: 2500.toString(),
+                              valueKilometers: widget.user.userTotalDistance.toString(),
                             ),
 
                             /* Blue horizontal line separating the two parts of the main page. */

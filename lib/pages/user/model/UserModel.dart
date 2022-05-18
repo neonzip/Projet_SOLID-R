@@ -5,9 +5,9 @@ class UserModel {
   late int userID;
   late String userNickName;
   late String userEmail;
-  late double userPurse;
-  late double userTotalDistance;
-  late double userTotalDonations;
+  late double userPurse = 0.0;
+  late double userTotalDistance = 0.0;
+  late double userTotalDonations = 0.0;
   late bool userIsAdmin;
 
   late String userToken;

@@ -40,15 +40,15 @@ class _ProfileState extends State<Profile> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
-                  "43",
-                  style: TextStyle(
+                  widget.user.userTotalDonations.toString(),
+                  style: const TextStyle(
                       fontSize: fontSize + 5,
                       fontWeight: FontWeight.bold)
               ),
 
-              Text(
+              const Text(
                   " €",
                   style: TextStyle(fontSize: fontSize)
               ),
@@ -79,7 +79,7 @@ class _ProfileState extends State<Profile> {
   Widget bubblePool () {
     return /* Yellow bubble containing the money that the user can make to a project. */
       YellowBubbleMoney(
-        value: 500.toString(),
+        value: widget.user.userPurse.toString(),
       );
   }
 
@@ -231,24 +231,24 @@ class _ProfileState extends State<Profile> {
                   Container(
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.all(5),
-                      child: const Text("Mon pseudo",
-                          style: TextStyle(
+                      child: Text(widget.user.userNickName,
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: fontSize,
                           )
                       )
                   ),
 
-/* Yellow bubble containing the pool. */
+                  /* Yellow bubble containing the pool. */
                   bubblePool(),
 
-/* Yellow bubble containing the donations that the user has already made. */
+                  /* Yellow bubble containing the donations that the user has already made. */
                   bubbleDonationsDone(),
 
-/* Blue horizontal line separating the two parts of the account page. */
+                  /* Blue horizontal line separating the two parts of the account page. */
                   const Separator(),
 
-/* List of buttons */
+                  /* List of buttons */
                   Table(
                     children: [
                       TableRow(
@@ -265,7 +265,7 @@ class _ProfileState extends State<Profile> {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 2.5),
                               child:
-/* Button "Notifications */
+                              /* Button "Notifications */
                               buttonNotificationTemplate(),
                             )
                           ]
@@ -276,7 +276,7 @@ class _ProfileState extends State<Profile> {
                               padding: const EdgeInsets.symmetric(vertical: 2.5),
                               child:
 
-/* Button "Activités réalisées */
+                              /* Button "Activités réalisées */
                               buttonDoneActionsTemplate(),
                             )
                           ]
@@ -287,7 +287,7 @@ class _ProfileState extends State<Profile> {
                               padding: const EdgeInsets.symmetric(vertical: 2.5),
                               child:
 
-/* Button "Projets soutenus" */
+                              /* Button "Projets soutenus" */
                               buttonProjectsTemplate(),
                             )
                           ]
@@ -297,7 +297,7 @@ class _ProfileState extends State<Profile> {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 2.5),
                               child:
-/* Button "A propos" */
+                              /* Button "A propos" */
                               buttonAProposTemplate(),
                             )
                           ]

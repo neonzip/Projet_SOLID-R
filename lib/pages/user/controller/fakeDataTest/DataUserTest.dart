@@ -11,6 +11,14 @@ class DataUserTest {
     UserModel userAdmin = UserModel("NomAdministrateur", "admin@admin.fr", "password", true);
     UserModel userX = UserModel("NomUtilisateur", "user@user.fr", "password", false);
 
+    userAdmin.setUserPurse(100.80);
+    userX.setUserPurse(34.53);
+
+    userAdmin.setUserTotalDistance(500.67);
+    userX.setUserTotalDistance(80.76);
+
+    userAdmin.setUserTotalDonations(40.00);
+    userX.setUserTotalDonations(23.40);
 
     userdataList.add(userAdmin);
     userdataList.add(userX);
