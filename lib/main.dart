@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
+import 'package:projet_solid_r/pages/Home.dart';
 import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/Projects/ListProjectViewAdmin.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
@@ -48,11 +51,11 @@ void main() async {
     /////////////////////////////////////////////////////////////
 
     /* HOME */
-    "/user/home": (context) => const HomeUser(),
+    //"/user/home": (context) => const HomeUser(),
 
     /* PROFILE */
-    "/user/profile": (context) => const Profile(),
-    "/user/myInformation": (context) => const MyInformation(),
+    //"/user/profile": (context) => const Profile(),
+    //"/user/myInformation": (context) => const MyInformation(),
     "/user/APropos": (context) => const APropos(),
     "/user/activityHistory": (context) => const HistoryActivity(),
     "/user/notifications": (context) => const Notifications(),
@@ -72,7 +75,7 @@ void main() async {
     /////////////////////////////////////////////////////////////
 
     /* HOME */
-    "/admin/home": (context) => const HomeAdmin(),
+    //"/admin/home": (context) => const HomeAdmin(),
 
     /* PROJECTS */
     "/admin/projects": (context) => const ListProjectViewAdmin(),
@@ -81,7 +84,7 @@ void main() async {
     "/admin/project/add": (context) => const AddingProject(),
 
     /* PROFIL */
-    "/admin/profile": (context) => const ProfileAdmin(),
+    //"/admin/profile": (context) => const ProfileAdmin(),
 
   },
 ));}

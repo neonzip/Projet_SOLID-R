@@ -1,9 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
+
+import 'Home.dart';
+
+//TODO: Change the line to access the admin/user view
+DataUserTest dataUser = DataUserTest();
+UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
+//UserModel user = dataUser.userdataList.elementAt(1); // To have a fake X user
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -39,15 +47,18 @@ class _SignInState extends State<SignIn> {
                       const FormTextField(
                           errorMessage: "Champ vide.",
                           labelHint: "Email :",
-                          label: "Entrez votre email"
+                          label: "Entrez votre email",
+                          text: '',
                       ),
                       const FormTextField(
                           errorMessage: "Champ vide.",
                           labelHint: "Mot de passe :",
-                          label: "Entrez votre mot de passe"
+                          label: "Entrez votre mot de passe",
+                          text: '',
                       ),                  SigninButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/user/home");
+                          //Navigator.pushNamed(context, "/home");
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Home(user: user)));
                         },
                       ),
                       TextButton(

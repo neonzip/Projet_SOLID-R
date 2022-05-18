@@ -1,5 +1,4 @@
 import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
 class DataAdvertisementTest {
   late List<AdvertisementModel> advertisementDataList = <AdvertisementModel>[];
 

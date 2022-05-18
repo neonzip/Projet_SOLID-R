@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import '../user/view/templates/Home/ContainerWithBackground.dart';
 
 class HomeAdmin extends StatefulWidget {
-  const HomeAdmin({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeAdmin({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomeAdminState createState() => _HomeAdminState();
 }
 
 class _HomeAdminState extends State<HomeAdmin> {
-
   @override
   Widget build(BuildContext context) {
+    String pseudo = widget.user.userNickName;
     return WillPopScope(
         onWillPop: () async {
           return false;
@@ -46,7 +49,8 @@ class _HomeAdminState extends State<HomeAdmin> {
                         child: FittedBox(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, "/admin/profile");
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ProfileAdmin(user: widget.user)));
+                              //Navigator.pushNamed(context, "/admin/profile");
                             },
                             child: Column(
                               children: const [
@@ -74,9 +78,9 @@ class _HomeAdminState extends State<HomeAdmin> {
                     child: SizedBox(
                       width: 500,
                       child: Column(
-                          children: const [
-                            Text("Bonjour pseudo",
-                                style: TextStyle(
+                          children: [
+                            Text("Bonjour $pseudo",
+                                style: const TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
                                       offset: Offset(1.0, 1.0),

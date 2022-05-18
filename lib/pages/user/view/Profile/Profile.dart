@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
@@ -9,7 +10,8 @@ import '../templates/Profile/ProfileButton.dart';
 import '../templates/Separator.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final UserModel user;
+  const Profile({Key? key, required this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -18,12 +20,13 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   String title = "Profil - Mes informations";
   //String route = '/';
-  Widget widgetLandscapeSecondPage = const MyInformation();
+  late Widget widgetLandscapeSecondPage;
   /* Constant used for the text size */
   static const double fontSize = 20;
 
   /* Constants used for buttons */
   static const double widthButtons = double.infinity;
+
 
   /// Widget building the yellow bubble which contains the user's donations.
   Widget bubbleDonationsDone() {
@@ -147,12 +150,13 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
-            Navigator.pushNamed(context, "/user/myInformation");
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformation(user: widget.user)));
+            //Navigator.pushNamed(context, "/user/myInformation");
           }
           else {
             //TODO:
             //route = "/user/myInformation";
-            widgetLandscapeSecondPage = const MyInformation();
+            widgetLandscapeSecondPage =  MyInformation(user: widget.user);
             title = "Profil - Mes informations";
           }
           setState(() {
@@ -318,5 +322,11 @@ class _ProfileState extends State<Profile> {
             )
         )
     );
+  }
+
+  @override
+  void initState() {
+    widgetLandscapeSecondPage = MyInformation(user: widget.user);
+    super.initState();
   }
 }

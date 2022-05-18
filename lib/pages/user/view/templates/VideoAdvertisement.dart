@@ -71,7 +71,7 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
           else {
             dispose();
             /// We can quit the page and return to the home page
-            Navigator.pushNamed(context, "/user/home");
+            Navigator.pushNamed(context, "/home");
           }
           return true;
         },
@@ -161,7 +161,7 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
                 }
                 else {
                   /// We can quit the page and return to the home page
-                  Navigator.pushNamed(context, "/user/home");
+                  Navigator.pushNamed(context, "/home");
                 }
               },
               icon: const Icon(Icons.close, color: Colors.yellow),

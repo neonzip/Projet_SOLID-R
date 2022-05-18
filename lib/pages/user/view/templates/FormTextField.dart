@@ -4,13 +4,22 @@ class FormTextField extends StatefulWidget {
   final String errorMessage;
   final String label;
   final String labelHint;
+  final String text;
 
-  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label}) : super(key: key);
+  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.text}) : super(key: key);
   @override
   _FormTextFieldState createState() => _FormTextFieldState();
 }
 
 class _FormTextFieldState extends State<FormTextField> {
+  late TextEditingController textEditingController;
+
+  @override
+  void initState() {
+    textEditingController = TextEditingController();
+    textEditingController.text = widget.text;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +45,7 @@ class _FormTextFieldState extends State<FormTextField> {
                   color: Colors.white,
                 ),
                 child: TextField(
+                  controller: textEditingController,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.yellow, width: 1.0),

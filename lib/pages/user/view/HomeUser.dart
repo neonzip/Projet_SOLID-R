@@ -1,13 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SelectedAssociationProjects.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
+import '../model/UserModel.dart';
+import 'Profile/Profile.dart';
 import 'templates/Home/ContainerWithBackground.dart';
 import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
 
 class HomeUser extends StatefulWidget {
-  const HomeUser({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeUser({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomeUserState createState() => _HomeUserState();
@@ -93,6 +95,7 @@ class _HomeUserState extends State<HomeUser> {
 
   @override
   Widget build(BuildContext context) {
+    String pseudo = widget.user.userNickName;
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -132,7 +135,8 @@ class _HomeUserState extends State<HomeUser> {
                       child: FittedBox(
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/user/profile");
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Profile(user: widget.user)));
+                            //Navigator.pushNamed(context, "/user/profile");
                           },
                           child: Column(
                             children: const [
@@ -173,8 +177,8 @@ class _HomeUserState extends State<HomeUser> {
                             Container(
                                 padding: const EdgeInsets.all(20),
                                 margin: const EdgeInsets.all(5),
-                                child: const Text("Bonjour pseudo",
-                                    style: TextStyle(
+                                child: Text("Bonjour $pseudo",
+                                    style: const TextStyle(
                                       shadows: <Shadow>[
                                         Shadow(
                                           offset: Offset(1.0, 1.0),

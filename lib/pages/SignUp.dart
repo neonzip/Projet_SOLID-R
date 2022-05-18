@@ -39,17 +39,20 @@ class _SignUpState extends State<SignUp> {
                       const FormTextField(
                           errorMessage: "Champ vide.",
                           labelHint: "Email :",
-                          label: "Entrez votre email"
+                          label: "Entrez votre email",
+                          text: '',
                       ),
                       const FormTextField(
                           errorMessage: "Champ vide.",
                           labelHint: "Pseudo :",
-                          label: "Entrez votre pseudo"
+                          label: "Entrez votre pseudo",
+                          text: '',
                       ),
                       const FormTextField(
                           errorMessage: "Champ vide.",
                           labelHint: "Mot de passe :",
-                          label: "Entrez votre mot de passe"
+                          label: "Entrez votre mot de passe",
+                          text: '',
                       ),
                       Container(
                         margin: const EdgeInsets.fromLTRB(10, 40, 10, 10),

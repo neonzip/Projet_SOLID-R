@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
 
+import '../user/model/UserModel.dart';
+import '../user/view/HomeUser.dart';
 import '../user/view/templates/Profile/LogoutButton.dart';
 import '../user/view/templates/Profile/ProfileButton.dart';
 
 class ProfileAdmin extends StatefulWidget {
-  const ProfileAdmin({Key? key}) : super(key: key);
+  final UserModel user;
+  const ProfileAdmin({Key? key, required this.user}) : super(key: key);
 
   @override
   _ProfileAdminState createState() => _ProfileAdminState();
@@ -37,7 +41,8 @@ class _ProfileAdminState extends State<ProfileAdmin> {
         textButton: "Mes informations",
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/user/myInformation");
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformation(user: widget.user)));
+          //Navigator.pushNamed(context, "/user/myInformation");
         },
         positionButton: 0,
     );
@@ -51,7 +56,8 @@ class _ProfileAdminState extends State<ProfileAdmin> {
       child:
       ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/user/home");
+         // Navigator.pushNamed(context, "/user/home");
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeUser(user: widget.user)));
         },
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
@@ -78,6 +84,8 @@ class _ProfileAdminState extends State<ProfileAdmin> {
 
   @override
   Widget build(BuildContext context) {
+    String pseudo = widget.user.userNickName;
+
     return Scaffold(
       backgroundColor: const Color(0xFFEBF1FF),
       appBar: AppBar(
@@ -95,8 +103,8 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                 Container(
                     padding: const EdgeInsets.all(20),
                     margin: const EdgeInsets.all(5),
-                    child: const Text("Mon pseudo",
-                        style: TextStyle(
+                    child: Text(pseudo,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: fontSize,
                         )
@@ -138,7 +146,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                     TableRow(
                         children: [
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(vertical: 20),
                             child:
                             buttonGoToUserPage(),
                           )

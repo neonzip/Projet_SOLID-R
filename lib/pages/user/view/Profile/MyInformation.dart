@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import '../templates/FormTextField.dart';
 import '../templates/MessageSnackbar.dart';
 
 class MyInformation extends StatefulWidget {
-  const MyInformation({Key? key}) : super(key: key);
+  final UserModel user;
+  const MyInformation({Key? key, required this.user}) : super(key: key);
 
   @override
   _MyInformationState createState() => _MyInformationState();
@@ -74,20 +76,23 @@ class _MyInformationState extends State<MyInformation> {
                 width: 500,
                 child: Column(
                   children: [
-                    const FormTextField(
+                    FormTextField(
                         errorMessage: "Champ vide.",
                         labelHint: "aaa@bbb.ccc",
-                        label: "Email :"
+                        label: "Email :",
+                        text: widget.user.userEmail,
                     ),
-                    const FormTextField(
+                    FormTextField(
                         errorMessage: "Champ vide.",
                         labelHint: "pseudo",
-                        label: "Pseudo :"
+                        label: "Pseudo :",
+                        text: widget.user.userNickName,
                     ),
-                    const FormTextField(
+                    FormTextField(
                         errorMessage: "Champ vide.",
                         labelHint: "mdp",
-                        label: "Mot de passe :"
+                        label: "Mot de passe :",
+                        text: widget.user.password,
                     ),
                     buttonValidationTemplate(),
                   ],
