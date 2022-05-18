@@ -15,11 +15,11 @@ class _HistoryActivityState extends State<HistoryActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ?  AppBar(
           backgroundColor: const Color(0xFF0725A5),
           title: const Text("Activités réalisées"),
           centerTitle: true,
-        ),
+        ) : null,
         body: SingleChildScrollView(
           child: Column(
             children: [

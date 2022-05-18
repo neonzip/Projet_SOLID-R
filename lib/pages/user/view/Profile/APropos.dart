@@ -17,14 +17,14 @@ class _AProposState extends State<APropos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
           backgroundColor: const Color(0xFF0725A5),
           title: Container(
             padding: const EdgeInsets.all(0),
             margin: const EdgeInsets.all(0),
             child: const Text("A propos"),
             ),
-          ),
+          ): null,
 
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////

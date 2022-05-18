@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../view/templates/Profile/NotificationFrequencyButton.dart';
+import '../templates/Profile/NotificationFrequencyButton.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -184,11 +184,11 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
         backgroundColor: const Color(0xFF0725A5),
         title: const Text("Notifications"),
         centerTitle: true,
-      ),
+      ) : null,
       body: Center(
         child: SingleChildScrollView (
           child:

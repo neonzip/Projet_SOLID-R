@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
-import '../../view/templates/FormTextField.dart';
-import '../../view/templates/MessageSnackbar.dart';
+import '../templates/FormTextField.dart';
+import '../templates/MessageSnackbar.dart';
 
 class MyInformation extends StatefulWidget {
   const MyInformation({Key? key}) : super(key: key);
@@ -55,12 +55,12 @@ class _MyInformationState extends State<MyInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEBF1FF),
-      appBar: AppBar(
+      backgroundColor: (MediaQuery.of(context).orientation == Orientation.portrait) ? const Color(0xFFEBF1FF) : Colors.white,
+      appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
         backgroundColor: const Color(0xFF0725A5),
         title: const Text("Mes informations"),
         centerTitle: true,
-      ),
+      ) : null,
       body: FooterView(
         footer: Footer(
           padding: const EdgeInsets.all(0),
