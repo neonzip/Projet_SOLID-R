@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
 import 'package:projet_solid_r/pages/Home.dart';
+import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
@@ -20,7 +21,7 @@ import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorit
 import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Notifications.dart';
-import 'package:projet_solid_r/pages/SignUp.dart';
+import 'package:projet_solid_r/pages/SignUp/SignUpController.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'package:projet_solid_r/pages/user/view/Project/FormalProject/FormalProjects.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
@@ -42,7 +43,7 @@ void main() async {
   initialRoute: "/",
   routes: {
     "/": (context) => const LaunchHome(),
-    "/signup": (context) => const SignUp(),
+    "/signup": (context) => const SignUpView(),
     "/signin": (context) => const SignIn(),
 
 

@@ -8,6 +8,7 @@ import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 
 import 'Home.dart';
 
+
 //TODO: Change the line to access the admin/user view
 DataUserTest dataUser = DataUserTest();
 UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
@@ -21,6 +22,23 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  late TextEditingController textEditingControllerForEmail;
+  late TextEditingController textEditingControllerForPassword;
+
+  @override
+  void initState() {
+    textEditingControllerForEmail = TextEditingController();
+    textEditingControllerForEmail.addListener(() {
+      //onChanged();
+      //TODO:
+    });
+    textEditingControllerForPassword = TextEditingController();
+    textEditingControllerForPassword.addListener(() {
+      //onChanged();
+      //TODO:
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +62,21 @@ class _SignInState extends State<SignIn> {
                   width: 500,
                   child: Column(
                     children: [
-                      const FormTextField(
+                      FormTextField(
                           errorMessage: "Champ vide.",
-                          labelHint: "Email :",
-                          label: "Entrez votre email",
+                          label: "Email :",
+                          labelHint: "Entrez votre email",
                           text: '',
+                        textEditingController: textEditingControllerForEmail,
                       ),
-                      const FormTextField(
+                      FormTextField(
                           errorMessage: "Champ vide.",
-                          labelHint: "Mot de passe :",
-                          label: "Entrez votre mot de passe",
+                          label: "Mot de passe :",
+                          labelHint: "Entrez votre mot de passe",
                           text: '',
-                      ),                  SigninButton(
+                        textEditingController: textEditingControllerForPassword,
+                      ),
+                      SigninButton(
                         onPressed: () {
                           //Navigator.pushNamed(context, "/home");
                           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Home(user: user)));

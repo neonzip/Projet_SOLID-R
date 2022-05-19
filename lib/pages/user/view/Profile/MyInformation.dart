@@ -14,6 +14,9 @@ class MyInformation extends StatefulWidget {
 }
 
 class _MyInformationState extends State<MyInformation> {
+  late TextEditingController textEditingControllerForEmail;
+  late TextEditingController textEditingControllerForPseudo;
+  late TextEditingController textEditingControllerForPassword;
 
   /// Action done when the button to validate changes is clicked.
   void buttonSubmitChanges() {
@@ -55,6 +58,26 @@ class _MyInformationState extends State<MyInformation> {
   }
 
   @override
+  void initState() {
+    textEditingControllerForEmail = TextEditingController();
+    textEditingControllerForEmail.addListener(() {
+      //onChanged();
+      //TODO:
+    });
+    textEditingControllerForPseudo = TextEditingController();
+    textEditingControllerForPseudo.addListener(() {
+      //onChanged();
+      //TODO:
+    });
+    textEditingControllerForPassword = TextEditingController();
+    textEditingControllerForPassword.addListener(() {
+      //onChanged();
+      //TODO:
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: (MediaQuery.of(context).orientation == Orientation.portrait) ? const Color(0xFFEBF1FF) : Colors.white,
@@ -81,18 +104,21 @@ class _MyInformationState extends State<MyInformation> {
                         labelHint: "aaa@bbb.ccc",
                         label: "Email :",
                         text: widget.user.userEmail,
+                      textEditingController: textEditingControllerForEmail,
                     ),
                     FormTextField(
                         errorMessage: "Champ vide.",
                         labelHint: "pseudo",
                         label: "Pseudo :",
                         text: widget.user.userNickName,
+                      textEditingController: textEditingControllerForPseudo,
                     ),
                     FormTextField(
                         errorMessage: "Champ vide.",
                         labelHint: "mdp",
                         label: "Mot de passe :",
                         text: widget.user.password,
+                      textEditingController: textEditingControllerForPassword,
                     ),
                     buttonValidationTemplate(),
                   ],
