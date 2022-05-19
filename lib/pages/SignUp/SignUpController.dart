@@ -15,8 +15,8 @@ class SignUpController extends StatefulWidget {
 /// Widget state which build the entire widget for the page to sign up.
 class _SignUpControllerState extends State<SignUpController> {
 
-  /// Each textfields has its own controller.
-  /// They allow us to change the content of the error message when the user sets the value of the associated textfield.
+  /// Each text fields has its own controller.
+  /// They allow us to change the content of the error message when the user sets the value of the associated text field.
   /// We initialize them later in the initialization of the widget.
   late TextEditingController textEditingControllerForEmail;               // Email controller
   late TextEditingController textEditingControllerForPseudo;              // Pseudo controller
@@ -24,7 +24,7 @@ class _SignUpControllerState extends State<SignUpController> {
 
   /// Each error message we have to put in the form.
   /// These message will change during the input form when the user sets a value.
-  /// They are here to "tell" to the user if its input is alright o not.
+  /// They are here to "tell" to the user if its input is alright or not.
   String messageErrorEmail = 'Veuillez saisir un email.';                                       // Email error message
   String messageErrorPseudo = 'Veuillez saisir un pseudo.';                                     // Pseudo error message
   String messageErrorPassword = 'Veuillez saisir un mot de passe d\'au moins 6 caractères.';    // Password error message
@@ -90,7 +90,7 @@ class _SignUpControllerState extends State<SignUpController> {
   /// It verifies if the input is correct.
   /// If it is not correct, the error message is displayed with the right message error.
   void onChangedPseudo() {
-    // TODO: Implements the rest of this method.
+    // TODO: Implement the rest of this method.
 
     /// We get the last modified value of the pseudo text field and create a specific variable to use it.
     String pseudo = textEditingControllerForPseudo.text;
@@ -116,7 +116,7 @@ class _SignUpControllerState extends State<SignUpController> {
   /// It verifies if the input is correct.
   /// If it is not correct, the error message is displayed with the right message error.
   void onChangedPassword() {
-    //TODO: Implements the rest of this method with a better "security" for the password.
+    //TODO: Implement the rest of this method with a better "security" for the password.
 
     /// We get the last modified value of the password text field and create a specific variable to use it.
     String password = textEditingControllerForPassword.text;

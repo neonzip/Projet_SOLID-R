@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/SignUp/SignUpController.dart';
 
 /// Widget which displays the page to sign up.
 class SignUpView extends StatefulWidget {
@@ -10,6 +11,7 @@ class SignUpView extends StatefulWidget {
 
 /// Widget state which displays the page to sign up.
 class _SignUpViewState extends State<SignUpView> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -20,7 +22,9 @@ class _SignUpViewState extends State<SignUpView> {
           title: const Text("Inscription"),
           centerTitle: true,
         ),
-        body: const SignUpView(),
+        body: const SingleChildScrollView(
+          child: SignUpController(),
+        )
     );
   }
 }

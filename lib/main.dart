@@ -15,7 +15,7 @@ import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Solidar
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
 import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
-import 'package:projet_solid_r/pages/SignIn.dart';
+import 'package:projet_solid_r/pages/SignIn/SignInView.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorites.dart';
 import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
@@ -44,7 +44,7 @@ void main() async {
   routes: {
     "/": (context) => const LaunchHome(),
     "/signup": (context) => const SignUpView(),
-    "/signin": (context) => const SignIn(),
+    "/signin": (context) => const SignInView(),
 
 
     /////////////////////////////////////////////////////////////
