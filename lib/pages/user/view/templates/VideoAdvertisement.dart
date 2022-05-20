@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -87,17 +88,19 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
               TapGestureRecognizer().onTap = () async {
                 if (!controller.value.isPlaying) {
                   var url = widget.project.projectAssociation.associationWebSiteURL;
-                  if (await canLaunch(url)) {
-                    await launch(url);
+                  try {
+                    await launchUrl(Uri.parse(url));
                   }
-                  else {
-                    throw("cannot launch URL");
+                  catch (exception) {
+                    if (kDebugMode) {
+                      print("Cannot launch URL\n");
+                      print(exception);
+                    }
                   }
-                }
-                else {
-                  throw("Cannot launch URL because video is running.");
                 }
               },
+
+              /// The way that the video is displayed on the screen.
               child: AspectRatio(
                 aspectRatio: 3/2,//controller.value.aspectRatio,
                 child: VideoPlayer(
@@ -105,6 +108,8 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
                 ),
               ),
             ),
+
+            /// Displays the progress bar with the time of the video
             VideoProgressIndicator(
               controller,  //video player controller
               allowScrubbing: false,
@@ -161,7 +166,7 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
                 }
                 else {
                   /// We can quit the page and return to the home page
-                  Navigator.pushNamed(context, "/home");
+                  Navigator.pop(context);
                 }
               },
               icon: const Icon(Icons.close, color: Colors.yellow),

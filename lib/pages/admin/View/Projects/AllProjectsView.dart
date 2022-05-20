@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/ProjectsViewAdmin.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/ProjectsViewAdmin.dart';
 
+import '../../../user/controller/fakeDataTest/DataProjectTest.dart';
 import '../../../user/view/templates/ItemFilter.dart';
 import '../../../user/view/templates/Separator.dart';
 import 'ProjectViewAdmin.dart';
@@ -18,7 +18,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   bool? filterFavorite = false;
   bool isExpanded = false;
 
-  List<ProjectViewAdmin> listProjects = <ProjectViewAdmin>[];
+  List<ProjectViewAdmin>? listProjects = <ProjectViewAdmin>[];
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -54,7 +54,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                     filterAll = value;
                     filterFavorite = false;
                     if (filterAll == true) {
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin();
+                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
                     }
                     else {
                       if (filterFavorite == false) {
@@ -72,11 +72,11 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                     filterFavorite = value;
                     if (filterFavorite == true) {
                       filterAll = false;
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin();
+                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
                     }
                     else{
                       filterAll = true;
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin();
+                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
                     }
                   });
                 }
@@ -114,7 +114,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListAllProjectsViewsAdmin();
+    listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {

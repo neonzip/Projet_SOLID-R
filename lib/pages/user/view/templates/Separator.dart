@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Widget which builds a divider text in order to separate multi parts of a page.
+/// A simple line.
 class Separator extends StatelessWidget {
   const Separator({Key? key}) : super(key: key);
 

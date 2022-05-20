@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
-import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
-import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
 
+/// Widget which builds a divider with a text in order to separate multi parts of a page.
 class SeparatorWithText extends StatefulWidget {
   final String text;
   const SeparatorWithText({Key? key, required this.text}) : super(key: key);

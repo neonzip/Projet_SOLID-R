@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ActivityButton extends StatefulWidget {
-  void Function()? onPressedButton;
-  IconData icon;
-  Color? color;
-  String? tooltip;
+  final void Function()? onPressedButton;
+  final IconData icon;
+  final Color? color;
+  final String? tooltip;
 
-  ActivityButton({Key? key, required this.icon, required this.onPressedButton, required this.color, required this.tooltip}) : super(key: key);
+  const ActivityButton({Key? key, required this.icon, required this.onPressedButton, required this.color, required this.tooltip}) : super(key: key);
   @override
   _ActivityButtonState createState() => _ActivityButtonState();
 }

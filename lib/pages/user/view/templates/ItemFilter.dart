@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Widget which builds an item for the filters used in the projects list.
+///
 class ItemFilter extends StatefulWidget {
   final bool? isSelected;
   final void Function(bool?)? onChanged;
