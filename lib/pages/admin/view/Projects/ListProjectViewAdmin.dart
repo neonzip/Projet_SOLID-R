@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/Projects/AllProjectsView.dart';
+import 'package:projet_solid_r/pages/admin/view/Projects/AllProjectsView.dart';
 
 /// https://fr.acervolima.com/flutter-onglets/?msclkid=6e1bd9dcceda11ecaf1bccadbafa9671
 class ListProjectViewAdmin extends StatelessWidget {

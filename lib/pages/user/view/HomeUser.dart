@@ -7,6 +7,7 @@ import 'templates/Home/ContainerWithBackground.dart';
 import 'templates/Home/YellowBubbleMoney.dart';
 import 'templates/Home/YellowBubbleKilometers.dart';
 
+/// Widget view which builds the entire widget for the home of the user part.
 class HomeUser extends StatefulWidget {
   final UserModel user;
   const HomeUser({Key? key, required this.user}) : super(key: key);
@@ -15,9 +16,11 @@ class HomeUser extends StatefulWidget {
   _HomeUserState createState() => _HomeUserState();
 }
 
+/// Widget state which builds the entire widget for the home of the user part.
 class _HomeUserState extends State<HomeUser> {
 
-  /// Floating action button "Activités"
+  /// Floating action button "Activités".
+  /// When the user clicks on it, he is automatically redirected to the activity page.
   Widget buttonHomeActivitiesTemplate() {
     return Padding(
       padding: const EdgeInsets.all(5),
@@ -42,6 +45,7 @@ class _HomeUserState extends State<HomeUser> {
   }
 
   /// Widget building the favorites button.
+  /// This button redirects to the page which displays all the favorite projects of the user.
   Widget buttonHomeFavoritesTemplate() {
     return FloatingActionButton(
       heroTag: "favorites",
@@ -68,6 +72,7 @@ class _HomeUserState extends State<HomeUser> {
   }
 
   /// Widget building the projects button.
+  /// It redirects to the page where the user can see all the solidarity project that the association wants to show.
   Widget buttonHomeProjectsTemplate() {
     return FloatingActionButton(
       heroTag: "projects",
@@ -101,64 +106,9 @@ class _HomeUserState extends State<HomeUser> {
         return false;
       },
       child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: const Color(0xFF0725A5),
-            title: Container(
-              padding: const EdgeInsets.all(0),
-              margin: const EdgeInsets.all(0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/user/APropos");
-                    },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset("assets/logo_solid_R.png"),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: const Color(0xFF0725A5),
-                      ),
-                    ),
-                  ),
-                  const Text("Accueil",
-                    textAlign: TextAlign.center,
-                  ),
-                  Container(
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.all(10),
-                      child: FittedBox(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Profile(user: widget.user)));
-                            //Navigator.pushNamed(context, "/user/profile");
-                          },
-                          child: Column(
-                            children: const [
-                              Icon(
-                                  Icons.account_circle_outlined,
-                                  color: Colors.white),
-                              Text(
-                                  "Profil",
-                                  style: TextStyle(color:Colors.white))
-                            ],
-                          ),
-                        ),
-                      )
-                  ),
-                ],
-              ),
-            ),
-          ),
+          appBar: appBar(),
 
-          //////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////
-
+          /// The customized widget ContainerWithBackground is created to add a background to the page we want to show.
           body: ContainerWithBackground(
             content: Center (
                 child: SingleChildScrollView(
@@ -192,20 +142,20 @@ class _HomeUserState extends State<HomeUser> {
                                 )
                             ),
 
-                            /* Yellow bubble containing the money that the user can make to a project. */
+                            /// Yellow bubble containing the money that the user can make to a project.
                             YellowBubbleMoney(
                               value: widget.user.userPurse.toString(),
                             ),
 
-                            /* Yellow bubble containing the kilometers traveled. */
+                            /// Yellow bubble containing the kilometers traveled.
                             YellowBubbleKilometers(
                               valueKilometers: widget.user.userTotalDistance.toString(),
                             ),
 
-                            /* Blue horizontal line separating the two parts of the main page. */
+                            /// Blue horizontal line separating the two parts of the main page.
                             const SeparatorWithText(text: "Ils nous font confiance"),
 
-                            /* Building a grid with the logos of associations. */
+                            /// Building a grid with the logos of associations.
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.5),
@@ -224,7 +174,7 @@ class _HomeUserState extends State<HomeUser> {
             ),
           ),
 
-          /* Menu at the bottom with the 2 other buttons "Projets" and "Favoris". */
+          /// Menu at the bottom with the 2 other buttons "Projets" and "Favoris".
           bottomNavigationBar: BottomAppBar(
             color: Colors.white,
             elevation: 0,
@@ -257,6 +207,64 @@ class _HomeUserState extends State<HomeUser> {
             ),
           )
       )
+    );
+  }
+
+  /// Function that builds the entire appbar.
+  AppBar appBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: const Color(0xFF0725A5),
+      title: Container(
+        padding: const EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/user/APropos");
+              },
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset("assets/logo_solid_R.png"),
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color(0xFF0725A5),
+                ),
+              ),
+            ),
+            const Text("Accueil",
+              textAlign: TextAlign.center,
+            ),
+            Container(
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.all(10),
+                child: FittedBox(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Profile(user: widget.user)));
+                      //Navigator.pushNamed(context, "/user/profile");
+                    },
+                    child: Column(
+                      children: const [
+                        Icon(
+                            Icons.account_circle_outlined,
+                            color: Colors.white),
+                        Text(
+                            "Profil",
+                            style: TextStyle(color:Colors.white))
+                      ],
+                    ),
+                  ),
+                )
+            ),
+          ],
+        ),
+      ),
     );
   }
 

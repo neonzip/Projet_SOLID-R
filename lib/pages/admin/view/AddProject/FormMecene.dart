@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
 import '../Templates/AddingProject/FormMultilineTextField.dart';
 import '../Templates/AddingProject/CarousselPictures.dart';
 

@@ -2,7 +2,7 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociatio
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
-import '../../../admin/View/Projects/ProjectViewAdmin.dart';
+import '../../../admin/view/Projects/ProjectViewAdmin.dart';
 import '../../view/Project/ProjectView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

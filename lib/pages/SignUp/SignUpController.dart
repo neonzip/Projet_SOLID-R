@@ -3,7 +3,7 @@ import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
 
-/// Widget view which build the entire widget for the page to sign up.
+/// Widget view which builds the entire widget for the page to sign up.
 /// There are several controllers for getting and changing content fields.
 class SignUpController extends StatefulWidget {
   const SignUpController({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class SignUpController extends StatefulWidget {
   _SignUpControllerState createState() => _SignUpControllerState();
 }
 
-/// Widget state which build the entire widget for the page to sign up.
+/// Widget state which builds the entire widget for the page to sign up.
 class _SignUpControllerState extends State<SignUpController> {
 
   /// Each text fields has its own controller.
@@ -192,7 +192,7 @@ class _SignUpControllerState extends State<SignUpController> {
                 text: 'S\'inscrire',
               ),
 
-              /// If the user has done a mistake and goes to the wrong page,
+              /// If the user has done a mistake and went to the wrong page,
               /// he can go to the connection page by clicking the following hyperlink
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
 
-import 'package:projet_solid_r/pages/admin/View/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../Templates/AddingProject/FormMultilineTextField.dart';
 import '../Templates/AddingProject/CarousselPictures.dart';

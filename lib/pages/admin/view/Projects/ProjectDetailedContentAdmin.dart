@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/admin/View/UpdateProject/UpdatingProject.dart';
+import 'package:projet_solid_r/pages/admin/view/UpdateProject/UpdatingProject.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/Projects/ProjectViewAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Projects/ProjectViewAdmin.dart';
 
 class ProjectsViewAdmin extends StatefulWidget {
   final List<ProjectViewAdmin>? listProjects;

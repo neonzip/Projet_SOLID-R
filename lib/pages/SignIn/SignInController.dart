@@ -4,14 +4,14 @@ import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SigninButton.dart';
 
-import '../Home.dart';
+import '../HomeView.dart';
 
 //TODO: Change the line to access the admin/user view
 DataUserTest dataUser = DataUserTest();
 UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
 //UserModel user = dataUser.userdataList.elementAt(1); // To have a fake X user
 
-/// Widget view which build the entire widget for the page to sign in.
+/// Widget view which builds the entire widget for the page to sign in.
 /// There are several controllers for getting and changing content fields.
 class SignInController extends StatefulWidget {
   const SignInController({Key? key}) : super(key: key);
@@ -143,7 +143,7 @@ class _SignInControllerState extends State<SignInController> {
               SigninButton(
                 onPressed: () {
                   //Navigator.pushNamed(context, "/home");
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Home(user: user)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user)));
                 },
               ),
 
@@ -154,6 +154,9 @@ class _SignInControllerState extends State<SignInController> {
                 },
                 child: const Text("Mot de passe oublié ? "),
               ),
+
+              /// If the user has done a mistake and went to the wrong page,
+              /// he can go to the registration page by clicking the following hyperlink.
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/AddingProject/FormMultilineTextField.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
-import 'package:projet_solid_r/pages/admin/View/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormMultilineTextField.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
 
-class FormProjectUpdate extends StatefulWidget {
-  final ProjectModel project;
-  const FormProjectUpdate({Key? key, required this.project}) : super(key: key);
+class FormProject extends StatefulWidget {
+  const FormProject({Key? key}) : super(key: key);
 
   @override
-  _FormProjectUpdateState createState() => _FormProjectUpdateState();
+  _FormProjectState createState() => _FormProjectState();
 }
 
 /// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
-class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKeepAliveClientMixin<FormProjectUpdate>{
+class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClientMixin<FormProject>{
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +24,25 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
                   padding: const EdgeInsets.all(10),
                   child: const Text("Projet", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                 ),
-                FormTextFieldWithContentAdmin(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.text,
                   errorMessage: "Champ vide",
                     labelHint: "Entrez le nom du projet",
                     label: "Nom",
-                  text: widget.project.projectName,
                 ),
-                FormMultilineTextFieldWithContent(
+                FormMultilineTextField(
                   key: widget.key,
                     errorMessage: "Champ vide",
                     labelHint: "Entrez l'objectif du projet",
-                    label: "Objectif",
-                  text: widget.project.projectDescription,
+                    label: "Objectif"
                 ),
-                FormTextFieldWithContentAdmin(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.number,
                   errorMessage: "Champ vide",
                   labelHint: "Entrez le montant",
                   label: "Cagnotte envisagée",
-                  text: widget.project.projectDonationGoal.toString(),
                 ),
               ],
             ),

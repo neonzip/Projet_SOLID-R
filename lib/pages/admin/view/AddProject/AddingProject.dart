@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormAssociation.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormConfirmation.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormMecene.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormProject.dart';
+import 'package:projet_solid_r/pages/admin/view/AddProject/FormAssociation.dart';
+import 'package:projet_solid_r/pages/admin/view/AddProject/FormConfirmation.dart';
+import 'package:projet_solid_r/pages/admin/view/AddProject/FormMecene.dart';
+import 'package:projet_solid_r/pages/admin/view/AddProject/FormProject.dart';
 
 class AddingProject extends StatefulWidget {
   const AddingProject({Key? key}) : super(key: key);

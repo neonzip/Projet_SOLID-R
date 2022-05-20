@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormAssociation.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormConfirmation.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormMecene.dart';
-import 'package:projet_solid_r/pages/admin/View/AddProject/FormProject.dart';
-import 'package:projet_solid_r/pages/admin/View/UpdateProject/FormAssociationUpdate.dart';
-import 'package:projet_solid_r/pages/admin/View/UpdateProject/FormConfirmationUpdate.dart';
-import 'package:projet_solid_r/pages/admin/View/UpdateProject/FormMeceneUpdate.dart';
-import 'package:projet_solid_r/pages/admin/View/UpdateProject/FormProjectUpdate.dart';
+import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormAssociationUpdate.dart';
+import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormConfirmationUpdate.dart';
+import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormMeceneUpdate.dart';
+import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormProjectUpdate.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 class UpdatingProject extends StatefulWidget {
