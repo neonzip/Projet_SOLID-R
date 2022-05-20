@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/SignIn/ForgotPasswordController.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
@@ -142,7 +143,6 @@ class _SignInControllerState extends State<SignInController> {
               /// When the user clicks on it, he is automatically redirected on his own account (home user page).
               SigninButton(
                 onPressed: () {
-                  //Navigator.pushNamed(context, "/home");
                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user)));
                 },
               ),
@@ -150,7 +150,7 @@ class _SignInControllerState extends State<SignInController> {
               /// In case that the user forgot his password.
               TextButton(
                 onPressed: () {
-                  // TODO: Implement a method to make the user change his password.
+                  showDialogForgottenPassword();
                 },
                 child: const Text("Mot de passe oublié ? "),
               ),
@@ -174,6 +174,23 @@ class _SignInControllerState extends State<SignInController> {
               ),
             ],
           ),
+        )
+    );
+  }
+
+  void showDialogForgottenPassword() {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+            title: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "Votre projet a été modifié !",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+            content: const ForgotPasswordController(),
         )
     );
   }

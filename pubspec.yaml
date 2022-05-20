@@ -53,6 +53,7 @@ dependencies:
   share: ^2.0.1
   carousel_slider: ^4.1.1
   marquee: ^2.2.1
+  mailer:
 
 
 dev_dependencies:
