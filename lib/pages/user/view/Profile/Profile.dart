@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
@@ -302,13 +303,21 @@ class _ProfileState extends State<Profile> {
                             )
                           ]
                       ),
+                      TableRow(
+                        children: [
+                          /* Button to access to the admin page if the user is one of them. */
+                          Visibility(
+                            child: widget.user.userIsAdmin ? buttonGoToAdminPage() : Container(),
+                          ),
+                        ]
+                      ),
                       const TableRow(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 20),
                               child:
 
-/* Button "Déconnexion" to log out */
+                              /* Button "Déconnexion" to log out */
                               LogoutButton(
                                 widthButton: widthButtons,
                               ),
@@ -321,6 +330,29 @@ class _ProfileState extends State<Profile> {
               ),
             )
         )
+    );
+  }
+
+  /// Widget to go to admin page.
+  Widget buttonGoToAdminPage() {
+    return Container(
+      width: widthButtons,
+      height: 50,
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child:
+      ElevatedButton(
+        onPressed: () {
+          // Navigator.pushNamed(context, "/admin/home");
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeAdmin(user: widget.user)));
+        },
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text(
+          "Continuer en tant qu'administrateur",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 
