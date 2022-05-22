@@ -17,6 +17,7 @@ class _MyInformationState extends State<MyInformation> {
   /// Each text fields has its own controller.
   /// They allow us to change the content of the error message when the user sets the value of the associated text field.
   /// We initialize them later in the initialization of the widget.
+  /// Thanks to them, we can also get the information of the user and display it on the text fields.
   late TextEditingController textEditingControllerForEmail;
   late TextEditingController textEditingControllerForPseudo;
   late TextEditingController textEditingControllerForPassword;
@@ -74,14 +75,19 @@ class _MyInformationState extends State<MyInformation> {
     textEditingControllerForEmail.addListener(() {
       onChangedEmail();
     });
+    textEditingControllerForEmail.text = widget.user.userEmail;
+
     textEditingControllerForPseudo = TextEditingController();
     textEditingControllerForPseudo.addListener(() {
       onChangedPseudo();
     });
+    textEditingControllerForPseudo.text = widget.user.userNickName;
+
     textEditingControllerForPassword = TextEditingController();
     textEditingControllerForPassword.addListener(() {
       onChangedPassword();
     });
+    textEditingControllerForPassword.text = widget.user.password;
     super.initState();
   }
 
@@ -111,21 +117,21 @@ class _MyInformationState extends State<MyInformation> {
                         errorMessage: messageErrorEmail,
                         labelHint: "aaa@bbb.ccc",
                         label: "Email :",
-                        text: widget.user.userEmail,
+                        text: '',
                       textEditingController: textEditingControllerForEmail,
                     ),
                     FormTextField(
                         errorMessage: messageErrorPseudo,
                         labelHint: "Entrez un pseudo",
                         label: "Pseudo :",
-                        text: widget.user.userNickName,
+                        text: '',
                       textEditingController: textEditingControllerForPseudo,
                     ),
                     FormTextField(
                         errorMessage: messageErrorPassword,
                         labelHint: "Entrez un  mot de passe",
                         label: "Mot de passe :",
-                        text: widget.user.password,
+                        text: '',
                       textEditingController: textEditingControllerForPassword,
                     ),
                     buttonValidationTemplate(),
