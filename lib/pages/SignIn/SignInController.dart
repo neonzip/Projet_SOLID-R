@@ -21,7 +21,7 @@ class SignInController extends StatefulWidget {
   _SignInControllerState createState() => _SignInControllerState();
 }
 
-/// Widget state which build the entire widget for the page to sign in.
+/// Widget state which builds the entire widget for the page to sign in.
 class _SignInControllerState extends State<SignInController> {
 
   /// Each text fields has its own controller.

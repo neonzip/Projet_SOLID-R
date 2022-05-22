@@ -14,9 +14,20 @@ class MyInformation extends StatefulWidget {
 }
 
 class _MyInformationState extends State<MyInformation> {
+  /// Each text fields has its own controller.
+  /// They allow us to change the content of the error message when the user sets the value of the associated text field.
+  /// We initialize them later in the initialization of the widget.
   late TextEditingController textEditingControllerForEmail;
   late TextEditingController textEditingControllerForPseudo;
   late TextEditingController textEditingControllerForPassword;
+
+  /// Each error message we have to put in the form.
+  /// These message will change during the input form when the user sets a value.
+  /// They are here to "tell" to the user if its input is alright or not.
+  String messageErrorEmail = 'Veuillez saisir votre email.';                                       // Email error message
+  String messageErrorPseudo = 'Veuillez saisir votre pseudo.';                                       // Email error message
+  String messageErrorPassword = 'Veuillez saisir votre mot de passe.';                                       // Email error message
+
 
   /// Action done when the button to validate changes is clicked.
   void buttonSubmitChanges() {
@@ -61,18 +72,15 @@ class _MyInformationState extends State<MyInformation> {
   void initState() {
     textEditingControllerForEmail = TextEditingController();
     textEditingControllerForEmail.addListener(() {
-      //onChanged();
-      //TODO:
+      onChangedEmail();
     });
     textEditingControllerForPseudo = TextEditingController();
     textEditingControllerForPseudo.addListener(() {
-      //onChanged();
-      //TODO:
+      onChangedPseudo();
     });
     textEditingControllerForPassword = TextEditingController();
     textEditingControllerForPassword.addListener(() {
-      //onChanged();
-      //TODO:
+      onChangedPassword();
     });
     super.initState();
   }
@@ -100,22 +108,22 @@ class _MyInformationState extends State<MyInformation> {
                 child: Column(
                   children: [
                     FormTextField(
-                        errorMessage: "Champ vide.",
+                        errorMessage: messageErrorEmail,
                         labelHint: "aaa@bbb.ccc",
                         label: "Email :",
                         text: widget.user.userEmail,
                       textEditingController: textEditingControllerForEmail,
                     ),
                     FormTextField(
-                        errorMessage: "Champ vide.",
-                        labelHint: "pseudo",
+                        errorMessage: messageErrorPseudo,
+                        labelHint: "Entrez un pseudo",
                         label: "Pseudo :",
                         text: widget.user.userNickName,
                       textEditingController: textEditingControllerForPseudo,
                     ),
                     FormTextField(
-                        errorMessage: "Champ vide.",
-                        labelHint: "mdp",
+                        errorMessage: messageErrorPassword,
+                        labelHint: "Entrez un  mot de passe",
                         label: "Mot de passe :",
                         text: widget.user.password,
                       textEditingController: textEditingControllerForPassword,
@@ -128,5 +136,79 @@ class _MyInformationState extends State<MyInformation> {
         ],
       )
     );
+  }
+
+  /// Function called when the user changes the email input.
+  /// It verifies if the input is correct.
+  /// If it is not correct, the error message is displayed with the right message error.
+  void onChangedEmail() {
+    // TODO: Implement the rest of this method in order to change the error message when the user does not put a right email.
+    // TODO: Change the message when the email is already taken.
+
+    /// We get the last modified value of the email text field and create a specific variable to use it.
+    String email = textEditingControllerForEmail.text;
+
+    print("Last email value : " + email);                   // Temporary : prints to the console the value of the email
+
+    // The email is empty
+    if (email.isEmpty) {
+      messageErrorEmail = "Veuillez saisir un mail.";
+    }
+    // The email is correct
+    else {
+      messageErrorEmail = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  /// Function called when the user changes the pseudo input.
+  /// It verifies if the input is correct.
+  /// If it is not correct, the error message is displayed with the right message error.
+  void onChangedPseudo() {
+    // TODO: Implement the rest of this method.
+
+    /// We get the last modified value of the pseudo text field and create a specific variable to use it.
+    String pseudo = textEditingControllerForPseudo.text;
+
+    print("Last pseudo value : " + pseudo);                   // Temporary : prints to the console the value of the pseudo
+
+    // The pseudo is empty
+    if (pseudo.isEmpty) {
+      messageErrorPseudo = "Veuillez saisir un pseudo.";
+    }
+    // The pseudo is correct
+    else {
+      messageErrorPseudo = "";
+    }
+
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  /// Function called when the user changes the password input.
+  /// It verifies if the input is correct.
+  /// If it is not correct, the error message is displayed with the right message error.
+  void onChangedPassword() {
+    //TODO: Implement the rest of this method with a better "security" for the password.
+
+    /// We get the last modified value of the password text field and create a specific variable to use it.
+    String password = textEditingControllerForPassword.text;
+
+    print("Last password value : " + password);                   // Temporary : prints to the console the value of the password
+
+    // The password is empty or it does not contain more than 6 characters
+    if (password.isEmpty || password.length < 6) {
+      messageErrorPassword = "Veuillez saisir un mot de passe d'au moins 6 caractères.";
+    }
+    // The password is OK
+    else {
+      messageErrorPassword = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
   }
 }
