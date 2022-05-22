@@ -149,6 +149,7 @@ class _SignUpControllerState extends State<SignUpController> {
               /// Here is the text field for the email.
               /// It is there that we add the controller, and all components of the widget that the user sees on the screen for the email
               FormTextField(
+                hidden: false,
                 errorMessage: messageErrorEmail,
                 label: "Email :",
                 labelHint: "Entrez votre email",
@@ -159,6 +160,7 @@ class _SignUpControllerState extends State<SignUpController> {
               /// Here is the text field for the pseudo
               /// It is there that we add the controller, and all components of the widget that the user sees on the screen for the pseudo
               FormTextField(
+                hidden: false,
                 errorMessage: messageErrorPseudo,
                 label: "Pseudo :",
                 labelHint: "Entrez votre pseudo",
@@ -169,6 +171,7 @@ class _SignUpControllerState extends State<SignUpController> {
               /// Here is the text field for the password
               /// It is there that we add the controller, and all components of the widget that the user sees on the screen for the password
               FormTextField(
+                hidden: true,
                 errorMessage: messageErrorPassword,
                 label: "Mot de passe :",
                 labelHint: "Entrez votre mot de passe",

@@ -114,6 +114,7 @@ class _MyInformationState extends State<MyInformation> {
                 child: Column(
                   children: [
                     FormTextField(
+                      hidden: false,
                         errorMessage: messageErrorEmail,
                         labelHint: "aaa@bbb.ccc",
                         label: "Email :",
@@ -121,6 +122,7 @@ class _MyInformationState extends State<MyInformation> {
                       textEditingController: textEditingControllerForEmail,
                     ),
                     FormTextField(
+                      hidden: false,
                         errorMessage: messageErrorPseudo,
                         labelHint: "Entrez un pseudo",
                         label: "Pseudo :",
@@ -128,6 +130,7 @@ class _MyInformationState extends State<MyInformation> {
                       textEditingController: textEditingControllerForPseudo,
                     ),
                     FormTextField(
+                      hidden: true,
                         errorMessage: messageErrorPassword,
                         labelHint: "Entrez un  mot de passe",
                         label: "Mot de passe :",

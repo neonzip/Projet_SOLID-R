@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class FormTextField extends StatefulWidget {
@@ -5,9 +7,10 @@ class FormTextField extends StatefulWidget {
   final String label;
   final String labelHint;
   final String text;
+  final bool hidden;
   final TextEditingController textEditingController;
 
-  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.text, required this.textEditingController}) : super(key: key);
+  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.hidden, required this.label, required this.text, required this.textEditingController}) : super(key: key);
   @override
   _FormTextFieldState createState() => _FormTextFieldState();
 }
@@ -43,6 +46,7 @@ class _FormTextFieldState extends State<FormTextField> {
                   color: Colors.white,
                 ),
                 child: TextField(
+                  obscureText: widget.hidden,
                   controller: widget.textEditingController,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(

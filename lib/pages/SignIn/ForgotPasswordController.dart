@@ -59,6 +59,7 @@ class _ForgotPasswordControllerState extends State<ForgotPasswordController> {
               )
           ),
           FormTextField(
+            hidden: false,
             errorMessage: messageErrorEmail,
             labelHint: "Entrez votre email",
             label: "Email",
