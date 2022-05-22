@@ -44,7 +44,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
             ProjectProgressBar(
-                valueBar: widget.project.projectResult / 100, // %
+                valueBar: (widget.project.projectResult * 100) / widget.project.projectDonationGoal, // %
             ),
           const AutoSizeText(
               // TODO : Change the "XX" value by the real one.

@@ -44,7 +44,8 @@ class _ListProjectViewAdminState extends State<ListProjectViewAdmin> {
                   const Text("Projets",
                     textAlign: TextAlign.left,
                   ),
-                  const Text(""),Container(
+                  const Text(""),
+                  Container(
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.all(10),
                       child: FittedBox(

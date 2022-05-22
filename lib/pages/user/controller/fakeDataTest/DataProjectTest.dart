@@ -40,14 +40,14 @@ class DataProjectTest {
     ProjectModel project7 = ProjectModel(7, false, "NameProject7",  "7Ceci est un text pour décrire le but du projet7.");
     ProjectModel project8 = ProjectModel(8, true, "NameProject8", "8Ceci est un text pour décrire le but du projet8.");
     /////////
-    project1.setResultProject(97.5);
-    project2.setResultProject(12.6);
-    project3.setResultProject(100);
-    project4.setResultProject(63.9);
-    project5.setResultProject(91.5);
-    project6.setResultProject(12.0);
-    project7.setResultProject(100);
-    project8.setResultProject(35.9);
+    project1.setResultProject(9756);
+    project2.setResultProject(1268);
+    project3.setResultProject(870.50);
+    project4.setResultProject(8100);
+    project5.setResultProject(1000);
+    project6.setResultProject(5023);
+    project7.setResultProject(7451);
+    project8.setResultProject(358);
     /////////
     project1.projectDonationGoal = 10000.50;
     project2.projectDonationGoal = 1400.00;

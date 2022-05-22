@@ -52,7 +52,8 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
   }
 
   Widget contentCard() {
-    double progressGoal = widget.project.projectResult;
+    double progressGoal = (widget.project.projectResult * 100) / widget.project.projectDonationGoal;
+    double progressGoalNotPercent = progressGoal * 100;
 
     return Card(
       color: Colors.white,
@@ -88,14 +89,14 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
                 child: Column(
                   children: [
                     ProjectProgressBar(
-                      valueBar: progressGoal / 100, // %
+                      valueBar: progressGoal, // %
                     ),
 
                     Container (
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Column(
                           children: [
-                            Text("$progressGoal % financés"),
+                            Text("$progressGoalNotPercent % financés"),
                           ]
                       ),
                     )

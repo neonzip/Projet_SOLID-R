@@ -26,7 +26,7 @@ class _ProjectViewState extends State<ProjectView>{
   /// Widget for one card which is containing the information about a project.
   Widget projectTemplate(){
     double contribute = widget.contribution;
-    double progressGoal = widget.project.projectResult;
+    double progressGoal = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
     return Card(
       elevation: 5,
       margin: const EdgeInsets.all(5),
@@ -101,7 +101,7 @@ class _ProjectViewState extends State<ProjectView>{
                 ),
                 const Spacer(),
                 /* Button "Donner" is displayed if it is not finished, then nothing. */
-                (widget.project.projectResult < 100)?
+                (widget.project.projectResult < widget.project.projectDonationGoal)?
                 DonationButton(
                   onPressedButton: showDonationInputDialog,
                   idProject: widget.project.projectID,

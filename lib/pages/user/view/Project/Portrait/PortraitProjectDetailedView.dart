@@ -25,6 +25,8 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
   double valueDonation = 0.0;
 
   Widget participationInformationTemplate() {
+    double progressGoal = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
+
     return Container (
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -43,14 +45,27 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
             ProjectProgressBar(
-                valueBar: widget.project.projectResult / 100, // %
+                valueBar: progressGoal / 100, // %
             ),
-            const AutoSizeText(
-              // TODO : Change the "XX" value by the real one.
-              "Cagnotte remplie en " "XX" " jours",
-            textAlign: TextAlign.center,
-              maxLines: 2
+            Visibility(
+              visible: (widget.project.projectDonationGoal == widget.project.projectResult),
+                child: const AutoSizeText(
+                  // TODO : Change the "XX" value by the real one.
+                    "Cagnotte remplie en " "XX" " jours",
+                    textAlign: TextAlign.center,
+                    maxLines: 2
+                ),
             ),
+          Visibility(
+            visible: (widget.project.projectDonationGoal != widget.project.projectResult),
+              child: Container (
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+            child: Column(
+                children: [
+                  Text("$progressGoal % financés"),
+                ]
+            ),
+          ))
         ],
       ),
     );
@@ -59,7 +74,7 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
   Widget projectDetailedNavigation() {
     return
       DefaultTabController(
-        length: (widget.project.projectResult == 100)? 4 : 3,
+        length: (widget.project.projectResult == widget.project.projectDonationGoal)? 4 : 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -111,7 +126,7 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
                       decelerationDuration: const Duration(milliseconds: 500),
                     )
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                 Tab(
                     child: Marquee(
                       showFadingOnlyWhenScrolling: true,
@@ -158,7 +173,7 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
                       )
                     )
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                   Container(
                       padding: const EdgeInsets.all(10),
                       child: SingleChildScrollView(
