@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/AllProjectsView.dart';
 
-/// https://fr.acervolima.com/flutter-onglets/?msclkid=6e1bd9dcceda11ecaf1bccadbafa9671
-class ListProjectViewAdmin extends StatelessWidget {
-  const ListProjectViewAdmin({Key? key}) : super(key: key);
+import '../../../user/model/UserModel.dart';
+import '../../ProfileAdmin.dart';
 
+/// https://fr.acervolima.com/flutter-onglets/?msclkid=6e1bd9dcceda11ecaf1bccadbafa9671
+class ListProjectViewAdmin extends StatefulWidget {
+  final UserModel user; // User
+  const ListProjectViewAdmin({Key? key, required this.user}) : super(key: key);
+
+  @override
+  _ListProjectViewAdminState createState() => _ListProjectViewAdminState();
+}
+
+class _ListProjectViewAdminState extends State<ListProjectViewAdmin> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +50,8 @@ class ListProjectViewAdmin extends StatelessWidget {
                       child: FittedBox(
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/admin/profile");
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ProfileAdmin(user: widget.user)));
+                            //Navigator.pushNamed(context, "/admin/profile");
                           },
                           child: Column(
                             children: const [

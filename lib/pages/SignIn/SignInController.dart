@@ -143,6 +143,7 @@ class _SignInControllerState extends State<SignInController> {
               /// When the user clicks on it, he is automatically redirected on his own account (home user page).
               SigninButton(
                 onPressed: () {
+                  //TODO: Check if the user exists and if it is OK send him to his account.
                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user)));
                 },
               ),

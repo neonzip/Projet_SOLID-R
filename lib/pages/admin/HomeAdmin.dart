@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Projects/ListProjectViewAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import '../user/view/templates/Home/ContainerWithBackground.dart';
 
@@ -99,7 +100,8 @@ class _HomeAdminState extends State<HomeAdmin> {
         child: FloatingActionButton(
           heroTag: "projects",
           onPressed: () {
-            Navigator.pushNamed(context, "/admin/projects");
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ListProjectViewAdmin(user: widget.user)));
+            //Navigator.pushNamed(context, "/admin/projects");
           },
           tooltip: 'Projets',
           splashColor: Colors.yellow,

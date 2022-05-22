@@ -16,7 +16,7 @@ class _MeceneInformationState extends State<MeceneInformation> {
     return meceneInformationTemplate();
   }
 
-  /// Widgets which contains the part
+  /// Widgets which contains the mecene part
   Widget meceneInformationTemplate() {
     return Container(
       margin: const EdgeInsets.all(5),

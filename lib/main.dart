@@ -1,16 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
-import 'package:projet_solid_r/pages/HomeView.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
-import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
-import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/admin/View/Projects/ListProjectViewAdmin.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/Profile.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
@@ -18,15 +13,13 @@ import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn/SignInView.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorites.dart';
-import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Notifications.dart';
-import 'package:projet_solid_r/pages/SignUp/SignUpController.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'package:projet_solid_r/pages/user/view/Project/FormalProject/FormalProjects.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseApp firebaseApp = await Firebase.initializeApp();
   AuthentificationService _auth = AuthentificationService();
@@ -79,7 +72,7 @@ void main() async {
     //"/admin/home": (context) => const HomeAdmin(),
 
     /* PROJECTS */
-    "/admin/projects": (context) => const ListProjectViewAdmin(),
+    //"/admin/projects": (context) => const ListProjectViewAdmin(),
 
     /* FORM TO ADD PROJET */
     "/admin/project/add": (context) => const AddingProject(),

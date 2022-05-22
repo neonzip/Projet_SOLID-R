@@ -8,8 +8,8 @@ import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 
 /// These are the parameters of the account of the association.
 /// Thanks to it, we can send messages to the users if they have forgotten their password.
-String EMAIL = "sportsolidr@gmail.com";
-String PASS = "SOLID'R1";
+String EMAIL = "sport.solidr.test@gmail.com";
+String PASS = "abmmtijm";
 
 /// Widget view which builds the entire widget for the dialog of forgotten password.
 class ForgotPasswordController extends StatefulWidget {
