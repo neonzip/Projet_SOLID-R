@@ -22,7 +22,7 @@ class _AProposState extends State<APropos> {
           title: Container(
             padding: const EdgeInsets.all(0),
             margin: const EdgeInsets.all(0),
-            child: const Text("A propos"),
+            child: const Text("À propos"),
             ),
           ): null,
 
