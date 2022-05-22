@@ -48,14 +48,16 @@ class _GlobalInformationState extends State<GlobalInformation> {
                         ],
                       )
                   ),
-
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(5, 0, 0, 5),
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "Objectif atteint le $day/$month/$year",
-                      textAlign: TextAlign.end,
-                    ),
+                  Visibility(
+                    visible: (widget.project.projectDonationGoal == widget.project.projectResult),
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(5, 0, 0, 5),
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "Objectif atteint le $day/$month/$year",
+                          textAlign: TextAlign.end,
+                        ),
+                      )
                   )
                 ]
             ),
@@ -77,7 +79,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                       isFav: widget.project.projectIsFavorite,    // Value to change in function of the project we use
                     ),
                   ),
-                  (widget.project.projectResult < 100)?
+                  (widget.project.projectResult < widget.project.projectDonationGoal)?
                   DonationButton(
                     idProject: widget.project.projectID,
                     onPressedButton: widget.onPressed,//showDonationDialog,

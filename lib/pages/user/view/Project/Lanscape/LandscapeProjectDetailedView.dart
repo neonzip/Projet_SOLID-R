@@ -40,7 +40,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
       child: Column(
         children: [
           const AutoSizeText("Ma participation :",),
-          const AutoSizeText("80 €",
+          const AutoSizeText("0.0 €",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
             ProjectProgressBar(
