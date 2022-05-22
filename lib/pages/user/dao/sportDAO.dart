@@ -48,11 +48,21 @@ class sportDAO {
     print('Dataaaaaaa removed');
   }
 
-  getListOfSports(){
+ Future<List<SportModel>> getListOfSports() async {
    /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
     Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
     List<SportModel>  objectArrayList = <SportModel>[]; //(objectHashMap.values());
     */
+
+    final List<SportModel> list = [];
+    final snapshot = await FirebaseDatabase.instance.ref('Sport').get();
+    final map = snapshot.value as Map<dynamic, dynamic>;
+
+      map.forEach((key, value) {
+        final sprt = SportModel.fromJson(value);
+        list.add(sprt);
+      });
+     return list;
 
   }
 }
