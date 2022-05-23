@@ -7,7 +7,7 @@ class ActivityModel {
   late DateTime activityEndDate;
   late int activityDistance;
   late SportModel activitySport;
-  late UserModel activityUser;
+
 
   //////////////////////////
 
