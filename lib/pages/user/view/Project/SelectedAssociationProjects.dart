@@ -23,30 +23,12 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
 
   /// Widget for filter.
   Widget filterTemplate() {
-    return SizedBox(
-        height: 190,
+    return Container(
+        padding: const EdgeInsets.only(bottom: 15),
         child: Column (
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 0, 5),
-                child: Row(
-                  children: [
-                    const Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5))),
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isExpanded = !isExpanded;
-                          });
-                        },
-                        icon: Icon(isExpanded? Icons.arrow_drop_up : Icons.arrow_drop_down, color: const Color(0xFF0725A5),)
-                    )],
-                )
-            ),
-
-            const SizedBox(
-              height: 15,
-              child: Separator(),
-            ),
             ItemFilter(
                 isSelected: filterAssociationProjects,
                 textItem: 'Ceux de l\'association',
@@ -148,12 +130,45 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  int selectedFilter = 1; // 1 for the projects of the association selection initialy and 2 for all the solidarity projects in this case
 
   /// Builder for the page of projects in the app.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            (MediaQuery.of(context).size.width >= 600) ? PopupMenuButton(
+                tooltip: "Filtrer les projets",
+                padding: const EdgeInsets.all(0),
+                child: Row(
+                  children: const [
+                    Text("Filtrer", style: TextStyle(color: Colors.yellow),),
+                    Icon(Icons.arrow_drop_down, color: Colors.yellow,),
+                  ],
+                ),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    onTap: () {
+                      selectedFilter = 1;
+                      setState(() {
+                        listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
+                      });
+                    },
+                    child: Text('Ceux de l\'association', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
+                  ),
+                  PopupMenuItem(
+                    onTap: () {
+                      selectedFilter = 2;
+                      setState(() {
+                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                      });
+                    },
+                    child:  Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
+                  ),
+                ]
+            ) : Container(),
+          ],
           backgroundColor: const Color(0xFF0725A5),
           title: const Text("Projets solidaires"),
           centerTitle: true,

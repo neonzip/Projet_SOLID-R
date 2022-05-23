@@ -14,8 +14,10 @@ class EntityModel {
     entityDescription = description;
     entityAdvertisement = ad;
   }
+
   EntityModel.FromEntityModel(){ //empty constructor
   }
+
   EntityModel.fromJson(Map<dynamic, dynamic> json)
       : entityID = json['entityID'],
         entityName = json['entityName'],

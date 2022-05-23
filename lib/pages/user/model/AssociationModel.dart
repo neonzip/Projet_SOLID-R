@@ -8,7 +8,6 @@ class AssociationModel extends EntityModel {
   late String associationMail;
 
   AssociationModel (int id, String name, String description, String logo, AdvertisementModel ad, String websiteURL) : super(id, name, description, ad) {
-
     associationLogo = logo;
     associationAdvertisementURL = ad.advertisementURL;
     associationWebSiteURL = websiteURL;
@@ -23,12 +22,14 @@ class AssociationModel extends EntityModel {
 
   }
 
+  @override
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'associationLogo': associationLogo,
     'associationWebSiteURL': associationWebSiteURL,
     'associationAdvertisementURL': associationAdvertisementURL,
     'associationMail': associationMail,
   };
+
   /// ////////////////////////////
   String getAssociationLogo() {
     return associationLogo;
