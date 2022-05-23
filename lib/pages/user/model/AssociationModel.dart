@@ -15,13 +15,13 @@ class AssociationModel extends EntityModel {
     associationMail = "xxx@yyy.zz";
   }
 
-  AssociationModel.fromJson(Map<dynamic, dynamic> json)
-      :
-        associationLogo = json['associationLogo'],
-        associationWebSiteURL = json['associationWebSiteURL'],
-        associationAdvertisementURL = json['associationAdvertisementURL'],
-        associationMail = json['associationMail'];
+  AssociationModel.fromJson(Map<dynamic, dynamic> json) : super.FromEntityModel(){
+    associationLogo = json['associationLogo'];
+    associationWebSiteURL = json['associationWebSiteURL'];
+    associationAdvertisementURL = json['associationAdvertisementURL'];
+    associationMail = json['associationMail'];
 
+  }
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'associationLogo': associationLogo,

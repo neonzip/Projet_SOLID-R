@@ -6,13 +6,16 @@ class EntityModel {
   late String entityDescription;
   late AdvertisementModel entityAdvertisement;
 
+
+
   EntityModel(int id, String name, String description, AdvertisementModel ad) {
     entityID = id;
     entityName = name;
     entityDescription = description;
     entityAdvertisement = ad;
   }
-
+  EntityModel.FromEntityModel(){ //empty constructor
+  }
   EntityModel.fromJson(Map<dynamic, dynamic> json)
       : entityID = json['entityID'],
         entityName = json['entityName'],
