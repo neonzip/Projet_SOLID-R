@@ -61,7 +61,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
   Widget projectDetailedNavigation() {
     return
       DefaultTabController(
-        length: (widget.project.projectResult == 100)? 4 : 3,
+        length: (widget.project.projectResult == widget.project.projectDonationGoal)? 4 : 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -113,7 +113,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
                       decelerationDuration: const Duration(milliseconds: 500),
                     )
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                   Tab(
                       child: Marquee(
                         showFadingOnlyWhenScrolling: true,
@@ -158,7 +158,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
                     ),
                   )
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                 Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(10),

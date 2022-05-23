@@ -129,7 +129,7 @@ class DataProjectTest {
   List<ProjectModel> getListFinishedFormalProjects() {
     List<ProjectModel> listFinishedFormalProjects = <ProjectModel>[];
     for (int i = 0; i < formalProjectdataList.length; i ++) {
-      if (formalProjectdataList.elementAt(i).getResultProject() == 100) {
+      if (formalProjectdataList.elementAt(i).getResultProject() == formalProjectdataList.elementAt(i).getDonationGoalProject()) {
         listFinishedFormalProjects.add(formalProjectdataList.elementAt(i));
       }
     }
@@ -151,7 +151,7 @@ class DataProjectTest {
   List<ProjectModel> getListRunningFormalProjects() {
     List<ProjectModel> listRunningFormalProjects = <ProjectModel>[];
     for (int i = 0; i < formalProjectdataList.length; i ++) {
-      if (formalProjectdataList.elementAt(i).getResultProject() < 100) {
+      if (formalProjectdataList.elementAt(i).getResultProject() < formalProjectdataList.elementAt(i).getDonationGoalProject()) {
         listRunningFormalProjects.add(formalProjectdataList.elementAt(i));
       }
     }

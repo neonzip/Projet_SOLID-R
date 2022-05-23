@@ -142,7 +142,7 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
                     textAlign: TextAlign.justify,
                   ),
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                   Container(
                     padding: const EdgeInsets.all(10),
                     child:

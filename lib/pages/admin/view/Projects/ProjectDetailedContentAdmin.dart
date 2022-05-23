@@ -22,6 +22,8 @@ class ProjectDetailedContentAdmin extends StatefulWidget {
 class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmin> {
 
   Widget participationInformationTemplate() {
+    double progress = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
+
     return Container (
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -36,7 +38,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
       child: Column(
         children: [
           ProjectProgressBar(
-            valueBar: widget.project.projectResult / 100, // %
+            valueBar: progress / 100, // %
           ),
           const AutoSizeText(
             // TODO : Change the "XX" value by the real one.
@@ -52,7 +54,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
   Widget projectDetailedNavigation() {
     return
       DefaultTabController(
-        length: (widget.project.projectResult == 100)? 4 : 3,
+        length: (widget.project.projectResult == widget.project.projectDonationGoal)? 4 : 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -104,7 +106,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
                       decelerationDuration: const Duration(milliseconds: 500),
                     )
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                   Tab(
                       child: Marquee(
                         showFadingOnlyWhenScrolling: true,
@@ -143,7 +145,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
                     textAlign: TextAlign.justify,
                   ),
                 ),
-                if (widget.project.projectResult == 100)
+                if (widget.project.projectResult == widget.project.projectDonationGoal)
                   Container(
                     padding: const EdgeInsets.all(10),
                     child:
