@@ -1,6 +1,7 @@
 
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
+///!!!!!!!!!!!!!    likedProjects is not done yet
 class UserModel {
   late int userID;
   late String userNickName;
@@ -9,10 +10,8 @@ class UserModel {
   late double userTotalDistance = 0.0;
   late double userTotalDonations = 0.0;
   late bool userIsAdmin;
-
   late String userToken;
   late String password;
-
   late List<ProjectModel> userLikedProject;
 
 
@@ -21,7 +20,32 @@ class UserModel {
     userEmail = email;
     password = pw;
     userIsAdmin = isAdmin;
+    userLikedProject = [];
   }
+
+
+  UserModel.fromJson(Map<dynamic, dynamic> json)
+      : userID = int.parse(json['userID'] as String),
+        userNickName = json['userNickName'],
+        userEmail = json['userEmail'],
+        userPurse = double.parse(json['userPurse'] as String),
+        userTotalDistance = double.parse(json['userTotalDistance'] as String),
+        userIsAdmin = json['userIsAdmin'],
+        userToken = json['userToken'],
+        password = json['password'];
+
+
+  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+    'userID' : userID.toString(),
+    'userNickName': userNickName,
+    'userEmail': userEmail.toString(),
+    'userPurse':  userPurse.toString(),
+  'userTotalDistance':  userTotalDistance.toString(),
+  'userTotalDonations':  userTotalDonations.toString(),
+  'userIsAdmin':  userIsAdmin.toString(),
+  'userToken':  userToken,
+  'password':  password,
+   };
 
   /// ////////////////////////////
   int getUserID(){
