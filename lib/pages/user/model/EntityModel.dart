@@ -4,16 +4,26 @@ class EntityModel {
   late int entityID;
   late String entityName;
   late String entityDescription;
-
   late AdvertisementModel entityAdvertisement;
 
+  EntityModel() {
 
-  EntityModel(int id, String name, String description, AdvertisementModel ad) {
-    entityID = id;
-    entityName = name;
-    entityDescription = description;
-    entityAdvertisement = ad;
   }
+
+  EntityModel.fromJson(Map<dynamic, dynamic> json)
+      : entityID = json['entityID'],
+        entityName = json['entityName'],
+        entityDescription = json['entityDescription'],
+        entityAdvertisement = json['entityAdvertisement'];
+
+
+
+  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+    'entityID': entityID,
+    'entityName': entityName,
+    'entityDescription': entityDescription,
+    'AdvertisementModel': AdvertisementModel,
+  };
 
   /// ////////////////////////////
   int getEntityId() {
