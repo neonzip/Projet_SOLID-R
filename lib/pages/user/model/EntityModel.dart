@@ -6,8 +6,11 @@ class EntityModel {
   late String entityDescription;
   late AdvertisementModel entityAdvertisement;
 
-  EntityModel() {
-
+  EntityModel(int id, String name, String description, AdvertisementModel ad) {
+    entityID = id;
+    entityName = name;
+    entityDescription = description;
+    entityAdvertisement = ad;
   }
 
   EntityModel.fromJson(Map<dynamic, dynamic> json)
