@@ -37,12 +37,22 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
           ProjectProgressBar(
             valueBar: progress / 100, // %
           ),
-          const AutoSizeText(
+          (widget.project.projectDonationGoal == widget.project.projectResult) ? const AutoSizeText(
             // TODO : Change the "XX" value by the real one.
               "Cagnotte remplie en " "XX" " jours",
               textAlign: TextAlign.center,
               maxLines: 2
-          ),
+          )
+              :
+          Container (
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+            child: Column(
+                children: [
+                  Text("$progress % financés"),
+                ]
+            ),
+          )
+
         ],
       ),
     );
