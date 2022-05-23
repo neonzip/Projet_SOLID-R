@@ -8,7 +8,7 @@ class AdvertisementModel {
   }
   AdvertisementModel.fromJson(Map<dynamic, dynamic> json)
       : advertisementID = int.parse(json['advertisementID'] as String),
-        advertisementURL = json['advertisementID'];
+        advertisementURL = json['advertisementURL'];
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'advertisementID': advertisementID.toString(),

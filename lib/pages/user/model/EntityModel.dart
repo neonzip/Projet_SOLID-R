@@ -28,7 +28,7 @@ class EntityModel {
     'entityID': entityID,
     'entityName': entityName,
     'entityDescription': entityDescription,
-    'AdvertisementModel': AdvertisementModel,
+    //'AdvertisementModel': AdvertisementModel,
   };
 
   /// ////////////////////////////

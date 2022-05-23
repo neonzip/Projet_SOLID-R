@@ -47,7 +47,7 @@ class advertisementDAO {
     //test
     print('Dataaaaaaa removed');
   }
-
+/*
   getListOfAdvertisements(){
     /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
     Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
@@ -55,4 +55,6 @@ class advertisementDAO {
     */
 
   }
+
+ */
 }

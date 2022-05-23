@@ -46,7 +46,7 @@ class activityDAO {
     //test
     print('Dataaaaaaa removed');
   }
-
+/*
   Future<List<ActivityModel>> getListOfActivities() async {
     /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
     Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
@@ -65,4 +65,6 @@ class activityDAO {
 
   }
 
+
+ */
 }
