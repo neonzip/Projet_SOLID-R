@@ -56,6 +56,8 @@ dependencies:
   mailer: ^5.0.1
   google_sign_in: ^5.0.4
   flutter_email_sender: ^5.1.0
+  charts_flutter: ^0.12.0
+  pie_chart: ^5.3.0
 
 
 dev_dependencies:

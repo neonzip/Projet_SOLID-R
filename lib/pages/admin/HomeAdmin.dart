@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ListProjectViewAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Projects/ProjectCharts.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import '../user/view/templates/Home/ContainerWithBackground.dart';
 
@@ -56,10 +57,11 @@ class _HomeAdminState extends State<HomeAdmin> {
                           ),
                           Container(
                             margin: const EdgeInsets.all(10),
-                            color: Colors.green,
-                            height: 40,
+                            //color: Colors.green,
+                            height: 200,
                             // TODO : Here we can add the graph instead of an empty container
-                            child: Container(),
+                            child: ProjetCharts(
+                            ),
                           )
                         ]
                     ),
