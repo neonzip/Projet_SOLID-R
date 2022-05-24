@@ -188,7 +188,7 @@ class _SignInControllerState extends State<SignInController> {
             title: Container(
               alignment: Alignment.center,
               child: const Text(
-                "Votre projet a été modifié !",
+                "Mot de passe oublié ?",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),

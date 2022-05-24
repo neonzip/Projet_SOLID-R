@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
+import 'package:projet_solid_r/pages/admin/view/DeleteProject/DeleteProjectController.dart';
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/UpdatingProject.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
+import 'package:projet_solid_r/pages/user/view/Project/GlobalInformationAdmin.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 
 import '../../../user/model/ProjectModel.dart';
@@ -176,7 +177,9 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
           ),
           const Spacer(),
           TextButton(
-            onPressed: () {  },
+            onPressed: () {
+              showConfirmationRemoveProject();
+            },
             child: const Text("Supprimer", style: TextStyle(color: Colors.red),),
           ),
         ],
@@ -191,7 +194,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          GlobalInformation(
+                          GlobalInformationAdmin(
                             project: widget.project,
                             goalDate: DateTime.now(),
                             onPressed: () {
@@ -221,69 +224,21 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
       )
     );
   }
-}
 
-
-
-
-
-/*Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 30,
-            backgroundColor: Colors.yellow,
-            leading: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> UpdatingProject(project: widget.project)));
-                  },
-                  child: const Text("Modifier", style: TextStyle(color: Color(0xFF0725A5))),
-
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {  },
-                  child: const Text("Supprimer", style: TextStyle(color: Colors.red),),
-                ),
-              ],
+  void showConfirmationRemoveProject() {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Container(
+            alignment: Alignment.center,
+            child: const Text(
+              "Suppression du projet",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),
-          body: Center(
-              child: SizedBox(
-                  width: 500,
-                  child: Column(
-                    children: [
-
-                      SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            GlobalInformation(
-                              project: widget.project,
-                              goalDate: DateTime.now(),
-                              onPressed: () {
-
-                              },
-                            ),
-                            //globalInformationTemplate(),
-                            participationInformationTemplate(),
-                            MeceneInformation(project: widget.project),
-
-                            /* Blue horizontal line separating the two parts of the main page. */
-                            const Separator(),
-
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 500,
-                              padding: const EdgeInsets.all(5),
-                              child: projectDetailedNavigation(),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-              )
-          ),
-        )*/
+          content: DeleteProjectController(project: widget.project,),
+        )
+    );
+  }
+}
