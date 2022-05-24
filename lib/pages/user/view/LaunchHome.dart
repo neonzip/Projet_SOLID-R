@@ -98,13 +98,14 @@ class _LaunchHomeState extends State<LaunchHome> {
                     ),
                     SigninWithOtherAccountButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, "/admin/home");
+                          // TODO: Do the signin with facebook account
                         },
                         name: "Facebook",
                         logo: "assets/LogoNetworks/facebook.png"
                     ),
                     SigninWithOtherAccountButton(
                         onPressed: () {
+                          // TODO : Do the signin with google account
                         },
                         name: "Google",
                         logo: "assets/LogoNetworks/google.png"

@@ -52,7 +52,6 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
                 ]
             ),
           )
-
         ],
       ),
     );

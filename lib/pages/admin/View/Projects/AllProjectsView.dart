@@ -15,74 +15,66 @@ class AllProjectsView extends StatefulWidget {
 
 class _AllProjectsViewState extends State<AllProjectsView> {
   bool? filterAll = true;
-  bool? filterFavorite = false;
+  bool? filterRunning = false;
+  bool? filterFinished = false;
   bool isExpanded = false;
 
   List<ProjectViewAdmin>? listProjects = <ProjectViewAdmin>[];
 
   /// Widget for filter.
   Widget filterTemplate() {
-    return SizedBox(
-        height: 190,
-        child: Column (
-          children: [
-            Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 0, 5),
-                child: Row(
-                  children: [
-                    const Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5))),
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isExpanded = !isExpanded;
-                          });
-                        },
-                        icon: Icon(isExpanded? Icons.arrow_drop_up : Icons.arrow_drop_down, color: const Color(0xFF0725A5),)
-                    )],
-                )
-            ),
-
-            const SizedBox(
-              height: 15,
-              child: Separator(),
-            ),
-            ItemFilter(
-                isSelected: filterAll,
-                textItem: 'Tous',
-                onChanged: (value) {
-                  setState(() {
-                    filterAll = value;
-                    filterFavorite = false;
-                    if (filterAll == true) {
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
-                    }
-                    else {
-                      if (filterFavorite == false) {
-                        filterAll = true;
-                      }
-                    }
-                  });
-                }
-            ),
-            ItemFilter(
-                isSelected: filterFavorite,
-                textItem: 'Favoris',
-                onChanged: (value) {
-                  setState(() {
-                    filterFavorite = value;
-                    if (filterFavorite == true) {
-                      filterAll = false;
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
-                    }
-                    else{
-                      filterAll = true;
-                      listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
-                    }
-                  });
-                }
-            ),
-          ],
-        )
+    return Container(
+      padding: const EdgeInsets.only(bottom: 15),
+      color: Colors.white,
+      child: Column (
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ItemFilter(
+              isSelected: filterAll,
+              textItem: 'Tous',
+              onChanged: (value) {
+                setState(() {
+                  filterAll = value;
+                  if (filterAll == true) {
+                    filterRunning = false;
+                    filterFinished = false;
+                    listProjects = DataProjectTest().getListFormalProjectsViews().cast<ProjectViewAdmin>();
+                  }
+                });
+              }
+          ),
+          ItemFilter(
+              isSelected: filterRunning,
+              textItem: 'En cours',
+              onChanged: (value) {
+                setState(() {
+                  filterRunning = value;
+                  if (filterRunning == true) {
+                    filterFinished = false;
+                    filterAll = false;
+                    listProjects = DataProjectTest().getListRunningFormalProjectsViews().cast<ProjectViewAdmin>();
+                  }
+                  else {
+                  }
+                });
+              }
+          ),
+          ItemFilter(
+              isSelected: filterFinished,
+              textItem: 'Terminés',
+              onChanged: (value) {
+                setState(() {
+                  filterFinished = value;
+                  if (filterFinished == true) {
+                    filterAll = false;
+                    filterRunning = false;
+                    listProjects = DataProjectTest().getListFinishedFormalProjectsViews().cast<ProjectViewAdmin>();
+                  }
+                });
+              }
+          ),
+        ],
+      ),
     );
   }
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
