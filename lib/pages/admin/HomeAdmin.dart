@@ -30,8 +30,15 @@ class _HomeAdminState extends State<HomeAdmin> {
           body: ContainerWithBackground(
             content: Center (
                 child: SingleChildScrollView(
-                  child: SizedBox(
+                  child: Container(
                     width: 500,
+                    margin: const EdgeInsets.all(15),
+                    padding: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:10) : const EdgeInsets.only(top:150),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10), //border corner radius
+                    ),
                     child: Column(
                         children: [
                           Text("Bonjour $pseudo",
@@ -47,6 +54,13 @@ class _HomeAdminState extends State<HomeAdmin> {
                                 fontSize: 20.0,
                               )
                           ),
+                          Container(
+                            margin: const EdgeInsets.all(10),
+                            color: Colors.green,
+                            height: 40,
+                            // TODO : Here we can add the graph instead of an empty container
+                            child: Container(),
+                          )
                         ]
                     ),
                   ),
