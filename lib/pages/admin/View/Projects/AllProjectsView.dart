@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/ProjectsViewAdmin.dart';
 
 import '../../../user/controller/fakeDataTest/DataProjectTest.dart';
-import '../../../user/view/templates/ItemFilter.dart';
-import '../../../user/view/templates/Separator.dart';
 import 'ProjectViewAdmin.dart';
 
 class AllProjectsView extends StatefulWidget {
@@ -19,64 +17,10 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   bool? filterFinished = false;
   bool isExpanded = false;
 
+  int selectedFilter = 1; // 1 for All, 2 for running and 3 for finished in this case
+
   List<ProjectViewAdmin>? listProjects = <ProjectViewAdmin>[];
 
-  /// Widget for filter.
-  Widget filterTemplate() {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 15),
-      color: Colors.white,
-      child: Column (
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ItemFilter(
-              isSelected: filterAll,
-              textItem: 'Tous',
-              onChanged: (value) {
-                setState(() {
-                  filterAll = value;
-                  if (filterAll == true) {
-                    filterRunning = false;
-                    filterFinished = false;
-                    listProjects = DataProjectTest().getListFormalProjectsViews().cast<ProjectViewAdmin>();
-                  }
-                });
-              }
-          ),
-          ItemFilter(
-              isSelected: filterRunning,
-              textItem: 'En cours',
-              onChanged: (value) {
-                setState(() {
-                  filterRunning = value;
-                  if (filterRunning == true) {
-                    filterFinished = false;
-                    filterAll = false;
-                    listProjects = DataProjectTest().getListRunningFormalProjectsViews().cast<ProjectViewAdmin>();
-                  }
-                  else {
-                  }
-                });
-              }
-          ),
-          ItemFilter(
-              isSelected: filterFinished,
-              textItem: 'Terminés',
-              onChanged: (value) {
-                setState(() {
-                  filterFinished = value;
-                  if (filterFinished == true) {
-                    filterAll = false;
-                    filterRunning = false;
-                    listProjects = DataProjectTest().getListFinishedFormalProjectsViews().cast<ProjectViewAdmin>();
-                  }
-                });
-              }
-          ),
-        ],
-      ),
-    );
-  }
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /// https://www.kindacode.com/article/flutter-make-a-scroll-back-to-top-button/
   /// Several parts about the button which drives us to the top of the page are in this section.
@@ -143,13 +87,59 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   /// Builder for the page of projects in the app.
   @override
   Widget build(BuildContext context) {
-    return Center(
-          child: ProjectsViewAdmin(
-            filter: filterTemplate(),
-            isExpandedFilter: isExpanded,
-            controller: _scrollController,
-            listProjects: listProjects,
-          ),
+    return Scaffold(
+      body: Center(
+        child: ProjectsViewAdmin(
+          isExpandedFilter: isExpanded,
+          controller: _scrollController,
+          listProjects: listProjects,
+        ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          PopupMenuButton(
+              tooltip: "Filtrer les projets",
+              padding: const EdgeInsets.all(0),
+              child: Row(
+                children: const [
+                  Text("Filtrer", style: TextStyle(color: Color(0xFF0725A5)),),
+                  Icon(Icons.arrow_drop_down, color: Color(0xFF0725A5)),
+                ],
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    selectedFilter = 1;
+                    setState(() {
+                      listProjects = DataProjectTest().getListFormalProjectsViewsAdmin();
+                    });
+                  },
+                  child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    selectedFilter = 2;
+                    setState(() {
+                      listProjects = DataProjectTest().getListRunningFormalProjectsViewsAdmin().cast<ProjectViewAdmin>();
+                    });
+                  },
+                  child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    selectedFilter = 3;
+                    setState(() {
+                      listProjects = DataProjectTest().getListFinishedFormalProjectsViewsAdmin().cast<ProjectViewAdmin>();
+                    });
+                  },
+                  child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
+                ),
+              ]
+          )
+        ],
+      ),
     );
+
   }
 }
