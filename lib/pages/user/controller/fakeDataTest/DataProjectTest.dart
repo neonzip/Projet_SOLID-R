@@ -120,6 +120,19 @@ class DataProjectTest {
     return list;
   }
 
+  /// Creates and gets the list of all the names of formal projects for the admin part.
+  List<ProjectViewAdmin> getListFormalProjectsViewsAdmin() {
+    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
+    for (int i = 0; i < formalProjectdataList.length; i ++) {
+      ProjectViewAdmin projectView = ProjectViewAdmin(
+        project: formalProjectdataList.elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
   /// Gets the list of all the formal projects.
   List<ProjectModel> getListFormalProjects() {
     return formalProjectdataList;
@@ -208,11 +221,38 @@ class DataProjectTest {
     return list;
   }
 
+
+  /// Creates and gets the list of all the finished formal projects for the admin part.
+  List<ProjectViewAdmin> getListFinishedFormalProjectsViewsAdmin() {
+    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
+    for (int i = 0; i < getListFinishedFormalProjects().length; i ++) {
+      ProjectViewAdmin projectView = ProjectViewAdmin(
+        project: getListFinishedFormalProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
   /// Creates and gets the list of all the running formal projects.
   List<ProjectView> getListRunningFormalProjectsViews() {
     List<ProjectView> list = <ProjectView>[];
     for (int i = 0; i < getListRunningFormalProjects().length; i ++) {
       ProjectView projectView = ProjectView(
+        project: getListRunningFormalProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the running formal projects for the admin part.
+  List<ProjectViewAdmin> getListRunningFormalProjectsViewsAdmin() {
+    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
+    for (int i = 0; i < getListRunningFormalProjects().length; i ++) {
+      ProjectViewAdmin projectView = ProjectViewAdmin(
         project: getListRunningFormalProjects().elementAt(i),
         contribution: 0,
       );

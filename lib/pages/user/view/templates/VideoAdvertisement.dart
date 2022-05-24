@@ -86,7 +86,6 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
               onTap:
               /// If the video is finished, the user can go to the web site of the ad
               TapGestureRecognizer().onTap = () async {
-                if (!controller.value.isPlaying) {
                   var url = widget.project.projectAssociation.associationWebSiteURL;
                   try {
                     await launchUrl(Uri.parse(url));
@@ -97,7 +96,6 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
                       print(exception);
                     }
                   }
-                }
               },
 
               /// The way that the video is displayed on the screen.

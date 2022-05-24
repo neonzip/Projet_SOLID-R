@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
 import '../../../model/ProjectModel.dart';
 import '../../templates/DonationButton.dart';
+import '../../templates/Project/GlobalInformation.dart';
 import '../../templates/Project/ProjectProgressBar.dart';
 import '../../templates/Separator.dart';
 import '../../templates/ShareButton.dart';
