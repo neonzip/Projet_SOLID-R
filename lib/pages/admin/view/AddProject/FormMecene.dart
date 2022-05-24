@@ -15,6 +15,26 @@ class FormMecene extends StatefulWidget {
 class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMixin<FormMecene>{
   bool alreadyExist = true;
 
+  late TextEditingController textEditingControllerDescriptionMecene;
+  late TextEditingController textEditingControllerNameMecene;
+
+  String errorMessageNameMecene = "Veuillez entrer le nom du mécène.";
+
+  @override
+  void initState() {
+    textEditingControllerNameMecene = TextEditingController();
+    textEditingControllerNameMecene.addListener(() {
+      onChangedName();
+    });
+
+    textEditingControllerDescriptionMecene = TextEditingController();
+    textEditingControllerDescriptionMecene.addListener(() {
+      onChangedDescription();
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,15 +73,17 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
                     FormTextFieldAdmin(
                       key: widget.key,
                       inputType: TextInputType.text,
-                      errorMessage: "Champ vide",
+                      errorMessage: errorMessageNameMecene,
                       labelHint: "Entrez le nom du mécène",
                       label: "Nom",
+                      textEditingController: textEditingControllerNameMecene,
                     ),
                     FormMultilineTextField(
                         key: widget.key,
-                        errorMessage: "Champ vide",
+                        errorMessage: "",
                         labelHint: "Entrez la description du mécène",
-                        label: "Description"
+                        label: "Description",
+                      textEditingController: textEditingControllerDescriptionMecene,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,6 +147,29 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
           ),
         )
     );
+  }
+
+  void onChangedName() {
+    /// We get the last modified value of the name text field and create a specific variable to use it.
+    String name = textEditingControllerNameMecene.text;
+
+    print("Last name value : " + name);                   // Temporary : prints to the console the value of the email
+
+    // The name is empty
+    if (name.isEmpty) {
+      errorMessageNameMecene = "Veuillez entrer le nom du mécène.";
+    }
+    // The name is correct
+    else {
+      errorMessageNameMecene = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  void onChangedDescription() {
+    // TODO : Get the value of the specific controller in order to have the value of the description to add to the DB.
   }
 
   @override

@@ -7,18 +7,19 @@ class FormTextFieldAdmin extends StatefulWidget {
 
   final TextInputType inputType;
 
-  const FormTextFieldAdmin({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType}) : super(key: key);
+  final TextEditingController textEditingController;
+
+
+  const FormTextFieldAdmin({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.inputType, required this.textEditingController}) : super(key: key);
 
   @override
   _FormTextFieldAdminState createState() => _FormTextFieldAdminState();
 }
 
 class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
-  late TextEditingController textEditingController;
 
   @override
   void initState() {
-    textEditingController = TextEditingController();
     super.initState();
   }
 
@@ -46,7 +47,7 @@ class _FormTextFieldAdminState extends State<FormTextFieldAdmin> {
                   color: Colors.white,
                 ),
                 child: TextField(
-                  controller: textEditingController,
+                  controller: widget.textEditingController,
                   keyboardType: widget.inputType,
                   decoration: InputDecoration(
                     focusedBorder: const OutlineInputBorder(

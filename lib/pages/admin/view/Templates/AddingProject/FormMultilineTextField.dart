@@ -4,8 +4,11 @@ class FormMultilineTextField extends StatefulWidget {
   final String errorMessage;
   final String label;
   final String labelHint;
+  final TextEditingController textEditingController;
 
-  const FormMultilineTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label}) : super(key: key);
+
+
+  const FormMultilineTextField({Key? key, required this.errorMessage, required this.labelHint, required this.label, required this.textEditingController}) : super(key: key);
   @override
   _FormMultilineTextFieldState createState() => _FormMultilineTextFieldState();
 }
@@ -36,6 +39,7 @@ class _FormMultilineTextFieldState extends State<FormMultilineTextField> {
                   color: Colors.white,
                 ),
                 child: TextField(
+                  controller: widget.textEditingController,
                   maxLines: 10,
                   //textAlign: TextAlign.justify,
                   decoration: InputDecoration(

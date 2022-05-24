@@ -15,6 +15,30 @@ class FormAssociation extends StatefulWidget {
 class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAliveClientMixin<FormAssociation> {
   bool alreadyExist = true;
 
+  String errorMessageNameAssociation = "Veuillez entrer le nom de l'association.";
+  String errorMessageMailAssociation = "Veuillez entrer le courriel de l'association.";
+
+  late TextEditingController textEditingControllerNameAssociation;
+  late TextEditingController textEditingControllerMailAssociation;
+  late TextEditingController textEditingControllerDescriptionAssociation;
+
+  @override
+  void initState() {
+    textEditingControllerNameAssociation = TextEditingController();
+    textEditingControllerNameAssociation.addListener(() {
+      onChangedName();
+    });
+
+    textEditingControllerMailAssociation = TextEditingController();
+    textEditingControllerMailAssociation.addListener(() {
+      onChangedMail();
+    });
+
+    textEditingControllerDescriptionAssociation = TextEditingController();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +58,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("L\'association existe déjà ?"),
+                            const Text("L'association existe déjà ?"),
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {
@@ -53,22 +77,25 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                     FormTextFieldAdmin(
                       key: widget.key,
                       inputType: TextInputType.text,
-                      errorMessage: "Champ vide",
+                      errorMessage: errorMessageNameAssociation,
                       labelHint: "Entrez le nom de l'association",
                       label: "Nom",
+                      textEditingController: textEditingControllerNameAssociation,
                     ),
                     FormMultilineTextField(
                         key: widget.key,
-                        errorMessage: "Champ vide",
+                        errorMessage: "",
                         labelHint: "Entrez la description de l'association",
-                        label: "Description"
+                        label: "Description",
+                      textEditingController: textEditingControllerDescriptionAssociation,
                     ),
                     FormTextFieldAdmin(
                       key: widget.key,
                       inputType: TextInputType.text,
-                      errorMessage: "Champ vide",
+                      errorMessage: errorMessageMailAssociation,
                       labelHint: "Entrez le courriel de l'association",
                       label: "Courriel",
+                      textEditingController: textEditingControllerMailAssociation,
                     ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +167,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("L\'association n'existe pas encore ?"),
+                            const Text("L'association n'existe pas encore ?"),
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {
@@ -163,6 +190,47 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
           ),
         )
     );
+  }
+
+  void onChangedMail() {
+    // TODO: Implement the rest of this method in order to change the error message when the admin does not put a right email.
+    // TODO: Change the message when the email does not exist.
+
+    /// We get the last modified value of the email text field and create a specific variable to use it.
+    String email = textEditingControllerMailAssociation.text;
+
+    print("Last email value : " + email);                   // Temporary : prints to the console the value of the email
+
+    // The email is empty
+    if (email.isEmpty) {
+      errorMessageMailAssociation = "Veuillez entrer le courriel de l'association.";
+    }
+    // The email is correct
+    else {
+      errorMessageMailAssociation = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  void onChangedName() {
+    /// We get the last modified value of the name text field and create a specific variable to use it.
+    String name = textEditingControllerNameAssociation.text;
+
+    print("Last name value : " + name);                   // Temporary : prints to the console the value of the email
+
+    // The name is empty
+    if (name.isEmpty) {
+      errorMessageNameAssociation = "Veuillez entrer le nom de l'association.";
+    }
+    // The name is correct
+    else {
+      errorMessageNameAssociation = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
   }
 
   @override
