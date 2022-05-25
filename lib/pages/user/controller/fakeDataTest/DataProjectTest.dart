@@ -89,13 +89,6 @@ class DataProjectTest {
     solidarityProjectdataList.add(project8);
 
 
-
-    //IMANE TEST
-     /**/
-   ProjectDAO dao = ProjectDAO();
-   dao.saveProject(project1);
-
-
   }
 
   /// Gets the list of all the solidarity projects.

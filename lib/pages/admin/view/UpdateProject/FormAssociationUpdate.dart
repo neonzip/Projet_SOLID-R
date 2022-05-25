@@ -36,7 +36,7 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
                     errorMessage: "Champ vide",
                     labelHint: "Entrez le nom de l'association",
                     label: "Nom",
-                    text: widget.project.getAssociationProject().entityName,
+                    text: widget.project.getProjectAssociation().entityName,
                   ),
                   FormMultilineTextFieldWithContent(
                       key: widget.key,

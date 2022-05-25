@@ -74,7 +74,7 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
                             style: const TextStyle(fontWeight: FontWeight.bold),
                             maxLines: 2,
                           ),
-                          Image.asset(widget.project.getAssociationProject().associationLogo, height: 60, width: 60,),
+                          Image.asset(widget.project.getProjectAssociation().associationLogo, height: 60, width: 60,),
                           //buttonFavorite(),
                         ]
                     ),

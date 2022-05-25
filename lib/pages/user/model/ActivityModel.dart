@@ -9,8 +9,6 @@ class ActivityModel {
   late int userID;
   late int sportID;
 
-  //////////////////////////
-
   ActivityModel (int activity, DateTime activityStart) {
     activityID = activity;
     activityStartDate = activityStart;
@@ -43,4 +41,46 @@ class ActivityModel {
     'userID' : userID.toString(),
     'sportID' : sportID.toString(),
   };
+
+  /****** Getters and Setters *****/
+
+   int getActivityID(){
+     return activityID;
+   }
+   void setActivityID(int id){
+     activityID = id;
+   }
+
+  DateTime getActivityStartDate(){
+    return activityStartDate;
+  }
+  void setActivityStartDate(DateTime d){
+    activityStartDate=d;
+  }
+  DateTime getActivityEndDate(){
+    return activityStartDate;
+  }
+  void setActivityEndDate(DateTime d){
+    activityStartDate=d;
+  }
+  int getActivityDistance(){
+    return activityDistance;
+  }
+  void setActivityDistance(int d){
+    activityDistance = d;
+  }
+
+  int getUserID(){
+    return userID;
+  }
+  void setUserID(int id){
+    userID = id;
+  }
+
+  int getSportID(){
+    return sportID;
+  }
+  void setSportID(int id){
+    sportID = id;
+  }
 }
