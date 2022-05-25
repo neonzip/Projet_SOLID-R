@@ -1,8 +1,11 @@
 
+import 'dart:convert';
+
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 ///!!!!!!!!!!!!!    likedProjects is not done yet
 class UserModel {
+
   late int userID;
   late String userNickName;
   late String userEmail;
@@ -15,36 +18,44 @@ class UserModel {
   late List<ProjectModel> userLikedProject;
 
 
-  UserModel(String name, String email, String pw, bool isAdmin) {
+  UserModel(int id,String name, String email, String pw, bool isAdmin) {
+    userID= id;
     userNickName = name;
     userEmail = email;
+    userPurse =0.0;
+    userTotalDistance = 0.0;
+    userTotalDonations = 0.0;
     password = pw;
+    userToken = "";
     userIsAdmin = isAdmin;
-    userLikedProject = [];
+    userLikedProject = <ProjectModel>[];
   }
 
 
   UserModel.fromJson(Map<dynamic, dynamic> json)
       : userID = int.parse(json['userID'] as String),
-        userNickName = json['userNickName'],
-        userEmail = json['userEmail'],
+        userNickName = json['userNickName'] as String,
+        userEmail = json['userEmail'] as String,
         userPurse = double.parse(json['userPurse'] as String),
         userTotalDistance = double.parse(json['userTotalDistance'] as String),
-        userIsAdmin = json['userIsAdmin'],
-        userToken = json['userToken'],
-        password = json['password'];
+        userTotalDonations = double.parse(json['userTotalDonations'] as String),
+        userIsAdmin = json['userIsAdmin'] as bool,
+        userToken = json['userToken'] as String,
+        password = json['password'] as String,
+        userLikedProject = (json['userLikedProject'] as List).map((e) => ProjectModel.fromJson(json)).toList();
 
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'userID' : userID.toString(),
-    'userNickName': userNickName,
+    'userNickName': userNickName.toString(),
     'userEmail': userEmail.toString(),
     'userPurse':  userPurse.toString(),
-  'userTotalDistance':  userTotalDistance.toString(),
-  'userTotalDonations':  userTotalDonations.toString(),
-  'userIsAdmin':  userIsAdmin.toString(),
-  'userToken':  userToken,
-  'password':  password,
+    'userTotalDistance':  userTotalDistance.toString(),
+    'userTotalDonations':  userTotalDonations.toString(),
+    'userIsAdmin':  userIsAdmin.toString(),
+    'userToken':  userToken.toString(),
+    'password':  password.toString(),
+    'userLikedProject' : jsonEncode(userLikedProject)
    };
 
   /// ////////////////////////////
