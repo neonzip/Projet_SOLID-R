@@ -1,6 +1,13 @@
+import 'dart:ffi';
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:projet_solid_r/pages/user/dao/PictureDAO.dart';
+import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
+import 'package:projet_solid_r/pages/user/model/PictureModel.dart';
 import '../model/ProjectModel.dart';
 import '../controller/Database.dart';
+import 'associationDAO.dart';
+import 'entityDAO.dart';
 class ProjectDAO {
   late DatabaseReference _projectRef = FirebaseDatabase.instance.ref().child('Project');
 
@@ -10,18 +17,17 @@ class ProjectDAO {
     _projectRef = db.db.ref().child('Project');
   }
 
-  /*
-  * This function takes a sport as a parameter and
-  * uses the DatabaseReference to save the JSON activity
-  * to your Realtime Database.
-  *
-  */
-
   Future<void> saveProject(ProjectModel project) async {
     _projectRef = db.db.ref().child('Project/'+project.getIdProject().toString());
     await _projectRef.set(project.toJson());
-    // another way that works
-    //_SportRef.push().set(sport.toJson());
+
+    /* important Note :
+    *  when we save the Project in the database
+    *  we only save the attributes that have a primitive type
+    *  we only save the id of the attributes that are objects
+    *  except for the list of pictures since each picture has the id of its project
+    * */
+    /* Be careful when you retreive the object from the database !*/
   }
 
   Query getProjectQuery() {
@@ -33,9 +39,20 @@ class ProjectDAO {
     final projectSnapshot = await ref.child('Project/'+ id.toString()).get();
     final json = projectSnapshot.value as Map<dynamic, dynamic>;
     final projectOBJ = ProjectModel.fromJson(json);
-    print('Data : ${projectSnapshot.value}');
-    //test
-    print('Dataaaaaaaaaaaaaa : ${projectOBJ.projectName}  ');
+
+    /* we have to retreive the project association*/
+    associationDAO assocDao = associationDAO();
+    int idAsso = projectOBJ.getProjectAssociation().getAssociationId();
+    projectOBJ.setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
+
+    /* we have to retreive the project entity*/
+    entityDAO entityDao = entityDAO();
+    int identity = projectOBJ.projectEntity.entityID;
+    projectOBJ.setEntityProject(await entityDao.getEntityByID(identity));
+
+    /* we have to retreive the project pictures*/
+    PictureDAO picDAO = PictureDAO();
+
     return projectOBJ;
   }
 

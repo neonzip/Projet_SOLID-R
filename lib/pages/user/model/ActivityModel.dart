@@ -6,7 +6,6 @@ class ActivityModel {
   late DateTime activityStartDate;
   late DateTime activityEndDate;
   late int activityDistance;
-  late SportModel activitySport;
   late int userID;
   late int sportID;
 
@@ -17,7 +16,16 @@ class ActivityModel {
     activityStartDate = activityStart;
     activityEndDate = DateTime(0);
     activityDistance = 0;
+    userID = -1;
+    sportID = -1;
   }
+  ActivityModel.ActivityModelFullConstructor(int activity, DateTime activityStart,int userId,int sportId):
+        activityID = activity,
+        activityStartDate = activityStart,
+        activityEndDate = DateTime(0),
+        activityDistance = 0,
+        userID = userId,
+        sportID = sportId;
 
   ActivityModel.fromJson(Map<dynamic, dynamic> json)
       : activityID = int.parse(json['activityID'] as String),

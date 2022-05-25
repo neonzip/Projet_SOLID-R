@@ -11,13 +11,6 @@ class activityDAO {
     _ActivityRef = db.db.ref().child('Activity');
   }
 
-  /*
-  * This function takes a sport as a parameter and
-  * uses the DatabaseReference to save the JSON activity
-  * to your Realtime Database.
-  *
-  */
-
   Future<void> saveActivity(ActivityModel activity) async {
     _ActivityRef = db.db.ref().child('Activity/'+activity.activityID.toString());
     await _ActivityRef.set(activity.toJson());
@@ -34,37 +27,30 @@ class activityDAO {
     final activitySnapshot = await ref.child('Activity/'+ id.toString()).get();
     final json = activitySnapshot.value as Map<dynamic, dynamic>;
     final activityOBJ = ActivityModel.fromJson(json);
-    print('Data : ${activitySnapshot.value}');
-    //test
-    print('Dataaaaaaaaaaaaaa : ${activityOBJ.activityDistance}  ');
     return activityOBJ;
   }
 
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Activity/'+ id.toString()).remove();
-    //test
-    print('Dataaaaaaa removed');
   }
-/*
+
   Future<List<ActivityModel>> getListOfActivities() async {
-    /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
-    Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
-    List<SportModel>  objectArrayList = <SportModel>[]; //(objectHashMap.values());
-    */
 
-    final List<ActivityModel> list = [];
-    final snapshot = await FirebaseDatabase.instance.ref('Activity').get();
-    final map = snapshot.value as Map<dynamic, dynamic>;
+    List<ActivityModel> list = <ActivityModel>[];
 
-    map.forEach((key, value) {
-      final ac = ActivityModel.fromJson(value);
-      list.add(ac);
+    final ref = FirebaseDatabase.instance.ref();
+    ActivityModel activityOBJ;
+
+    final activitySnapshot = await ref.child('Activity').get().whenComplete(() => null);
+    activitySnapshot.children.forEach((activity)=> {
+      activityOBJ = ActivityModel.fromJson(activity.value as Map<dynamic, dynamic>),
+      list.add(activityOBJ),
     });
-    return list;
 
+    return list;
   }
 
 
- */
+
 }

@@ -14,7 +14,7 @@ class Activities extends StatefulWidget {
 class _ActivitiesState extends State<Activities> {
 
   // List in the dropdown list that we have to replace by the list in the database
-  var items = DataSportTest().getNameSportDataList();
+  var items =  DataSportTest().getNameSportDataList();
 
   // string for next selected value in the dropdown list
   String? _dropdownValue;

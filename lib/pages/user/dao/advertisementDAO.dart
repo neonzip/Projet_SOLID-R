@@ -8,22 +8,15 @@ class advertisementDAO {
 
   DataBase db = DataBase();
 
-  sportDAO(){
+  AdvertisementDAO(){
     _advertisementRef = db.db.ref().child('Advertisement');
   }
-
-  /*
-  * This function takes an advertisement as a parameter and
-  * uses the DatabaseReference to save the JSON advertisement
-  * to your Realtime Database.
-  *
-  */
 
   Future<void> saveAdvertisement(AdvertisementModel advOBJ) async {
     _advertisementRef= db.db.ref().child('Advertisement/'+advOBJ.getAdvertisementID().toString());
     await _advertisementRef.set(advOBJ.toJson());
     // another way that works
-    //_SportRef.push().set(sport.toJson());
+    //_AdvertisementRef.push().set(Advertisement.toJson());
   }
 
   Query getAdvertisementQuery() {
@@ -35,26 +28,28 @@ class advertisementDAO {
     final advertisementSnapshot = await ref.child('Advertisement/'+ id.toString()).get();
     final json = advertisementSnapshot.value as Map<dynamic, dynamic>;
     final aAdvertisementOBJ = AdvertisementModel.fromJson(json);
-    print('Data : ${advertisementSnapshot.value}');
-    //test
-    print('Dataaaaaaaaaaaaaa : ${aAdvertisementOBJ.advertisementURL}  ');
     return aAdvertisementOBJ;
   }
 
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Advertisement/'+ id.toString()).remove();
-    //test
-    print('Dataaaaaaa removed');
-  }
-/*
-  getListOfAdvertisements(){
-    /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
-    Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
-    List<SportModel>  objectArrayList = <SportModel>[]; //(objectHashMap.values());
-    */
-
   }
 
- */
+  Future<List<AdvertisementModel>> getListOfAdvertisements() async {
+    List<AdvertisementModel> list = <AdvertisementModel>[];
+
+    final ref = FirebaseDatabase.instance.ref();
+    AdvertisementModel AdvertisementOBJ;
+
+    final AdvertisementSnapshot = await ref.child('Advertisement').get().whenComplete(() => null);
+    AdvertisementSnapshot.children.forEach((Advertisement)=> {
+      //print("inside the loop : "+ AdvertisementModel.fromJson(Advertisement.snapshot.value as Map<dynamic, dynamic>).AdvertisementName.toString()),
+      AdvertisementOBJ = AdvertisementModel.fromJson(Advertisement.value as Map<dynamic, dynamic>),
+      list.add(AdvertisementOBJ),
+    });
+
+    return list;
+  }
+ 
 }

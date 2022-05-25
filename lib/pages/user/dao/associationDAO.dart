@@ -7,7 +7,7 @@ class associationDAO {  // association //Association
 
   DataBase db = DataBase();
 
-  activityDAO(){
+  associationDAO(){
     _AssociationRef = db.db.ref().child('Association');
   }
 
@@ -19,7 +19,7 @@ class associationDAO {  // association //Association
   */
 
   Future<void> saveActivity(AssociationModel association) async {
-    _AssociationRef = db.db.ref().child('Activity/'+association.toString());
+    _AssociationRef = db.db.ref().child('Association/'+association.toString());
     await _AssociationRef.set(association.toJson());
     // another way that works
     //_SportRef.push().set(sport.toJson());

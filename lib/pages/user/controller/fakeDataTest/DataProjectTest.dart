@@ -1,7 +1,7 @@
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-
+import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
 import '../../../admin/view/Projects/ProjectViewAdmin.dart';
 import '../../view/Project/ProjectView.dart';
 
@@ -87,6 +87,15 @@ class DataProjectTest {
     solidarityProjectdataList.add(project6);
     solidarityProjectdataList.add(project7);
     solidarityProjectdataList.add(project8);
+
+
+
+    //IMANE TEST
+     /**/
+   ProjectDAO dao = ProjectDAO();
+   dao.saveProject(project1);
+
+
   }
 
   /// Gets the list of all the solidarity projects.
