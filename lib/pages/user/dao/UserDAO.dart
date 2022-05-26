@@ -9,9 +9,10 @@ import '../controller/Database.dart';
 class UserDAO {
   late DatabaseReference _userRef = FirebaseDatabase.instance.ref().child('User');
   DataBase db = DataBase();
-
+  List<UserModel> list = <UserModel>[];
   UserDAO(){
     _userRef = db.db.ref().child('User');
+    List<UserModel> list = <UserModel>[];
   }
 
   void saveUser(UserModel user){
@@ -33,7 +34,7 @@ class UserDAO {
   UserModel? getUserByID(int id)  {
     var ref =  FirebaseDatabase.instance.ref('User/'+ id.toString() );
 
-     ref.once().then((DatabaseEvent event){
+      ref.once().then((DatabaseEvent event){
         final json = event.snapshot.value as Map<dynamic, dynamic>;
         UserModel userOBJ = UserModel.fromJson(json);
 
@@ -45,6 +46,7 @@ class UserDAO {
                           userOBJ.userLikedProject.add(projectOBJ);
                         });
               });
+
         return userOBJ;
        });
      return null;
@@ -55,31 +57,29 @@ class UserDAO {
     await ref.child('User/'+ id.toString()).remove();
   }
 
-  List<UserModel>? getListOfUsers() {
+  List<UserModel> getListOfUsers() {
 
-    List<UserModel> list = <UserModel>[];
-    final ref = FirebaseDatabase.instance.ref('User/');
+    final ref = FirebaseDatabase.instance.ref('User');
     ref.once().then((DatabaseEvent event) {
-      event.snapshot.children.forEach((user) {
-        //getting the user
-        var userOBJ = UserModel.fromJson(user.value as Map<dynamic, dynamic>);
-
-        // getting all the liked projects of this user
-        int id = userOBJ.userID;
-        var ssref = FirebaseDatabase.instance.ref(
-            'User/' + id.toString() + '/userLikedProject');
-        ssref.once().then((DatabaseEvent e) {
-          e.snapshot.children.forEach((project) {
-            var projectOBJ = ProjectModel.fromJson(
-                project.value as Map<dynamic, dynamic>);
-            userOBJ.userLikedProject.add(projectOBJ);
+          event.snapshot.children.forEach((user) {
+            //getting the user
+            var userOBJ = UserModel.fromJson(user.value as Map<dynamic, dynamic>);
+            // getting all the liked projects of this user
+                  int id = userOBJ.userID;
+                  var ssref = FirebaseDatabase.instance.ref('User/' + id.toString() + '/userLikedProject');
+                      ssref.once().then((DatabaseEvent e) {
+                           e.snapshot.children.forEach((project) {
+                               var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
+                               userOBJ.userLikedProject.add(projectOBJ);
+                           });
+                      });
+                      list.add(userOBJ);
           });
-        });
-        list.add(userOBJ);
-      });
-      return list;
+
+          return list;
     });
-    return null;
+    print("sm");
+    return list;
   }
 
 
