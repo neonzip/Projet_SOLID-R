@@ -31,7 +31,10 @@ class ProjetCharts extends StatelessWidget{
     "Contre le COVID": 121,
   };
 
-  ProjetCharts({Key? key}) : super(key: key);
+  final String titre;
+  final Map<String, double> data;
+
+  ProjetCharts({required this.titre, required this.data});
 
   @override
   Widget build(BuildContext context){
@@ -70,11 +73,6 @@ class ProjetCharts extends StatelessWidget{
     /// Shows the values outside of the chart if it is true
     bool _showChartValuesOutside = false;
 
-
-    /// ?
-    double? _ringStrokeWidth = 64;
-
-
     final chart = PieChart(
       key: ValueKey(key),
       dataMap: dataMap,
@@ -103,9 +101,7 @@ class ProjetCharts extends StatelessWidget{
         showChartValuesInPercentage: _showChartValuesInPercentage,
         showChartValuesOutside: _showChartValuesOutside,
       ),
-      ringStrokeWidth: _ringStrokeWidth,
       emptyColor: Colors.grey,
-      //gradientList: _showGradientColors ? gradientList : null,
       emptyColorGradient: const [
         Color(0xff6c5ce7),
         Colors.blue,
@@ -125,7 +121,7 @@ class ProjetCharts extends StatelessWidget{
           elevation: 0,
           child: Column(
             children: <Widget>[
-              const Text("Nombre de personne par projet",
+              Text(titre,
                 textAlign: TextAlign.center,
                 style: TextStyle (
                   fontSize: 18.0,

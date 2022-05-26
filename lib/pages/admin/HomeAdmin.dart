@@ -59,6 +59,8 @@ class _HomeAdminState extends State<HomeAdmin> {
                             padding: const EdgeInsets.all(10),
                             // TODO : Here we can add the graph instead of an empty container
                             child: ProjetCharts(
+                              titre: "Nombre de personnes par projet",
+                              data: new Map<String, double>(),
                             ),
                           )
                         ]
