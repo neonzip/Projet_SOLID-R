@@ -42,7 +42,7 @@ class UserModel {
         userIsAdmin = json['userIsAdmin'] as bool,
         userToken = json['userToken'] as String,
         password = json['password'] as String,
-        userLikedProject = (json['userLikedProject'] as List).map((e) => ProjectModel.fromJson(json)).toList();
+        userLikedProject = <ProjectModel>[];
 
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
@@ -52,10 +52,11 @@ class UserModel {
     'userPurse':  userPurse.toString(),
     'userTotalDistance':  userTotalDistance.toString(),
     'userTotalDonations':  userTotalDonations.toString(),
-    'userIsAdmin':  userIsAdmin.toString(),
+    'userIsAdmin':  userIsAdmin,
     'userToken':  userToken.toString(),
     'password':  password.toString(),
-    'userLikedProject' : jsonEncode(userLikedProject)
+
+
    };
 
   /// ////////////////////////////

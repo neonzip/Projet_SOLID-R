@@ -45,7 +45,7 @@ class ProjectModel {
         projectResult = double.parse(json['projectResult'] as String),
         projectResultDescription =  json['projectResultDescription'] as String,
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
-        projectIsFavorite = json['projectIsFavorite'],
+        projectIsFavorite = json['projectIsFavorite'] as bool,
         projectAssociation =  AssociationModel(int.parse(json['projectAssociationId'] as String),"","","",AdvertisementModel(0,""),""),
         projectEntity = EntityModel(int.parse(json['projectEntityId'] as String),"","",AdvertisementModel(0,"")),
         projectPictures = <PictureModel>[];
@@ -58,7 +58,7 @@ class ProjectModel {
     'projectResult': projectResult.toString(),
     'projectResultDescription': projectResultDescription.toString(),
     'projectStartDate': projectStartDate.toString(),
-    'projectIsFavorite': projectIsFavorite.toString(),
+    'projectIsFavorite': projectIsFavorite,
     'projectAssociationId' : projectAssociation.getAssociationId().toString(),
     'projectEntityId' : projectEntity.getEntityId().toString(),
   };
