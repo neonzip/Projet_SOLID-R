@@ -1,3 +1,5 @@
+import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
+
 import 'AssociationModel.dart';
 import 'EntityModel.dart';
 import 'PictureModel.dart';
@@ -16,7 +18,7 @@ class ProjectModel {
   late String projectResultDescription; // Project's result description when it is finished
   late DateTime projectStartDate; // Date when the project begins
   late bool projectIsFavorite;    // True if it is a favorite project, false then
-  late List<ProjectModel> projectPictures =[];
+  late List<PictureModel> projectPictures =<PictureModel>[];
   late AssociationModel projectAssociation;   // Association of the project
   late EntityModel projectEntity;      // Entity which collaborates for this project
 
@@ -28,6 +30,11 @@ class ProjectModel {
     projectResultDescription = "";
     projectIsFavorite = isFavorite;
     projectResult = 0;
+    projectDonationGoal=0.0;
+    projectStartDate=DateTime(0);
+    projectPictures =<PictureModel>[];
+    projectAssociation=AssociationModel(0,"","","",AdvertisementModel(0,""),"");
+    projectEntity= EntityModel(0,"","",AdvertisementModel(0,""));
   }
 
   ProjectModel.fromJson(Map<dynamic, dynamic> json)
@@ -38,23 +45,22 @@ class ProjectModel {
         projectResult = double.parse(json['projectResult'] as String),
         projectResultDescription =  json['projectResultDescription'] as String,
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
-        projectIsFavorite = json['projectIsFavorite'];
-        //projectAssociation = AssociationModel.fromJson(json),
-        // projectEntity = EntityModel.fromJson(json),
-        //projectPictures = PictureModel.fromJson(json);
+        projectIsFavorite = json['projectIsFavorite'] as bool,
+        projectAssociation =  AssociationModel(int.parse(json['projectAssociationId'] as String),"","","",AdvertisementModel(0,""),""),
+        projectEntity = EntityModel(int.parse(json['projectEntityId'] as String),"","",AdvertisementModel(0,"")),
+        projectPictures = <PictureModel>[];
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'projectID' : projectID.toString(),
-    'projectName': projectName,
-    'projectDescription': projectDescription,
+    'projectName': projectName.toString(),
+    'projectDescription': projectDescription.toString(),
     'projectDonationGoal':  projectDonationGoal.toString(),
     'projectResult': projectResult.toString(),
-    'projectResultDescription': projectResultDescription,
+    'projectResultDescription': projectResultDescription.toString(),
     'projectStartDate': projectStartDate.toString(),
-    'projectIsFavorite': projectIsFavorite.toString()
-   // 'projectAssociation' : projectAssociation.toJson(),
-   // 'projectEntity' : projectEntity.toJson(),
-  // 'projectPictures' = projectPictures.toJson();
+    'projectIsFavorite': projectIsFavorite,
+    'projectAssociationId' : projectAssociation.getAssociationId().toString(),
+    'projectEntityId' : projectEntity.getEntityId().toString(),
   };
   /// //////////////////////////////////////////////////////////////////////////
   /// Getters and setters
@@ -109,10 +115,10 @@ class ProjectModel {
   }
 
   /// /////////////////////////////
-  AssociationModel getAssociationProject() {
+  AssociationModel getProjectAssociation() {
     return projectAssociation;
   }
-  setAssociationProject(AssociationModel association) {
+  setProjectAssociation(AssociationModel association) {
     projectAssociation = association;
   }
 
@@ -130,5 +136,13 @@ class ProjectModel {
   }
   setResultDescriptionProject(String resultDescription) {
     projectResultDescription = resultDescription;
+  }
+
+  List<PictureModel> getProjectPictures(){
+    return projectPictures;
+  }
+
+  void setProjectPictures(List<PictureModel> ls){
+    projectPictures=ls;
   }
 }

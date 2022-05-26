@@ -1,5 +1,8 @@
 
+import 'dart:convert';
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../model/UserModel.dart';
 import '../controller/Database.dart';
 
@@ -11,16 +14,14 @@ class UserDAO {
     _userRef = db.db.ref().child('User');
   }
 
-  /*
-  * This function takes a sport as a parameter and
-  * uses the DatabaseReference to save the JSON activity
-  * to your Realtime Database.
-  *
-  */
-
-  Future<void> saveUser(UserModel user) async {
+  void saveUser(UserModel user){
     _userRef = db.db.ref().child('User/'+user.userID.toString());
-    await _userRef.set(user.toJson());
+    _userRef.set(user.toJson());
+    // save likedProjects
+
+    user.userLikedProject.forEach((elt) {
+      var ref = db.db.ref().child('User/'+user.userID.toString()+'/userLikedProject/'+elt.projectID.toString());
+      ref.set( elt.toJson());});
     // another way that works
     //_SportRef.push().set(sport.toJson());
   }
@@ -29,15 +30,24 @@ class UserDAO {
     return _userRef;
   }
 
-  Future<UserModel> getUserByID(int id) async {
-    final ref = FirebaseDatabase.instance.ref();
-    final userSnapshot = await ref.child('User/'+ id.toString()).get();
-    final json = userSnapshot.value as Map<dynamic, dynamic>;
-    final userOBJ = UserModel.fromJson(json);
-    print('Data : ${userSnapshot.value}');
-    //test
-    print('Dataaaaaaaaaaaaaa : ${userOBJ.userEmail}  ');
+  UserModel? getUserByID(int id)  {
+    var ref =  FirebaseDatabase.instance.ref('User/'+ id.toString() );
+    var userOBJ=null;
+     ref.once().then((DatabaseEvent event){
+        final json = event.snapshot.value as Map<dynamic, dynamic>;
+         userOBJ = UserModel.fromJson(json);
+          var ssref =  FirebaseDatabase.instance.ref('User/'+ id.toString()+'/userLikedProject' );
+
+             ssref.once().then((DatabaseEvent e) {
+                       e.snapshot.children.forEach((project) {
+                          var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
+                          userOBJ.userLikedProject.add(projectOBJ);
+                        });
+              });
+
+       });
     return userOBJ;
+
   }
 
   deleteById(int id) async {

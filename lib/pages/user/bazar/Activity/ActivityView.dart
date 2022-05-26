@@ -6,6 +6,9 @@ import 'package:projet_solid_r/pages/user/model/ActivityModel.dart';
 /// Class of one instance of activity.
 class ActivityView extends ActivityModel{
   var item = DataSportTest().getNameSportDataList().elementAt(1);
+  //!!!!!/
+  // int userid = 1 ;
+  //int sportid = 1 ;
   ActivityView(int activity, DateTime startDate) : super(activity, startDate);
 
   /// One row which is containing the information about a completed activity.
