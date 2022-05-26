@@ -32,7 +32,6 @@ class _HomeAdminState extends State<HomeAdmin> {
             content: Center (
                 child: SingleChildScrollView(
                   child: Container(
-                    width: 500,
                     margin: const EdgeInsets.all(15),
                     padding: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:10) : const EdgeInsets.only(top:150),
                     alignment: Alignment.center,
@@ -41,6 +40,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                       borderRadius: BorderRadius.circular(10), //border corner radius
                     ),
                     child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text("Bonjour $pseudo",
                               style: const TextStyle(
@@ -56,9 +56,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                               )
                           ),
                           Container(
-                            margin: const EdgeInsets.all(10),
-                            //color: Colors.green,
-                            height: 200,
+                            padding: const EdgeInsets.all(10),
                             // TODO : Here we can add the graph instead of an empty container
                             child: ProjetCharts(
                             ),

@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 import 'package:pie_chart/pie_chart.dart';
 //TODO : Make the ProjectCharts dynamics by settings parameters (datamap) and legends
-enum LegendShape { Circle, Rectangle }
+enum LegendShape { circle, rectangle }
 
 class ProjetCharts extends StatelessWidget{
 
@@ -17,11 +17,11 @@ class ProjetCharts extends StatelessWidget{
   };
 
   final colorList = <Color>[
-    Color(0xfffdcb6e),
-    Color(0xff0984e3),
-    Color(0xfffd79a8),
-    Color(0xffe17055),
-    Color(0xff6c5ce7),
+    const Color(0xfffdcb6e),
+    const Color(0xff0984e3),
+    const Color(0xfffd79a8),
+    const Color(0xffe17055),
+    const Color(0xff6c5ce7),
   ];
 
   final dataMap = <String, double>{
@@ -31,39 +31,69 @@ class ProjetCharts extends StatelessWidget{
     "Contre le COVID": 121,
   };
 
+  ProjetCharts({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context){
+    /// Space between each legend
     double? _chartLegendSpacing = 32;
+
+    /// Form of chart
     ChartType? _chartType = ChartType.disc;
+
     bool _showLegendLabel = false;
+
+    /// Disposition of the legends.
+    /// True : in row
+    /// False : in column
     bool _showLegendsInRow = false;
+
+    /// Position of the legend depending of the chart
     LegendPosition? _legendPosition = LegendPosition.right;
+
+    /// Shows or not the legends
     bool _showLegends = true;
-    LegendShape? _legendShape = LegendShape.Circle;
-    bool _showChartValueBackground = true;
+
+    /// Shape of the legends colors
+    LegendShape? _legendShape = LegendShape.circle;
+
+    /// Shows a white background of the values in the chart if it is true
+    bool _showChartValueBackground = false;
+
+
+    /// Shows the values in the chart if it is true
     bool _showChartValues = true;
-    bool _showChartValuesInPercentage = false;
+
+    /// Shows the values in percentage if it is true
+    bool _showChartValuesInPercentage = true;
+
+    /// Shows the values outside of the chart if it is true
     bool _showChartValuesOutside = false;
-    double? _ringStrokeWidth = 32;
+
+
+    /// ?
+    double? _ringStrokeWidth = 64;
+
+
     final chart = PieChart(
       key: ValueKey(key),
       dataMap: dataMap,
-      animationDuration: Duration(milliseconds: 800),
-      chartLegendSpacing: _chartLegendSpacing!,
+      animationDuration: const Duration(milliseconds: 800),
+      chartLegendSpacing: _chartLegendSpacing,
       chartRadius: math.min(MediaQuery.of(context).size.width / 1.5, 300),
       colorList: colorList,
       initialAngleInDegree: 0,
-      chartType: _chartType!,
+      chartType: _chartType,
       //centerText: _showCenterText ? "HYBRID" : null,
       legendLabels: _showLegendLabel ? legendLabels : {},
       legendOptions: LegendOptions(
         showLegendsInRow: _showLegendsInRow,
-        legendPosition: _legendPosition!,
+        legendPosition: _legendPosition,
         showLegends: _showLegends,
-        legendShape: _legendShape == LegendShape.Circle
+        legendShape: _legendShape == LegendShape.circle
             ? BoxShape.circle
             : BoxShape.rectangle,
-        legendTextStyle: TextStyle(
+        legendTextStyle: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -73,25 +103,32 @@ class ProjetCharts extends StatelessWidget{
         showChartValuesInPercentage: _showChartValuesInPercentage,
         showChartValuesOutside: _showChartValuesOutside,
       ),
-      ringStrokeWidth: _ringStrokeWidth!,
+      ringStrokeWidth: _ringStrokeWidth,
       emptyColor: Colors.grey,
       //gradientList: _showGradientColors ? gradientList : null,
-      emptyColorGradient: [
+      emptyColorGradient: const [
         Color(0xff6c5ce7),
         Colors.blue,
       ],
       baseChartColor: Colors.transparent,
     );
     return Container(
-        height: 200,
-        padding: EdgeInsets.all(10),
+        height: 300,
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(10), //border corner radius
+        ),
         child: Card(
+          color: Colors.transparent,
+          elevation: 0,
           child: Column(
             children: <Widget>[
-              Text("Nombre de personne par projet",
-                style: const TextStyle (
-                  //Theme.of(context).textTheme.bodyText1,
-                  fontSize: 20.0,
+              const Text("Nombre de personne par projet",
+                textAlign: TextAlign.center,
+                style: TextStyle (
+                  fontSize: 18.0,
                 )
               ),
               Expanded(
