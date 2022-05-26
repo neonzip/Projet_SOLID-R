@@ -132,7 +132,7 @@ class _MyInformationState extends State<MyInformation> {
                     FormTextField(
                       hidden: true,
                         errorMessage: messageErrorPassword,
-                        labelHint: "Entrez un  mot de passe",
+                        labelHint: "Entrez un mot de passe",
                         label: "Mot de passe :",
                         text: '',
                       textEditingController: textEditingControllerForPassword,
