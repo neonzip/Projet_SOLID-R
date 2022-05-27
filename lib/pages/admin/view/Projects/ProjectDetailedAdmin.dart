@@ -193,6 +193,8 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
           body: TabBarView(
             children: [
               ProjectCharts(
+                titre: "nombre d'utilisateurs les 5 derniers mois",
+                data: Map<String, double>(),
               ),
               ProjectDetailedContentAdmin(project: widget.project,),
             ],

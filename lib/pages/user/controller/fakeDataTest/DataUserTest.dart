@@ -30,13 +30,20 @@ class DataUserTest {
     ProjectModel project2 = ProjectModel(2, true, "NameProject2", "2Ceci est un text pour décrire le but du projet2.");
     userX.userLikedProject.add(project1);
     userX.userLikedProject.add(project2);
+
+
     daoUser.saveUser(userX);
-    print("suceeeesssss");
     UserModel? u = daoUser.getUserByID(userX.userID);
 
     if(u!=null){
       print("ggg" + u.userID.toString()  +u.userTotalDistance.toString());
       u.userLikedProject.forEach((e) {  print(e.projectName);});
     }
+
+    List<UserModel> L = daoUser.getListOfUsers();
+    if(L!=null){
+       L.forEach((e) {  print(e.userEmail);});
+    }
+
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ListProjectViewAdmin.dart';
@@ -33,15 +32,15 @@ class _HomeAdminState extends State<HomeAdmin> {
             content: Center (
                 child: SingleChildScrollView(
                   child: Container(
-                    width: 500,
-                    padding: const EdgeInsets.all(15),
-                    margin: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:100) : const EdgeInsets.only(top:150),
+                    margin: const EdgeInsets.all(15),
+                    padding: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:10) : const EdgeInsets.only(top:150),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(10), //border corner radius
                     ),
                     child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text("Bonjour $pseudo",
                               style: const TextStyle(
@@ -56,12 +55,14 @@ class _HomeAdminState extends State<HomeAdmin> {
                                 fontSize: 20.0,
                               )
                           ),
-                            Container(
-                              padding: const EdgeInsets.only(top: 20),
-                              // TODO : Here we can add the graph instead of an empty container
-                               child: ProjectCharts(
-                                ),
-                            )
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            // TODO : Here we can add the graph instead of an empty container
+                            child: ProjectCharts(
+                              titre: "Nombre de personnes par projet",
+                              data: Map<String, double>(),
+                            ),
+                          )
                         ]
                     ),
                   ),
@@ -70,7 +71,7 @@ class _HomeAdminState extends State<HomeAdmin> {
           ),
 
           /// Menu at the bottom with the 2 other buttons "Projets" and "Favoris".
-          bottomNavigationBar: MediaQuery.of(context).orientation == Orientation.portrait ? BottomAppBar(
+          bottomNavigationBar: BottomAppBar(
             color: Colors.white,
             elevation: 0,
             child:
@@ -89,43 +90,20 @@ class _HomeAdminState extends State<HomeAdmin> {
                 ),
               ],
             ),
-          ) : null,
+          ),
 
           /// Button to click if the user wants to create a new project
-          floatingActionButton: Wrap(
-            direction: Axis.vertical, //use vertical to show  on vertical axis
-            children: [
-              FloatingActionButton(
-                heroTag: "addProject",
-                onPressed: () {
-                  Navigator.pushNamed(context, "/admin/project/add");
-                },
-                tooltip: 'Ajouter un projet',
-                splashColor: const Color(0xFF0725A5),
-                child: const Icon(Icons.add, color: Color(0xFF0725A5), ),
-                backgroundColor: Colors.yellow,
-                elevation: 5,
-              ),
-              Visibility(
-                visible: MediaQuery.of(context).orientation == Orientation.landscape,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: buttonHomeProjectsTemplate(),
-                    /* FloatingActionButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/admin/project/add");
-                      },
-                      tooltip: 'Voir les projets',
-                      splashColor: Colors.yellow,
-                      child: const Icon(Icons.add, color: Colors.white),
-                      backgroundColor: const Color(0xFF0725A5),
-                      elevation: 5,
-                    ),*/
-                  )
-              )
-            ],
-          )
-
+          floatingActionButton: FloatingActionButton(
+            heroTag: "addProject",
+            onPressed: () {
+              Navigator.pushNamed(context, "/admin/project/add");
+            },
+            tooltip: 'Ajouter un projet',
+            splashColor: const Color(0xFF0725A5),
+            child: const Icon(Icons.add, color: Color(0xFF0725A5), ),
+            backgroundColor: Colors.yellow,
+            elevation: 5,
+          ),
         )
     );
   }
@@ -145,12 +123,9 @@ class _HomeAdminState extends State<HomeAdmin> {
           splashColor: Colors.yellow,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.analytics),
-              Visibility(
-                visible: MediaQuery.of(context).orientation == Orientation.portrait,
-                  child: const Text("Projets"),
-              ),
+            children: const [
+              Icon(Icons.analytics),
+              Text("Projets"),
             ],
           ),
           backgroundColor: const Color(0xFF0725A5),
