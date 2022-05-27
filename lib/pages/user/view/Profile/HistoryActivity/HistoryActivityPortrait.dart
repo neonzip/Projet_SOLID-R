@@ -3,23 +3,23 @@ import 'package:projet_solid_r/pages/user/bazar/Activity/ActivityView.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Profile/OneWeekCompletedActivityContainer.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 
-class HistoryActivity extends StatefulWidget {
-  const HistoryActivity({Key? key}) : super(key: key);
+class HistoryActivityPortrait extends StatefulWidget {
+  const HistoryActivityPortrait({Key? key}) : super(key: key);
 
   @override
-  _HistoryActivityState createState() => _HistoryActivityState();
+  _HistoryActivityPortraitState createState() => _HistoryActivityPortraitState();
 }
 
-class _HistoryActivityState extends State<HistoryActivity> {
+class _HistoryActivityPortraitState extends State<HistoryActivityPortrait> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ?  AppBar(
+        appBar: AppBar(
           backgroundColor: const Color(0xFF0725A5),
           title: const Text("Activités réalisées"),
           centerTitle: true,
-        ) : null,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [

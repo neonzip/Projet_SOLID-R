@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Notifications/NotificationsLandscape.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
@@ -49,7 +49,7 @@ void main() async {
     //"/user/profile": (context) => const Profile(),
     //"/user/myInformation": (context) => const MyInformation(),
     "/user/APropos": (context) => const APropos(),
-    "/user/activityHistory": (context) => const HistoryActivity(),
+    "/user/activityHistory": (context) => const HistoryActivityPortrait(),
     "/user/notifications": (context) => const NotificationsLandscape(),
 
     /* PROJECTS */

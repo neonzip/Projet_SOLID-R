@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityLandscape.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import '../templates/Home/YellowBubbleMoney.dart';
@@ -103,12 +104,13 @@ class _ProfileState extends State<Profile> {
     return ProfileButton(
         onPressedButton: () {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
-            Navigator.pushNamed(context, "/user/activityHistory");
+            //Navigator.pushNamed(context, "/user/activityHistory");
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const HistoryActivityPortrait()));
           }
           else {
             //TODO:
             //route = "/user/activityHistory";
-            widgetLandscapeSecondPage = const HistoryActivity();
+            widgetLandscapeSecondPage = const HistoryActivityLandscape();
             title = "Profil - Activitées réalisées";
           }
           setState(() {
