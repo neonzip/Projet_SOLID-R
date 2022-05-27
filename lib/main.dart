@@ -4,7 +4,7 @@ import 'package:projet_solid_r/pages/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/Notifications/NotificationsLandscape.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/Notifications/NotificationsLandscape.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
