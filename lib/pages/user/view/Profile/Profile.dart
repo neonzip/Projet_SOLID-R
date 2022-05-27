@@ -3,12 +3,13 @@ import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityLandscape.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import '../templates/Home/YellowBubbleMoney.dart';
 import '../templates/Profile/LogoutButton.dart';
 import '../templates/Profile/ProfileButton.dart';
 import '../templates/Separator.dart';
+import 'APropos/AProposLandscape.dart';
 import 'MyInformation/MyInformationLandscape.dart';
 import 'Notifications/NotificationsLandscape.dart';
 import 'Notifications/NotificationsPortrait.dart';
@@ -131,12 +132,13 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.info_outline,
         onPressedButton: () {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
-            Navigator.pushNamed(context, "/user/APropos");
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const AProposPortrait()));
+            //Navigator.pushNamed(context, "/user/APropos");
           }
           else {
             //TODO:
             //route = "/user/APropos";
-            widgetLandscapeSecondPage = const APropos();
+            widgetLandscapeSecondPage = const AProposLandscape();
             title = "Profil - À propos";
           }
           setState(() {

@@ -1,30 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:linkable/linkable.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class APropos extends StatefulWidget {
-  const APropos({Key? key}) : super(key: key);
+class AProposPortrait extends StatefulWidget {
+  const AProposPortrait({Key? key}) : super(key: key);
 
   @override
-  _AProposState createState() => _AProposState();
+  _AProposPortraitState createState() => _AProposPortraitState();
 }
 
-class _AProposState extends State<APropos> {
+class _AProposPortraitState extends State<AProposPortrait> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
+        appBar: AppBar(
           backgroundColor: const Color(0xFF0725A5),
           title: Container(
             padding: const EdgeInsets.all(0),
             margin: const EdgeInsets.all(0),
             child: const Text("À propos"),
             ),
-          ): null,
+          ),
 
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
@@ -177,13 +176,10 @@ class _AProposState extends State<APropos> {
                                 text: "assotstd.com\n\n\n",
                                 style: const TextStyle(color: Colors.yellow),
                                 recognizer: TapGestureRecognizer()..onTap = () async {
-                                  var url = "https://assotstd.com/";
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  }
-                                  else {
-                                    throw("cannot launch URL");
-                                  }
+                                  var url = Uri.parse("https://assotstd.com/");
+                                  await canLaunchUrl(url)
+                                      ? await launchUrl(url)
+                                      : await null;
                                 }
                             )
                         ),

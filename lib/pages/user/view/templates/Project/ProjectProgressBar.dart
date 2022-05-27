@@ -15,7 +15,7 @@ class _ProjectProgressBarState extends State<ProjectProgressBar> {
 
   Widget progressBar() {
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.black,

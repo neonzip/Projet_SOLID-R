@@ -12,7 +12,7 @@ import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn/SignInView.dart';
 import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorites.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Project/FormalProject/FormalProjects.dart';
 import 'pages/user/bazar/Activity/Activities.dart';
 
@@ -48,7 +48,7 @@ void main() async {
     /* PROFILE */
     //"/user/profile": (context) => const Profile(),
     //"/user/myInformation": (context) => const MyInformation(),
-    "/user/APropos": (context) => const APropos(),
+    "/user/APropos": (context) => const AProposPortrait(),
     "/user/activityHistory": (context) => const HistoryActivityPortrait(),
     "/user/notifications": (context) => const NotificationsLandscape(),
 

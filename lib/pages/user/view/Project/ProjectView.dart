@@ -65,7 +65,7 @@ class _ProjectViewState extends State<ProjectView>{
                     ),
 
                     Container (
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(
                           children: [
                             Text("$progressGoal % financés"),
