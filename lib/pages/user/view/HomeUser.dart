@@ -33,9 +33,12 @@ class _HomeUserState extends State<HomeUser> {
         splashColor: Colors.yellow,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.directions_run),
-            Text("Activité"),
+          children: [
+            const Icon(Icons.directions_run),
+            Visibility(
+                visible: MediaQuery.of(context).orientation == Orientation.portrait,
+                child: const Text("Activité"),
+            )
           ],
         ),
         backgroundColor: const Color(0xFF0725A5),
@@ -81,7 +84,7 @@ class _HomeUserState extends State<HomeUser> {
       },
       tooltip: 'Projets',
       splashColor: Colors.indigo,
-      backgroundColor: Colors.transparent,
+      backgroundColor: MediaQuery.of(context).orientation == Orientation.landscape ? Colors.white : Colors.transparent,
       hoverColor: Colors.yellow,
       focusElevation: 0,
       highlightElevation: 0,
@@ -89,10 +92,16 @@ class _HomeUserState extends State<HomeUser> {
       elevation: 0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(Icons.list_alt, color: Colors.black,),
-          Text("Projets",
-            style: TextStyle(color: Colors.black),),
+        children: [
+          const Icon(Icons.list_alt, color: Colors.black,),
+          Visibility(
+              visible: MediaQuery.of(context).orientation == Orientation.portrait,
+              child: const Text(
+                "Projets",
+                style: TextStyle(color: Colors.black),
+              ),
+          )
+
         ],
       ),
     );
@@ -168,14 +177,21 @@ class _HomeUserState extends State<HomeUser> {
                           ],
                         ),
                       )
-
                     )
                 )
             ),
           ),
 
+          floatingActionButton: MediaQuery.of(context).orientation == Orientation.landscape ? Wrap(
+            direction: Axis.vertical, //use vertical to show  on vertical axis
+            children: [
+              buttonHomeActivitiesTemplate(),
+              buttonHomeProjectsTemplate(),
+            ],
+          ) : null,
+
           /// Menu at the bottom with the 2 other buttons "Projets" and "Favoris".
-          bottomNavigationBar: BottomAppBar(
+          bottomNavigationBar:  MediaQuery.of(context).orientation == Orientation.portrait ? BottomAppBar(
             color: Colors.white,
             elevation: 0,
             child:
@@ -205,7 +221,7 @@ class _HomeUserState extends State<HomeUser> {
                 ),
               ],
             ),
-          )
+          ) : null,
       )
     );
   }
@@ -253,7 +269,8 @@ class _HomeUserState extends State<HomeUser> {
                       children: const [
                         Icon(
                             Icons.account_circle_outlined,
-                            color: Colors.white),
+                            color: Colors.white
+                        ),
                         Text(
                             "Profil",
                             style: TextStyle(color:Colors.white))
