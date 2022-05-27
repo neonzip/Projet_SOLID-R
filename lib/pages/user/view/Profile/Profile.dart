@@ -4,14 +4,13 @@ import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/Notifications/NotificationsLandscape.dart';
 import '../templates/Home/YellowBubbleMoney.dart';
 import '../templates/Profile/LogoutButton.dart';
 import '../templates/Profile/ProfileButton.dart';
 import '../templates/Separator.dart';
 import 'MyInformation/MyInformationLandscape.dart';
-import 'MyInformation/Notifications/NotificationsPortrait.dart';
-
+import 'Notifications/NotificationsLandscape.dart';
+import 'Notifications/NotificationsPortrait.dart';
 class Profile extends StatefulWidget {
   final UserModel user;
   const Profile({Key? key, required this.user}) : super(key: key);
@@ -177,7 +176,7 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.notifications_none,
         onPressedButton: () {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> NotificationsPortrait()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const NotificationsPortrait()));
             //Navigator.pushNamed(context, "/user/notifications");
           }
           else {

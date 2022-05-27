@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../templates/Profile/NotificationFrequencyButton.dart';
+import '../../templates/Profile/NotificationFrequencyButton.dart';
+
 
 class NotificationsLandscape extends StatefulWidget {
   const NotificationsLandscape({Key? key}) : super(key: key);
