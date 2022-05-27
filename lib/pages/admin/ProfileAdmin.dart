@@ -3,7 +3,7 @@ import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformati
 
 import '../user/model/UserModel.dart';
 import '../user/view/HomeUser.dart';
-import '../user/view/templates/Profile/LogoutButton.dart';
+import '../user/view/Profile/LogoutButton.dart';
 import '../user/view/templates/Profile/ProfileButton.dart';
 
 class ProfileAdmin extends StatefulWidget {
@@ -159,7 +159,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                             child:
                             /* Button "Déconnexion" to log out */
                             LogoutButton(
-                              widthButton: widthButtons,
+                              width: widthButtons,
                             ),
                           )
                         ]

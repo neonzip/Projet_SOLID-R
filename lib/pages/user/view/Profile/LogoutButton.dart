@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LogoutButton extends StatefulWidget {
-  final double widthButton;
-  const LogoutButton({Key? key, required this.widthButton}) : super(key: key);
-  @override
-  _LogoutButtonState createState() => _LogoutButtonState();
-}
-
-class _LogoutButtonState extends State<LogoutButton> {
-  //bool isFav = false;
+class LogoutButton extends StatelessWidget {
+  final double width;
+  const LogoutButton({Key? key, required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return buttonLogOutTemplate();
-  }
-
-  /// Widget building the logOut button.
-  Widget buttonLogOutTemplate() {
     return SizedBox(
-      width: widget.widthButton,
+      width: width,
       height: 50,
       child:
       ElevatedButton.icon(

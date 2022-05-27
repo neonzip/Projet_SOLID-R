@@ -4,7 +4,8 @@ import 'package:projet_solid_r/pages/admin/ProfileAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ListProjectViewAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ProjectCharts.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import '../user/view/templates/Home/ContainerWithBackground.dart';
+
+import '../user/view/Home/ContainerWithBackground.dart';
 
 /// Widget view which builds the entire widget for the home of the admin part.
 class HomeAdmin extends StatefulWidget {
@@ -35,7 +36,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                   child: Container(
                     width: 500,
                     padding: const EdgeInsets.all(15),
-                    margin: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.only(top:100) : const EdgeInsets.only(top:150),
+                    margin: MediaQuery.of(context).orientation == Orientation.landscape ? const EdgeInsets.fromLTRB(10, 100, 10, 10) : const EdgeInsets.fromLTRB(10, 150, 10, 10),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.5),
@@ -57,11 +58,11 @@ class _HomeAdminState extends State<HomeAdmin> {
                               )
                           ),
                           Container(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                             // TODO : Here we can add the graph instead of an empty container
                             child: ProjectCharts(
                               titre: "Nombre de personnes par projet",
-                              data: new Map<String, double>(),
+                              data: Map<String, double>(),
                             ),
                           )
                         ]

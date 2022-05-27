@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Home/ContainerWithBackground.dart';
 
 import '../../../user/model/ProjectModel.dart';
 import '../../../user/view/templates/Project/ProjectProgressBar.dart';

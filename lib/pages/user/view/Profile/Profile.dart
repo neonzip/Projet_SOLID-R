@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityLandscape.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
-import '../templates/Home/YellowBubbleMoney.dart';
-import '../templates/Profile/LogoutButton.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/ToAdminButton.dart';
+import 'LogoutButton.dart';
 import '../templates/Profile/ProfileButton.dart';
 import '../templates/Separator.dart';
 import 'APropos/AProposLandscape.dart';
 import 'MyInformation/MyInformationLandscape.dart';
 import 'Notifications/NotificationsLandscape.dart';
 import 'Notifications/NotificationsPortrait.dart';
+import 'ProfileInformationUser/ProfileInformationUser.dart';
 class Profile extends StatefulWidget {
   final UserModel user;
   const Profile({Key? key, required this.user}) : super(key: key);
@@ -25,8 +25,6 @@ class _ProfileState extends State<Profile> {
   String title = "Profil - Mes informations";
   //String route = '/';
   late Widget widgetLandscapeSecondPage;
-  /* Constant used for the text size */
-  static const double fontSize = 20;
 
   /* Constants used for buttons */
   static const double widthButtons = double.infinity;
@@ -41,61 +39,6 @@ class _ProfileState extends State<Profile> {
 
   int currentPosition = 0;
 
-
-  /// Widget building the yellow bubble which contains the user's donations.
-  Widget bubbleDonationsDone() {
-    return Container(
-      child:
-      Column(
-        children: [
-          const Text(
-              "Dons réalisés :",
-              style: TextStyle(fontSize: fontSize)
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                  widget.user.userTotalDonations.toString(),
-                  style: const TextStyle(
-                      fontSize: fontSize + 5,
-                      fontWeight: FontWeight.bold)
-              ),
-
-              const Text(
-                  " €",
-                  style: TextStyle(fontSize: fontSize)
-              ),
-            ],
-          ),
-        ],
-      ),
-
-      decoration: BoxDecoration(
-        color: Colors.yellow,
-        borderRadius: BorderRadius.circular(10), //border corner radius
-        boxShadow:[
-          BoxShadow(
-            color: Colors.black.withOpacity(0.6), //color of shadow
-            blurRadius: 3, // blur radius
-            offset: const Offset(0, 1), // changes position of shadow
-            //first paramerter of offset is left-right
-            //second parameter is top to down
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-      margin: const EdgeInsets.only(left: 20, top:10, right: 20, bottom:10),
-    );
-  }
-
-  /// Widget building the yellow bubble which contains the user's pool.
-  Widget bubblePool () {
-    return /* Yellow bubble containing the money that the user can make to a project. */
-      YellowBubbleMoney(
-        value: widget.user.userPurse.toString(),
-      );
-  }
 
   /// Widget building the projects button.
   Widget buttonProjectsTemplate() {
@@ -258,22 +201,11 @@ class _ProfileState extends State<Profile> {
               width: 500,
               child: Column(
                 children: [
-                  Container(
-                      padding: const EdgeInsets.all(20),
-                      margin: const EdgeInsets.all(5),
-                      child: Text(widget.user.userNickName,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: fontSize,
-                          )
-                      )
-                  ),
-
-                  /* Yellow bubble containing the pool. */
-                  bubblePool(),
-
-                  /* Yellow bubble containing the donations that the user has already made. */
-                  bubbleDonationsDone(),
+                 ProfileInformationUser(
+                   name: widget.user.userNickName,
+                   purse: widget.user.userPurse.toString(),
+                   totalDonations: widget.user.userTotalDonations.toString(),
+                 ),
 
                   /* Blue horizontal line separating the two parts of the account page. */
                   const Separator(),
@@ -285,7 +217,8 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 2.5),
-                              child: /* Button "Mes informations" */
+                              child:
+                              /* Button "Mes informations" */
                               buttonInformationTemplate(),
                             )
                           ]
@@ -336,7 +269,7 @@ class _ProfileState extends State<Profile> {
                         children: [
                           /* Button to access to the admin page if the user is one of them. */
                           Visibility(
-                            child: widget.user.userIsAdmin ? buttonGoToAdminPage() : Container(),
+                            child: widget.user.userIsAdmin ? ToAdminButton(width: widthButtons, user: widget.user) : Container(),
                           ),
                         ]
                       ),
@@ -348,7 +281,7 @@ class _ProfileState extends State<Profile> {
 
                               /* Button "Déconnexion" to log out */
                               LogoutButton(
-                                widthButton: widthButtons,
+                                width: widthButtons,
                               ),
                             )
                           ]
@@ -359,29 +292,6 @@ class _ProfileState extends State<Profile> {
               ),
             )
         )
-    );
-  }
-
-  /// Widget to go to admin page.
-  Widget buttonGoToAdminPage() {
-    return Container(
-      width: widthButtons,
-      height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child:
-      ElevatedButton(
-        onPressed: () {
-          // Navigator.pushNamed(context, "/admin/home");
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeAdmin(user: widget.user)));
-        },
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
-        ),
-        child: const Text(
-          "Continuer en tant qu'administrateur",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-      ),
     );
   }
 

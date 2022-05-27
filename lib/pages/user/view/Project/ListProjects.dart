@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Lanscape/LandscapeProjectView.dart';
 import 'package:projet_solid_r/pages/user/view/Project/ProjectView.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Home/ContainerWithBackground.dart';
+
+import '../Home/ContainerWithBackground.dart';
 
 typedef ItemSelectedCallback = Null Function(int value);
 
