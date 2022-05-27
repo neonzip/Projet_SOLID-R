@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../templates/Profile/NotificationFrequencyButton.dart';
+import '../../../templates/Profile/NotificationFrequencyButton.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class NotificationsLandscape extends StatefulWidget {
+  const NotificationsLandscape({Key? key}) : super(key: key);
 
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _NotificationsLandscapeState createState() => _NotificationsLandscapeState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _NotificationsLandscapeState extends State<NotificationsLandscape> {
   bool isNever = false;
   bool is10km = true;
   bool is20km = false;
@@ -184,11 +184,6 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
-        backgroundColor: const Color(0xFF0725A5),
-        title: const Text("Notifications"),
-        centerTitle: true,
-      ) : null,
       body: Center(
         child: SingleChildScrollView (
           child:
