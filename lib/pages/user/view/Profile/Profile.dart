@@ -31,6 +31,16 @@ class _ProfileState extends State<Profile> {
   /* Constants used for buttons */
   static const double widthButtons = double.infinity;
 
+  /// Booleans used for the landscape mode in order to change the color of the selected button/page.
+  /// Now, the user can know on which page he is looking at.
+  /// By default, the user is looking at the information page.
+  bool isMyInfo = true;
+  bool isNotif = false;
+  bool isHistory = false;
+  bool isApropos = false;
+
+  int currentPosition = 0;
+
 
   /// Widget building the yellow bubble which contains the user's donations.
   Widget bubbleDonationsDone() {
@@ -103,7 +113,12 @@ class _ProfileState extends State<Profile> {
   /// Widget building the actions button.
   Widget buttonDoneActionsTemplate() {
     return ProfileButton(
+      isSelected: isHistory,
         onPressedButton: () {
+          setState(() {
+            isMyInfo = isNotif = isApropos = false;
+            isHistory = true;
+          });
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
             //Navigator.pushNamed(context, "/user/activityHistory");
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const HistoryActivityPortrait()));
@@ -114,8 +129,6 @@ class _ProfileState extends State<Profile> {
             widgetLandscapeSecondPage = const HistoryActivityLandscape();
             title = "Profil - Activitées réalisées";
           }
-          setState(() {
-          });
         },
         widthButton: widthButtons,
         textButton: "Activités réalisées",
@@ -127,10 +140,15 @@ class _ProfileState extends State<Profile> {
   /// Widget building the "A propos" button.
   Widget buttonAProposTemplate() {
     return ProfileButton(
+      isSelected: isApropos,
         widthButton: widthButtons,
         textButton: "À propos",
         iconButton: Icons.info_outline,
         onPressedButton: () {
+          setState(() {
+            isMyInfo = isNotif = isHistory = false;
+            isApropos = true;
+          });
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const AProposPortrait()));
             //Navigator.pushNamed(context, "/user/APropos");
@@ -141,8 +159,6 @@ class _ProfileState extends State<Profile> {
             widgetLandscapeSecondPage = const AProposLandscape();
             title = "Profil - À propos";
           }
-          setState(() {
-          });
         },
       positionButton: 4,
     );
@@ -151,10 +167,15 @@ class _ProfileState extends State<Profile> {
   /// Widget building the information button.
   Widget buttonInformationTemplate() {
     return ProfileButton(
+      isSelected: isMyInfo,
         widthButton: widthButtons,
         textButton: "Mes informations",
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
+          setState(() {
+            isApropos = isNotif = isHistory = false;
+            isMyInfo = true;
+          });
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformationPortrait(user: widget.user)));
             //Navigator.pushNamed(context, "/user/myInformation");
@@ -165,8 +186,6 @@ class _ProfileState extends State<Profile> {
             widgetLandscapeSecondPage =  MyInformationLandscape(user: widget.user);
             title = "Profil - Mes informations";
           }
-          setState(() {
-          });
         },
         positionButton: 0,
     );
@@ -175,10 +194,15 @@ class _ProfileState extends State<Profile> {
   /// Widget building the Notification button.
   Widget buttonNotificationTemplate() {
     return ProfileButton(
+      isSelected: isNotif,
         widthButton: widthButtons,
         textButton: "Notifications",
         iconButton: Icons.notifications_none,
         onPressedButton: () {
+          setState(() {
+            isApropos = isMyInfo = isHistory = false;
+            isNotif = true;
+          });
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const NotificationsPortrait()));
             //Navigator.pushNamed(context, "/user/notifications");
@@ -189,9 +213,8 @@ class _ProfileState extends State<Profile> {
             widgetLandscapeSecondPage = const NotificationsLandscape();
             title = "Profil - Notifications";
           }
-          setState(() {
-          });
-        }, positionButton: 1,
+        },
+      positionButton: 1,
     );
   }
 

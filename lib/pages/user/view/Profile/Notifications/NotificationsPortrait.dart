@@ -81,7 +81,8 @@ class _NotificationsPortraitState extends State<NotificationsPortrait> {
                   onPressed: () {
                     setState(() {
                       isNever = is20km = is10km = is60km = false;
-                      is40km = true;                    });
+                      is40km = true;
+                    });
                   },
                   secondaryTitle: "40 km",
                   primaryTitle: "Sportif au top",

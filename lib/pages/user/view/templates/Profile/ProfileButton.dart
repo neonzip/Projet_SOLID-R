@@ -5,9 +5,10 @@ class ProfileButton extends StatefulWidget {
   final String textButton;
   final int positionButton;
   final IconData iconButton;
+  final bool? isSelected;
   final void Function()? onPressedButton;
 
-  const ProfileButton({Key? key, required this.widthButton, required this.textButton, required this.positionButton, required this.iconButton, required this.onPressedButton}) : super(key: key);
+  const ProfileButton({Key? key, required this.widthButton, required this.textButton, required this.positionButton, required this.iconButton, required this.onPressedButton, this.isSelected}) : super(key: key);
   @override
   _ProfileButtonState createState() => _ProfileButtonState();
 }
@@ -24,7 +25,7 @@ class _ProfileButtonState extends State<ProfileButton> {
   Widget buttonTemplate() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ((widget.isSelected == true) && (MediaQuery.of(context).orientation == Orientation.landscape)) ? const Color(0xFF0725A5) : Colors.white,
         borderRadius: chooseBorder(),
         boxShadow: const [BoxShadow(
           color: Color(0xFFAFC4FF),
@@ -42,9 +43,9 @@ class _ProfileButtonState extends State<ProfileButton> {
         ),
         label: Text(
           widget.textButton,
-          style: const TextStyle(color: Colors.black),
+          style: TextStyle(color: ((widget.isSelected == true) && (MediaQuery.of(context).orientation == Orientation.landscape)) ? Colors.white :Colors.black),
         ),
-        icon: Icon(widget.iconButton, color: Colors.black),
+        icon: Icon(widget.iconButton, color: ((widget.isSelected == true) && (MediaQuery.of(context).orientation == Orientation.landscape)) ? Colors.white : Colors.black),
       ),
     );
   }
