@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
@@ -157,7 +158,9 @@ class _MyInformationState extends State<MyInformation> {
     /// We get the last modified value of the email text field and create a specific variable to use it.
     String email = textEditingControllerForEmail.text;
 
-    print("Last email value : " + email);                   // Temporary : prints to the console the value of the email
+    if (kDebugMode) {
+      print("Last email value : " + email);
+    }                   // Temporary : prints to the console the value of the email
 
     // The email is empty
     if (email.isEmpty) {
@@ -181,7 +184,9 @@ class _MyInformationState extends State<MyInformation> {
     /// We get the last modified value of the pseudo text field and create a specific variable to use it.
     String pseudo = textEditingControllerForPseudo.text;
 
-    print("Last pseudo value : " + pseudo);                   // Temporary : prints to the console the value of the pseudo
+    if (kDebugMode) {
+      print("Last pseudo value : " + pseudo);
+    }                   // Temporary : prints to the console the value of the pseudo
 
     // The pseudo is empty
     if (pseudo.isEmpty) {
@@ -206,7 +211,9 @@ class _MyInformationState extends State<MyInformation> {
     /// We get the last modified value of the password text field and create a specific variable to use it.
     String password = textEditingControllerForPassword.text;
 
-    print("Last password value : " + password);                   // Temporary : prints to the console the value of the password
+    if (kDebugMode) {
+      print("Last password value : " + password);
+    }                   // Temporary : prints to the console the value of the password
 
     // The password is empty or it does not contain more than 6 characters
     if (password.isEmpty || password.length < 6) {

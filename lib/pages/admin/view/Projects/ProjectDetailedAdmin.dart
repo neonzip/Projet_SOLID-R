@@ -192,7 +192,7 @@ class _ProjectDetailedAdminState extends State<ProjectDetailedAdmin> {
           ),
           body: TabBarView(
             children: [
-              ProjetCharts(
+              ProjectCharts(
               ),
               ProjectDetailedContentAdmin(project: widget.project,),
             ],

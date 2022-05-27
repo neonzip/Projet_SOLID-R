@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'dart:math' as math;
 
@@ -7,7 +6,7 @@ import 'package:pie_chart/pie_chart.dart';
 //TODO : Make the ProjectCharts dynamics by settings parameters (datamap) and legends
 enum LegendShape { circle, rectangle }
 
-class ProjetCharts extends StatelessWidget{
+class ProjectCharts extends StatelessWidget{
 
   final legendLabels = <String, String>{
     "SOLIDAIRE": "SOLIDAIRE legend",
@@ -31,7 +30,7 @@ class ProjetCharts extends StatelessWidget{
     "Contre le COVID": 121,
   };
 
-  ProjetCharts({Key? key}) : super(key: key);
+  ProjectCharts({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -41,7 +40,6 @@ class ProjetCharts extends StatelessWidget{
     /// Form of chart
     ChartType? _chartType = ChartType.disc;
 
-    bool _showLegendLabel = false;
 
     /// Disposition of the legends.
     /// True : in row
@@ -49,7 +47,7 @@ class ProjetCharts extends StatelessWidget{
     bool _showLegendsInRow = false;
 
     /// Position of the legend depending of the chart
-    LegendPosition? _legendPosition = LegendPosition.right;
+    LegendPosition? _legendPosition = MediaQuery.of(context).orientation == Orientation.landscape ? LegendPosition.right : LegendPosition.bottom;
 
     /// Shows or not the legends
     bool _showLegends = true;
@@ -71,7 +69,7 @@ class ProjetCharts extends StatelessWidget{
     bool _showChartValuesOutside = false;
 
 
-    /// ?
+    /// Width of the ring if we choose to display a ring instead of a circle pie
     double? _ringStrokeWidth = 64;
 
 
@@ -84,8 +82,6 @@ class ProjetCharts extends StatelessWidget{
       colorList: colorList,
       initialAngleInDegree: 0,
       chartType: _chartType,
-      //centerText: _showCenterText ? "HYBRID" : null,
-      legendLabels: _showLegendLabel ? legendLabels : {},
       legendOptions: LegendOptions(
         showLegendsInRow: _showLegendsInRow,
         legendPosition: _legendPosition,
@@ -125,7 +121,7 @@ class ProjetCharts extends StatelessWidget{
           elevation: 0,
           child: Column(
             children: <Widget>[
-              const Text("Nombre de personne par projet",
+              const Text("Nombre de personnes par projet",
                 textAlign: TextAlign.center,
                 style: TextStyle (
                   fontSize: 18.0,
