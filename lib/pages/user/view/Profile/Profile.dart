@@ -3,12 +3,13 @@ import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Notifications.dart';
 import '../templates/Home/YellowBubbleMoney.dart';
 import '../templates/Profile/LogoutButton.dart';
 import '../templates/Profile/ProfileButton.dart';
 import '../templates/Separator.dart';
+import 'MyInformation/MyInformationLandscape.dart';
 
 class Profile extends StatefulWidget {
   final UserModel user;
@@ -151,13 +152,13 @@ class _ProfileState extends State<Profile> {
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
           if (MediaQuery.of(context).orientation == Orientation.portrait) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformation(user: widget.user)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformationPortrait(user: widget.user)));
             //Navigator.pushNamed(context, "/user/myInformation");
           }
           else {
             //TODO:
             //route = "/user/myInformation";
-            widgetLandscapeSecondPage =  MyInformation(user: widget.user);
+            widgetLandscapeSecondPage =  MyInformationLandscape(user: widget.user);
             title = "Profil - Mes informations";
           }
           setState(() {
@@ -358,7 +359,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    widgetLandscapeSecondPage = MyInformation(user: widget.user);
+    widgetLandscapeSecondPage = MyInformationLandscape(user: widget.user);
     super.initState();
   }
 }

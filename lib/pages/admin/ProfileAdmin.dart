@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/Profile/MyInformation.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 
 import '../user/model/UserModel.dart';
 import '../user/view/HomeUser.dart';
@@ -41,7 +41,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
         textButton: "Mes informations",
         iconButton: Icons.account_circle_outlined,
         onPressedButton: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformation(user: widget.user)));
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> MyInformationPortrait(user: widget.user)));
           //Navigator.pushNamed(context, "/user/myInformation");
         },
         positionButton: 0,

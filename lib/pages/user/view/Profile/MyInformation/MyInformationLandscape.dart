@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import '../templates/FormTextField.dart';
-import '../templates/MessageSnackbar.dart';
+import '../../templates/FormTextField.dart';
+import '../../templates/MessageSnackbar.dart';
 
-class MyInformation extends StatefulWidget {
+class MyInformationLandscape extends StatefulWidget {
   final UserModel user;
-  const MyInformation({Key? key, required this.user}) : super(key: key);
+  const MyInformationLandscape({Key? key, required this.user}) : super(key: key);
 
   @override
-  _MyInformationState createState() => _MyInformationState();
+  _MyInformationLandscapeState createState() => _MyInformationLandscapeState();
 }
 
-class _MyInformationState extends State<MyInformation> {
+class _MyInformationLandscapeState extends State<MyInformationLandscape> {
   /// Each text fields has its own controller.
   /// They allow us to change the content of the error message when the user sets the value of the associated text field.
   /// We initialize them later in the initialization of the widget.
@@ -40,7 +40,7 @@ class _MyInformationState extends State<MyInformation> {
           margin: EdgeInsets.all(5),
           backgroundColor: Colors.white,
           shape: Border(
-              bottom: BorderSide(color: Colors.yellow),
+            bottom: BorderSide(color: Colors.yellow),
           ),
           content: MessageSnackbar(
             title: 'Modifications validées\n',
@@ -95,47 +95,35 @@ class _MyInformationState extends State<MyInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (MediaQuery.of(context).orientation == Orientation.portrait) ? const Color(0xFFEBF1FF) : Colors.white,
-      appBar: (MediaQuery.of(context).orientation == Orientation.portrait) ? AppBar(
-        backgroundColor: const Color(0xFF0725A5),
-        title: const Text("Mes informations"),
-        centerTitle: true,
-      ) : null,
-      body: FooterView(
-        footer: Footer(
-          padding: const EdgeInsets.all(0),
-          child: Image.asset(
-              "assets/footer.png"
-          ),
-        ),
-        children: [
-          Center(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Center(
               child: SizedBox(
                 width: 500,
                 child: Column(
                   children: [
                     FormTextField(
                       hidden: false,
-                        errorMessage: messageErrorEmail,
-                        labelHint: "aaa@bbb.ccc",
-                        label: "Email :",
-                        text: '',
+                      errorMessage: messageErrorEmail,
+                      labelHint: "aaa@bbb.ccc",
+                      label: "Email :",
+                      text: '',
                       textEditingController: textEditingControllerForEmail,
                     ),
                     FormTextField(
                       hidden: false,
-                        errorMessage: messageErrorPseudo,
-                        labelHint: "Entrez un pseudo",
-                        label: "Pseudo :",
-                        text: '',
+                      errorMessage: messageErrorPseudo,
+                      labelHint: "Entrez un pseudo",
+                      label: "Pseudo :",
+                      text: '',
                       textEditingController: textEditingControllerForPseudo,
                     ),
                     FormTextField(
                       hidden: true,
-                        errorMessage: messageErrorPassword,
-                        labelHint: "Entrez un mot de passe",
-                        label: "Mot de passe :",
-                        text: '',
+                      errorMessage: messageErrorPassword,
+                      labelHint: "Entrez un mot de passe",
+                      label: "Mot de passe :",
+                      text: '',
                       textEditingController: textEditingControllerForPassword,
                     ),
                     buttonValidationTemplate(),
@@ -143,8 +131,7 @@ class _MyInformationState extends State<MyInformation> {
                 ),
               )
           )
-        ],
-      )
+        )
     );
   }
 
