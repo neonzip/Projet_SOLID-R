@@ -34,37 +34,29 @@ class associationDAO {  // association //Association
     final associationSnapshot = await ref.child('Association/'+ id.toString()).get();
     final json = associationSnapshot.value as Map<dynamic, dynamic>;
     final associationOBJ = AssociationModel.fromJson(json);
-    print('Data : ${associationSnapshot.value}');
-    //test
-    print('Dataaaaaaaaaaaaaa : ${associationOBJ.associationAdvertisementURL}  ');
     return associationOBJ;
   }
 
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Association/'+ id.toString()).remove();
-    //test
-    print('Dataaaaaaa removed');
   }
-/*
+
   Future<List<AssociationModel>> getListOfAssociations() async {
-    /* Map<String, Map<String, dynamic>> objectsGTypeInd = Map<String, Map<String, dynamic>>() {} as Map<String, Map<String, dynamic>>;
-    Map<String, SportModel> objectHashMap = dataSnapShot.getValue(objectsGTypeInd);
-    List<SportModel>  objectArrayList = <SportModel>[]; //(objectHashMap.values());
-    */
 
-    final List<AssociationModel> list = [];
-    final snapshot = await FirebaseDatabase.instance.ref('Association').get();
-    final map = snapshot.value as Map<dynamic, dynamic>;
-
-    map.forEach((key, value) {
-      final ac = AssociationModel.fromJson(value);
-      list.add(ac);
+    final List<AssociationModel> list = <AssociationModel>[];
+    final associationSnapshot = await FirebaseDatabase.instance.ref().child('Association').get();
+    AssociationModel  assocOBJ;
+    associationSnapshot.children.forEach((assoc)=> {
+      assocOBJ = AssociationModel.fromJson(assoc.value as Map<dynamic, dynamic>),
+      list.add(assocOBJ),
     });
+
+
     return list;
 
   }
 
 
- */
+
 }

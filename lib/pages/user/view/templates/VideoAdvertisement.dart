@@ -32,7 +32,7 @@ class _VideoAdvertisementState extends State<VideoAdvertisement> {
 
     /// Initializes the video in case the user confirms the donation
     /// If we do it with a link, replace the word "asset" by "network" in the function below
-    controller = VideoPlayerController.asset(widget.project.projectAssociation.associationAdvertisementURL);
+    controller = VideoPlayerController.asset(widget.project.projectAssociation.getEntityAdvertisement().getAdvertisementURL());
 
     controller.initialize().then((value) => {
       setState(() {

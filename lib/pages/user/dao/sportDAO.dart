@@ -6,7 +6,6 @@ import '../controller/Database.dart';
 
 class sportDAO {
   late DatabaseReference _SportRef = FirebaseDatabase.instance.ref().child('Sport');
-
   DataBase db = DataBase();
 
   sportDAO(){
@@ -37,19 +36,21 @@ class sportDAO {
     await ref.child('Sport/'+ id.toString()).remove();
   }
 
-  Future<List<SportModel>> getListOfSports() async {
-    List<SportModel> list = <SportModel>[];
+  Future<List<SportModel>> getListOfSports()  async {
 
-   final ref = FirebaseDatabase.instance.ref();
-   SportModel sportOBJ;
+    List<SportModel> list =  <SportModel>[];
+    final ref = FirebaseDatabase.instance.ref();
+    SportModel sportOBJ;
 
-   final sportSnapshot = await ref.child('Sport').get().whenComplete(() => null);
+   final sportSnapshot = await ref.child('Sport').get();
    sportSnapshot.children.forEach((sport)=> {
-   sportOBJ = SportModel.fromJson(sport.value as Map<dynamic, dynamic>),
-    list.add(sportOBJ),
-   });
+       sportOBJ = SportModel.fromJson(sport.value as Map<dynamic, dynamic>),
+        list.add(sportOBJ),
+       });
 
-   return list;
+   print(" list of sports ");
+   list.forEach((e) { print("  " + e.sportName.toString()); });
+   return  list;
   }
 
 

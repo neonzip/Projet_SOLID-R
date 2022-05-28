@@ -16,21 +16,25 @@ class EntityModel {
   }
 
   EntityModel.FromEntityModel(){ //empty constructor
+    entityID = -1;
+    entityName = "";
+    entityDescription = "";
+    entityAdvertisement = AdvertisementModel(-1,"");
   }
 
   EntityModel.fromJson(Map<dynamic, dynamic> json)
       : entityID = json['entityID'],
         entityName = json['entityName'],
         entityDescription = json['entityDescription'],
-        entityAdvertisement = json['entityAdvertisement'];
+        entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);
 
 
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
-    'entityID': entityID,
-    'entityName': entityName,
-    'entityDescription': entityDescription,
-    //'AdvertisementModel': AdvertisementModel,
+    'entityID': entityID.toString(),
+    'entityName': entityName.toString(),
+    'entityDescription': entityDescription.toString(),
+    'entityAdvertisement': entityAdvertisement.toString(),
   };
 
   /// ////////////////////////////

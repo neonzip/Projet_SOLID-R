@@ -1,5 +1,7 @@
+import 'package:projet_solid_r/pages/user/dao/activityDAO.dart';
 import 'package:projet_solid_r/pages/user/dao/sportDAO.dart';
-
+import 'dart:async';
+import '../../model/ActivityModel.dart';
 import '../../model/SportModel.dart';
 //import '../../dao/SportDAO.dart';
 class DataSportTest {
@@ -30,9 +32,22 @@ class DataSportTest {
     sportDataList.add(sport5);
     dao.saveSport(sport5);
 
+    dao.getListOfSports();
 
-
+    activityDAO adao = activityDAO();
+    DateTime d1 = DateTime(1);
+    ActivityModel a1 = ActivityModel(1,d1);
+    ActivityModel a2 = ActivityModel(2,d1);
+    adao.saveActivity(a1);
+    adao.saveActivity(a2);
+    adao.getListOfActivities();
   }
+
+  Future<List<SportModel>> getListOfSportsListfromDataBase() async{
+    final List<SportModel> l = await dao.getListOfSports();
+    return l;
+  }
+
 
   List<SportModel> getSportDataList() {
     // works only with objects initialized and added to the list
@@ -40,16 +55,7 @@ class DataSportTest {
     return sportDataList;
   }
 
-  Future<List<SportModel>> getListOfSportsListfromDataBase() async{
 
-      final List<SportModel> l = await dao.getListOfSports();
-
-      // to print
-      /*l.forEach((element) { //print("elem :"+element.sportName+"\n");
-      //print("sport list size:"+l.length.toString()+"\n");
-      });*/
-      return l;
-  }
 
   List<String> getNameSportDataList() {
     List<String> list = <String>[];

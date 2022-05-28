@@ -18,7 +18,7 @@ class ProjectModel {
   late String projectResultDescription; // Project's result description when it is finished
   late DateTime projectStartDate; // Date when the project begins
   late bool projectIsFavorite;    // True if it is a favorite project, false then
-  late List<PictureModel> projectPictures =<PictureModel>[];
+  late List<PictureModel> projectPictures = <PictureModel>[];
   late AssociationModel projectAssociation;   // Association of the project
   late EntityModel projectEntity;      // Entity which collaborates for this project
 
@@ -33,8 +33,8 @@ class ProjectModel {
     projectDonationGoal=0.0;
     projectStartDate=DateTime(0);
     projectPictures =<PictureModel>[];
-    projectAssociation=AssociationModel(0,"","","",AdvertisementModel(0,""),"");
-    projectEntity= EntityModel(0,"","",AdvertisementModel(0,""));
+    projectAssociation=AssociationModel(-1,"","","",AdvertisementModel(-1,""),"");
+    projectEntity= EntityModel(-1,"","",AdvertisementModel(-1,""));
   }
 
   ProjectModel.fromJson(Map<dynamic, dynamic> json)
@@ -46,6 +46,7 @@ class ProjectModel {
         projectResultDescription =  json['projectResultDescription'] as String,
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
         projectIsFavorite = json['projectIsFavorite'] as bool,
+        // disclaimer : the following attributes will be retreived in dao
         projectAssociation =  AssociationModel(int.parse(json['projectAssociationId'] as String),"","","",AdvertisementModel(0,""),""),
         projectEntity = EntityModel(int.parse(json['projectEntityId'] as String),"","",AdvertisementModel(0,"")),
         projectPictures = <PictureModel>[];
@@ -61,12 +62,12 @@ class ProjectModel {
     'projectIsFavorite': projectIsFavorite,
     'projectAssociationId' : projectAssociation.getAssociationId().toString(),
     'projectEntityId' : projectEntity.getEntityId().toString(),
+    //the list of pictures will be saved in Dao.
   };
   /// //////////////////////////////////////////////////////////////////////////
   /// Getters and setters
   /// //////////////////////////////////////////////////////////////////////////
 
-  /// ///////////////////////////
   bool getFavoriteState() {
     return projectIsFavorite;
   }

@@ -33,17 +33,10 @@ class DataUserTest {
 
 
     daoUser.saveUser(userX);
-    UserModel? u = daoUser.getUserByID(userX.userID);
-
-    if(u!=null){
-      print("ggg" + u.userID.toString()  +u.userTotalDistance.toString());
-      u.userLikedProject.forEach((e) {  print(e.projectName);});
-    }
-
-    List<UserModel> L = daoUser.getListOfUsers();
-    if(L!=null){
-       L.forEach((e) {  print(e.userEmail);});
-    }
+    daoUser.getUserByID(userX.userID);
+    daoUser.saveUser(userAdmin);
+    daoUser.getListOfUsers();
+    daoUser.getUserLikedProjectsByUserId(userX.userID);
 
   }
 }

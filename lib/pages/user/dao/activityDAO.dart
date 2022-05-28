@@ -4,7 +4,6 @@ import '../controller/Database.dart';
 
 class activityDAO {
   late DatabaseReference _ActivityRef = FirebaseDatabase.instance.ref().child('Activity');
-
   DataBase db = DataBase();
 
   activityDAO(){
@@ -42,15 +41,16 @@ class activityDAO {
     final ref = FirebaseDatabase.instance.ref();
     ActivityModel activityOBJ;
 
-    final activitySnapshot = await ref.child('Activity').get().whenComplete(() => null);
+    final activitySnapshot = await ref.child('Activity').get();
     activitySnapshot.children.forEach((activity)=> {
       activityOBJ = ActivityModel.fromJson(activity.value as Map<dynamic, dynamic>),
       list.add(activityOBJ),
     });
 
+    print(" list of activities ");
+    list.forEach((e) { print("  " + e.activityDistance.toString()); });
+
     return list;
   }
-
-
 
 }

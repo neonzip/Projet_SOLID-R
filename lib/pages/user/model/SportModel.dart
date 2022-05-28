@@ -21,8 +21,8 @@ class SportModel {
 
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
-    'sportID' : sportID,
-    'sportName': sportName,
+    'sportID' : sportID.toString(),
+    'sportName': sportName.toString(),
     'sportConversionRate': sportConversionRate.toString(),
     'sportMaxSpeed':  sportMaxSpeed.toString(),
   };

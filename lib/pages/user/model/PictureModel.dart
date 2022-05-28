@@ -8,45 +8,40 @@ class PictureModel {
   late int pictureID;             // picture's ID
   late String pictureURL;        // picture's URL
   late String pictureDescription; // picture's description
-  late int projectID; // picture of project with id= projectID
+
 
   /// Constructor
-  PictureModel(int pictureID,String pictureURL, String pictureDescription,int projectID) {
+  PictureModel(int pictureID,String pictureURL, String pictureDescription) {
     pictureID = pictureID;
     pictureURL = pictureURL;
     pictureDescription = pictureDescription;
-    projectID = projectID;
   }
 
   PictureModel.fromJson(Map<dynamic, dynamic> json)
       : pictureID = json['pictureID'],
         pictureURL = json['pictureURL'],
-        pictureDescription= json['pictureDescription'],
-        projectID = json['projectID'];
+        pictureDescription= json['pictureDescription'];
 
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'pictureID': pictureID.toString(),
     'pictureURL': pictureURL.toString(),
     'pictureDescription': pictureDescription.toString(),
-    'projectID' : projectID.toString(),
+
   };
   /// //////////////////////////////////////////////////////////////////////////
   /// Getters and setters
   /// //////////////////////////////////////////////////////////////////////////
 
-  /// ///////////////////////////
-
-  /// ///////////////////////////
-  String getpictureURL() {
+  String getPictureURL() {
     return pictureURL;
   }
-  setpictureURL(String url) {
+  setPictureURL(String url) {
     pictureURL = url;
   }
 
   /// ///////////////////////////
-  int getIdPicture() {
+ int getIdPicture() {
     return pictureID;
   }
   setIdProject(int id) {
