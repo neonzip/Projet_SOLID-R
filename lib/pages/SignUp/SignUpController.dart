@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
-import 'package:projet_solid_r/pages/user/view/templates/SignupButton.dart';
+import 'package:projet_solid_r/pages/LaunchHome/PartIn/SignupButton.dart';
 
 /// Widget view which builds the entire widget for the page to sign up.
 /// There are several controllers for getting and changing content fields.

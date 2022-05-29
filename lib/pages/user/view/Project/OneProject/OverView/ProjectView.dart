@@ -2,12 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/SeeMoreButton.dart';
-import 'package:projet_solid_r/pages/user/view/templates/VideoAdvertisement.dart';
-import '../templates/DonationButton.dart';
-import '../templates/Project/ProjectProgressBar.dart';
-import '../templates/Project/FavoriteButton.dart';
-import '../templates/ShareButton.dart';
+import 'package:projet_solid_r/pages/user/view/Project/OneProject/SeeMoreButton.dart';
+import 'package:projet_solid_r/pages/user/view/Project/AboutDonation/VideoAdvertisement.dart';
+import '../../AboutDonation/DonationButton.dart';
+import '../FavoriteButton.dart';
+import '../ProjectProgressBar.dart';
+import '../../AboutDonation/ShareButton.dart';
 
 class ProjectView extends StatefulWidget {
   final ProjectModel project;
@@ -97,7 +97,6 @@ class _ProjectViewState extends State<ProjectView>{
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project,)));
                     },
-                    idProject: widget.project.projectID,
                 ),
                 const Spacer(),
                 /* Button "Donner" is displayed if it is not finished, then nothing. */

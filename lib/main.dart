@@ -1,20 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/Activity.dart';
+import 'package:projet_solid_r/pages/user/view/Activity/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/Notifications/NotificationsLandscape.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/SolidarityProjects.dart';
 import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
-import 'package:projet_solid_r/pages/user/view/LaunchHome.dart';
+import 'package:projet_solid_r/pages/LaunchHome/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn/SignInView.dart';
-import 'package:projet_solid_r/pages/user/bazar/Activity/Activities.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SolidarityProject/Favorites.dart';
+import 'package:projet_solid_r/pages/user/view/Activity/Activities.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
-import 'package:projet_solid_r/pages/user/view/Project/FormalProject/FormalProjects.dart';
-import 'pages/user/bazar/Activity/Activities.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/FormalProjects/FormalProjects.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/Favorites.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/SolidarityProjects.dart';
+import 'pages/user/view/Activity/Activities.dart';
 
 void main() async {
 

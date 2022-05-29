@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
-import '../../../admin/HomeAdmin.dart';
+import '../../../admin/view/Home/HomeAdmin.dart';
 
 /// Widget to go to admin page.
 class ToAdminButton extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/AllProjectsView.dart';
 
 import '../../../user/model/UserModel.dart';
-import '../../ProfileAdmin.dart';
+import '../Profile/ProfileAdmin.dart';
 
 /// https://fr.acervolima.com/flutter-onglets/?msclkid=6e1bd9dcceda11ecaf1bccadbafa9671
 class ListProjectViewAdmin extends StatefulWidget {

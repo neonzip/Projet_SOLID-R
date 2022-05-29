@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:location/location.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Activity/ActivityButton.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Activity/FinishedActivityAlert.dart';
+
+import '../Activity/FinishedActivityAlert.dart';
+import 'ActivityButton.dart';
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
 // Pour avoir la localisation background en continue, ajouter

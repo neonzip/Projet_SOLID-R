@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../model/ProjectModel.dart';
+import '../../../model/ProjectModel.dart';
 
 /// Widget for the video of advertisement.
 /// Here are all the methods we have to applicate the ad and display it.

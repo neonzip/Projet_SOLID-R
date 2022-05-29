@@ -21,7 +21,7 @@ class _ProfileButtonState extends State<ProfileButton> {
     return buttonTemplate();
   }
 
-  /// Widget building the specific button.
+  /// Widget building the specific button we want in the profile page.
   Widget buttonTemplate() {
     return Container(
       decoration: BoxDecoration(
@@ -50,6 +50,7 @@ class _ProfileButtonState extends State<ProfileButton> {
     );
   }
 
+  /// Create a different border for the end and the begining of the container of buttons, in order to make them look like one unique shape.
   BorderRadius chooseBorder() {
     if (widget.positionButton == 0) {
       return const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10));

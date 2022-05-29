@@ -3,11 +3,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 import 'package:projet_solid_r/pages/admin/view/DeleteProject/DeleteProjectController.dart';
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/UpdatingProject.dart';
-import 'package:projet_solid_r/pages/user/view/Project/GlobalInformationAdmin.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
+import 'package:projet_solid_r/pages/admin/view/Projects/GlobalInformationAdmin.dart';
+import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
 
 import '../../../user/model/ProjectModel.dart';
-import '../../../user/view/templates/Project/ProjectProgressBar.dart';
+import '../../../user/view/Project/OneProject/ProjectProgressBar.dart';
 import '../../../user/view/templates/Separator.dart';
 
 class ProjectDetailedContentAdmin extends StatefulWidget {

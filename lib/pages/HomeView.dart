@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Home/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
 

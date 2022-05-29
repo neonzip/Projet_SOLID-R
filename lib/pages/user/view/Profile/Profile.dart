@@ -6,7 +6,7 @@ import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.d
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/ToAdminButton.dart';
 import 'LogoutButton.dart';
-import '../templates/Profile/ProfileButton.dart';
+import 'ProfileButton.dart';
 import '../templates/Separator.dart';
 import 'APropos/AProposLandscape.dart';
 import 'MyInformation/MyInformationLandscape.dart';

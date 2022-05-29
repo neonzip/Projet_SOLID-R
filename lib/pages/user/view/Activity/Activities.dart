@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../Activity.dart';
+import 'Activity.dart';
 import '../../controller/fakeDataTest/DataSportTest.dart';
-import '../../view/templates/Activity/ActivityButton.dart';
+import 'ActivityButton.dart';
 
 class Activities extends StatefulWidget {
   const Activities({Key? key}) : super(key: key);
@@ -16,8 +16,6 @@ class _ActivitiesState extends State<Activities> {
   // List in the dropdown list that we have to replace by the list in the database
   var items =  DataSportTest().getNameSportDataList();
 
-  // string for next selected value in the dropdown list
-  String? _dropdownValue;
 
   // string of the current sport chosen
   String? currentActivity;
@@ -67,7 +65,6 @@ class _ActivitiesState extends State<Activities> {
           const Spacer(),
           ActivityButton(
             onPressedButton: () {
-              //Navigator.pushNamed(context, "/activityAxel");
               setState(() {
                 isStarted = !isStarted;
               });
@@ -116,7 +113,6 @@ class _ActivitiesState extends State<Activities> {
   void dropDownCallback(String? selectedValue) {
     if (selectedValue is String) {
       setState(() {
-        _dropdownValue = selectedValue;
         var itemSelected = selectedValue;
         items.remove(itemSelected);
         items.insert(0, itemSelected);

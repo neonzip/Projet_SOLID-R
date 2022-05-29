@@ -3,7 +3,7 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
 import '../../../admin/view/Projects/ProjectViewAdmin.dart';
-import '../../view/Project/ProjectView.dart';
+import '../../view/Project/OneProject/OverView/ProjectView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Constants for every possible status to list the Projects (easier and communicates with the filters.

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SeeMoreButton extends StatefulWidget {
+class SeeMoreButton extends StatelessWidget {
   final void Function()? onPressed;
-  final int idProject;
 
-  const SeeMoreButton({Key? key, required this.onPressed, required this.idProject}) : super(key: key);
-  @override
-  _SeeMoreButtonState createState() => _SeeMoreButtonState();
-}
+  const SeeMoreButton({Key? key, required this.onPressed}) : super(key: key);
 
-class _SeeMoreButtonState extends State<SeeMoreButton> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +20,7 @@ class _SeeMoreButtonState extends State<SeeMoreButton> {
         SizedBox(
           child:
           ElevatedButton.icon(
-            onPressed: widget.onPressed,
-              //Navigator.pushNamed(context, "/projects/section=formal/name=nomProjet");
+            onPressed: onPressed,
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
             label: const Text(
               "Voir plus",

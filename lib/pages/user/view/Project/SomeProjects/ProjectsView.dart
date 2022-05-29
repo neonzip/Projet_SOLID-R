@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Lanscape/LandscapeProjectsView.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectsView.dart';
 import 'ListProjects.dart';
-import 'ProjectView.dart';
+import '../OneProject/OverView/ProjectView.dart';
 
 class ProjectsView extends StatefulWidget {
   final List<ProjectView>? listProjects;

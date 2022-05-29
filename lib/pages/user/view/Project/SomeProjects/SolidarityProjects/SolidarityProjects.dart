@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../ProjectView.dart';
-import '../../templates/ItemFilter.dart';
+import '../../../templates/ItemFilter.dart';
+import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
 class SolidarityProjects extends StatefulWidget {

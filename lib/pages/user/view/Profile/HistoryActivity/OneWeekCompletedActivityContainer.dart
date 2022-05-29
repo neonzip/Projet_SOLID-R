@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
-import '../../../bazar/Activity/ActivityView.dart';
+import '../../Activity/ActivityView.dart';
 
 const TableRow rowSpacer = TableRow(
     children: [

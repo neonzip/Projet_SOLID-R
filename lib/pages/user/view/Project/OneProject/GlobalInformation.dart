@@ -2,17 +2,20 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
-class GlobalInformationAdmin extends StatefulWidget {
+import '../AboutDonation/DonationButton.dart';
+import 'FavoriteButton.dart';
+
+class GlobalInformation extends StatefulWidget {
   final void Function()? onPressed;
   final DateTime goalDate;
   final ProjectModel project;
 
-  const GlobalInformationAdmin({Key? key, required this.goalDate, this.onPressed, required this.project}) : super(key: key);
+  const GlobalInformation({Key? key, required this.goalDate, this.onPressed, required this.project}) : super(key: key);
   @override
-  _GlobalInformationAdminState createState() => _GlobalInformationAdminState();
+  _GlobalInformationState createState() => _GlobalInformationState();
 }
 
-class _GlobalInformationAdminState extends State<GlobalInformationAdmin> {
+class _GlobalInformationState extends State<GlobalInformation> {
   @override
   Widget build(BuildContext context) {
     return globalInformationTemplate();
@@ -65,6 +68,23 @@ class _GlobalInformationAdminState extends State<GlobalInformationAdmin> {
                     child: const Text("Association qui propose"),
                   ),
                   Text(widget.project.projectAssociation.entityName, textAlign: TextAlign.right,),
+                ]
+            ),
+            TableRow(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                    child:
+                    FavoriteButton(
+                      isFav: widget.project.projectIsFavorite,    // Value to change in function of the project we use
+                    ),
+                  ),
+                  (widget.project.projectResult < widget.project.projectDonationGoal)?
+                  DonationButton(
+                    idProject: widget.project.projectID,
+                    onPressedButton: widget.onPressed,          //showDonationDialog
+                    text: 'Donner',
+                  ): const Text(""),
                 ]
             ),
           ]

@@ -1,84 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../../../controller/fakeDataTest/DataProjectTest.dart';
-import '../ProjectView.dart';
+import '../../../templates/ItemFilter.dart';
+import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
-import '../../templates/ItemFilter.dart';
 
-class FormalProjects extends StatefulWidget {
-  const FormalProjects({Key? key}) : super(key: key);
+class Favorites extends StatefulWidget {
+  const Favorites({Key? key,}) : super(key: key);
 
   @override
-  _FormalProjectsState createState() => _FormalProjectsState();
+  _FavoritesState createState() => _FavoritesState();
 }
 
-
-bool isExpanded = false;
-
-class _FormalProjectsState extends State<FormalProjects> {
-  bool? filterAll = true;
-  bool? filterRunning = false;
-  bool? filterFinished = false;
+class _FavoritesState extends State<Favorites> {
+  bool? filterAll = false;
+  bool? filterFavorite = true;
+  bool isExpanded = false;
 
   List<ProjectView> listProjects = <ProjectView>[];
 
   /// Widget for filter.
   Widget filterTemplate() {
     return Container(
-      padding: const EdgeInsets.only(bottom: 15),
-      color: Colors.white,
-      child: Column (
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ItemFilter(
-            isSelected: filterAll,
-            textItem: 'Tous',
-              onChanged: (value) {
-                setState(() {
-                  filterAll = value;
-                  if (filterAll == true) {
-                    filterRunning = false;
-                    filterFinished = false;
-                    listProjects = DataProjectTest().getListFormalProjectsViews();
-                  }
-                });
-            }
-          ),
-          ItemFilter(
-            isSelected: filterRunning,
-            textItem: 'En cours',
-              onChanged: (value) {
-                setState(() {
-                  filterRunning = value;
-                  if (filterRunning == true) {
-                    filterFinished = false;
-                    filterAll = false;
-                    listProjects = DataProjectTest().getListRunningFormalProjectsViews();
-                  }
-                  else {
-                  }
-                });
-            }
-          ),
-          ItemFilter(
-            isSelected: filterFinished,
-              textItem: 'Terminés',
-              onChanged: (value) {
-                setState(() {
-                  filterFinished = value;
-                  if (filterFinished == true) {
-                    filterAll = false;
-                    filterRunning = false;
-                    listProjects = DataProjectTest().getListFinishedFormalProjectsViews();
-                  }
-                });
-            }
-          ),
-        ],
-      ),
+        padding: const EdgeInsets.only(bottom: 15),
+        //color: Colors.white,
+        child: Column (
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ItemFilter(
+                isSelected: filterAll,
+                textItem: 'Tous',
+                onChanged: (value) {
+                  setState(() {
+                    filterAll = value;
+                    filterFavorite = false;
+                    if (filterAll == true) {
+                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    }
+                    else {
+                      if (filterFavorite == false) {
+                        filterAll = true;
+                      }
+                    }
+                  });
+                }
+            ),
+            ItemFilter(
+                isSelected: filterFavorite,
+                textItem: 'Favoris',
+                onChanged: (value) {
+                  setState(() {
+                    filterFavorite = value;
+                    if (filterFavorite == true) {
+                      filterAll = false;
+                      listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                    }
+                    else{
+                      filterAll = true;
+                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    }
+                  });
+                }
+            ),
+          ],
+        )
     );
   }
-
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /// https://www.kindacode.com/article/flutter-make-a-scroll-back-to-top-button/
   /// Several parts about the button which drives us to the top of the page are in this section.
@@ -108,7 +96,7 @@ class _FormalProjectsState extends State<FormalProjects> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListFormalProjectsViews();
+    listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -131,7 +119,8 @@ class _FormalProjectsState extends State<FormalProjects> {
     super.dispose();
   }
 
-  /* This function is triggered when the user presses the back-to-top button.
+  /*
+   * This function is triggered when the user presses the back-to-top button.
    * The scroll controller does its action. During 3 seconds, the screen is scrolling itself until the top of the page is reached.
    */
   void _scrollToTop() {
@@ -140,7 +129,7 @@ class _FormalProjectsState extends State<FormalProjects> {
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  int selectedFilter = 1; // 1 for All, 2 for running and 3 for finished in this case
+  int selectedFilter = 2; // 1 for All and 2 for favorites in this case
 
   /// Builder for the page of projects in the app.
   @override
@@ -149,7 +138,7 @@ class _FormalProjectsState extends State<FormalProjects> {
         appBar: AppBar(
           actions: [
             (MediaQuery.of(context).size.width >= 600) ? PopupMenuButton(
-                tooltip: "Filtrer les projets",
+              tooltip: "Filtrer les projets",
                 padding: const EdgeInsets.all(0),
                 child: Row(
                   children: const [
@@ -162,7 +151,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 1;
                       setState(() {
-                        listProjects = DataProjectTest().getListFormalProjectsViews();
+                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
                       });
                     },
                     child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -171,39 +160,30 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = DataProjectTest().getListRunningFormalProjectsViews();
+                        listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
                       });
                     },
-                    child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      selectedFilter = 3;
-                      setState(() {
-                        listProjects = DataProjectTest().getListFinishedFormalProjectsViews();
-                      });
-                    },
-                    child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
+                    child:  Text('Favoris', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
                   ),
                 ]
             ) : Container(),
           ],
           backgroundColor: const Color(0xFF0725A5),
-          title: const Text("Projets soutenus"),
+          title: const Text("Projets solidaires"),
           centerTitle: true,
         ),
-      /* Here is called our button to go back at the top of the page. */
+        backgroundColor: const Color(0xFFD7E1FF),
+        /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-      backgroundColor: const Color(0xFFD7E1FF),
-      body: Center(
-        child: ProjectsView(
-          nbItemFilter: 3,
-          filter: filterTemplate(),
-          controller: _scrollController,
-          listProjects: listProjects,
-        ),    // Displays the specific projects of the chosen section on the screen
-      )
+        body: Center(
+          child: ProjectsView(
+            nbItemFilter: 2,
+            filter: filterTemplate(),
+            controller: _scrollController,
+            listProjects: listProjects,
+          ),     // Displays the specific projects of the chosen section on the screen
+        )
     );
   }
 }

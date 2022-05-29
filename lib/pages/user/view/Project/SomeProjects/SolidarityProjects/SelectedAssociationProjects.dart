@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
-import '../ProjectView.dart';
-import '../../templates/ItemFilter.dart';
+import '../../../templates/ItemFilter.dart';
+import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
-class Favorites extends StatefulWidget {
-  const Favorites({Key? key,}) : super(key: key);
+class SelectedAssociationProjects extends StatefulWidget {
+  final int associationID;
+  const SelectedAssociationProjects({Key? key, required this.associationID}) : super(key: key);
 
   @override
-  _FavoritesState createState() => _FavoritesState();
+  _SelectedAssociationProjectsState createState() => _SelectedAssociationProjectsState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class _SelectedAssociationProjectsState extends State<SelectedAssociationProjects> {
   bool? filterAll = false;
-  bool? filterFavorite = true;
+  bool? filterAssociationProjects = true;
   bool isExpanded = false;
 
   List<ProjectView> listProjects = <ProjectView>[];
@@ -23,42 +24,41 @@ class _FavoritesState extends State<Favorites> {
   Widget filterTemplate() {
     return Container(
         padding: const EdgeInsets.only(bottom: 15),
-        //color: Colors.white,
         child: Column (
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ItemFilter(
-                isSelected: filterAll,
-                textItem: 'Tous',
+                isSelected: filterAssociationProjects,
+                textItem: 'Ceux de l\'association',
                 onChanged: (value) {
                   setState(() {
-                    filterAll = value;
-                    filterFavorite = false;
-                    if (filterAll == true) {
-                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    filterAssociationProjects = value;
+                    filterAll = false;
+                    if (filterAssociationProjects == true) {
+                      listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
                     }
-                    else {
-                      if (filterFavorite == false) {
-                        filterAll = true;
+                    else{
+                      if (filterAll == false) {
+                        filterAssociationProjects = true;
                       }
                     }
                   });
                 }
             ),
             ItemFilter(
-                isSelected: filterFavorite,
-                textItem: 'Favoris',
+                isSelected: filterAll,
+                textItem: 'Tous',
                 onChanged: (value) {
                   setState(() {
-                    filterFavorite = value;
-                    if (filterFavorite == true) {
-                      filterAll = false;
-                      listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
-                    }
-                    else{
-                      filterAll = true;
+                    filterAll = value;
+                    if (filterAll == true) {
+                      filterAssociationProjects = false;
                       listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    }
+                    else {
+                      filterAssociationProjects = true;
+                      listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
                     }
                   });
                 }
@@ -96,7 +96,7 @@ class _FavoritesState extends State<Favorites> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+    listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -129,7 +129,7 @@ class _FavoritesState extends State<Favorites> {
   }
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  int selectedFilter = 2; // 1 for All and 2 for favorites in this case
+  int selectedFilter = 1; // 1 for the projects of the association selection initialy and 2 for all the solidarity projects in this case
 
   /// Builder for the page of projects in the app.
   @override
@@ -138,7 +138,7 @@ class _FavoritesState extends State<Favorites> {
         appBar: AppBar(
           actions: [
             (MediaQuery.of(context).size.width >= 600) ? PopupMenuButton(
-              tooltip: "Filtrer les projets",
+                tooltip: "Filtrer les projets",
                 padding: const EdgeInsets.all(0),
                 child: Row(
                   children: const [
@@ -151,19 +151,19 @@ class _FavoritesState extends State<Favorites> {
                     onTap: () {
                       selectedFilter = 1;
                       setState(() {
-                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                        listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
                       });
                     },
-                    child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
+                    child: Text('Ceux de l\'association', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
                   ),
                   PopupMenuItem(
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
                       });
                     },
-                    child:  Text('Favoris', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
+                    child:  Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
                   ),
                 ]
             ) : Container(),
@@ -172,13 +172,13 @@ class _FavoritesState extends State<Favorites> {
           title: const Text("Projets solidaires"),
           centerTitle: true,
         ),
-        backgroundColor: const Color(0xFFD7E1FF),
         /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
+        backgroundColor: const Color(0xFFD7E1FF),
         body: Center(
           child: ProjectsView(
-            nbItemFilter: 2,
+            nbItemFilter: 2, // TODO:CHANGE this
             filter: filterTemplate(),
             controller: _scrollController,
             listProjects: listProjects,
