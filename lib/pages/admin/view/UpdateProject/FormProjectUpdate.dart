@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
-import '../Templates/AddingProject/FormMultilineTextField.dart';
+import '../Templates/FormMultilineTextField.dart';
 
 class FormProjectUpdate extends StatefulWidget {
   final ProjectModel project;

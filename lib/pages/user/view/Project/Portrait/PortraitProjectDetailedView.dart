@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
 import '../../../model/ProjectModel.dart';

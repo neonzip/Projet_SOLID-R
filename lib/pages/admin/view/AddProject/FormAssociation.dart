@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
-import '../Templates/AddingProject/FormMultilineTextField.dart';
-import '../Templates/AddingProject/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
+import '../Templates/FormMultilineTextField.dart';
+import '../Templates/CarousselPictures.dart';
 
 class FormAssociation extends StatefulWidget {
   const FormAssociation({Key? key}) : super(key: key);

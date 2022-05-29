@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../Templates/AddingProject/CarousselPictures.dart';
+import '../Templates/CarousselPictures.dart';
+import '../Templates/FormMultilineTextField.dart';
 
 class FormAssociationUpdate extends StatefulWidget {
   final ProjectModel project;
@@ -33,11 +33,19 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
       onChangedName();
     });
 
+    textEditingControllerDescriptionAssociation = TextEditingController();
+    textEditingControllerDescriptionAssociation.text = widget.project.projectAssociation.entityDescription;
+    textEditingControllerDescriptionAssociation.addListener(() {
+      onChangedDescription();
+    });
+
     textEditingControllerMailAssociation = TextEditingController();
     textEditingControllerMailAssociation.text = widget.project.projectAssociation.associationMail;
     textEditingControllerMailAssociation.addListener(() {
       onChangedMail();
-    });    super.initState();
+    });
+
+    super.initState();
   }
 
   @override
@@ -60,12 +68,12 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
                     label: "Nom",
                     textEditingController: textEditingControllerNameAssociation,
                   ),
-                  FormMultilineTextFieldWithContent(
+                  FormMultilineTextField(
                       key: widget.key,
                       errorMessage: "",
                       labelHint: "Entrez la description de l'association",
                       label: "Description",
-                    text: widget.project.projectAssociation.entityDescription,
+                    textEditingController: textEditingControllerDescriptionAssociation,
                   ),
                   FormTextFieldAdmin(
                     key: widget.key,
@@ -180,6 +188,10 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
     setState(() {
       // It updates the widget in order to load the error message changes in this case
     });
+  }
+
+  void onChangedDescription() {
+    // TODO : Get the value of the specific controller in order to have the value of the description to add to the DB.
   }
 
   @override
