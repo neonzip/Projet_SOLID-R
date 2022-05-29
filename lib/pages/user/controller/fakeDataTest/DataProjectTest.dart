@@ -88,6 +88,15 @@ class DataProjectTest {
     solidarityProjectdataList.add(project7);
     solidarityProjectdataList.add(project8);
 
+    ProjectDAO projectDao = ProjectDAO();
+    projectDao.saveProject(project1);
+    projectDao.saveProject(project2);
+    projectDao.saveProject(project3);
+    projectDao.saveProject(project4);
+    projectDao.saveProject(project5);
+    projectDao.saveProject(project6);
+    projectDao.saveProject(project7);
+    projectDao.saveProject(project8);
 
   }
 

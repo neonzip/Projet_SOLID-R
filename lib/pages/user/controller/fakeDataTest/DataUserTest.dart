@@ -1,4 +1,7 @@
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
+import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import '../../dao/UserDAO.dart';
@@ -11,12 +14,13 @@ class DataUserTest {
 
   /// Creates what we have to replace with the database.
   DataUserTest() {
+    DataProjectTest projectDataLoad = DataProjectTest();
     UserDAO daoUser = UserDAO();
     UserModel userAdmin = UserModel(1,"NomAdministrateur", "admin@admin.fr", "password", true);
     UserModel userX = UserModel(2,"NomUtilisateur", "user@user.fr", "password", false);
 
     userAdmin.setUserPurse(100.80);
-    userX.setUserPurse(34.53);
+    userX.setUserPurse(340.53);
 
     userAdmin.setUserTotalDistance(500.67);
     userX.setUserTotalDistance(80.76);
@@ -32,11 +36,24 @@ class DataUserTest {
     userX.userLikedProject.add(project2);
 
 
-    daoUser.saveUser(userX);
-    daoUser.getUserByID(userX.userID);
+    // users make donations to projects
+     userX.donateToproject(1,1, 5.5); // parameters : idDonation / idProject /sum
+     userX.donateToproject(2,2, 6.01);
+     userAdmin.donateToproject(3,1, 10.1);
+     userAdmin.donateToproject(4,2, 5.01);
+    // see donations
+    DonationDAO donDao = DonationDAO();
+      //this function returns a future map<string,double>
+      // to test it we use print inside (will be removed later)
+    donDao.nbOfUsersDonatedToEachProject(5);
+    donDao.sumOfDonationsToEachMonth();
+
+     daoUser.saveUser(userX);
     daoUser.saveUser(userAdmin);
+
     daoUser.getListOfUsers();
     daoUser.getUserLikedProjectsByUserId(userX.userID);
+
 
   }
 }

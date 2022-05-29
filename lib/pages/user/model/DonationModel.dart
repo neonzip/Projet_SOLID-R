@@ -1,11 +1,11 @@
 class DonationModel {
-  late int donationID;
+  late int donationID  ;
   late DateTime donationDate;
   late double sumOfDonation;
   late int userID;
   late int projectID;
 
-  DonationModel(int donationID, DateTime donationDate, double sumOfDonation, int userID, int projectID) {
+  DonationModel(int donationID,DateTime donationDate, double sumOfDonation, int userID, int projectID) {
     setDonationID(donationID);
     setDonationDate(donationDate);
     setSumOfDonation(sumOfDonation);
