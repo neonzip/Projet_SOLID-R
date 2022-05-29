@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
 
+
+/// Notification that we push for the activity when it is running.
 class NotificationPushMessage extends StatefulWidget {
   final String title;
   final String content;

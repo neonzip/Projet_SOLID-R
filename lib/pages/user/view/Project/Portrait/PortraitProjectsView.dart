@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectDetailedView.dart';
 
-import '../ProjectView.dart';
+import '../OneProject/OverView/ProjectView.dart';
 
 
 class PortraitProjectsView extends StatefulWidget {

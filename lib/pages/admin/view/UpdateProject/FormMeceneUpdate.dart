@@ -1,10 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
 
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../Templates/AddingProject/FormMultilineTextField.dart';
-import '../Templates/AddingProject/CarousselPictures.dart';
+import '../Templates/FormMultilineTextField.dart';
+import '../Templates/CarousselPictures.dart';
+import '../Templates/FormTextFieldAdmin.dart';
 
 class FormMeceneUpdate extends StatefulWidget {
   final ProjectModel project;
@@ -18,6 +18,27 @@ class FormMeceneUpdate extends StatefulWidget {
 class _FormMeceneUpdateState extends State<FormMeceneUpdate> with AutomaticKeepAliveClientMixin<FormMeceneUpdate>{
   bool alreadyExist = true;
 
+  late TextEditingController textEditingControllerDescriptionMecene;
+  late TextEditingController textEditingControllerNameMecene;
+
+  String errorMessageNameMecene = "";
+
+  @override
+  void initState() {
+    textEditingControllerNameMecene = TextEditingController();
+    textEditingControllerNameMecene.text = widget.project.getEntityProject().entityName;
+    textEditingControllerNameMecene.addListener(() {
+      onChangedName();
+    });
+
+    textEditingControllerDescriptionMecene = TextEditingController();
+    textEditingControllerDescriptionMecene.text = widget.project.projectEntity.entityDescription;
+    textEditingControllerDescriptionMecene.addListener(() {
+      onChangedDescription();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +51,20 @@ class _FormMeceneUpdateState extends State<FormMeceneUpdate> with AutomaticKeepA
                     padding: const EdgeInsets.all(10),
                     child: const Text("Mécène", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                   ),
-                  FormTextFieldWithContentAdmin(
+                  FormTextFieldAdmin(
                     key: widget.key,
                     inputType: TextInputType.text,
-                    errorMessage: "Champ vide",
+                    errorMessage: errorMessageNameMecene,
                     labelHint: "Entrez le nom du mécène",
                     label: "Nom",
-                    text: widget.project.getEntityProject().entityName,
+                    textEditingController: textEditingControllerNameMecene,
                   ),
-                  FormMultilineTextFieldWithContent(
+                  FormMultilineTextField(
                       key: widget.key,
-                      errorMessage: "Champ vide",
+                      errorMessage: "",
                       labelHint: "Entrez la description du mécène",
                       label: "Description",
-                    text: widget.project.projectEntity.entityDescription,
+                      textEditingController: textEditingControllerDescriptionMecene,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,6 +96,31 @@ class _FormMeceneUpdateState extends State<FormMeceneUpdate> with AutomaticKeepA
           ),
         )
     );
+  }
+
+  void onChangedName() {
+    /// We get the last modified value of the name text field and create a specific variable to use it.
+    String name = textEditingControllerNameMecene.text;
+
+    if (kDebugMode) {
+      print("Last name value : " + name);
+    }                   // Temporary : prints to the console the value of the email
+
+    // The name is empty
+    if (name.isEmpty) {
+      errorMessageNameMecene = "Veuillez entrer le nom du mécène.";
+    }
+    // The name is correct
+    else {
+      errorMessageNameMecene = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  void onChangedDescription() {
+    // TODO : Get the value of the specific controller in order to have the value of the description to add to the DB.
   }
 
   @override

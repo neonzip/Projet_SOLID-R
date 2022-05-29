@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Project/SelectedAssociationProjects.dart';
+import '../../Project/SomeProjects/SolidarityProjects/SelectedAssociationProjects.dart';
+
 
 /// Load the different image logos and displays them.
 class HomeBuildingLogo extends StatelessWidget {

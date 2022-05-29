@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/bazar/Activity/ActivityView.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Profile/OneWeekCompletedActivityContainer.dart';
+import 'package:projet_solid_r/pages/user/view/Activity/ActivityView.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/OneWeekCompletedActivityContainer.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 
 class HistoryActivityLandscape extends StatefulWidget {

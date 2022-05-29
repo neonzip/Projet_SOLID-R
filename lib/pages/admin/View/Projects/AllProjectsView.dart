@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/ProjectsViewAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/ProjectsViewAdmin.dart';
 
 import '../../../user/controller/fakeDataTest/DataProjectTest.dart';
 import 'ProjectViewAdmin.dart';

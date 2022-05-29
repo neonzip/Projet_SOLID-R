@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/HomeAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
+
+import 'admin/view/Home/HomeAdmin.dart';
 
 /// Widget view which build the entire widget for the home page.
 /// The displays page depends on the status of the user (admin or not).

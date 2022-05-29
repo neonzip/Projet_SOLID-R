@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormMultilineTextField.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/FormMultilineTextField.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 
 class FormProject extends StatefulWidget {
   const FormProject({Key? key}) : super(key: key);

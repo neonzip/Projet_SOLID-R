@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../templates/Profile/NotificationFrequencyButton.dart';
+import 'NotificationFrequencyButton.dart';
 
 
 class NotificationsPortrait extends StatefulWidget {

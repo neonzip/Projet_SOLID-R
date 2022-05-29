@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/CarousselPictures.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/GlobalInformation.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/MeceneInformation.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/user/view/Project/OneProject/GlobalInformation.dart';
+import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
 import '../../../model/ProjectModel.dart';
-import '../../templates/DonationButton.dart';
-import '../../templates/Project/ProjectProgressBar.dart';
+import '../AboutDonation/DonationButton.dart';
+import '../OneProject/ProjectProgressBar.dart';
 import '../../templates/Separator.dart';
-import '../../templates/ShareButton.dart';
-import '../../templates/VideoAdvertisement.dart';
+import '../AboutDonation/ShareButton.dart';
+import '../AboutDonation/VideoAdvertisement.dart';
 
 class PortraitProjectDetailedView extends StatefulWidget {
  // Project projectToSee;

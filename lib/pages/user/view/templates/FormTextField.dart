@@ -1,16 +1,17 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class FormTextField extends StatefulWidget {
   final String errorMessage;
   final String label;
   final String labelHint;
-  final String text;
+  final String? text;
   final bool hidden;
+
+  final TextInputType? inputType;
+
   final TextEditingController textEditingController;
 
-  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.hidden, required this.label, required this.text, required this.textEditingController}) : super(key: key);
+  const FormTextField({Key? key, required this.errorMessage, required this.labelHint, required this.hidden, required this.label, this.text, required this.textEditingController, this.inputType}) : super(key: key);
   @override
   _FormTextFieldState createState() => _FormTextFieldState();
 }

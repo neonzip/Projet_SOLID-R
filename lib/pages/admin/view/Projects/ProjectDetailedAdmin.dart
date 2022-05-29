@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 
 import '../../../user/model/ProjectModel.dart';
-import '../../../user/view/templates/Project/ProjectProgressBar.dart';
+import '../../../user/view/Project/OneProject/ProjectProgressBar.dart';
 import 'ProjectCharts.dart';
 import 'ProjectDetailedContentAdmin.dart';
 

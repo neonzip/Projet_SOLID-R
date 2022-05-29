@@ -2,9 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ProjectDetailedAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Project/SeeMoreButton.dart';
+import 'package:projet_solid_r/pages/user/view/Project/OneProject/SeeMoreButton.dart';
 
-import '../../../user/view/templates/Project/ProjectProgressBar.dart';
+import '../../../user/view/Project/OneProject/ProjectProgressBar.dart';
 
 class ProjectViewAdmin extends StatefulWidget {
   final ProjectModel project;
@@ -123,7 +123,6 @@ class _ProjectViewAdminState extends State<ProjectViewAdmin>{
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ProjectDetailedAdmin(project: widget.project,)));
                   },
-                  idProject: widget.project.projectID,
                 ),
                 const Spacer(),
               ],

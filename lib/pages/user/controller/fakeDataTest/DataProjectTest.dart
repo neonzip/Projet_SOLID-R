@@ -3,7 +3,7 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
 import '../../../admin/view/Projects/ProjectViewAdmin.dart';
-import '../../view/Project/ProjectView.dart';
+import '../../view/Project/OneProject/OverView/ProjectView.dart';
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Constants for every possible status to list the Projects (easier and communicates with the filters.
@@ -88,6 +88,15 @@ class DataProjectTest {
     solidarityProjectdataList.add(project7);
     solidarityProjectdataList.add(project8);
 
+    ProjectDAO projectDao = ProjectDAO();
+    projectDao.saveProject(project1);
+    projectDao.saveProject(project2);
+    projectDao.saveProject(project3);
+    projectDao.saveProject(project4);
+    projectDao.saveProject(project5);
+    projectDao.saveProject(project6);
+    projectDao.saveProject(project7);
+    projectDao.saveProject(project8);
 
   }
 
