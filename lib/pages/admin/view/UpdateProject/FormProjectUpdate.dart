@@ -1,9 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
-import '../../../user/view/templates/FormTextField.dart';
 import '../Templates/AddingProject/FormMultilineTextField.dart';
 
 class FormProjectUpdate extends StatefulWidget {
@@ -60,14 +59,13 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
                   padding: const EdgeInsets.all(10),
                   child: const Text("Projet", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                 ),
-                FormTextField(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.text,
                   errorMessage: errorMessageName,
                     labelHint: "Entrez le nom du projet",
                     label: "Nom",
                   textEditingController: textEditingControllerName,
-                  hidden: false,
                 ),
                 FormMultilineTextField(
                   key: widget.key,
@@ -76,14 +74,13 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
                     label: "Objectif",
                   textEditingController: textEditingControllerDescription,
                 ),
-                FormTextField(
+                FormTextFieldAdmin(
                   key: widget.key,
                   inputType: TextInputType.number,
                   errorMessage: errorMessageGoalDonation,
                   labelHint: "Entrez le montant",
                   label: "Cagnotte envisagée",
                   textEditingController: textEditingControllerGoalDonation,
-                  hidden: false,
                 ),
               ],
             ),
@@ -97,7 +94,9 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
     /// We get the last modified value of the name text field and create a specific variable to use it.
     String name = textEditingControllerName.text;
 
-    print("Last name value : " + name);                   // Temporary : prints to the console the value of the email
+    if (kDebugMode) {
+      print("Last name value : " + name);
+    }                   // Temporary : prints to the console the value of the email
 
     // The name is empty
     if (name.isEmpty) {
@@ -117,7 +116,9 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
     /// We get the last modified value of the name text field and create a specific variable to use it.
     String description = textEditingControllerDescription.text;
 
-    print("Last description value : " + description);                   // Temporary : prints to the console the value of the email
+    if (kDebugMode) {
+      print("Last description value : " + description);
+    }                   // Temporary : prints to the console the value of the email
 
     // The description is empty
     if (description.isEmpty) {
@@ -138,7 +139,9 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
     /// We get the last modified value of the name text field and create a specific variable to use it.
     String value = textEditingControllerGoalDonation.text;
 
-    print("Last value : " + value);                   // Temporary : prints to the console the value of the email
+    if (kDebugMode) {
+      print("Last value : " + value);
+    }                   // Temporary : prints to the console the value of the email
 
     // The value is empty
     if (value.isEmpty) {

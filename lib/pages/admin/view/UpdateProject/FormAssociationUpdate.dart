@@ -1,9 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormMultilineTextFieldWithContent.dart';
 
-import 'package:projet_solid_r/pages/admin/view/Templates/UpdatingProject/FormTextFieldWithContentAdmin.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../Templates/AddingProject/FormMultilineTextField.dart';
 import '../Templates/AddingProject/CarousselPictures.dart';
 
 class FormAssociationUpdate extends StatefulWidget {
@@ -18,6 +18,28 @@ class FormAssociationUpdate extends StatefulWidget {
 class _FormAssociationUpdateState extends State<FormAssociationUpdate> with AutomaticKeepAliveClientMixin<FormAssociationUpdate> {
   bool alreadyExist = true;
 
+  String errorMessageNameAssociation = "";
+  String errorMessageMailAssociation = "";
+
+  late TextEditingController textEditingControllerNameAssociation;
+  late TextEditingController textEditingControllerMailAssociation;
+  late TextEditingController textEditingControllerDescriptionAssociation;
+
+@override
+  void initState() {
+    textEditingControllerNameAssociation = TextEditingController();
+    textEditingControllerNameAssociation.text = widget.project.getProjectAssociation().entityName;
+    textEditingControllerNameAssociation.addListener(() {
+      onChangedName();
+    });
+
+    textEditingControllerMailAssociation = TextEditingController();
+    textEditingControllerMailAssociation.text = widget.project.projectAssociation.associationMail;
+    textEditingControllerMailAssociation.addListener(() {
+      onChangedMail();
+    });    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,28 +52,28 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
                     padding: const EdgeInsets.all(10),
                     child: const Text("Association", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
                   ),
-                  FormTextFieldWithContentAdmin(
+                  FormTextFieldAdmin(
                     key: widget.key,
                     inputType: TextInputType.text,
-                    errorMessage: "Champ vide",
+                    errorMessage: errorMessageNameAssociation,
                     labelHint: "Entrez le nom de l'association",
                     label: "Nom",
-                    text: widget.project.getProjectAssociation().entityName,
+                    textEditingController: textEditingControllerNameAssociation,
                   ),
                   FormMultilineTextFieldWithContent(
                       key: widget.key,
-                      errorMessage: "Champ vide",
+                      errorMessage: "",
                       labelHint: "Entrez la description de l'association",
                       label: "Description",
                     text: widget.project.projectAssociation.entityDescription,
                   ),
-                  FormTextFieldWithContentAdmin(
+                  FormTextFieldAdmin(
                     key: widget.key,
                     inputType: TextInputType.text,
-                    errorMessage: "Champ vide",
+                    errorMessage: errorMessageMailAssociation,
                     labelHint: "Entrez le courriel de l'association",
                     label: "Courriel",
-                    text: widget.project.projectAssociation.associationMail,
+                    textEditingController: textEditingControllerMailAssociation,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,6 +135,51 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
           ),
         )
     );
+  }
+
+  void onChangedMail() {
+    // TODO: Implement the rest of this method in order to change the error message when the admin does not put a right email.
+    // TODO: Change the message when the email does not exist.
+
+    /// We get the last modified value of the email text field and create a specific variable to use it.
+    String email = textEditingControllerMailAssociation.text;
+
+    if (kDebugMode) {
+      print("Last email value : " + email);
+    }                   // Temporary : prints to the console the value of the email
+
+    // The email is empty
+    if (email.isEmpty) {
+      errorMessageMailAssociation = "Veuillez entrer le courriel de l'association.";
+    }
+    // The email is correct
+    else {
+      errorMessageMailAssociation = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
+  }
+
+  void onChangedName() {
+    /// We get the last modified value of the name text field and create a specific variable to use it.
+    String name = textEditingControllerNameAssociation.text;
+
+    if (kDebugMode) {
+      print("Last name value : " + name);
+    }                   // Temporary : prints to the console the value of the email
+
+    // The name is empty
+    if (name.isEmpty) {
+      errorMessageNameAssociation = "Veuillez entrer le nom de l'association.";
+    }
+    // The name is correct
+    else {
+      errorMessageNameAssociation = "";
+    }
+    setState(() {
+      // It updates the widget in order to load the error message changes in this case
+    });
   }
 
   @override
