@@ -1,6 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
+import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 ///!!!!!!!!!!!!!    likedProjects is not done yet
@@ -59,6 +61,18 @@ class UserModel {
 
    };
 
+  bool donateToproject(int idDonation, int idProject , double sum){
+    DonationDAO donDao = DonationDAO();
+    if(sum <= this.userPurse) {
+      // to make things simple idDonation == idProject
+      DonationModel don = DonationModel( idDonation,
+          DateTime.now(), sum, this.userID, idProject);
+      this.userPurse = this.userPurse - sum;
+      donDao.saveDonation(don);
+      return true;
+    }
+    return false;
+  }
   /// ////////////////////////////
   int getUserID(){
     return userID;
