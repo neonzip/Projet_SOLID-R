@@ -15,6 +15,14 @@ class DataAssociationTest {
     assoDataList.add(asso2);
     assoDataList.add(asso3);
   }
+
+  List<String> getNameAssociationDataList() {
+    List<String> list = <String>[];
+    for (int i = 0; i < assoDataList.length; i++) {
+      list.add(assoDataList.elementAt(i).entityName);
+    }
+    return list;
+  }
 }
 
 /// https://www.freemake.com/fr/free_video_downloader_top/

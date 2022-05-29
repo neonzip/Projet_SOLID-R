@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
 import '../Templates/AddingProject/FormMultilineTextField.dart';
 import '../Templates/AddingProject/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
 
 class FormAssociation extends StatefulWidget {
   const FormAssociation({Key? key}) : super(key: key);
@@ -13,6 +15,18 @@ class FormAssociation extends StatefulWidget {
 
 /// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
 class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAliveClientMixin<FormAssociation> {
+
+  // List in the dropdown list that we have to replace by the list in the database
+  // var items = associationDAO().getListOfAssociations();
+
+  var items = DataAssociationTest().getNameAssociationDataList();
+
+  // string for next selected value in the dropdown list
+  String? _dropdownValue;
+
+  // string of the current association chosen
+  String? currentAssociation;
+
   bool alreadyExist = true;
 
   String errorMessageNameAssociation = "Veuillez entrer le nom de l'association.";
@@ -167,6 +181,17 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text("Sélectionnez une association existante :"),
+                            dropDownAssociations(),
+                          ],
+                        )
+                    ),
+                    Container(
+                        padding: const EdgeInsets.all(20),
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             const Text("L'association n'existe pas encore ?"),
                             ElevatedButton(
                               onPressed: () {
@@ -191,6 +216,8 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
         )
     );
   }
+
+
 
   void onChangedMail() {
     // TODO: Implement the rest of this method in order to change the error message when the admin does not put a right email.
@@ -231,6 +258,63 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
     setState(() {
       // It updates the widget in order to load the error message changes in this case
     });
+  }
+
+  /// Widget which builds the dropdown with the list of associations.
+  Widget dropDownAssociations() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          elevation: 1,
+          isExpanded: true,
+          value: items.elementAt(0),
+          focusColor: Colors.yellow,
+          hint: const Text("Choisir une association"),
+          items: items.map(buildMenuItem).toList(),
+          onChanged: dropDownCallback,
+        ),
+      ),
+    );
+  }
+
+  /// Called when a new item in the list is selected.
+  void dropDownCallback(String? selectedValue) {
+    if (selectedValue is String) {
+      setState(() {
+        _dropdownValue = selectedValue;
+        var itemSelected = selectedValue;
+        items.remove(itemSelected);
+        items.insert(0, itemSelected);
+        currentAssociation = selectedValue;
+      }
+      );
+    }
+  }
+
+  /// Builds the menu inside the dropdown
+  /// And sets the first element of the container to the value selected previously.
+  DropdownMenuItem<String> buildMenuItem(String item) {
+    return DropdownMenuItem(
+        value: item,
+        child: Text(
+            item,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            )
+        )
+    );
   }
 
   @override

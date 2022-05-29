@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/AddingProject/FormTextFieldAdmin.dart';
 import '../Templates/AddingProject/FormMultilineTextField.dart';
 import '../Templates/AddingProject/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
 
 class FormMecene extends StatefulWidget {
   const FormMecene({Key? key}) : super(key: key);
@@ -13,6 +14,15 @@ class FormMecene extends StatefulWidget {
 
 /// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
 class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMixin<FormMecene>{
+
+  var items = DataEntityTest().getNameEntityDataList();
+
+  // string for next selected value in the dropdown list
+  String? _dropdownValue;
+
+  // string of the current entity chosen
+  String? currentEntity;
+
   bool alreadyExist = true;
 
   late TextEditingController textEditingControllerDescriptionMecene;
@@ -125,6 +135,17 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text("Sélectionnez un mécène existant :"),
+                            dropDownMecenes(),
+                          ],
+                        )
+                    ),
+                    Container(
+                        padding: const EdgeInsets.all(20),
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             const Text("Le mécène n'existe pas encore ?"),
                             ElevatedButton(
                               onPressed: () {
@@ -171,6 +192,64 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
   void onChangedDescription() {
     // TODO : Get the value of the specific controller in order to have the value of the description to add to the DB.
   }
+
+  /// Widget which builds the dropdown with the list of entities.
+  Widget dropDownMecenes() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0))
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          elevation: 1,
+          isExpanded: true,
+          value: items.elementAt(0),
+          focusColor: Colors.yellow,
+          hint: const Text("Choisir un mécène"),
+          items: items.map(buildMenuItem).toList(),
+          onChanged: dropDownCallback,
+        ),
+      ),
+    );
+  }
+
+  /// Called when a new item in the list is selected.
+  void dropDownCallback(String? selectedValue) {
+    if (selectedValue is String) {
+      setState(() {
+        _dropdownValue = selectedValue;
+        var itemSelected = selectedValue;
+        items.remove(itemSelected);
+        items.insert(0, itemSelected);
+        currentEntity = selectedValue;
+      }
+      );
+    }
+  }
+
+  /// Builds the menu inside the dropdown
+  /// And sets the first element of the container to the value selected previously.
+  DropdownMenuItem<String> buildMenuItem(String item) {
+    return DropdownMenuItem(
+        value: item,
+        child: Text(
+            item,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            )
+        )
+    );
+  }
+
 
   @override
   bool get wantKeepAlive => true;

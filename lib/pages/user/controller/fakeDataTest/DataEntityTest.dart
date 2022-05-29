@@ -16,4 +16,12 @@ class DataEntityTest {
     entitydataList.add(entity1);
     entitydataList.add(entity2);
   }
+
+  List<String> getNameEntityDataList() {
+    List<String> list = <String>[];
+    for (int i = 0; i < entitydataList.length; i++) {
+      list.add(entitydataList.elementAt(i).entityName);
+    }
+    return list;
+  }
 }
