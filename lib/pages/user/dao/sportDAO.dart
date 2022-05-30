@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'package:firebase_database/firebase_database.dart';
 import '../model/SportModel.dart';
 import '../controller/Database.dart';
@@ -47,9 +46,7 @@ class sportDAO {
        sportOBJ = SportModel.fromJson(sport.value as Map<dynamic, dynamic>),
         list.add(sportOBJ),
        });
-
-   print(" list of sports ");
-   list.forEach((e) { print("  " + e.sportName.toString()); });
+   
    return  list;
   }
 

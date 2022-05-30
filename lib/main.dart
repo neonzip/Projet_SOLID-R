@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
+import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
 import 'package:projet_solid_r/pages/user/view/Activity/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
@@ -25,6 +27,13 @@ void main() async {
   DataBase db = DataBase();
   db.SetData("UserSettings", "hi !!!!!!");
   db.GetData("UserSettings");
+
+  DataAdvertisementTest advTest = DataAdvertisementTest();
+  List<AdvertisementModel>  list = await advTest.getAdvertisementDataList();
+  print("from main : !!!!");
+  list.forEach((elt) { print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL); });
+
+
   return runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

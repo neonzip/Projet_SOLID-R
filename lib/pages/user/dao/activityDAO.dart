@@ -47,9 +47,6 @@ class activityDAO {
       list.add(activityOBJ),
     });
 
-    print(" list of activities ");
-    list.forEach((e) { print("  " + e.activityDistance.toString()); });
-
     return list;
   }
 

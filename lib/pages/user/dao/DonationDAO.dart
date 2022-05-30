@@ -15,12 +15,13 @@ class DonationDAO {
   }
 
   Future<void> saveDonation(DonationModel donation) async {
-    var datasnapshot = await db.db.ref().child('Donation').get();
+    // failed attempt to increment donation id automatically
+    //var datasnapshot = await db.db.ref().child('Donation').get();
     //donation.donationID = datasnapshot.children.length+1;
+
+    //this works but does not increment the id automatically
     _DonationRef = db.db.ref().child('Donation/'+donation.getDonationID().toString());
     await _DonationRef.set(donation.toJson());
-    // another way that works
-    //_SportRef.push().set(sport.toJson());
   }
 
   Query getDonationQuery() {
@@ -53,9 +54,10 @@ class DonationDAO {
       list.add(donationOBJ),
     });
 
+    /*
     print(" list of Donations ");
     list.forEach((e) { print("  " + e.sumOfDonation.toString()); });
-
+    */
     return list;
   }
 
@@ -91,7 +93,10 @@ class DonationDAO {
     }
     });
 
+    // print the resultMap ;
+   /*
    resultmap.forEach((key, value) {print("result map of number of users donated to each project :"+ key + " : " + value.toString() + '\n');});
+   */
     return resultmap;
   }
 
@@ -172,8 +177,10 @@ class DonationDAO {
                   break;
         default : monthStr ="unknown" ; break;
     }
+    // print the resultMap
+    /*
     resultmap.forEach((key, value) {print("result map of sum of donations each month :"+ key + " : " + value.toString() + '\n');});
-    return resultmap;
+    */
     return resultmap;
   }
 }
