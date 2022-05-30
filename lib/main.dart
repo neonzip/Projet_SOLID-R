@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
 import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
@@ -30,8 +31,12 @@ void main() async {
 
   DataAdvertisementTest advTest = DataAdvertisementTest();
   List<AdvertisementModel>  list = await advTest.getAdvertisementDataList();
-  print("from main : !!!!");
-  list.forEach((elt) { print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL); });
+  if (kDebugMode) {
+    print("from main : !!!!");
+  }
+  for (var elt in list) { if (kDebugMode) {
+    print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL);
+  } }
 
 
   return runApp(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
 import '../../../templates/ItemFilter.dart';
 import '../../OneProject/OverView/ProjectView.dart';
@@ -17,7 +16,8 @@ class _FavoritesState extends State<Favorites> {
   bool? filterFavorite = true;
   bool isExpanded = false;
 
-  List<ProjectView> listProjects = <ProjectView>[];
+  /// List which will contain all the projects to display
+  late Future<List<ProjectView>> listProjects;
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -36,7 +36,7 @@ class _FavoritesState extends State<Favorites> {
                     filterAll = value;
                     filterFavorite = false;
                     if (filterAll == true) {
-                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                      listProjects = getListAllProjects();//DataProjectTest().getListSolidarityProjectsViews();
                     }
                     else {
                       if (filterFavorite == false) {
@@ -54,11 +54,11 @@ class _FavoritesState extends State<Favorites> {
                     filterFavorite = value;
                     if (filterFavorite == true) {
                       filterAll = false;
-                      listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                      listProjects = getListFavoriteProjects();//DataProjectTest().getListFavoriteSolidarityProjectsViews();
                     }
                     else{
                       filterAll = true;
-                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                      listProjects = getListAllProjects();//DataProjectTest().getListSolidarityProjectsViews();
                     }
                   });
                 }
@@ -96,7 +96,7 @@ class _FavoritesState extends State<Favorites> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+    listProjects = getListFavoriteProjects();//DataProjectTest().getListFavoriteSolidarityProjectsViews();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -138,7 +138,7 @@ class _FavoritesState extends State<Favorites> {
         appBar: AppBar(
           actions: [
             (MediaQuery.of(context).size.width >= 600) ? PopupMenuButton(
-              tooltip: "Filtrer les projets",
+                tooltip: "Filtrer les projets",
                 padding: const EdgeInsets.all(0),
                 child: Row(
                   children: const [
@@ -151,7 +151,7 @@ class _FavoritesState extends State<Favorites> {
                     onTap: () {
                       selectedFilter = 1;
                       setState(() {
-                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                        listProjects = getListAllProjects();//DataProjectTest().getListSolidarityProjectsViews();
                       });
                     },
                     child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -160,7 +160,7 @@ class _FavoritesState extends State<Favorites> {
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                        listProjects = getListFavoriteProjects();//DataProjectTest().getListFavoriteSolidarityProjectsViews();
                       });
                     },
                     child:  Text('Favoris', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -173,17 +173,51 @@ class _FavoritesState extends State<Favorites> {
           centerTitle: true,
         ),
         backgroundColor: const Color(0xFFD7E1FF),
+
         /* Here is called our button to go back at the top of the page. */
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-        body: Center(
-          child: ProjectsView(
-            nbItemFilter: 2,
-            filter: filterTemplate(),
-            controller: _scrollController,
-            listProjects: listProjects,
-          ),     // Displays the specific projects of the chosen section on the screen
+        body: FutureBuilder<List<ProjectView>>(
+            builder: (
+                BuildContext context,
+                AsyncSnapshot<List<ProjectView>> snapshot,
+                ) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              }
+              else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return const Text('Erreur.');
+                } else if (snapshot.hasData) {
+                  return Center(
+                    child: ProjectsView(
+                      nbItemFilter: 2,
+                      filter: filterTemplate(),
+                      controller: _scrollController,
+                      listProjects: snapshot.data,
+                    ), // Displays the specific projects of the chosen section on the screen
+                  );
+                } else {
+                  return const Text('Aucune donnée');
+                }
+              } else {
+                return Text("Etat : ${snapshot.connectionState}");
+              }
+            }
         )
     );
+  }
+
+
+  /// ///////////////////////
+  /// Interaction with the DB
+  /// ///////////////////////
+  Future<List<ProjectView>> getListFavoriteProjects() async {
+    // TODO : IMANE
+    return [];
+  }
+  Future<List<ProjectView>> getListAllProjects() async {
+    // TODO : IMANE
+    return [];
   }
 }
