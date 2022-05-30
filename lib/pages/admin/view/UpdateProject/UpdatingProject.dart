@@ -223,7 +223,7 @@ class _UpdatingProjectState extends State<UpdatingProject> {
                             padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                           ),
                           onPressed: () {
-                            Navigator.popUntil(context, ModalRoute.withName("/admin/home"));
+                            Navigator.of(context).pop();
                           },
                           child: const Text(
                             "Oui",
@@ -242,7 +242,7 @@ class _UpdatingProjectState extends State<UpdatingProject> {
                             padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                           ),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.of(context).pop();
                             },
                             child: const Text(
                             "Non",
@@ -256,7 +256,8 @@ class _UpdatingProjectState extends State<UpdatingProject> {
                   )
                 ],
               ),
-            ))
+            )
+        )
     );
   }
 }

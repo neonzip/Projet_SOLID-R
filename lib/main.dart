@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
 import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
 import 'package:projet_solid_r/pages/user/view/Activity/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
@@ -30,15 +30,13 @@ void main() async {
   db.GetData("UserSettings");
 
   DataAdvertisementTest advTest = DataAdvertisementTest();
-  List<AdvertisementModel>  list_adv = await advTest.getAdvertisementDataList();
-  print("from main : !!!!");
-  list_adv.forEach((elt) { print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL); });
-
-
-  DataAssociationTest assocTest = DataAssociationTest();
-  List<AdvertisementModel>  list_assoc = await advTest.getAdvertisementDataList();
-  print("from main : !!!!");
-  list_assoc.forEach((elt) { print(" assoc : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL); });
+  List<AdvertisementModel>  list = await advTest.getAdvertisementDataList();
+  if (kDebugMode) {
+    print("from main : !!!!");
+  }
+  for (var elt in list) { if (kDebugMode) {
+    print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL);
+  } }
 
 
   return runApp(
