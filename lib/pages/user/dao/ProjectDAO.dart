@@ -1,13 +1,10 @@
-import 'dart:ffi';
-
 import 'package:firebase_database/firebase_database.dart';
-import 'package:projet_solid_r/pages/user/dao/PictureDAO.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
 import 'package:projet_solid_r/pages/user/model/PictureModel.dart';
 import '../model/ProjectModel.dart';
 import '../controller/Database.dart';
 import 'associationDAO.dart';
 import 'entityDAO.dart';
+
 class ProjectDAO {
   late DatabaseReference _projectRef = FirebaseDatabase.instance.ref().child('Project');
   DataBase db = DataBase();
@@ -55,11 +52,11 @@ class ProjectDAO {
 
     /* we have to retreive the project pictures*/
     final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
-    final likedProjectsJson = projectPicturesSnopshot.children.forEach((picture)
-    {
-      var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);
-      projectOBJ.projectPictures.add(pictureOBJ);
-    });
+          projectPicturesSnopshot.children.forEach((picture)
+          {
+            var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);
+            projectOBJ.projectPictures.add(pictureOBJ);
+          });
 
     return projectOBJ;
   }
@@ -76,7 +73,6 @@ class ProjectDAO {
     final projectsSnapshot = await FirebaseDatabase.instance.ref('Project').get();
     projectsSnapshot.children.forEach((project) async {
       var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
-      int id = projectOBJ.getIdProject();
       list.add(projectOBJ);
     });
 

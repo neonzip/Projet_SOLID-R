@@ -48,7 +48,7 @@ class DataUserTest {
     donDao.nbOfUsersDonatedToEachProject(5);
     donDao.sumOfDonationsToEachMonth();
 
-     daoUser.saveUser(userX);
+    daoUser.saveUser(userX);
     daoUser.saveUser(userAdmin);
 
     daoUser.getListOfUsers();

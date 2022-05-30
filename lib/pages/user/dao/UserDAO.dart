@@ -1,6 +1,4 @@
 
-import 'dart:convert';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../model/UserModel.dart';
@@ -37,7 +35,7 @@ class UserDAO {
 
     //retreiving the user's  liked projects :
     final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
-    final likedProjectsJson = likedProjectsSnopshot.children.forEach((project)
+       likedProjectsSnopshot.children.forEach((project)
         {
           var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
           userOBJ.userLikedProject.add(projectOBJ);

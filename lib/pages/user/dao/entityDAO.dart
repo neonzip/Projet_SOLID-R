@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import '../model/EntityModel.dart';
 import '../controller/Database.dart';
 
-class entityDAO {  // Entity //Entity
+class entityDAO {
   late DatabaseReference _EntityRef = FirebaseDatabase.instance.ref().child('Entity');
   DataBase db = DataBase();
 

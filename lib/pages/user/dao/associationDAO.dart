@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import '../model/AssociationModel.dart';
 import '../controller/Database.dart';
 
-class associationDAO {  // association //Association
+class associationDAO {
   late DatabaseReference _AssociationRef = FirebaseDatabase.instance.ref().child('Association');
 
   DataBase db = DataBase();
@@ -52,9 +52,7 @@ class associationDAO {  // association //Association
       list.add(assocOBJ),
     });
 
-
     return list;
-
   }
 
 
