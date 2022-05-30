@@ -18,7 +18,7 @@ class associationDAO {
   *
   */
 
-  Future<void> saveActivity(AssociationModel association) async {
+  Future<void> saveAssociation(AssociationModel association) async {
     _AssociationRef = db.db.ref().child('Association/'+association.toString());
     await _AssociationRef.set(association.toJson());
     // another way that works
