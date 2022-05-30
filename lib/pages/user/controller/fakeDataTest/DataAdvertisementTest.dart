@@ -8,7 +8,7 @@ class DataAdvertisementTest {
 
   DataAdvertisementTest() {
   //  advertisementDAO dao   = advertisementDAO();
-/*
+
     AdvertisementModel ad1 = AdvertisementModel(1, "assets/AdvertisementNetworks/video1.mp4");
     AdvertisementModel ad2 = AdvertisementModel(2, "assets/AdvertisementNetworks/video2.mp4");
     AdvertisementModel ad3 = AdvertisementModel(3, "assets/AdvertisementNetworks/video3.mp4");
@@ -21,13 +21,15 @@ class DataAdvertisementTest {
 
     advertisementDataList.add(ad3);
     dao.saveAdvertisement(ad3);
-*/
+
   }
 
   Future<List<AdvertisementModel>>  getAdvertisementDataList() async {
     advertisementDataList = await dao.getListOfAdvertisements();
     return advertisementDataList;
   }
+
+
 }
 
 
