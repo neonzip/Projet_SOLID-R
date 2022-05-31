@@ -187,13 +187,13 @@ class DataProjectTest {
     return list;
   }
 
-  /// Creates and gets the list of all the names of formal projects for the admin part.
-  Future<List<ProjectViewAdmin>> getListFutureFormalProjectsViewsAdmin() async {
+  /// Creates and gets the list of all the names of solidarity projects for the admin part.
+  Future<List<ProjectViewAdmin>> getListFutureSolidarityProjectsViewsAdmin() async {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
-    formalProjectdataList = await projectDao.getListOfProjects();
-    for (int i = 0; i < formalProjectdataList.length; i ++) {
+    solidarityProjectdataList = await projectDao.getListOfProjects();
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
       ProjectViewAdmin projectView = ProjectViewAdmin(
-        project: formalProjectdataList.elementAt(i),
+        project: solidarityProjectdataList.elementAt(i),
         contribution: 0,
       );
       list.add(projectView);
@@ -416,6 +416,20 @@ class DataProjectTest {
     return list;
   }
 
+// TODO : IMANE : Recuperer liste des projet SOLIDAIRE et pas SOUTENU ici :)
+  /// Creates and gets the list of all the finished solidarity projects for the admin part.
+  List<ProjectViewAdmin> getListFinishedSolidarityProjectsViewsAdmin() {
+    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
+    for (int i = 0; i < getListFinishedFormalProjects().length; i ++) {
+      ProjectViewAdmin projectView = ProjectViewAdmin(
+        project: getListFinishedFormalProjects().elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
 
   /// Creates and gets the list of all the finished formal projects for the admin part.Future
   Future<List<
@@ -480,13 +494,13 @@ class DataProjectTest {
 
   /// Creates and gets the list of all the running formal projects for the admin part.
   Future<List<
-      ProjectViewAdmin>> getListFutureRunningFormalProjectsViewsAdmin() async {
+      ProjectViewAdmin>> getListFutureRunningSolidarityProjectsViewsAdmin() async {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
     List<
-        ProjectModel> listRunningFormalProjects = await getListFutureRunningFormalProjects();
-    for (int i = 0; i < listRunningFormalProjects.length; i ++) {
+        ProjectModel> listRunningSolidarityProjects = await getListFutureRunningFormalProjects();
+    for (int i = 0; i < listRunningSolidarityProjects.length; i ++) {
       ProjectViewAdmin projectView = ProjectViewAdmin(
-        project: listRunningFormalProjects.elementAt(i),
+        project: listRunningSolidarityProjects.elementAt(i),
         contribution: 0,
       );
       list.add(projectView);

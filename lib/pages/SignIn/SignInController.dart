@@ -9,8 +9,8 @@ import '../HomeView.dart';
 
 //TODO: Change the line to access the admin/user view
 DataUserTest dataUser = DataUserTest();
-//UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
-UserModel user = dataUser.userdataList.elementAt(1); // To have a fake X user
+UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
+//UserModel user = dataUser.userdataList.elementAt(1); // To have a fake X user
 
 /// Widget view which builds the entire widget for the page to sign in.
 /// There are several controllers for getting and changing content fields.
