@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
+import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
@@ -9,9 +9,9 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest
 class FormMecene extends StatefulWidget {
   final PageController controller;
 
-  final EntityModel entity;
+  final ProjectModel project;
 
-  const FormMecene({Key? key, required this.controller, required this.entity}) : super(key: key);
+  const FormMecene({Key? key, required this.controller, required this.project}) : super(key: key);
 
   @override
   _FormMeceneState createState() => _FormMeceneState();
@@ -190,13 +190,13 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
       errorMessageNameMecene = "";
     }
     setState(() {
-      widget.entity.entityName = name;
+      widget.project.projectEntity.entityName = name;
       // It updates the widget in order to load the error message changes in this case
     });
   }
 
   void onChangedDescription() {
-    widget.entity.entityDescription = textEditingControllerDescriptionMecene.text;
+    widget.project.projectEntity.entityDescription = textEditingControllerDescriptionMecene.text;
   }
 
   /// Widget which builds the dropdown with the list of entities.

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
+import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
@@ -9,9 +9,9 @@ import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociatio
 class FormAssociation extends StatefulWidget {
   final PageController controller;
 
-  final AssociationModel association;
+  final ProjectModel project;
 
-  const FormAssociation({Key? key, required this.association, required this.controller}) : super(key: key);
+  const FormAssociation({Key? key, required this.project, required this.controller}) : super(key: key);
 
   @override
   _FormAssociationState createState() => _FormAssociationState();
@@ -244,7 +244,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
       errorMessageMailAssociation = "";
     }
     setState(() {
-      widget.association.associationMail = email;
+      widget.project.projectAssociation.associationMail = email;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -264,13 +264,13 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
       errorMessageNameAssociation = "";
     }
     setState(() {
-      widget.association.entityName = name;
+      widget.project.projectAssociation.entityName = name;
       // It updates the widget in order to load the error message changes in this case
     });
   }
 
   void onChangedDescription() {
-    widget.association.entityDescription = textEditingControllerDescriptionAssociation.text;
+    widget.project.projectAssociation.entityDescription = textEditingControllerDescriptionAssociation.text;
   }
 
   /// Widget which builds the dropdown with the list of associations.

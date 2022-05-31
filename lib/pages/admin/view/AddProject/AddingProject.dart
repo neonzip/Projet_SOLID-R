@@ -18,8 +18,6 @@ class AddingProject extends StatefulWidget {
 
 // TODO : Change constructors here... In order not to have the id to set.
 final ProjectModel projectData = ProjectModel(0, false, "", "");
-final AssociationModel associationData = AssociationModel(0, "", "", "", AdvertisementModel(0, ""), "");
-final EntityModel meceneData = EntityModel(0, "", "", AdvertisementModel(0, ""));
 
 class _AddingProjectState extends State<AddingProject> {
 
@@ -36,13 +34,13 @@ class _AddingProjectState extends State<AddingProject> {
     FormProject(controller: controller, project: projectData,),
 
     // Page for association information
-    FormAssociation(association: associationData, controller: controller,),
+    FormAssociation(project: projectData, controller: controller,),
 
     // Page for mecene information
-    FormMecene(controller: controller, entity: meceneData,),
+    FormMecene(controller: controller, project: projectData,),
 
     // Page for confirmation
-    FormConfirmation(controller: controller, project: projectData, association: associationData, entity: meceneData,),
+    FormConfirmation(controller: controller, project: projectData,),
   ];
 
   /// Page controller

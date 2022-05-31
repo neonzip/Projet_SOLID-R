@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
 
-import '../../../user/model/AssociationModel.dart';
 import '../../../user/model/ProjectModel.dart';
 
 class FormConfirmation extends StatefulWidget {
@@ -9,11 +7,7 @@ class FormConfirmation extends StatefulWidget {
 
   final ProjectModel project;
 
-  final AssociationModel association;
-
-  final EntityModel entity;
-
-  const FormConfirmation({Key? key, required this.controller, required this.project, required this.association, required this.entity}) : super(key: key);
+  const FormConfirmation({Key? key, required this.controller, required this.project,}) : super(key: key);
 
   @override
   _FormConfirmationState createState() => _FormConfirmationState();
@@ -182,8 +176,8 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                     onPressed: () {
                       //TODO: Add all the objects below in the database.
                       print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
-                      print("Association = " + widget.association.associationMail + "\t" + widget.association.entityDescription + "\t" + widget.association.entityName);
-                      print("Mécène = " + widget.entity.entityDescription + "\t" + widget.entity.entityName);
+                      print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);
+                      print("Mécène = " + widget.project.projectEntity.entityDescription + "\t" + widget.project.projectEntity.entityName);
                       showConfirmation();
                     },
                     style: //ButtonStyle
