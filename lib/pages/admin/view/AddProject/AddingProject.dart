@@ -3,13 +3,23 @@ import 'package:projet_solid_r/pages/admin/view/AddProject/FormAssociation.dart'
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormConfirmation.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormMecene.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormProject.dart';
+import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
+import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
+import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
+import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 class AddingProject extends StatefulWidget {
   const AddingProject({Key? key}) : super(key: key);
 
+
   @override
   _AddingProjectState createState() => _AddingProjectState();
 }
+
+// TODO : Change constructors here... In order not to have the id to set.
+final ProjectModel projectData = ProjectModel(0, false, "", "");
+final AssociationModel associationData = AssociationModel(0, "", "", "", AdvertisementModel(0, ""), "");
+final EntityModel meceneData = EntityModel(0, "", "", AdvertisementModel(0, ""));
 
 class _AddingProjectState extends State<AddingProject> {
 
@@ -23,23 +33,22 @@ class _AddingProjectState extends State<AddingProject> {
   static final List<Widget> pages = [
 
     // Page for project information
-    const FormProject(),
+    FormProject(controller: controller, project: projectData,),
 
     // Page for association information
-    const FormAssociation(),
+    FormAssociation(association: associationData, controller: controller,),
 
     // Page for mecene information
-    const FormMecene(),
+    FormMecene(controller: controller, entity: meceneData,),
 
     // Page for confirmation
-    const FormConfirmation(),
+    FormConfirmation(controller: controller, project: projectData, association: associationData, entity: meceneData,),
   ];
 
   /// Page controller
   static final controller = PageController(
     initialPage: 0, // First page by default
   );
-
   int currentPageValue = 0;
 
   @override
@@ -247,7 +256,8 @@ class _AddingProjectState extends State<AddingProject> {
                   )
                 ],
               ),
-            ))
+            )
+        )
     );
   }
 }

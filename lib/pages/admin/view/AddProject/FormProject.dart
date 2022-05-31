@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/FormMultilineTextField.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 
+import '../../../user/model/ProjectModel.dart';
+
 class FormProject extends StatefulWidget {
-  const FormProject({Key? key}) : super(key: key);
+  final PageController controller;
+
+  final ProjectModel project;
+
+  const FormProject({Key? key, required this.controller, required this.project}) : super(key: key);
 
   @override
   _FormProjectState createState() => _FormProjectState();
@@ -97,6 +103,7 @@ class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClient
       errorMessageName = "";
     }
     setState(() {
+      widget.project.projectName = name;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -119,6 +126,7 @@ class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClient
       errorMessageDescription = "";
     }
     setState(() {
+      widget.project.projectDescription = description;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -140,6 +148,7 @@ class _FormProjectState extends State<FormProject> with AutomaticKeepAliveClient
       errorMessageGoalDonation = "";
     }
     setState(() {
+      widget.project.projectDonationGoal = double.parse(value);
       // It updates the widget in order to load the error message changes in this case
     });
   }

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
 
 class FormAssociation extends StatefulWidget {
-  const FormAssociation({Key? key}) : super(key: key);
+  final PageController controller;
+
+  final AssociationModel association;
+
+  const FormAssociation({Key? key, required this.association, required this.controller}) : super(key: key);
 
   @override
   _FormAssociationState createState() => _FormAssociationState();
@@ -48,6 +53,9 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
     });
 
     textEditingControllerDescriptionAssociation = TextEditingController();
+    textEditingControllerMailAssociation.addListener(() {
+      onChangedDescription();
+    });
 
     super.initState();
   }
@@ -236,6 +244,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
       errorMessageMailAssociation = "";
     }
     setState(() {
+      widget.association.associationMail = email;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -255,8 +264,13 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
       errorMessageNameAssociation = "";
     }
     setState(() {
+      widget.association.entityName = name;
       // It updates the widget in order to load the error message changes in this case
     });
+  }
+
+  void onChangedDescription() {
+    widget.association.entityDescription = textEditingControllerDescriptionAssociation.text;
   }
 
   /// Widget which builds the dropdown with the list of associations.

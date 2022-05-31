@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
+
+import '../../../user/model/AssociationModel.dart';
+import '../../../user/model/ProjectModel.dart';
 
 class FormConfirmation extends StatefulWidget {
-  const FormConfirmation({Key? key}) : super(key: key);
+  final PageController controller;
+
+  final ProjectModel project;
+
+  final AssociationModel association;
+
+  final EntityModel entity;
+
+  const FormConfirmation({Key? key, required this.controller, required this.project, required this.association, required this.entity}) : super(key: key);
 
   @override
   _FormConfirmationState createState() => _FormConfirmationState();
@@ -168,6 +180,10 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
+                      //TODO: Add all the objects below in the database.
+                      print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
+                      print("Association = " + widget.association.associationMail + "\t" + widget.association.entityDescription + "\t" + widget.association.entityName);
+                      print("Mécène = " + widget.entity.entityDescription + "\t" + widget.entity.entityName);
                       showConfirmation();
                     },
                     style: //ButtonStyle
