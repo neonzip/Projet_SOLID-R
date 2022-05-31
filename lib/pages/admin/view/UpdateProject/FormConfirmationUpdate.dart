@@ -104,6 +104,11 @@ class _FormConfirmationUpdateState extends State<FormConfirmationUpdate> with Au
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
+                      //TODO: Update all the objects below in the database.
+                      print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
+                      print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);
+                      print("Mécène = " + widget.project.projectEntity.entityDescription + "\t" + widget.project.projectEntity.entityName);
+
                       showConfirmation();
                     },
                     style: //ButtonStyle

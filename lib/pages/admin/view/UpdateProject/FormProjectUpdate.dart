@@ -107,6 +107,7 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
       errorMessageName = "";
     }
     setState(() {
+      widget.project.projectName = textEditingControllerName.text;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -131,6 +132,7 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
       errorMessageDescription = "";
     }
     setState(() {
+      widget.project.projectDescription = textEditingControllerDescription.text;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -154,6 +156,7 @@ class _FormProjectUpdateState extends State<FormProjectUpdate> with AutomaticKee
       errorMessageGoalDonation = "";
     }
     setState(() {
+      widget.project.projectDonationGoal = double.parse(textEditingControllerGoalDonation.text);
       // It updates the widget in order to load the error message changes in this case
     });
   }

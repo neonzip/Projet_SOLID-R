@@ -5,6 +5,9 @@ import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormMeceneUpdate.d
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormProjectUpdate.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
+import '../../../user/model/AssociationModel.dart';
+import '../../../user/model/EntityModel.dart';
+
 class UpdatingProject extends StatefulWidget {
   final ProjectModel project;
   const UpdatingProject({Key? key, required this.project}) : super(key: key);
@@ -14,6 +17,7 @@ class UpdatingProject extends StatefulWidget {
 }
 
 class _UpdatingProjectState extends State<UpdatingProject> {
+  late ProjectModel projectData;
 
   /// List of the page for adding new project.
   /// One for the project
@@ -169,19 +173,21 @@ class _UpdatingProjectState extends State<UpdatingProject> {
 
   @override
   void initState() {
+    projectData = widget.project;
+
     pages = [
 
       // Page for project information
-      FormProjectUpdate(project: widget.project),
+      FormProjectUpdate(project: projectData),
 
       // Page for association information
-      FormAssociationUpdate(project: widget.project),
+      FormAssociationUpdate(project: projectData),
 
       // Page for mecene information
-      FormMeceneUpdate(project: widget.project),
+      FormMeceneUpdate(project: projectData),
 
       // Page for confirmation
-      FormConfirmationUpdate(project: widget.project),
+      FormConfirmationUpdate(project: projectData),
     ];
     super.initState();
   }

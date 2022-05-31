@@ -165,6 +165,7 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
       errorMessageMailAssociation = "";
     }
     setState(() {
+      widget.project.projectAssociation.associationMail = email;
       // It updates the widget in order to load the error message changes in this case
     });
   }
@@ -186,12 +187,13 @@ class _FormAssociationUpdateState extends State<FormAssociationUpdate> with Auto
       errorMessageNameAssociation = "";
     }
     setState(() {
+      widget.project.projectAssociation.entityName = name;
       // It updates the widget in order to load the error message changes in this case
     });
   }
 
   void onChangedDescription() {
-    // TODO : Get the value of the specific controller in order to have the value of the description to add to the DB.
+  widget.project.projectAssociation.entityDescription = textEditingControllerDescriptionAssociation.text;
   }
 
   @override
