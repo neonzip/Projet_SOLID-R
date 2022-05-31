@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/ProjectsViewAdmin.dart';
 
@@ -19,7 +20,9 @@ class _AllProjectsViewState extends State<AllProjectsView> {
 
   int selectedFilter = 1; // 1 for All, 2 for running and 3 for finished in this case
 
-  List<ProjectViewAdmin>? listProjects = <ProjectViewAdmin>[];
+ // List<ProjectViewAdmin>? listProjects = <ProjectViewAdmin>[];
+  /// List which will contain all the projects to display
+  late Future<List<ProjectViewAdmin>> listProjects;
 
   /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /// https://www.kindacode.com/article/flutter-make-a-scroll-back-to-top-button/
@@ -50,7 +53,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListAllProjectsViewsAdmin().cast<ProjectViewAdmin>();
+    listProjects = getListAllProjects();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -88,12 +91,36 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ProjectsViewAdmin(
-          isExpandedFilter: isExpanded,
-          controller: _scrollController,
-          listProjects: listProjects,
-        ),
+      body: FutureBuilder<List<ProjectViewAdmin>>(
+          future: listProjects,
+          builder: (
+              BuildContext context,
+              AsyncSnapshot<List<ProjectViewAdmin>> snapshot,
+              ) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            else if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                if (kDebugMode) {
+                  print("snap = " + snapshot.data.toString());
+                }
+                return Text('Erreur. ' + snapshot.error.toString());
+              } else if (snapshot.hasData) {
+                return  Center(
+                  child: ProjectsViewAdmin(
+                    isExpandedFilter: isExpanded,
+                    controller: _scrollController,
+                    listProjects: snapshot.data,
+                  ),
+                );
+              } else {
+                return const Text('Aucune donnée');
+              }
+            } else {
+              return Text("Etat : ${snapshot.connectionState}");
+            }
+          }
       ),
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -112,7 +139,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                   onTap: () {
                     selectedFilter = 1;
                     setState(() {
-                      listProjects = DataProjectTest().getListFormalProjectsViewsAdmin();
+                      listProjects = getListAllProjects();
                     });
                   },
                   child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -121,7 +148,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                   onTap: () {
                     selectedFilter = 2;
                     setState(() {
-                      listProjects = DataProjectTest().getListRunningFormalProjectsViewsAdmin().cast<ProjectViewAdmin>();
+                      listProjects = getListRunningProjects();
                     });
                   },
                   child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -130,7 +157,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                   onTap: () {
                     selectedFilter = 3;
                     setState(() {
-                      listProjects = DataProjectTest().getListFinishedFormalProjectsViewsAdmin().cast<ProjectViewAdmin>();
+                      listProjects = getListFinishedProjects();
                     });
                   },
                   child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
@@ -140,6 +167,20 @@ class _AllProjectsViewState extends State<AllProjectsView> {
         ],
       ),
     );
+  }
 
+  /// ///////////////////////
+  /// Interaction with the DB
+  /// ///////////////////////
+  Future<List<ProjectViewAdmin>> getListAllProjects() async {
+    return await DataProjectTest().getListFutureSolidarityProjectsViewsAdmin();
+  }
+
+  Future<List<ProjectViewAdmin>> getListRunningProjects() async {
+    return await DataProjectTest().getListFutureRunningSolidarityProjectsViewsAdmin();
+  }
+
+  Future<List<ProjectViewAdmin>> getListFinishedProjects() async {
+    return await DataProjectTest().getListFinishedFormalProjectsViewsAdmin();
   }
 }
