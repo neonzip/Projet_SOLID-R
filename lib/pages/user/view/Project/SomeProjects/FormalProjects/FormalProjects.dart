@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../controller/fakeDataTest/DataProjectTest.dart';
@@ -20,7 +21,8 @@ class _FormalProjectsState extends State<FormalProjects> {
   bool? filterRunning = false;
   bool? filterFinished = false;
 
-  List<ProjectView> listProjects = <ProjectView>[];
+  /// List which will contain all the projects to display
+  late Future<List<ProjectView>> listProjects;
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -39,7 +41,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                   if (filterAll == true) {
                     filterRunning = false;
                     filterFinished = false;
-                    listProjects = DataProjectTest().getListFormalProjectsViews();
+                    listProjects = getListAllProjects();
                   }
                 });
             }
@@ -53,7 +55,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                   if (filterRunning == true) {
                     filterFinished = false;
                     filterAll = false;
-                    listProjects = DataProjectTest().getListRunningFormalProjectsViews();
+                    listProjects = getListRunningProjects();
                   }
                   else {
                   }
@@ -69,7 +71,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                   if (filterFinished == true) {
                     filterAll = false;
                     filterRunning = false;
-                    listProjects = DataProjectTest().getListFinishedFormalProjectsViews();
+                    listProjects = getListFinishedProjects();
                   }
                 });
             }
@@ -108,7 +110,7 @@ class _FormalProjectsState extends State<FormalProjects> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListFormalProjectsViews();
+    listProjects = getListAllProjects();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -162,7 +164,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 1;
                       setState(() {
-                        listProjects = DataProjectTest().getListFormalProjectsViews();
+                        listProjects = getListAllProjects();
                       });
                     },
                     child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -171,7 +173,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = DataProjectTest().getListRunningFormalProjectsViews();
+                        listProjects = getListRunningProjects();
                       });
                     },
                     child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -180,7 +182,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 3;
                       setState(() {
-                        listProjects = DataProjectTest().getListFinishedFormalProjectsViews();
+                        listProjects = getListFinishedProjects();
                       });
                     },
                     child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
@@ -196,14 +198,53 @@ class _FormalProjectsState extends State<FormalProjects> {
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
       backgroundColor: const Color(0xFFD7E1FF),
-      body: Center(
-        child: ProjectsView(
-          nbItemFilter: 3,
-          filter: filterTemplate(),
-          controller: _scrollController,
-          listProjects: listProjects,
-        ),    // Displays the specific projects of the chosen section on the screen
+      body: FutureBuilder<List<ProjectView>>(
+          future: listProjects,
+          builder: (
+              BuildContext context,
+              AsyncSnapshot<List<ProjectView>> snapshot,
+              ) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            else if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                if (kDebugMode) {
+                  print("snap = " + snapshot.data.toString());
+                }
+                return Text('Erreur. ' + snapshot.error.toString());
+              } else if (snapshot.hasData) {
+                return Center(
+                  child: ProjectsView(
+                    nbItemFilter: 3,
+                    filter: filterTemplate(),
+                    controller: _scrollController,
+                    listProjects: snapshot.data,
+                  ),    // Displays the specific projects of the chosen section on the screen
+                );
+              } else {
+                return const Text('Aucune donnée');
+              }
+            } else {
+              return Text("Etat : ${snapshot.connectionState}");
+            }
+          }
       )
     );
+  }
+
+  /// ///////////////////////
+  /// Interaction with the DB
+  /// ///////////////////////
+  Future<List<ProjectView>> getListAllProjects() async {
+    return await DataProjectTest().getListFutureFormalProjectsViews();
+  }
+
+  Future<List<ProjectView>> getListRunningProjects() async {
+    return await DataProjectTest().getListFutureRunningFormalProjectsViews();
+  }
+
+  Future<List<ProjectView>> getListFinishedProjects() async {
+    return await DataProjectTest().getListFutureFinishedFormalProjectsViews();
   }
 }

@@ -227,12 +227,9 @@ class _FavoritesState extends State<Favorites> {
   /// Interaction with the DB
   /// ///////////////////////
   Future<List<ProjectView>> getListFavoriteProjects() async {
-    // TODO : IMANE
-    print("ICI1");
     return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews();
   }
   Future<List<ProjectView>> getListAllProjects() async {
-    // TODO : IMANE
     return await DataProjectTest().getListFutureSolidarityProjectsViews();
   }
 }
