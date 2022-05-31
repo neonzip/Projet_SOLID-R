@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../controller/fakeDataTest/DataProjectTest.dart';
 import '../../../templates/ItemFilter.dart';
 import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
@@ -37,6 +41,8 @@ class _FavoritesState extends State<Favorites> {
                     filterFavorite = false;
                     if (filterAll == true) {
                       listProjects = getListAllProjects();//DataProjectTest().getListSolidarityProjectsViews();
+                      setState(() {
+                      });
                     }
                     else {
                       if (filterFavorite == false) {
@@ -55,10 +61,14 @@ class _FavoritesState extends State<Favorites> {
                     if (filterFavorite == true) {
                       filterAll = false;
                       listProjects = getListFavoriteProjects();//DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                      setState(() {
+                      });
                     }
                     else{
                       filterAll = true;
                       listProjects = getListAllProjects();//DataProjectTest().getListSolidarityProjectsViews();
+                      setState(() {
+                      });
                     }
                   });
                 }
@@ -178,6 +188,7 @@ class _FavoritesState extends State<Favorites> {
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
         body: FutureBuilder<List<ProjectView>>(
+            future: listProjects,
             builder: (
                 BuildContext context,
                 AsyncSnapshot<List<ProjectView>> snapshot,
@@ -187,14 +198,17 @@ class _FavoritesState extends State<Favorites> {
               }
               else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return const Text('Erreur.');
+                  if (kDebugMode) {
+                    print("snap = " + snapshot.data.toString());
+                  }
+                  return Text('Erreur. ' + snapshot.error.toString());
                 } else if (snapshot.hasData) {
                   return Center(
                     child: ProjectsView(
                       nbItemFilter: 2,
                       filter: filterTemplate(),
                       controller: _scrollController,
-                      listProjects: snapshot.data,
+                      listProjects: snapshot.data!,
                     ), // Displays the specific projects of the chosen section on the screen
                   );
                 } else {
@@ -214,10 +228,11 @@ class _FavoritesState extends State<Favorites> {
   /// ///////////////////////
   Future<List<ProjectView>> getListFavoriteProjects() async {
     // TODO : IMANE
-    return [];
+    print("ICI1");
+    return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews();
   }
   Future<List<ProjectView>> getListAllProjects() async {
     // TODO : IMANE
-    return [];
+    return await DataProjectTest().getListFutureSolidarityProjectsViews();
   }
 }
