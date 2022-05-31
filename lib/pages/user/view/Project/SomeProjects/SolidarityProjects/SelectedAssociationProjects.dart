@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
@@ -18,7 +19,8 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
   bool? filterAssociationProjects = true;
   bool isExpanded = false;
 
-  List<ProjectView> listProjects = <ProjectView>[];
+  /// List which will contain all the projects to display
+  late Future<List<ProjectView>> listProjects;
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -36,7 +38,7 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
                     filterAssociationProjects = value;
                     filterAll = false;
                     if (filterAssociationProjects == true) {
-                      listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
+                      listProjects = getListAllProjectsOfAssociation();
                     }
                     else{
                       if (filterAll == false) {
@@ -54,11 +56,11 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
                     filterAll = value;
                     if (filterAll == true) {
                       filterAssociationProjects = false;
-                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                      listProjects = getListAllProjects();
                     }
                     else {
                       filterAssociationProjects = true;
-                      listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
+                      listProjects = getListAllProjectsOfAssociation();
                     }
                   });
                 }
@@ -96,7 +98,7 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
+    listProjects = getListAllProjectsOfAssociation();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -151,7 +153,7 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
                     onTap: () {
                       selectedFilter = 1;
                       setState(() {
-                        listProjects = DataProjectTest().getListSolidarityProjectsOfAssociationViews(widget.associationID);
+                        listProjects = getListAllProjectsOfAssociation();
                       });
                     },
                     child: Text('Ceux de l\'association', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -160,7 +162,7 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                        listProjects = getListAllProjects();
                       });
                     },
                     child:  Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -176,14 +178,48 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
         backgroundColor: const Color(0xFFD7E1FF),
-        body: Center(
-          child: ProjectsView(
-            nbItemFilter: 2, // TODO:CHANGE this
-            filter: filterTemplate(),
-            controller: _scrollController,
-            listProjects: listProjects,
-          ),     // Displays the specific projects of the chosen section on the screen
+        body: FutureBuilder<List<ProjectView>>(
+            future: listProjects,
+            builder: (
+                BuildContext context,
+                AsyncSnapshot<List<ProjectView>> snapshot,
+                ) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              }
+              else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  if (kDebugMode) {
+                    print("snap = " + snapshot.data.toString());
+                  }
+                  return Text('Erreur. ' + snapshot.error.toString());
+                } else if (snapshot.hasData) {
+                  return Center(
+                    child: ProjectsView(
+                      nbItemFilter: 2, // TODO:CHANGE this
+                      filter: filterTemplate(),
+                      controller: _scrollController,
+                      listProjects: snapshot.data,
+                    ),     // Displays the specific projects of the chosen section on the screen
+                  );
+                } else {
+                  return const Text('Aucune donnée');
+                }
+              } else {
+                return Text("Etat : ${snapshot.connectionState}");
+              }
+            }
         )
     );
+  }
+
+  /// ///////////////////////
+  /// Interaction with the DB
+  /// ///////////////////////
+  Future<List<ProjectView>> getListAllProjects() async {
+    return await DataProjectTest().getListFutureSolidarityProjectsViews();
+  }
+  Future<List<ProjectView>> getListAllProjectsOfAssociation() async {
+    return await DataProjectTest().getListFutureSolidarityProjectsOfAssociationViews(widget.associationID);
   }
 }
