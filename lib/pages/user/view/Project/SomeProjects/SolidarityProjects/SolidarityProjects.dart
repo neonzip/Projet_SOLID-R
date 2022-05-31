@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
@@ -17,7 +18,8 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   bool? filterFavorite = false;
   bool isExpanded = false;
 
-  List<ProjectView> listProjects = <ProjectView>[];
+  /// List which will contain all the projects to display
+  late Future<List<ProjectView>> listProjects;
 
   /// Widget for filter.
   Widget filterTemplate() {
@@ -34,7 +36,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                   filterAll = value;
                   filterFavorite = false;
                   if (filterAll == true) {
-                    listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    listProjects = getListAllProjects();
                   }
                   else {
                     if (filterFavorite == false) {
@@ -52,11 +54,11 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                   filterFavorite = value;
                   if (filterFavorite == true) {
                     filterAll = false;
-                    listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                    listProjects = getListFavoriteProjects();
                   }
                   else{
                     filterAll = true;
-                    listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                    listProjects = getListAllProjects();
                   }
                 });
               }
@@ -94,7 +96,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   /// Shows or not the button. It depends on where we are in the page.
   @override
   void initState() {
-    listProjects = DataProjectTest().getListSolidarityProjectsViews();
+    listProjects = getListAllProjects();
     super.initState();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -149,7 +151,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                   onTap: () {
                     selectedFilter = 1;
                     setState(() {
-                      listProjects = DataProjectTest().getListSolidarityProjectsViews();
+                      listProjects = getListAllProjects();
                     });
                   },
                   child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
@@ -158,7 +160,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                   onTap: () {
                     selectedFilter = 2;
                     setState(() {
-                      listProjects = DataProjectTest().getListFavoriteSolidarityProjectsViews();
+                      listProjects = getListFavoriteProjects();
                     });
                   },
                   child:  Text('Favoris', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -174,14 +176,48 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
         floatingActionButton: _showBackToTopButton == false ? null: buttonTopPage(),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
         backgroundColor: const Color(0xFFD7E1FF),
-        body: Center(
-        child: ProjectsView(
-          nbItemFilter: 2,
-          filter: filterTemplate(),
-          controller: _scrollController,
-          listProjects: listProjects,
-        ),     // Displays the specific projects of the chosen section on the screen
-      )
+        body: FutureBuilder<List<ProjectView>>(
+            future: listProjects,
+            builder: (
+                BuildContext context,
+                AsyncSnapshot<List<ProjectView>> snapshot,
+                ) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              }
+              else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  if (kDebugMode) {
+                    print("snap = " + snapshot.data.toString());
+                  }
+                  return Text('Erreur. ' + snapshot.error.toString());
+                } else if (snapshot.hasData) {
+                  return  Center(
+                    child: ProjectsView(
+                      nbItemFilter: 2,
+                      filter: filterTemplate(),
+                      controller: _scrollController,
+                      listProjects: snapshot.data,
+                    ),     // Displays the specific projects of the chosen section on the screen
+                  );
+                } else {
+                  return const Text('Aucune donnée');
+                }
+              } else {
+                return Text("Etat : ${snapshot.connectionState}");
+              }
+            }
+        )
     );
+  }
+
+  /// ///////////////////////
+  /// Interaction with the DB
+  /// ///////////////////////
+  Future<List<ProjectView>> getListFavoriteProjects() async {
+    return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews();
+  }
+  Future<List<ProjectView>> getListAllProjects() async {
+    return await DataProjectTest().getListFutureSolidarityProjectsViews();
   }
 }
