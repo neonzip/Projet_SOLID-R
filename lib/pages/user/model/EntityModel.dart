@@ -23,9 +23,9 @@ class EntityModel {
   }
 
   EntityModel.fromJson(Map<dynamic, dynamic> json)
-      : entityID = json['entityID'],
-        entityName = json['entityName'],
-        entityDescription = json['entityDescription'],
+      : entityID = int.parse(json['entityID'] as String),
+        entityName = json['entityName'] as String,
+        entityDescription = json['entityDescription'] as String,
         entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);
 
 
@@ -34,7 +34,7 @@ class EntityModel {
     'entityID': entityID.toString(),
     'entityName': entityName.toString(),
     'entityDescription': entityDescription.toString(),
-    'entityAdvertisement': entityAdvertisement.toString(),
+    'entityAdvertisement': entityAdvertisement.toJson(),
   };
 
   /// ////////////////////////////

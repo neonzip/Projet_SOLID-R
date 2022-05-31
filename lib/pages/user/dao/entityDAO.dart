@@ -11,7 +11,7 @@ class entityDAO {
   }
 
   Future<void> saveEntity(EntityModel ent) async {
-    _EntityRef = db.db.ref().child('Entity/'+ent.toString());
+    _EntityRef = db.db.ref().child('Entity/'+ent.getEntityId().toString());
     await _EntityRef.set(ent.toJson());
     // another way that works
     //_SportRef.push().set(sport.toJson());

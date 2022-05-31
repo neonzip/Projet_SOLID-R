@@ -23,6 +23,8 @@ class DataAssociationTest {
     dao.saveAssociation(asso1);
     dao.saveAssociation(asso2);
     dao.saveAssociation(asso3);
+
+    dao.getAssociationyByID(1);
   }
 
   List<String> getNameAssociationDataList() {

@@ -14,20 +14,21 @@ class AssociationModel extends EntityModel {
     associationMail = "xxx@yyy.zz";
   }
 
-  AssociationModel.fromJson(Map<dynamic, dynamic> json) : super.FromEntityModel(){
-    this.entityID = json['entityID'];
-    this.entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);  //later
+  AssociationModel.fromJson(Map<dynamic, dynamic> json) : super.fromJson(json)  {
+    this.entityID = int.parse(json['entityID'] as String);
+     this.entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);  //later
     this.entityDescription = json['entityDescription'];
-    this.entityName = json['entityName'];
-    associationLogo = json['associationLogo'];
-    associationWebSiteURL = json['associationWebSiteURL'];
+    this.entityName = json['entityName']  as String;
+    associationLogo = json['associationLogo'] as String;
+    associationWebSiteURL = json['associationWebSiteURL'] as String ;
     //associationAdvertisement = json['associationAdvertisement'];
-    associationMail = json['associationMail'];
+    associationMail = json['associationMail'] as String;
 
   }
 
   @override
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic> {
+  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>  {
+
     'entityID': this.entityID.toString(),
     'entityAdvertisement': this.entityAdvertisement.toJson(),
     'entityDescription': this.entityDescription.toString(),
@@ -35,7 +36,7 @@ class AssociationModel extends EntityModel {
     'associationLogo': associationLogo.toString(),
     'associationWebSiteURL': associationWebSiteURL.toString(),
     //'associationAdvertisementURL': associationAdvertisement,
-    'associationMail': associationMail,
+    'associationMail': associationMail.toString(),
   };
 
   /// ////////////////////////////
