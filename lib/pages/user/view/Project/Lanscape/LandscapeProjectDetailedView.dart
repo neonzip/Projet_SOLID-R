@@ -24,7 +24,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
   double valueDonation = 0.0;
 
   Widget participationInformationTemplate() {
-    double progressGoal = widget.project.projectResult;
+    double progressGoal = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
 
     return Container (
       margin: const EdgeInsets.all(5),
@@ -44,7 +44,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
             ProjectProgressBar(
-                valueBar: (widget.project.projectResult * 100) / widget.project.projectDonationGoal, // %
+                valueBar: progressGoal / 100, // %
             ),
           const AutoSizeText(
               // TODO : Change the "XX" value by the real one.
