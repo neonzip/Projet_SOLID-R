@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 import '../../../user/view/templates/MessageSnackbar.dart';
@@ -103,9 +104,11 @@ class _DeleteProjectControllerState extends State<DeleteProjectController> {
   /// Called when the user pressed the button Oui.
   /// Delete the project in the DB.
   void deleteProject() {
-    // TODO : Delete the specific project.
-    print("Project ID for deleting :" + widget.project.projectID.toString());
+    /// Delete the specific project in the DB.
+    DataProjectTest().projectDao.deleteById(widget.project.projectID);
+    setState(() {
 
+    });
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
