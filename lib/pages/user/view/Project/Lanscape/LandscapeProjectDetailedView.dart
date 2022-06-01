@@ -40,7 +40,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
       child: Column(
         children: [
           const AutoSizeText("Ma participation :",),
-          const AutoSizeText("0.0 €",
+          const AutoSizeText("80 €",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
             ProjectProgressBar(
@@ -52,7 +52,16 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
             textAlign: TextAlign.center,
               maxLines: 2
             ),
-          Text("$progressGoal % financés"),
+          Visibility(
+              visible: (widget.project.projectDonationGoal != widget.project.projectResult),
+              child: Container (
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                child: Column(
+                    children: [
+                      Text("$progressGoal % financés"),
+                    ]
+                ),
+              ))
         ],
       ),
     );
