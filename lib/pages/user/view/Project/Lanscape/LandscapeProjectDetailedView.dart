@@ -46,12 +46,15 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
             ProjectProgressBar(
                 valueBar: progressGoal / 100, // %
             ),
-          const AutoSizeText(
+          Visibility(
+            visible: (widget.project.projectDonationGoal == widget.project.projectResult),
+            child: const AutoSizeText(
               // TODO : Change the "XX" value by the real one.
-              "Cagnotte remplie en " "XX" " jours",
-            textAlign: TextAlign.center,
-              maxLines: 2
+                "Cagnotte remplie en " "XX" " jours",
+                textAlign: TextAlign.center,
+                maxLines: 2
             ),
+          ),
           Visibility(
               visible: (widget.project.projectDonationGoal != widget.project.projectResult),
               child: Container (
