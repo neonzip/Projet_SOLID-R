@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
 import '../../../templates/ItemFilter.dart';
+import '../../../templates/ProgressIndicatorAsync.dart';
 import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
@@ -183,7 +184,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                 AsyncSnapshot<List<ProjectView>> snapshot,
                 ) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return const ProgressIndicatorAsync();
               }
               else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {

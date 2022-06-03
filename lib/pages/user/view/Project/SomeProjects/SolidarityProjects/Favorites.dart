@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../controller/fakeDataTest/DataProjectTest.dart';
 import '../../../templates/ItemFilter.dart';
+import '../../../templates/ProgressIndicatorAsync.dart';
 import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
@@ -194,7 +195,7 @@ class _FavoritesState extends State<Favorites> {
                 AsyncSnapshot<List<ProjectView>> snapshot,
                 ) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return const ProgressIndicatorAsync();
               }
               else if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
