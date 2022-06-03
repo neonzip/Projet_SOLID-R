@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/SignIn/ForgotPasswordController.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
+import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/LaunchHome/PartIn/SigninButton.dart';
@@ -9,7 +10,7 @@ import '../HomeView.dart';
 
 //TODO: Change the line to access the admin/user view
 DataUserTest dataUser = DataUserTest();
-UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
+//UserModel user = dataUser.userdataList.elementAt(0); // To have a fake admin user
 //UserModel user = dataUser.userdataList.elementAt(1); // To have a fake X user
 
 /// Widget view which builds the entire widget for the page to sign in.
@@ -144,9 +145,22 @@ class _SignInControllerState extends State<SignInController> {
               /// This widget displays the button to sign in.
               /// When the user clicks on it, he is automatically redirected on his own account (home user page).
               SigninButton(
-                onPressed: () {
+                onPressed: () async {
                   //TODO: Check if the user exists and if it is OK send him to his account.
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user)));
+                  String emailUser = textEditingControllerForEmail.text;
+                  String password = textEditingControllerForPassword.text;
+
+                  UserModel? user;
+                  await UserDAO().getUserFromDatabase(emailUser, password).then((value) {
+                    user = value;
+                  });
+
+                  if (user != null) {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user!)));
+                  }
+                  else {
+                    // TODO : Do something to say that the user does not exist.
+                  }
                 },
               ),
 

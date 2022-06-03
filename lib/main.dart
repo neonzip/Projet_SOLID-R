@@ -17,6 +17,7 @@ import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.d
 import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/FormalProjects/FormalProjects.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/Favorites.dart';
 import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/SolidarityProjects.dart';
+import 'pages/user/controller/Authentification.dart';
 import 'pages/user/view/Activity/Activities.dart';
 
 void main() async {

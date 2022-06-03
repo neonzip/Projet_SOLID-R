@@ -4,6 +4,10 @@ import '../model/UserModel.dart';
 import '../controller/Database.dart';
 
 class UserDAO {
+  /// This is the user who will be able to signin.
+  late UserModel userModel;
+
+
   late DatabaseReference _userRef = FirebaseDatabase.instance.ref().child('User');
   DataBase db = DataBase();
 
@@ -22,6 +26,21 @@ class UserDAO {
     });
   }
 
+  Future<UserModel> getUserFromDatabase(String mail, String password) async {
+    List<UserModel> users = await getListOfUsers();
+
+    users.forEach((user) async {
+      if ((user.userEmail == mail) && (user.password == password)) {
+        print("user = " + user.userID);
+
+        //userOBJ = await getUserByID(user.userID);
+        userModel = user;
+        print("ok = " + user.userNickName);
+      }
+    });
+    return userModel;
+  }
+
   addUser(UserModel user) {
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('User/').push();
@@ -33,7 +52,7 @@ class UserDAO {
     return _userRef;
   }
 
-  Future<UserModel> getUserByID(int id)  async {
+  Future<UserModel> getUserByID(String id)  async {
     //getting the user without the list liked projects :
     final userSnapshot = await FirebaseDatabase.instance.ref().child('User/'+ id.toString()).get();
     final json = userSnapshot.value as Map<dynamic, dynamic>;
@@ -66,7 +85,7 @@ class UserDAO {
       list.add(userOBJ);
     });
 
-    // second : retreiving the user's  liked projects :
+    // second : retrieving the user's  liked projects :
     for(int i =0; i<list.length;i++) {
           String id = list[i].userID;
           list[i].userLikedProject= <ProjectModel>[];
