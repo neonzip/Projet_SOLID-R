@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/SignIn/ForgotPasswordController.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataUserTest.dart';
@@ -36,6 +37,7 @@ class _SignInControllerState extends State<SignInController> {
   /// They are here to "tell" to the user if its input is alright or not.
   String messageErrorEmail = 'Veuillez saisir votre email.';                                       // Email error message
   String messageErrorPassword = 'Veuillez saisir votre mot de passe.';    // Password error message
+  String messageNotExist = "";            // User does not exist : error message
 
   /// Initializer of this widget controller for the page to sign in.
   @override
@@ -64,9 +66,7 @@ class _SignInControllerState extends State<SignInController> {
   /// It verifies if the input is correct.
   /// If it is not correct, the error message is displayed with the right message error.
   void onChangedEmail() {
-    // TODO: Implement the rest of this method in order to change the error message when the user does not put a right email.
-    // TODO: Change the message when the email does not exist.
-    // TODO: Change the message when the email is already taken.
+    messageNotExist = "";
 
     /// We get the last modified value of the email text field and create a specific variable to use it.
     String email = textEditingControllerForEmail.text;
@@ -90,8 +90,7 @@ class _SignInControllerState extends State<SignInController> {
   /// It verifies if the input is correct.
   /// If it is not correct, the error message is displayed with the right message error.
   void onChangedPassword() {
-    //TODO: Implement the rest of this methodfor the password.
-    //TODO: Change the message if the password is incorrect.
+    messageNotExist = "";
 
     /// We get the last modified value of the password text field and create a specific variable to use it.
     String password = textEditingControllerForPassword.text;
@@ -155,11 +154,14 @@ class _SignInControllerState extends State<SignInController> {
                     user = value;
                   });
 
-                  if (user != null) {
+                  if (user?.userID != "") {
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeView(user: user!)));
                   }
                   else {
                     // TODO : Do something to say that the user does not exist.
+                    messageNotExist = "L'utilisateur que vous avez saisi n'existe pas. Veuillez vérifier votre saisie.";
+                    setState(() {
+                    });
                   }
                 },
               ),
@@ -185,6 +187,11 @@ class _SignInControllerState extends State<SignInController> {
                     child: const Text("S'inscrire"),
                   ),
                 ],
+              ),
+              Text(
+                messageNotExist,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 100,

@@ -37,6 +37,9 @@ class UserDAO {
         userModel = user;
         print("ok = " + user.userNickName);
       }
+      else {
+        userModel = UserModel("", "", "", "", false);     // To initialize userModel and avoid some error.
+      }
     });
     return userModel;
   }

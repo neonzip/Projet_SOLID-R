@@ -295,7 +295,7 @@ class _ActivityState extends State<Activity> {
 
     _stepsWalkx = _numerox - _initSteps;
     _kmWalkx = ((_stepsWalkx * 76) / 100000);
-    num coiny = (_kmWalkx * 10);
+    num coiny = (_kmWalkx * 1.2);
     coiny = num.parse(coiny.toStringAsFixed(2));
   print(_kmWalkx.toString()+ " //// "+ _kmWalkx.toStringAsFixed(2).toString());
     setState(() {
