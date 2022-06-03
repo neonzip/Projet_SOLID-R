@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 class FavoriteButton extends StatefulWidget {
-  bool isFav;
+  ProjectModel project;
 
 //  static int idProject;
-  FavoriteButton({Key? key, required this.isFav}) : super(key: key);
+  FavoriteButton({Key? key, required this.project}) : super(key: key);
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
 }
@@ -23,11 +25,12 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   */
   Widget buttonFavorite() {
     return IconButton(
-        icon: Icon(widget.isFav ? Icons.favorite : Icons.favorite_border),
+        icon: Icon(widget.project.projectIsFavorite ? Icons.favorite : Icons.favorite_border),
         onPressed: () {
           // Setting the state
           setState(() {
-            widget.isFav = !widget.isFav;
+            widget.project.projectIsFavorite = !widget.project.projectIsFavorite;
+            ProjectDAO().setFavoriteState(widget.project);
           });
         });
   }

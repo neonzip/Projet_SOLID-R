@@ -48,7 +48,9 @@ class _ProjectViewState extends State<ProjectView>{
                           ),
                           Image.asset(widget.project.getProjectAssociation().associationLogo, height: 60, width: 60,),
                           //buttonFavorite(),
-                          FavoriteButton(isFav:widget.project.projectIsFavorite),
+                          FavoriteButton(
+                              project: widget.project,
+                          ),
                         ]
                     ),
                   ],

@@ -84,6 +84,15 @@ class ProjectDAO {
     );
   }
 
+  setFavoriteState(ProjectModel project) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Project/' + project.projectID.toString()).update(
+        {
+          "projectIsFavorite" : project.projectIsFavorite,
+        }
+    );
+  }
+
   addProject(ProjectModel project) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Project/').push().set(project.toJson());
