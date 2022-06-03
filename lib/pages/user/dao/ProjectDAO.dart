@@ -42,13 +42,13 @@ class ProjectDAO {
 
     /* we have to retreive the project association*/
     associationDAO assocDao = associationDAO();
-    int idAsso = projectOBJ.getProjectAssociation().getAssociationId();
+    String idAsso = projectOBJ.getProjectAssociation().getAssociationId();
     projectOBJ.setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
 
     /* we have to retreive the project entity*/
     entityDAO entityDao = entityDAO();
-    int identity = projectOBJ.getEntityProject().getEntityId();
-    projectOBJ.setEntityProject(await entityDao.getEntityByID(identity));
+    String idEntity = projectOBJ.getEntityProject().getEntityId();
+    projectOBJ.setEntityProject(await entityDao.getEntityByID(idEntity));
 
     /* we have to retreive the project pictures*/
     final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
@@ -61,7 +61,7 @@ class ProjectDAO {
     return projectOBJ;
   }
 
-  deleteById(int id) async {
+  deleteById(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Project/'+ id.toString()).remove();
   }
@@ -95,7 +95,10 @@ class ProjectDAO {
 
   addProject(ProjectModel project) async {
     final ref = FirebaseDatabase.instance.ref();
-    await ref.child('Project/').push().set(project.toJson());
+    DatabaseReference newRef = ref.child('Project/').push();
+    project.projectID = newRef.key!;
+    newRef.set(project.toJson());
+
   }
 
 
@@ -114,16 +117,16 @@ class ProjectDAO {
 
     for(int i =0; i<list.length;i++) {
       // update project association
-      int idAsso = list[i].getProjectAssociation().getAssociationId();
+      String idAsso = list[i].getProjectAssociation().getAssociationId();
       list[i].setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
 
       // update project entitie
-      int identity = list[i].getEntityProject().getEntityId();
-      list[i].setEntityProject(await entityDao.getEntityByID(identity));
+      String idEntity = list[i].getEntityProject().getEntityId();
+      list[i].setEntityProject(await entityDao.getEntityByID(idEntity));
 
       // retreiving project pictures :
       list[i].projectPictures= <PictureModel>[];
-      int id = list[i].getIdProject();
+      String id = list[i].getIdProject();
       final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
       projectPicturesSnopshot.children.forEach((picture) {
         var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);

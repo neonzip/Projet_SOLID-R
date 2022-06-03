@@ -29,7 +29,7 @@ class associationDAO {
     return _AssociationRef;
   }
 
-  Future<AssociationModel> getAssociationyByID(int id) async {
+  Future<AssociationModel> getAssociationyByID(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     final associationSnapshot = await ref.child('Association/'+ id.toString()).get();
     final json = associationSnapshot.value as Map<dynamic, dynamic>;
@@ -44,7 +44,10 @@ class associationDAO {
 
   addAssociation(AssociationModel associationModel) async {
     final ref = FirebaseDatabase.instance.ref();
-    await ref.child('Association/').push().set(associationModel.toJson());
+
+    DatabaseReference newRef = ref.child('Association/').push();
+    associationModel.entityID = newRef.key!;
+    newRef.set(associationModel.toJson());
   }
 
   updateAssociation(AssociationModel associationModel) async {

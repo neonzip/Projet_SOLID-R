@@ -17,7 +17,7 @@ class AddingProject extends StatefulWidget {
 }
 
 // TODO : Change constructors here... In order not to have the id to set.
-final ProjectModel projectData = ProjectModel(0, false, "", "");
+final ProjectModel projectData = ProjectModel("-1", false, "", "");
 
 class _AddingProjectState extends State<AddingProject> {
 

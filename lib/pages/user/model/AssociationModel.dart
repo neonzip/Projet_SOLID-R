@@ -8,14 +8,14 @@ class AssociationModel extends EntityModel {
   //late String associationAdvertisementURL;   // Association's ad URL
   late String associationMail;
 
-  AssociationModel (int id, String name, String description, String logo, AdvertisementModel ad, String websiteURL) : super(id, name, description, ad) {
+  AssociationModel (String id, String name, String description, String logo, AdvertisementModel ad, String websiteURL) : super(id, name, description, ad) {
     associationLogo = logo;
     associationWebSiteURL = websiteURL;
     associationMail = "xxx@yyy.zz";
   }
 
   AssociationModel.fromJson(Map<dynamic, dynamic> json) : super.fromJson(json)  {
-    this.entityID = int.parse(json['entityID'] as String);
+    this.entityID = json['entityID'] as String;
      this.entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);  //later
     this.entityDescription = json['entityDescription'];
     this.entityName = json['entityName']  as String;
@@ -48,10 +48,10 @@ class AssociationModel extends EntityModel {
   }
 
   /// ////////////////////////////
-  int getAssociationId() {
+  String getAssociationId() {
     return entityID;
   }
-  setAssociationId(int id) {
+  setAssociationId(String id) {
     entityID = id;
   }
 

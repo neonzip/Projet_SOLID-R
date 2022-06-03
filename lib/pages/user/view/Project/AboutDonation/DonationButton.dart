@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DonationButton extends StatelessWidget {
-  final int idProject;
+  final String idProject;
   final String text;
   final void Function()? onPressedButton;
 

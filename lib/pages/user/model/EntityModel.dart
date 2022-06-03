@@ -1,14 +1,13 @@
 import 'AdvertisementModel.dart';
 
 class EntityModel {
-  late int entityID;
+  late String entityID;
   late String entityName;
   late String entityDescription;
   late AdvertisementModel entityAdvertisement;
 
 
-
-  EntityModel(int id, String name, String description, AdvertisementModel ad) {
+  EntityModel(String id, String name, String description, AdvertisementModel ad) {
     entityID = id;
     entityName = name;
     entityDescription = description;
@@ -16,14 +15,14 @@ class EntityModel {
   }
 
   EntityModel.FromEntityModel(){ //empty constructor
-    entityID = -1;
+    entityID = "-1";
     entityName = "";
     entityDescription = "";
     entityAdvertisement = AdvertisementModel(-1,"");
   }
 
   EntityModel.fromJson(Map<dynamic, dynamic> json)
-      : entityID = int.parse(json['entityID'] as String),
+      : entityID = json['entityID'] as String,
         entityName = json['entityName'] as String,
         entityDescription = json['entityDescription'] as String,
         entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);
@@ -38,10 +37,10 @@ class EntityModel {
   };
 
   /// ////////////////////////////
-  int getEntityId() {
+  String getEntityId() {
     return entityID;
   }
-  setEntityId(int id) {
+  setEntityId(String id) {
     entityID = id;
   }
 

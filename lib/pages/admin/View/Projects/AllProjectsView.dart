@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/ProjectsViewAdmin.dart';
 
 import '../../../user/controller/fakeDataTest/DataProjectTest.dart';
+import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import 'ProjectViewAdmin.dart';
 
 class AllProjectsView extends StatefulWidget {
@@ -98,7 +99,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
               AsyncSnapshot<List<ProjectViewAdmin>> snapshot,
               ) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const ProgressIndicatorAsync();
             }
             else if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {

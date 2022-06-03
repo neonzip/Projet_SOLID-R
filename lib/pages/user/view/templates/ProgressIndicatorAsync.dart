@@ -12,6 +12,6 @@ class ProgressIndicatorAsync extends StatelessWidget {
       child: CircularProgressIndicator(
         color: Color(0xD50725AB),
       ),
-      );
+    );
   }
 }

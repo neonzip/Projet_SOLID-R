@@ -87,7 +87,7 @@ class DonationDAO {
     var projectDataSnapshot = await FirebaseDatabase.instance.ref().child('Project').get();
     projectDataSnapshot.children.forEach((project) {
       projectObj = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
-      int id = projectObj.getIdProject();
+      String id = projectObj.getIdProject();
     if(tempmap.containsKey(id)){
       resultmap[projectObj.getNameProject()]= tempmap[id]!;
     }

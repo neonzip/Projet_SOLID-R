@@ -21,7 +21,7 @@ class entityDAO {
     return _EntityRef;
   }
 
-  Future<EntityModel> getEntityByID(int id) async {
+  Future<EntityModel> getEntityByID(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     final EntitySnapshot = await ref.child('Entity/'+ id.toString()).get();
     final json = EntitySnapshot.value as Map<dynamic, dynamic>;
@@ -47,7 +47,9 @@ class entityDAO {
 
   addEntity(EntityModel entity) async {
     final ref = FirebaseDatabase.instance.ref();
-    await ref.child('Entity/').push().set(entity.toJson());
+    DatabaseReference newRef = ref.child('Entity/').push();
+    entity.entityID = newRef.key!;
+    newRef.set(entity.toJson());
   }
 
   Future<List<EntityModel>> getListOfEntitys() async {

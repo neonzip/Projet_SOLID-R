@@ -10,7 +10,7 @@ class ProjectModel {
   /// Some attributes we need to create one project.
   /// Below, a constructor.
   /// //////////////////////////////////////////////////////////////////////////
-  late int projectID;             // Project's ID
+  late String projectID;             // Project's ID
   late String projectName;        // Project's name
   late String projectDescription; // Project's description
   late double projectDonationGoal;// Project's goal for donation
@@ -23,7 +23,7 @@ class ProjectModel {
   late EntityModel projectEntity;      // Entity which collaborates for this project
 
   /// Constructor
-  ProjectModel(int idProject, bool isFavorite, String nameProject, String descriptionProject) {
+  ProjectModel(String idProject, bool isFavorite, String nameProject, String descriptionProject) {
     projectID = idProject;
     projectName = nameProject;
     projectDescription = descriptionProject;
@@ -33,12 +33,12 @@ class ProjectModel {
     projectDonationGoal=0.0;
     projectStartDate=DateTime(0);
     projectPictures =<PictureModel>[];
-    projectAssociation=AssociationModel(-1,"","","",AdvertisementModel(-1,""),"");
-    projectEntity= EntityModel(-1,"","",AdvertisementModel(-1,""));
+    projectAssociation=AssociationModel("-1","","","",AdvertisementModel(-1,""),"");
+    projectEntity= EntityModel("-1","","",AdvertisementModel(-1,""));
   }
 
   ProjectModel.fromJson(Map<dynamic, dynamic> json)
-      : projectID = int.parse(json['projectID'] as String),
+      : projectID = json['projectID'] as String,
         projectName = json['projectName'] as String,
         projectDescription = json['projectDescription'] as String,
         projectDonationGoal = double.parse(json['projectDonationGoal'] as String),
@@ -47,8 +47,8 @@ class ProjectModel {
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
         projectIsFavorite = json['projectIsFavorite'] as bool,
         // disclaimer : the following attributes will be retreived in dao
-        projectAssociation =  AssociationModel(int.parse(json['projectAssociationId'] as String),"","","",AdvertisementModel(0,""),""),
-        projectEntity = EntityModel(int.parse(json['projectEntityId'] as String),"","",AdvertisementModel(0,"")),
+        projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel(0,""),""),
+        projectEntity = EntityModel(json['projectEntityId'] as String,"","",AdvertisementModel(0,"")),
         projectPictures = <PictureModel>[];
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
@@ -84,10 +84,10 @@ class ProjectModel {
   }
 
   /// ///////////////////////////
-  int getIdProject() {
+  String getIdProject() {
     return projectID;
   }
-  setIdProject(int id) {
+  setIdProject(String id) {
     projectID = id;
   }
 

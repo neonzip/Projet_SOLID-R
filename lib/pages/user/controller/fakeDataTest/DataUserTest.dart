@@ -30,8 +30,8 @@ class DataUserTest {
 
     userdataList.add(userAdmin);
     userdataList.add(userX);
-    ProjectModel project1 = ProjectModel(1, true, "NameProject1", "1Ceci est un text pour décrire le but du projet1.");
-    ProjectModel project2 = ProjectModel(2, true, "NameProject2", "2Ceci est un text pour décrire le but du projet2.");
+    ProjectModel project1 = ProjectModel("1", true, "NameProject1", "1Ceci est un text pour décrire le but du projet1.");
+    ProjectModel project2 = ProjectModel("2", true, "NameProject2", "2Ceci est un text pour décrire le but du projet2.");
     userX.userLikedProject.add(project1);
     userX.userLikedProject.add(project2);
 
