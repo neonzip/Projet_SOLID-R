@@ -34,6 +34,22 @@ class entityDAO {
     await ref.child('Entity/'+ id.toString()).remove();
   }
 
+  updateEntity(EntityModel entityModel) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Entity/' + entityModel.entityID.toString()).update(
+        {
+          "entityDescription" : entityModel.entityDescription,
+          "entityName" : entityModel.entityName,
+        }
+    );
+    // TODO : update Advertisement !
+  }
+
+  addEntity(EntityModel entity) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Entity/').push().set(entity.toJson());
+  }
+
   Future<List<EntityModel>> getListOfEntitys() async {
     final List<EntityModel> list = <EntityModel>[];
     final entitySnapshot = await FirebaseDatabase.instance.ref().child('Entity').get();

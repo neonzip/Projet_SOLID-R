@@ -42,6 +42,26 @@ class associationDAO {
     await ref.child('Association/'+ id.toString()).remove();
   }
 
+  addAssociation(AssociationModel associationModel) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Association/').push().set(associationModel.toJson());
+  }
+
+  updateAssociation(AssociationModel associationModel) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Association/' + associationModel.entityID.toString()).update(
+        {
+          "associationLogo" : associationModel.associationLogo,
+          "associationMail" : associationModel.associationMail,
+          "associationWebSiteURL" : associationModel.associationWebSiteURL,
+          "entityDescription" : associationModel.entityDescription,
+          "entityID" : associationModel.entityID.toString(),
+          "entityName" : associationModel.entityName,
+        }
+    );
+    // TODO : update Advertisement !
+  }
+
   Future<List<AssociationModel>> getListOfAssociations() async {
 
     final List<AssociationModel> list = <AssociationModel>[];

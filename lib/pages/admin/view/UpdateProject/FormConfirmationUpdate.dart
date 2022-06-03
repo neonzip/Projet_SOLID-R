@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+
+import '../Projects/ProjectDetailedAdmin.dart';
 
 class FormConfirmationUpdate extends StatefulWidget {
   final ProjectModel project;
@@ -105,6 +110,9 @@ class _FormConfirmationUpdateState extends State<FormConfirmationUpdate> with Au
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
+                      ProjectDAO().updateProject(widget.project);
+                      associationDAO().updateAssociation(widget.project.projectAssociation);
+                      entityDAO().updateEntity(widget.project.projectEntity);
                       //TODO: Update all the objects below in the database.
                       print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
                       print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);
@@ -199,6 +207,7 @@ class _FormConfirmationUpdateState extends State<FormConfirmationUpdate> with Au
                           ),
                           onPressed: () {
                             // TODO : Renvoyer aux détails du projet.
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ProjectDetailedAdmin(project: widget.project,)));
                           },
                           child: const Text(
                             "Voir le projet",

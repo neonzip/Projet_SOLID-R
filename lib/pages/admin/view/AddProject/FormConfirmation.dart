@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
 
 import '../../../user/model/ProjectModel.dart';
 
@@ -174,6 +177,9 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
+                      entityDAO().addEntity(widget.project.projectEntity);
+                      associationDAO().addAssociation(widget.project.projectAssociation);
+                      ProjectDAO().addProject(widget.project);
                       //TODO: Add all the objects below in the database.
                       print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
                       print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);

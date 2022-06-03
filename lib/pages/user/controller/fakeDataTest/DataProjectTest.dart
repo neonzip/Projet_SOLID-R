@@ -22,7 +22,7 @@ class DataProjectTest {
   late List<ProjectModel> solidarityProjectdataList = <ProjectModel>[];
   late int statusSection;
   ProjectDAO projectDao = ProjectDAO();
-
+/*
   /// Creates what we have to replace with the database.
   DataProjectTest() {
     // Loads data for entity
@@ -106,7 +106,7 @@ class DataProjectTest {
     projectDao.saveProject(project6);
     projectDao.saveProject(project7);
     projectDao.saveProject(project8);
-  }
+  }*/
 
 
   /// Gets the list of all the solidarity projects.

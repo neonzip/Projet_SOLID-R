@@ -66,6 +66,29 @@ class ProjectDAO {
     await ref.child('Project/'+ id.toString()).remove();
   }
 
+  updateProject(ProjectModel project) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Project/' + project.projectID.toString()).update(
+        {
+          "projectAssociationId" : project.projectAssociation.entityID.toString(),
+          "projectDescription" : project.projectDescription,
+          "projectDonationGoal" : project.projectDonationGoal.toString(),
+          "projectEntityId" : project.projectEntity.entityID.toString(),
+          "projectID" : project.projectID.toString(),
+          "projectIsFavorite" : project.projectIsFavorite,
+          "projectName" : project.projectName,
+          "projectResult" : project.projectResult.toString(),
+          "projectResultDescription" : project.projectResultDescription,
+          "projectStartDate" : project.projectStartDate.toString(),
+        }
+    );
+  }
+
+  addProject(ProjectModel project) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Project/').push().set(project.toJson());
+  }
+
 
   Future<List<ProjectModel>> getListOfProjects() async {
 

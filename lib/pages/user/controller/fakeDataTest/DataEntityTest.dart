@@ -7,6 +7,7 @@ import '../../model/AdvertisementModel.dart';
 class DataEntityTest {
   late List<EntityModel> entitydataList = <EntityModel>[];
   entityDAO dao = entityDAO();
+  /*
   /// Creates what we have to replace with the database.
   DataEntityTest() {
 
@@ -22,7 +23,7 @@ class DataEntityTest {
     dao.saveEntity(entity1);
     dao.saveEntity(entity2);
     dao.saveEntity(entity3);
-  }
+  }*/
 
   List<String> getNameEntityDataList() {
     List<String> list = <String>[];
