@@ -13,8 +13,8 @@ class DataUserTest {
   /// Creates what we have to replace with the database.
   DataUserTest() {
     UserDAO daoUser = UserDAO();
-    UserModel userAdmin = UserModel(1,"NomAdministrateur", "admin@admin.fr", "password", true);
-    UserModel userX = UserModel(2,"NomUtilisateur", "user@user.fr", "password", false);
+    UserModel userAdmin = UserModel("1","NomAdministrateur", "admin@admin.fr", "password", true);
+    UserModel userX = UserModel("2","NomUtilisateur", "user@user.fr", "password", false);
 
     userAdmin.setUserPurse(100.80);
     userX.setUserPurse(340.53);

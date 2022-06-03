@@ -102,7 +102,7 @@ class ProjectDAO {
     );
   }
 
-  addProject(ProjectModel project) async {
+  addProject(ProjectModel project) {
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('Project/').push();
     project.projectID = newRef.key!;

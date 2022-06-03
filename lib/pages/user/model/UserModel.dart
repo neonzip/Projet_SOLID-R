@@ -1,6 +1,3 @@
-
-import 'dart:convert';
-
 import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
 import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
@@ -8,7 +5,7 @@ import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 ///!!!!!!!!!!!!!    likedProjects is not done yet
 class UserModel {
 
-  late int userID;
+  late String userID;
   late String userNickName;
   late String userEmail;
   late double userPurse = 0.0;
@@ -20,7 +17,7 @@ class UserModel {
   late List<ProjectModel> userLikedProject;
 
 
-  UserModel(int id,String name, String email, String pw, bool isAdmin) {
+  UserModel(String id,String name, String email, String pw, bool isAdmin) {
     userID= id;
     userNickName = name;
     userEmail = email;
@@ -35,7 +32,7 @@ class UserModel {
 
 
   UserModel.fromJson(Map<dynamic, dynamic> json)
-      : userID = int.parse(json['userID'] as String),
+      : userID = json['userID'] as String,
         userNickName = json['userNickName'] as String,
         userEmail = json['userEmail'] as String,
         userPurse = double.parse(json['userPurse'] as String),
@@ -57,27 +54,25 @@ class UserModel {
     'userIsAdmin':  userIsAdmin,
     'userToken':  userToken.toString(),
     'password':  password.toString(),
-
-
    };
 
   bool donateToproject(String idDonation, String idProject , double sum){
     DonationDAO donDao = DonationDAO();
-    if(sum <= this.userPurse) {
+    if(sum <= userPurse) {
       // to make things simple idDonation == idProject
       DonationModel don = DonationModel( idDonation,
-          DateTime.now(), sum, this.userID, idProject);
-      this.userPurse = this.userPurse - sum;
+          DateTime.now(), sum, userID, idProject);
+      userPurse -= sum;
       donDao.saveDonation(don);
       return true;
     }
     return false;
   }
   /// ////////////////////////////
-  int getUserID(){
+  String getUserID(){
     return userID;
   }
-  setUserID(int id) {
+  setUserID(String id) {
     userID = id;
   }
 

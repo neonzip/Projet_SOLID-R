@@ -205,7 +205,7 @@ class _ProjectViewState extends State<ProjectView>{
                 DonationButton(
                   idProject: widget.project.projectID,
                   onPressedButton: () {
-                    DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, 1, widget.project.projectID);
+                    DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, "1", widget.project.projectID);
 
                     DonationDAO().addDonation(donation);
                     widget.project.projectResult += valueDonation;

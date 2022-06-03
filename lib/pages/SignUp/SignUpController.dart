@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
 import 'package:projet_solid_r/pages/LaunchHome/PartIn/SignupButton.dart';
@@ -219,6 +221,10 @@ class _SignUpControllerState extends State<SignUpController> {
   /// If the form is correct and the user is well created, a SnackBar is showing that the registration went well.
   void submitSignup () {
     //TODO : Implement the code which create the user in the database.
+
+    UserModel newUser = UserModel("-1", textEditingControllerForPseudo.text, textEditingControllerForEmail.text, textEditingControllerForPassword.text, false);
+    UserDAO().addUser(newUser);
+
     //TODO : If it goes well, we display the SnackBar on the home page which is already implemented as we can see below.
 
     /// Redirect the user on the home page

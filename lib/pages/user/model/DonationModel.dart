@@ -2,10 +2,10 @@ class DonationModel {
   late String donationID  ;
   late DateTime donationDate;
   late double sumOfDonation;
-  late int userID;
+  late String userID;
   late String projectID;
 
-  DonationModel(String donationID,DateTime donationDate, double sumOfDonation, int userID, String projectID) {
+  DonationModel(String donationID,DateTime donationDate, double sumOfDonation, String userID, String projectID) {
     setDonationID(donationID);
     setDonationDate(donationDate);
     setSumOfDonation(sumOfDonation);
@@ -17,7 +17,7 @@ class DonationModel {
       : donationID = json['donationID'] as String,
         donationDate = DateTime.parse(json['donationDate'] as String),
         sumOfDonation = double.parse(json['sumOfDonation'] as String),
-        userID = int.parse(json['userID'] as String),
+        userID = json['userID'] as String,
         projectID = json['projectID'] as String;
 
   Map<dynamic, dynamic> toJson() =>
@@ -49,10 +49,10 @@ class DonationModel {
   double getSumOfDonation(){
    return sumOfDonation;
   }
-  setUserID(int idU){
+  setUserID(String idU){
   userID =idU;
   }
-  int getUserID(){
+  String getUserID(){
   return userID;
   }
   setProjectID(String idP){

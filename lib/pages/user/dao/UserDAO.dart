@@ -1,4 +1,3 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../model/UserModel.dart';
@@ -21,6 +20,13 @@ class UserDAO {
       var ref = db.db.ref().child('User/'+user.userID.toString()+'/userLikedProject/'+elt.projectID.toString());
       ref.set( elt.toJson());
     });
+  }
+
+  addUser(UserModel user) {
+    final ref = FirebaseDatabase.instance.ref();
+    DatabaseReference newRef = ref.child('User/').push();
+    user.userID = newRef.key!;
+    newRef.set(user.toJson());
   }
 
   Query getUserQuery() {
@@ -62,7 +68,7 @@ class UserDAO {
 
     // second : retreiving the user's  liked projects :
     for(int i =0; i<list.length;i++) {
-          int id = list[i].userID;
+          String id = list[i].userID;
           list[i].userLikedProject= <ProjectModel>[];
           final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
                 likedProjectsSnopshot.children.forEach((project) {
@@ -73,7 +79,7 @@ class UserDAO {
     return list;
   }
 
-  Future<List<ProjectModel>> getUserLikedProjectsByUserId(int id) async {
+  Future<List<ProjectModel>> getUserLikedProjectsByUserId(String id) async {
 
     // retreiving the users liked projects
     List<ProjectModel> list = <ProjectModel>[];
