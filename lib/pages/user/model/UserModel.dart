@@ -61,7 +61,7 @@ class UserModel {
 
    };
 
-  bool donateToproject(int idDonation, int idProject , double sum){
+  bool donateToproject(String idDonation, String idProject , double sum){
     DonationDAO donDao = DonationDAO();
     if(sum <= this.userPurse) {
       // to make things simple idDonation == idProject

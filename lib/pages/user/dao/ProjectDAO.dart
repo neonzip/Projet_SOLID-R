@@ -93,12 +93,20 @@ class ProjectDAO {
     );
   }
 
+  setDonationState(ProjectModel project) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('Project/' + project.projectID.toString()).update(
+        {
+          "projectResult" : project.projectResult,
+        }
+    );
+  }
+
   addProject(ProjectModel project) async {
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('Project/').push();
     project.projectID = newRef.key!;
     newRef.set(project.toJson());
-
   }
 
 

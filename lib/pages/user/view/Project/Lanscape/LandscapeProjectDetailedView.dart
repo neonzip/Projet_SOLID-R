@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
+import '../../../dao/DonationDAO.dart';
+import '../../../dao/ProjectDAO.dart';
+import '../../../model/DonationModel.dart';
 import '../../../model/ProjectModel.dart';
 import '../AboutDonation/DonationButton.dart';
 import '../OneProject/GlobalInformation.dart';
@@ -314,6 +317,11 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
                 DonationButton(
                   idProject: widget.project.projectID,
                   onPressedButton: () {
+                    DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, 1, widget.project.projectID);
+
+                    DonationDAO().addDonation(donation);
+                    widget.project.projectResult += valueDonation;
+                    ProjectDAO().setDonationState(widget.project);
                     // TODO : Here we have to take the value of valueDonation and sum it in the project's amount
                     // TODO : We also have to make sure that the input is correct. If it is not, display a message for the user.
                     // TODO : You can use the widget.project.whatever to get the selected project and do your things in the DB

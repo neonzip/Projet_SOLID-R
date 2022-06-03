@@ -41,6 +41,13 @@ class DonationDAO {
     await ref.child('Donation/'+ id.toString()).remove();
   }
 
+  addDonation(DonationModel donation) {
+    final ref = FirebaseDatabase.instance.ref();
+    DatabaseReference newRef = ref.child('Donation/').push();
+    donation.donationID = newRef.key!;
+    newRef.set(donation.toJson());
+  }
+
   Future<List<DonationModel>> getListOfDonations() async {
 
     List<DonationModel> list = <DonationModel>[];
@@ -66,7 +73,7 @@ class DonationDAO {
     Map<String, double> resultmap = Map<String, double>();
     Map<int, double> tempmap = Map<int, double>();
     DonationModel donationOBJ;
-    int idProject;
+    String idProject;
     double? usersCount=0;
     final donationSnapshot = await FirebaseDatabase.instance.ref().child('Donation').get();
     donationSnapshot.children.forEach((donation)=> {
@@ -74,11 +81,16 @@ class DonationDAO {
       if(donationOBJ.donationDate.month == month){
         idProject = donationOBJ.getProjectID(),
         if(!tempmap.containsKey(idProject)){
-          tempmap[idProject]=1,
-        }
+          //tempmap[idProject]=1,
+        }//TODO
+        //TODO
+        //TODO
+        //TODO
+        //TODO
+        //TODO
         else{
         usersCount = tempmap[idProject],
-        tempmap[idProject] = 1 + usersCount!,
+        //tempmap[idProject] = 1 + usersCount!,
         }
       }
     });

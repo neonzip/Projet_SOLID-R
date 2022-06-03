@@ -14,7 +14,6 @@ class LandscapeProjectView extends StatefulWidget {
 
 /// Class of one instance of project.
 class _LandscapeProjectViewState extends State<LandscapeProjectView>{
-  double valueDonation = 0.0;
 
   /// Widget for one card which is containing the information about a project.
   Widget projectTemplate(){

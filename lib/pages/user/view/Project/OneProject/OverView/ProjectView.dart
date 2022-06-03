@@ -1,9 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
+import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/SeeMoreButton.dart';
 import 'package:projet_solid_r/pages/user/view/Project/AboutDonation/VideoAdvertisement.dart';
+import '../../../../dao/ProjectDAO.dart';
 import '../../AboutDonation/DonationButton.dart';
 import '../FavoriteButton.dart';
 import '../ProjectProgressBar.dart';
@@ -202,6 +205,13 @@ class _ProjectViewState extends State<ProjectView>{
                 DonationButton(
                   idProject: widget.project.projectID,
                   onPressedButton: () {
+                    DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, 1, widget.project.projectID);
+
+                    DonationDAO().addDonation(donation);
+                    widget.project.projectResult += valueDonation;
+                    ProjectDAO().setDonationState(widget.project);
+
+                    // TODO : Change the purse of the user who has made the donation.
                     // TODO : Here we have to take the value of valueDonation and sum it in the project's amount
                     // TODO : We also have to make sure that the input is correct. If it is not, display a message for the user.
                     // TODO : You can use the widget.project.whatever to get the selected project and do your things in the DB
