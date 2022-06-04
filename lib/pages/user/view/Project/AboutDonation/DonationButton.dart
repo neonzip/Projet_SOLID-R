@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DonationButton extends StatelessWidget {
-  final String idProject;
   final String text;
   final void Function()? onPressedButton;
 
-  const DonationButton({Key? key, required this.idProject, required this.onPressedButton, required this.text}) : super(key: key);
+  const DonationButton({Key? key, required this.onPressedButton, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

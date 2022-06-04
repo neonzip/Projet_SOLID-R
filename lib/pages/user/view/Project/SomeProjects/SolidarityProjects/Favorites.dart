@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import '../../../../controller/fakeDataTest/DataProjectTest.dart';
 import '../../../templates/ItemFilter.dart';
@@ -10,7 +11,8 @@ import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
 class Favorites extends StatefulWidget {
-  const Favorites({Key? key,}) : super(key: key);
+  final UserModel user;
+  const Favorites({Key? key, required this.user,}) : super(key: key);
 
   @override
   _FavoritesState createState() => _FavoritesState();
@@ -210,6 +212,7 @@ class _FavoritesState extends State<Favorites> {
                       filter: filterTemplate(),
                       controller: _scrollController,
                       listProjects: snapshot.data!,
+                      user: widget.user,
                     ), // Displays the specific projects of the chosen section on the screen
                   );
                 } else {

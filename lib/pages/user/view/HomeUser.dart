@@ -23,7 +23,8 @@ class _HomeUserState extends State<HomeUser> {
 
   @override
   Widget build(BuildContext context) {
-    String pseudo = widget.user.userNickName;
+    setState(() {
+    });
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -52,16 +53,14 @@ class _HomeUserState extends State<HomeUser> {
                         child: Column(
                           children: [
                             HomeUserInformation(
-                                name: pseudo,
-                                purse: widget.user.userPurse.toString(),
-                                distance: widget.user.userTotalDistance.toString(),
+                                user: widget.user
                             ),
 
                             /// Blue horizontal line separating the two parts of the main page.
                             const SeparatorWithText(text: "Ils nous font confiance"),
 
                             /// Building a grid with the logos of associations.
-                            HomeSponsors(context: context),
+                            HomeSponsors(context: context, user: widget.user,),
                           ],
                         ),
                       )
@@ -72,14 +71,14 @@ class _HomeUserState extends State<HomeUser> {
 
           floatingActionButton: MediaQuery.of(context).orientation == Orientation.landscape ? Wrap(
             direction: Axis.vertical, //use vertical to show  on vertical axis
-            children: const [
-              HomeButtonActivity(),
-              HomeButtonAllProjects(),
+            children: [
+              const HomeButtonActivity(),
+              HomeButtonAllProjects(user: widget.user,),
             ],
           ) : null,
 
           /// Menu at the bottom with the 2 other buttons "Projets" and "Favoris".
-          bottomNavigationBar:  MediaQuery.of(context).orientation == Orientation.portrait ? const HomeBottomAppBar() : null,
+          bottomNavigationBar:  MediaQuery.of(context).orientation == Orientation.portrait ? HomeBottomAppBar(user: widget.user,) : null,
       )
     );
   }

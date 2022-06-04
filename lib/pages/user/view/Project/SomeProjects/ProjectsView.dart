@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Lanscape/LandscapeProjectsView.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectsView.dart';
 import 'ListProjects.dart';
 import '../OneProject/OverView/ProjectView.dart';
 
 class ProjectsView extends StatefulWidget {
+  final UserModel user;
   final List<ProjectView>? listProjects;
   final int nbItemFilter;
   final Widget filter;
   final ScrollController controller;
 
-  const ProjectsView({Key? key, required this.listProjects, required this.filter, required this.controller, required this.nbItemFilter}) : super(key: key);
+  const ProjectsView({Key? key, required this.listProjects, required this.filter, required this.controller, required this.nbItemFilter, required this.user}) : super(key: key);
 
   @override
   _ProjectsViewState createState() => _ProjectsViewState();
@@ -76,16 +78,16 @@ class _ProjectsViewState extends State<ProjectsView> {
               } else {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return PortraitProjectsView(project: widget.listProjects!.elementAt(value).project);
+                    return PortraitProjectsView(project: widget.listProjects!.elementAt(value).project, user: widget.user,);
                   },
                 ));
               }
             },
               listProjects: widget.listProjects,
-              count: widget.listProjects!.length,
+              count: widget.listProjects!.length, user: widget.user,
             ),
           ),
-          isLargeScreen ? Expanded(child: LandscapeProjectsView(project: widget.listProjects!.elementAt(selectedValue).project)) : Container(color: const Color(0xFF0725A5),),
+          isLargeScreen ? Expanded(child: LandscapeProjectsView(project: widget.listProjects!.elementAt(selectedValue).project, user: widget.user,)) : Container(color: const Color(0xFF0725A5),),
         ]);
       }),
     );

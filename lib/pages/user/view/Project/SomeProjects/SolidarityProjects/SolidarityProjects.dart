@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import '../../../templates/ItemFilter.dart';
 import '../../../templates/ProgressIndicatorAsync.dart';
@@ -8,7 +9,8 @@ import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
 class SolidarityProjects extends StatefulWidget {
-  const SolidarityProjects({Key? key,}) : super(key: key);
+  final UserModel user;
+  const SolidarityProjects({Key? key, required this.user,}) : super(key: key);
 
   @override
   _SolidarityProjectsState createState() => _SolidarityProjectsState();
@@ -199,6 +201,7 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
                       filter: filterTemplate(),
                       controller: _scrollController,
                       listProjects: snapshot.data,
+                      user: widget.user,
                     ),     // Displays the specific projects of the chosen section on the screen
                   );
                 } else {

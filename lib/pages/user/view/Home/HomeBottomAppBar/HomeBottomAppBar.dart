@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import 'HomeButtonActivity.dart';
 import 'HomeButtonAllProjects.dart';
@@ -6,7 +7,8 @@ import 'HomeButtonFavoriteProjects.dart';
 
 /// Bottom app bar with the 3 buttons for the user home.
 class HomeBottomAppBar extends StatelessWidget {
-  const HomeBottomAppBar({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeBottomAppBar({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +19,15 @@ class HomeBottomAppBar extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             SizedBox(
               height: 100,
               width: 100,
               child:
               /* Favorites button. */
-              HomeButtonFavoriteProjects(),
+              HomeButtonFavoriteProjects(user: user,),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
               width: 100,
               child: HomeButtonActivity(),
@@ -36,7 +38,7 @@ class HomeBottomAppBar extends StatelessWidget {
               width: 100,
               child:
               /* Projects button. */
-              HomeButtonAllProjects(),
+              HomeButtonAllProjects(user: user,),
             ),
           ],
         )

@@ -5,6 +5,7 @@ import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryAc
 import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/ToAdminButton.dart';
+import '../Project/SomeProjects/FormalProjects/FormalProjects.dart';
 import 'LogoutButton.dart';
 import 'ProfileButton.dart';
 import '../templates/Separator.dart';
@@ -47,7 +48,7 @@ class _ProfileState extends State<Profile> {
         textButton: "Projets soutenus",
         iconButton: Icons.update,
         onPressedButton: () {
-          Navigator.pushNamed(context, "/user/projects/section=formal");
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> FormalProjects(user: widget.user)));
         },
       positionButton: 3,
     );
@@ -202,9 +203,7 @@ class _ProfileState extends State<Profile> {
               child: Column(
                 children: [
                  ProfileInformationUser(
-                   name: widget.user.userNickName,
-                   purse: widget.user.userPurse.toString(),
-                   totalDonations: widget.user.userTotalDonations.toString(),
+                   user: widget.user,
                  ),
 
                   /* Blue horizontal line separating the two parts of the account page. */

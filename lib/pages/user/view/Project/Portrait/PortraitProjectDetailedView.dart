@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/CarousselPictures.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/GlobalInformation.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
 import '../../../dao/DonationDAO.dart';
 import '../../../dao/ProjectDAO.dart';
+import '../../../dao/UserDAO.dart';
 import '../../../model/DonationModel.dart';
 import '../../../model/ProjectModel.dart';
 import '../AboutDonation/DonationButton.dart';
@@ -16,8 +18,9 @@ import '../AboutDonation/VideoAdvertisement.dart';
 
 class PortraitProjectDetailedView extends StatefulWidget {
  // Project projectToSee;
+  final UserModel user;
   final ProjectModel project;
-  const PortraitProjectDetailedView({Key? key, required this.project}) : super(key: key);
+  const PortraitProjectDetailedView({Key? key, required this.project, required this.user}) : super(key: key);
 
   @override
   _PortraitProjectDetailedViewState createState() => _PortraitProjectDetailedViewState();
@@ -264,7 +267,6 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
                   ),
                 ),
                 DonationButton(
-                  idProject: widget.project.projectID,
                   onPressedButton: () {
                     Navigator.of(context).pop();
 
@@ -323,16 +325,15 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
                   ),
                 ),
                 DonationButton(
-                  idProject: widget.project.projectID,
                   onPressedButton: () {
                     DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, "1", widget.project.projectID);
 
                     DonationDAO().addDonation(donation);
                     widget.project.projectResult += valueDonation;
                     ProjectDAO().setDonationState(widget.project);
-                    // TODO : Here we have to take the value of valueDonation and sum it in the project's amount
-                    // TODO : We also have to make sure that the input is correct. If it is not, display a message for the user.
-                    // TODO : You can use the widget.project.whatever to get the selected project and do your things in the DB
+
+                    UserDAO().reducePurseUser(widget.user, donation.sumOfDonation);
+                    // TODO : We have to make sure that the input is correct. If it is not, display a message for the user.
 
                     /// After these things, we can pop the dialog and go to the next one for confirmation
                     Navigator.of(context).pop();

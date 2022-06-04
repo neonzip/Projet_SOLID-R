@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/UserModel.dart';
 import '../../Project/SomeProjects/SolidarityProjects/SelectedAssociationProjects.dart';
 
 
 /// Load the different image logos and displays them.
 class HomeBuildingLogo extends StatelessWidget {
+  final UserModel user;
   final BuildContext context;
   final String imagePath;
-  final int assocationId;
+  final String associationId;
 
-  const HomeBuildingLogo({Key? key, required this.imagePath, required this.assocationId, required this.context}) : super(key: key);
+  const HomeBuildingLogo({Key? key, required this.imagePath, required this.associationId, required this.context, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class HomeBuildingLogo extends StatelessWidget {
 
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> SelectedAssociationProjects(associationID: assocationId)));
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> SelectedAssociationProjects(associationID: associationId, user: user,)));
         },
       ),
     );

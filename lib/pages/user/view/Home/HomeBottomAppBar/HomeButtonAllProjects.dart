@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/SolidarityProjects.dart';
 
 /// Widget building the projects button.
 /// It redirects to the page where the user can see all the solidarity project that the association wants to show.
 class HomeButtonAllProjects extends StatelessWidget {
-  const HomeButtonAllProjects({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeButtonAllProjects({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       heroTag: "projects",
       onPressed: () {
-        Navigator.pushNamed(context, "/user/projects/section=solidarity");
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> SolidarityProjects(user: user)));
       },
       tooltip: 'Projets',
       splashColor: Colors.indigo,

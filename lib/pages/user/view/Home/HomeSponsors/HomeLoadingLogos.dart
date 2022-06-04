@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import 'HomeBuildingLogo.dart';
 
 /// Load the different image logos and displays them.
 class HomeLoadingLogos extends StatelessWidget {
+  final UserModel user;
   final BuildContext context;
 
-  const HomeLoadingLogos({Key? key, required this.context,}) : super(key: key);
+  const HomeLoadingLogos({Key? key, required this.context, required this.user,}) : super(key: key);
 
 
   /// /////////////////////////////////////////////////////////////
@@ -30,17 +32,20 @@ class HomeLoadingLogos extends StatelessWidget {
 
         HomeBuildingLogo(
             imagePath: "assets/LogoAssociation/logo4.jpg",
-            assocationId: 3,
-            context: context
+            associationId: "3",
+            context: context,
+          user: user,
         ),
         HomeBuildingLogo(
+          user: user,
             imagePath: "assets/LogoAssociation/logo2.jpg",
-            assocationId: 2,
+            associationId: "2",
             context: context
         ),
         HomeBuildingLogo(
+          user: user,
             imagePath: "assets/LogoAssociation/logo1.jpg",
-            assocationId: 1,
+            associationId: "1",
             context: context
         ),
       ],

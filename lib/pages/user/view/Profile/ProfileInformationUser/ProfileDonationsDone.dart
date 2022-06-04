@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// Widget building the yellow bubble which contains the user's donations.
 class ProfileDonationsDone extends StatelessWidget {
-  final String name;
+  final String total;
 
-  const ProfileDonationsDone({Key? key, required this.name}) : super(key: key);
+  const ProfileDonationsDone({Key? key, required this.total}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ProfileDonationsDone extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                  name,
+                  total,
                   style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold)

@@ -2,21 +2,24 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
 import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectDetailedView.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/SeeMoreButton.dart';
 import 'package:projet_solid_r/pages/user/view/Project/AboutDonation/VideoAdvertisement.dart';
 import '../../../../dao/ProjectDAO.dart';
+import '../../../../dao/UserDAO.dart';
 import '../../AboutDonation/DonationButton.dart';
 import '../FavoriteButton.dart';
 import '../ProjectProgressBar.dart';
 import '../../AboutDonation/ShareButton.dart';
 
 class ProjectView extends StatefulWidget {
+  final UserModel? user;
   final ProjectModel project;
   final double contribution;
 
-  const ProjectView({Key? key, required this.project, required this.contribution}) : super(key: key);
+  const ProjectView({Key? key, required this.project, required this.contribution, this.user}) : super(key: key);
 
   @override
   _ProjectViewState createState() => _ProjectViewState();
@@ -100,7 +103,7 @@ class _ProjectViewState extends State<ProjectView>{
                 /* Button "Voir plus" */
                 SeeMoreButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project,)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project, user: widget.user!,)));
                     },
                 ),
                 const Spacer(),
@@ -108,7 +111,6 @@ class _ProjectViewState extends State<ProjectView>{
                 (widget.project.projectResult < widget.project.projectDonationGoal)?
                 DonationButton(
                   onPressedButton: showDonationInputDialog,
-                  idProject: widget.project.projectID,
                   text: 'Donner',
                 ) :const Text(""),
               ],
@@ -144,7 +146,6 @@ class _ProjectViewState extends State<ProjectView>{
                   ),
                 ),
                 DonationButton(
-                  idProject: widget.project.projectID,
                   onPressedButton: () {
                     Navigator.of(context).pop();
 
@@ -164,7 +165,7 @@ class _ProjectViewState extends State<ProjectView>{
     );
   }
 
-  /// Display the dialog where the user can set the amount of the donaition.
+  /// Display the dialog where the user can set the amount of the donation.
   void showDonationInputDialog() {
     showDialog(
       context: context,
@@ -203,7 +204,6 @@ class _ProjectViewState extends State<ProjectView>{
                   ),
                 ),
                 DonationButton(
-                  idProject: widget.project.projectID,
                   onPressedButton: () {
                     DonationModel donation = DonationModel("-1", DateTime.now(), valueDonation, "1", widget.project.projectID);
 
@@ -211,10 +211,8 @@ class _ProjectViewState extends State<ProjectView>{
                     widget.project.projectResult += valueDonation;
                     ProjectDAO().setDonationState(widget.project);
 
-                    // TODO : Change the purse of the user who has made the donation.
-                    // TODO : Here we have to take the value of valueDonation and sum it in the project's amount
-                    // TODO : We also have to make sure that the input is correct. If it is not, display a message for the user.
-                    // TODO : You can use the widget.project.whatever to get the selected project and do your things in the DB
+                    UserDAO().reducePurseUser(widget.user!, donation.sumOfDonation);
+                    // TODO : We have to make sure that the input is correct. If it is not, display a message for the user.
 
                     /// After these things, we can pop the dialog and go to the next one for confirmation
                     Navigator.of(context).pop();

@@ -67,11 +67,6 @@ void main() async {
     "/user/activityHistory": (context) => const HistoryActivityPortrait(),
     "/user/notifications": (context) => const NotificationsLandscape(),
 
-    /* PROJECTS */
-    "/user/favorites": (context) => const Favorites(),
-    "/user/projects/section=formal": (context) => const FormalProjects(),
-    "/user/projects/section=solidarity": (context) => const SolidarityProjects(),
-
     /* ACTIVITIES */
     "/user/activities": (context) => const Activities(),
     "/user/activityAxel": (context) => const Activity(),

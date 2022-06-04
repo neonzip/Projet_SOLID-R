@@ -2,14 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
 
+import '../../../../model/UserModel.dart';
 import '../../../templates/ItemFilter.dart';
 import '../../../templates/ProgressIndicatorAsync.dart';
 import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
 class SelectedAssociationProjects extends StatefulWidget {
-  final int associationID;
-  const SelectedAssociationProjects({Key? key, required this.associationID}) : super(key: key);
+  final UserModel user;
+  final String associationID;
+  const SelectedAssociationProjects({Key? key, required this.associationID, required this.user}) : super(key: key);
 
   @override
   _SelectedAssociationProjectsState createState() => _SelectedAssociationProjectsState();
@@ -201,6 +203,7 @@ class _SelectedAssociationProjectsState extends State<SelectedAssociationProject
                       filter: filterTemplate(),
                       controller: _scrollController,
                       listProjects: snapshot.data,
+                      user: widget.user,
                     ),     // Displays the specific projects of the chosen section on the screen
                   );
                 } else {

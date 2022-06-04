@@ -20,28 +20,34 @@ class UserDAO {
     _userRef.set(user.toJson());
 
     // save likedProjects
-    user.userLikedProject.forEach((elt) {
+    for (var elt in user.userLikedProject) {
       var ref = db.db.ref().child('User/'+user.userID.toString()+'/userLikedProject/'+elt.projectID.toString());
       ref.set( elt.toJson());
-    });
+    }
   }
 
   Future<UserModel> getUserFromDatabase(String mail, String password) async {
     List<UserModel> users = await getListOfUsers();
 
-    users.forEach((user) async {
+    for (var user in users) {
       if ((user.userEmail == mail) && (user.password == password)) {
-        print("user = " + user.userID);
 
-        //userOBJ = await getUserByID(user.userID);
         userModel = user;
-        print("ok = " + user.userNickName);
+        break;
       }
       else {
         userModel = UserModel("", "", "", "", false);     // To initialize userModel and avoid some error.
       }
-    });
+    }
     return userModel;
+  }
+
+  reducePurseUser(UserModel user, double donation) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('User/' + user.userID.toString()).update({
+      "userPurse" : (user.userPurse - donation).toString(),
+      "userTotalDonations" : (user.userTotalDonations + 1).toString(),
+    });
   }
 
   addUser(UserModel user) {
@@ -63,11 +69,10 @@ class UserDAO {
 
     //retreiving the user's  liked projects :
     final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
-       likedProjectsSnopshot.children.forEach((project)
-        {
+       for (var project in likedProjectsSnopshot.children) {
           var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
           userOBJ.userLikedProject.add(projectOBJ);
-        });
+        }
 
     return userOBJ;
   }
@@ -77,26 +82,37 @@ class UserDAO {
     await ref.child('User/'+ id.toString()).remove();
   }
 
+  updateUser(UserModel user) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('User/' + user.userID.toString()).update(
+        {
+          "userNickName" : user.userNickName,
+          "userEmail" : user.userEmail,
+          "password" : user.password,
+        }
+        );
+  }
+
   Future<List<UserModel>> getListOfUsers() async {
    // 2-step process :
 
-    // first : retreiving the users without liked projects
+    // first : retrieving the users without liked projects
     List<UserModel> list = <UserModel>[];
     final usersSnapshot = await FirebaseDatabase.instance.ref().child('User').get();
-    usersSnapshot.children.forEach((user) async {
+    for (var user in usersSnapshot.children) {
       var userOBJ = UserModel.fromJson(user.value as Map<dynamic, dynamic>);
       list.add(userOBJ);
-    });
+    }
 
     // second : retrieving the user's  liked projects :
     for(int i =0; i<list.length;i++) {
           String id = list[i].userID;
           list[i].userLikedProject= <ProjectModel>[];
           final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
-                likedProjectsSnopshot.children.forEach((project) {
+                for (var project in likedProjectsSnopshot.children) {
                 var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
                 list[i].userLikedProject.add(projectOBJ);
-                });
+                }
     }
     return list;
   }
@@ -106,11 +122,10 @@ class UserDAO {
     // retreiving the users liked projects
     List<ProjectModel> list = <ProjectModel>[];
     final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
-          likedProjectsSnopshot.children.forEach((project)
-          {
+          for (var project in likedProjectsSnopshot.children) {
             var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
             list.add(projectOBJ);
-          });
+          }
 
     return list;
   }

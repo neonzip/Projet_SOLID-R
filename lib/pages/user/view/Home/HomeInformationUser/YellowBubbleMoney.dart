@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/FormalProjects/FormalProjects.dart';
 
 class YellowBubbleMoney extends StatefulWidget {
-  final String value;
+  final UserModel user;
 
-  const YellowBubbleMoney({Key? key, required this.value}) : super(key: key);
+  const YellowBubbleMoney({Key? key, required this.user}) : super(key: key);
   @override
   _YellowBubbleMoneyState createState() => _YellowBubbleMoneyState();
 }
@@ -19,7 +21,7 @@ class _YellowBubbleMoneyState extends State<YellowBubbleMoney> {
   Widget yellowBubbleMoney() {
     return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, "/user/projects/section=formal");
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> FormalProjects(user: widget.user)));
         },
         child: Container(
           child:
@@ -33,7 +35,7 @@ class _YellowBubbleMoneyState extends State<YellowBubbleMoney> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      widget.value,
+                      widget.user.userPurse.toString(),
                       style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold)

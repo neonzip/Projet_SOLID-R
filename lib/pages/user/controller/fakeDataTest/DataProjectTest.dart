@@ -327,7 +327,7 @@ class DataProjectTest {
     }
   }
 
-  ProjectModel? getFormalProject(int idProject) {
+  ProjectModel? getFormalProject(String idProject) {
     for (int i = 0; i < formalProjectdataList.length; i++) {
       if (formalProjectdataList
           .elementAt(i)
@@ -338,7 +338,7 @@ class DataProjectTest {
     return null;
   }
 
-  Future<ProjectModel?> getFutureFormalProject(int idProject) async {
+  Future<ProjectModel?> getFutureFormalProject(String idProject) async {
     formalProjectdataList = await projectDao.getListOfProjects();
     for (int i = 0; i < formalProjectdataList.length; i++) {
       if (formalProjectdataList
@@ -350,7 +350,7 @@ class DataProjectTest {
     return null;
   }
 
-  ProjectModel? getSolidarityProject(int idProject) {
+  ProjectModel? getSolidarityProject(String idProject) {
     for (int i = 0; i < solidarityProjectdataList.length; i++) {
       if (solidarityProjectdataList
           .elementAt(i)
@@ -362,7 +362,7 @@ class DataProjectTest {
   }
 
 
-  Future<ProjectModel?> getFutureSolidarityProject(int idProject) async {
+  Future<ProjectModel?> getFutureSolidarityProject(String idProject) async {
     solidarityProjectdataList = await projectDao.getListOfProjects();
     for (int i = 0; i < solidarityProjectdataList.length; i++) {
       if (solidarityProjectdataList
@@ -570,7 +570,7 @@ class DataProjectTest {
 
   /// Creates and gets the list of all the solidarity projects of a specific association.
   List<ProjectView> getListSolidarityProjectsOfAssociationViews(
-      int associationID) {
+      String associationID) {
     List<ProjectView> list = <ProjectView>[];
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
       if (solidarityProjectdataList[i].projectAssociation.entityID ==
@@ -588,7 +588,7 @@ class DataProjectTest {
 
   /// Creates and gets the list of all the solidarity projects of a specific association.
   Future<List<ProjectView>> getListFutureSolidarityProjectsOfAssociationViews(
-      int associationID) async {
+      String associationID) async {
     List<ProjectView> list = <ProjectView>[];
     solidarityProjectdataList = await projectDao.getListOfProjects();
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
@@ -605,6 +605,3 @@ class DataProjectTest {
     return list;
   }
 }
-
-//Todo : //imane
-// getlistOfPROJECT BY ID ASSOC

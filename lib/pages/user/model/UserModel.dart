@@ -54,6 +54,8 @@ class UserModel {
     'userIsAdmin':  userIsAdmin,
     'userToken':  userToken.toString(),
     'password':  password.toString(),
+
+
    };
 
   bool donateToproject(String idDonation, String idProject , double sum){

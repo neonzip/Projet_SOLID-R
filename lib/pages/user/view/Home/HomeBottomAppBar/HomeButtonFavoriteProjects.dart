@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+
+import '../../Project/SomeProjects/SolidarityProjects/Favorites.dart';
 
 /// Widget building the favorites button.
 /// This button redirects to the page which displays all the favorite projects of the user.
 class HomeButtonFavoriteProjects extends StatelessWidget {
-  const HomeButtonFavoriteProjects({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeButtonFavoriteProjects({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       heroTag: "favorites",
       onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Favorites(user: user)));
         Navigator.pushNamed(context, "/user/favorites");
       },
       tooltip: 'Favoris',

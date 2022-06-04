@@ -81,7 +81,6 @@ class _GlobalInformationState extends State<GlobalInformation> {
                   ),
                   (widget.project.projectResult < widget.project.projectDonationGoal)?
                   DonationButton(
-                    idProject: widget.project.projectID,
                     onPressedButton: widget.onPressed,          //showDonationDialog
                     text: 'Donner',
                   ): const Text(""),

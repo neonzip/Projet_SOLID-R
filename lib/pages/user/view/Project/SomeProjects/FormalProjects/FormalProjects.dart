@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import '../../../../controller/fakeDataTest/DataProjectTest.dart';
 import '../../../templates/ItemFilter.dart';
@@ -8,7 +9,8 @@ import '../../OneProject/OverView/ProjectView.dart';
 import '../ProjectsView.dart';
 
 class FormalProjects extends StatefulWidget {
-  const FormalProjects({Key? key}) : super(key: key);
+  final UserModel user;
+  const FormalProjects({Key? key, required this.user}) : super(key: key);
 
   @override
   _FormalProjectsState createState() => _FormalProjectsState();
@@ -221,6 +223,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     filter: filterTemplate(),
                     controller: _scrollController,
                     listProjects: snapshot.data,
+                    user: widget.user,
                   ),    // Displays the specific projects of the chosen section on the screen
                 );
               } else {

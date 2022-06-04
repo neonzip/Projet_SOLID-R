@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import '../../../dao/UserDAO.dart';
 import '../../templates/FormTextField.dart';
 import '../../templates/MessageSnackbar.dart';
 
@@ -33,6 +34,12 @@ class _MyInformationPortraitState extends State<MyInformationPortrait> {
 
   /// Action done when the button to validate changes is clicked.
   void buttonSubmitChanges() {
+    widget.user.password = textEditingControllerForPassword.text;
+    widget.user.userEmail = textEditingControllerForEmail.text;
+    widget.user.userNickName = textEditingControllerForPseudo.text;
+
+    UserDAO().updateUser(widget.user);
+
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
