@@ -103,7 +103,7 @@ class _ProjectViewState extends State<ProjectView>{
                 /* Button "Voir plus" */
                 SeeMoreButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project, user: widget.user!,)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> PortraitProjectDetailedView(project: widget.project, user: widget.user!,))).then((result) => setState(() {}));
                     },
                 ),
                 const Spacer(),
