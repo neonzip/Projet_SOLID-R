@@ -99,6 +99,7 @@ class ProjectDAO {
 
   /// Add a project in the database.
   addProject(ProjectModel project) {
+    project.projectStartDate = DateTime.now();
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('Project/').push();
     project.projectID = newRef.key!;

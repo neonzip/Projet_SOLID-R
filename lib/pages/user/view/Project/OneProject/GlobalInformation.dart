@@ -26,10 +26,9 @@ class _GlobalInformationState extends State<GlobalInformation> {
   /// Widget which contains the two containers about the user's participation and the association that proposed the project, ...
   /// This represents the first part before the blue line.
   Widget globalInformationTemplate() {
-    DateTime date = widget.goalDate;
-    int month = date.month;
-    int day = date.day;
-    int year = date.year;
+    int month = widget.project.projectEndDate.month;
+    int day = widget.project.projectEndDate.day;
+    int year = widget.project.projectEndDate.year;
 
     return Container(
       margin: const EdgeInsets.all(5),

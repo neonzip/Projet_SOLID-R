@@ -17,6 +17,7 @@ class ProjectModel {
   late double projectResult;      // Project's progression
   late String projectResultDescription; // Project's result description when it is finished
   late DateTime projectStartDate; // Date when the project begins
+  late DateTime projectEndDate; // Date when the project ends
 
   // By default, none of the project is favorite
   bool projectIsFavorite = false;    // True if it is a favorite project, false then
@@ -35,6 +36,7 @@ class ProjectModel {
 
     projectDonationGoal=0.0;
     projectStartDate=DateTime(0);
+    projectEndDate = DateTime(0);
     projectPictures =<PictureModel>[];
     projectAssociation=AssociationModel("-1","","","",AdvertisementModel("-1",""),"");
     projectEntity= EntityModel("-1","","",AdvertisementModel("-1",""));
@@ -48,6 +50,7 @@ class ProjectModel {
         projectResult = double.parse(json['projectResult'] as String),
         projectResultDescription =  json['projectResultDescription'] as String,
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
+        projectEndDate = DateTime.parse( json['projectStartDate'] as String),
 
         // disclaimer : the following attributes will be retreived in dao
         projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel("0",""),""),
@@ -64,8 +67,10 @@ class ProjectModel {
     'projectStartDate': projectStartDate.toString(),
     'projectAssociationId' : projectAssociation.getAssociationId().toString(),
     'projectEntityId' : projectEntity.getEntityId().toString(),
+    'projectEndDate' : projectEndDate.toString(),
     //the list of pictures will be saved in Dao.
   };
+  
   /// //////////////////////////////////////////////////////////////////////////
   /// Getters and setters
   /// //////////////////////////////////////////////////////////////////////////

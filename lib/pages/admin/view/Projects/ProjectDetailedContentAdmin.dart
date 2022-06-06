@@ -24,7 +24,7 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
 
   Widget participationInformationTemplate() {
     double progress = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
-
+    int numberOfDays = widget.project.projectEndDate.difference(widget.project.projectStartDate).inDays;
     return Container (
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -41,9 +41,8 @@ class _ProjectDetailedContentAdminState extends State<ProjectDetailedContentAdmi
           ProjectProgressBar(
             valueBar: progress / 100, // %
           ),
-          const AutoSizeText(
-            // TODO : Change the "XX" value by the real one.
-              "Cagnotte remplie en " "XX" " jours",
+          AutoSizeText(
+              "Cagnotte remplie en $numberOfDays jours",
               textAlign: TextAlign.center,
               maxLines: 2
           ),

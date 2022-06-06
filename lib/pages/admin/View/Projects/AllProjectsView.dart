@@ -182,6 +182,6 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   }
 
   Future<List<ProjectViewAdmin>> getListFinishedProjects() async {
-    return await DataProjectTest().getListFinishedFormalProjectsViewsAdmin();
+    return DataProjectTest().getListFinishedSolidarityProjectsViewsAdmin();
   }
 }

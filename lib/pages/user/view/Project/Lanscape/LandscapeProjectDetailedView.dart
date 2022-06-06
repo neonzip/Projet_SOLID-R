@@ -31,6 +31,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
 
   Widget participationInformationTemplate() {
     double progressGoal = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));
+    int numberOfDays = widget.project.projectEndDate.difference(widget.project.projectStartDate).inDays;
 
     return Container (
       margin: const EdgeInsets.all(5),
@@ -54,9 +55,8 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
             ),
           Visibility(
             visible: (widget.project.projectDonationGoal == widget.project.projectResult),
-            child: const AutoSizeText(
-              // TODO : Change the "XX" value by the real one.
-                "Cagnotte remplie en " "XX" " jours",
+            child: AutoSizeText(
+                "Cagnotte remplie en $numberOfDays jours",
                 textAlign: TextAlign.center,
                 maxLines: 2
             ),

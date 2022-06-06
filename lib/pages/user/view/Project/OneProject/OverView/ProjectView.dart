@@ -210,6 +210,12 @@ class _ProjectViewState extends State<ProjectView>{
 
                     DonationDAO().addDonation(donation);
                     widget.project.projectResult += valueDonation;
+
+                    /// If the project is totally financed, we add to it the date of the last donation.
+                    if (widget.project.projectResult == widget.project.projectDonationGoal) {
+                      widget.project.projectEndDate = DateTime.now();
+                    }
+
                     ProjectDAO().setDonationState(widget.project);
 
                     UserDAO().setPurseUser(widget.user!, widget.user!.userPurse - donation.sumOfDonation);
