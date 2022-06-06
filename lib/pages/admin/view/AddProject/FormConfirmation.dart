@@ -177,13 +177,12 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () {
+
+                      /// Adding the information about the new project in the database.
                       entityDAO().addEntity(widget.project.projectEntity);
                       associationDAO().addAssociation(widget.project.projectAssociation);
                       ProjectDAO().addProject(widget.project);
-                      //TODO: Add all the objects below in the database.
-                      print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
-                      print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);
-                      print("Mécène = " + widget.project.projectEntity.entityDescription + "\t" + widget.project.projectEntity.entityName);
+
                       showConfirmation();
                     },
                     style: //ButtonStyle

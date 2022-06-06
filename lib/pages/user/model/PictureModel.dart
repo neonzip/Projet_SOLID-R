@@ -5,13 +5,13 @@ class PictureModel {
   /// Some attributes we need to create one project.
   /// Below, a constructor.
   /// //////////////////////////////////////////////////////////////////////////
-  late int pictureID;             // picture's ID
+  late String pictureID;             // picture's ID
   late String pictureURL;        // picture's URL
   late String pictureDescription; // picture's description
 
 
   /// Constructor
-  PictureModel(int pictureID,String pictureURL, String pictureDescription) {
+  PictureModel(String pictureID, String pictureURL, String pictureDescription) {
     pictureID = pictureID;
     pictureURL = pictureURL;
     pictureDescription = pictureDescription;
@@ -41,10 +41,10 @@ class PictureModel {
   }
 
   /// ///////////////////////////
- int getIdPicture() {
+ String getIdPicture() {
     return pictureID;
   }
-  setIdProject(int id) {
+  setIdProject(String id) {
     pictureID = id;
   }
 

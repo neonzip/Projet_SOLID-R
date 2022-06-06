@@ -1,13 +1,13 @@
 class AdvertisementModel {
-  late int advertisementID;
+  late String advertisementID;
   late String advertisementURL;
 
-  AdvertisementModel(int adID, String adURL) {
+  AdvertisementModel(String adID, String adURL) {
     advertisementID = adID;
     advertisementURL = adURL;
   }
   AdvertisementModel.fromJson(Map<dynamic, dynamic> json)
-      : advertisementID = int.parse(json['advertisementID'] as String),
+      : advertisementID = json['advertisementID'] as String,
         advertisementURL = json['advertisementURL'];
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
@@ -15,11 +15,11 @@ class AdvertisementModel {
     'advertisementURL': advertisementURL
 };
   /// /////////////////////////////
-  int getAdvertisementID() {
+  String getAdvertisementID() {
     return advertisementID;
   }
 
-  setAdvertisementID(int ID) {
+  setAdvertisementID(String ID) {
     advertisementID = ID;
   }
 

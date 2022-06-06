@@ -36,8 +36,8 @@ class ProjectModel {
     projectDonationGoal=0.0;
     projectStartDate=DateTime(0);
     projectPictures =<PictureModel>[];
-    projectAssociation=AssociationModel("-1","","","",AdvertisementModel(-1,""),"");
-    projectEntity= EntityModel("-1","","",AdvertisementModel(-1,""));
+    projectAssociation=AssociationModel("-1","","","",AdvertisementModel("-1",""),"");
+    projectEntity= EntityModel("-1","","",AdvertisementModel("-1",""));
   }
 
   ProjectModel.fromJson(Map<dynamic, dynamic> json)
@@ -50,8 +50,8 @@ class ProjectModel {
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
 
         // disclaimer : the following attributes will be retreived in dao
-        projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel(0,""),""),
-        projectEntity = EntityModel(json['projectEntityId'] as String,"","",AdvertisementModel(0,"")),
+        projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel("0",""),""),
+        projectEntity = EntityModel(json['projectEntityId'] as String,"","",AdvertisementModel("0","")),
         projectPictures = <PictureModel>[];
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{

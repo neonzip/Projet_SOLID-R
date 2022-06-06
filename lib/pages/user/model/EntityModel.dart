@@ -18,7 +18,7 @@ class EntityModel {
     entityID = "-1";
     entityName = "";
     entityDescription = "";
-    entityAdvertisement = AdvertisementModel(-1,"");
+    entityAdvertisement = AdvertisementModel("-1","");
   }
 
   EntityModel.fromJson(Map<dynamic, dynamic> json)

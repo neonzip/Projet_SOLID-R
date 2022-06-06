@@ -58,7 +58,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                   if (filterRunning == true) {
                     filterFinished = false;
                     filterAll = false;
-                    listProjects = getListRunningProjects();
+                    listProjects = getListRunningFormalProjects();
                   }
                   else {
                   }
@@ -74,7 +74,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                   if (filterFinished == true) {
                     filterAll = false;
                     filterRunning = false;
-                    listProjects = getListFinishedProjects();
+                    listProjects = getListFinishedFormalProjects();
                   }
                 });
             }
@@ -176,7 +176,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 2;
                       setState(() {
-                        listProjects = getListRunningProjects();
+                        listProjects = getListRunningFormalProjects();
                       });
                     },
                     child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
@@ -185,7 +185,7 @@ class _FormalProjectsState extends State<FormalProjects> {
                     onTap: () {
                       selectedFilter = 3;
                       setState(() {
-                        listProjects = getListFinishedProjects();
+                        listProjects = getListFinishedFormalProjects();
                       });
                     },
                     child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
@@ -241,14 +241,14 @@ class _FormalProjectsState extends State<FormalProjects> {
   /// Interaction with the DB
   /// ///////////////////////
   Future<List<ProjectView>> getListAllProjects() async {
-    return await DataProjectTest().getListFutureFormalProjectsViews();
+    return await DataProjectTest().getListFutureFormalProjectsViews(widget.user.userID);
   }
 
-  Future<List<ProjectView>> getListRunningProjects() async {
-    return await DataProjectTest().getListFutureRunningFormalProjectsViews();
+  Future<List<ProjectView>> getListRunningFormalProjects() async {
+    return await DataProjectTest().getListFutureRunningFormalProjectsViews(widget.user.userID);
   }
 
-  Future<List<ProjectView>> getListFinishedProjects() async {
-    return await DataProjectTest().getListFutureFinishedFormalProjectsViews();
+  Future<List<ProjectView>> getListFinishedFormalProjects() async {
+    return await DataProjectTest().getListFutureFinishedFormalProjectsViews(widget.user.userID);
   }
 }

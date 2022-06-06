@@ -27,8 +27,6 @@ void main() async {
   AuthentificationService _auth = AuthentificationService();
   await _auth.signIn("sport.solidr.test@gmail.com", "abmmtijm");
   DataBase db = DataBase();
-  db.SetData("UserSettings", "hi !!!!!!");
-  db.GetData("UserSettings");
 
   DataAdvertisementTest advTest = DataAdvertisementTest();
   List<AdvertisementModel>  list = await advTest.getAdvertisementDataList();
@@ -47,6 +45,7 @@ void main() async {
     fontFamily: "Metropolis",
   ),
   initialRoute: "/",
+
   routes: {
     "/": (context) => const LaunchHome(),
     "/signup": (context) => const SignUpView(),
@@ -57,20 +56,9 @@ void main() async {
     ////////////////////////// USER /////////////////////////////
     /////////////////////////////////////////////////////////////
 
-    /* HOME */
-    //"/user/home": (context) => const HomeUser(),
-
-    /* PROFILE */
-    //"/user/profile": (context) => const Profile(),
-    //"/user/myInformation": (context) => const MyInformation(),
     "/user/APropos": (context) => const AProposPortrait(),
     "/user/activityHistory": (context) => const HistoryActivityPortrait(),
     "/user/notifications": (context) => const NotificationsLandscape(),
-
-    /* ACTIVITIES */
-   // "/user/activities": (context) => const Activities(),
-   // "/user/activityAxel": (context) => const Activity(),
-
 
     /////////////////////////////////////////////////////////////
     ////////////////////////// ADMIN ////////////////////////////

@@ -222,6 +222,8 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
     return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews(widget.user.userID);
   }
   Future<List<ProjectView>> getListAllProjects() async {
+    print("okkk");
+
     return await DataProjectTest().getListFutureSolidarityProjectsViewsWithFavorite(widget.user.userID);
   }
 }

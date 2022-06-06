@@ -132,6 +132,8 @@ class DataProjectTest {
   /// Creates and gets the list of all the names of solidarity projects (future) with the favorite projects of the user.
   Future<List<ProjectView>> getListFutureSolidarityProjectsViewsWithFavorite(String userId) async {
     List<ProjectView> list = <ProjectView>[];
+    print("okkkk");
+
     solidarityProjectdataList = await projectDao.getListOfProjectsWithFavorite(userId);
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
       ProjectView projectView = ProjectView(
@@ -145,24 +147,11 @@ class DataProjectTest {
 
 
   /// Creates and gets the list of all the names of formal projects. (future>
-  Future<List<ProjectView>> getListFutureFormalProjectsViews() async {
+  Future<List<ProjectView>> getListFutureFormalProjectsViews(String userId) async {
     List<ProjectView> list = <ProjectView>[];
-    formalProjectdataList = await projectDao.getListOfProjects();
+    formalProjectdataList = await projectDao.getListOfFormalProjects(userId);
     for (int i = 0; i < formalProjectdataList.length; i ++) {
       ProjectView projectView = ProjectView(
-        project: formalProjectdataList.elementAt(i),
-        contribution: 0,
-      );
-      list.add(projectView);
-    }
-    return list;
-  }
-
-  /// Creates and gets the list of all the names of formal projects for the admin part.
-  List<ProjectViewAdmin> getListFormalProjectsViewsAdmin() {
-    List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
-    for (int i = 0; i < formalProjectdataList.length; i ++) {
-      ProjectViewAdmin projectView = ProjectViewAdmin(
         project: formalProjectdataList.elementAt(i),
         contribution: 0,
       );
@@ -191,8 +180,8 @@ class DataProjectTest {
   }
 
   /// Gets the list of all the formal projects. (future)
-  Future<List<ProjectModel>> getListFutureFormalProjects() async {
-    formalProjectdataList = await projectDao.getListOfProjects();
+  Future<List<ProjectModel>> getListFutureFormalProjects(String userId) async {
+    formalProjectdataList = await projectDao.getListOfFormalProjects(userId);
     return formalProjectdataList;
   }
 
@@ -208,10 +197,23 @@ class DataProjectTest {
     return listFinishedFormalProjects;
   }
 
+
   /// Creates and gets the list of all the finished formal projects.
-  Future<List<ProjectModel>> getListFutureFinishedFormalProjects() async {
+  List<ProjectModel> getListFinishedSolidarityProjects() {
+    List<ProjectModel> listFinishedSolidarityProjects = <ProjectModel>[];
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      if (solidarityProjectdataList.elementAt(i).getResultProject() ==
+          solidarityProjectdataList.elementAt(i).getDonationGoalProject()) {
+        listFinishedSolidarityProjects.add(solidarityProjectdataList.elementAt(i));
+      }
+    }
+    return listFinishedSolidarityProjects;
+  }
+
+  /// Creates and gets the list of all the finished formal projects.
+  Future<List<ProjectModel>> getListFutureFinishedFormalProjects(String userId) async {
     List<ProjectModel> listFinishedFormalProjects = <ProjectModel>[];
-    formalProjectdataList = await projectDao.getListOfProjects();
+    formalProjectdataList = await projectDao.getListOfFormalProjects(userId);
     for (int i = 0; i < formalProjectdataList.length; i ++) {
       if (formalProjectdataList.elementAt(i).getResultProject() ==
           formalProjectdataList.elementAt(i).getDonationGoalProject()) {
@@ -221,23 +223,34 @@ class DataProjectTest {
     return listFinishedFormalProjects;
   }
 
+  /// Creates and gets the list of all the finished solidarity projects.
+  Future<List<ProjectModel>> getListFutureFinishedSolidarityProjects() async {
+    List<ProjectModel> listFinishedProjects = <ProjectModel>[];
+    solidarityProjectdataList = await projectDao.getListOfProjects();
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      if (solidarityProjectdataList.elementAt(i).getResultProject() ==
+          solidarityProjectdataList.elementAt(i).getDonationGoalProject()) {
+        listFinishedProjects.add(solidarityProjectdataList.elementAt(i));
+      }
+    }
+    return listFinishedProjects;
+  }
+
 
   /// Gets the list of all the favorite solidarity projects of the user.
   Future<List<ProjectModel>> getListFutureFavoriteSolidarityProjects(String userId) async {
     List<ProjectModel> listFavoriteProjects = <ProjectModel>[];
     solidarityProjectdataList = await projectDao.getLikedProjects(userId);//getListOfProjects();
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
-      //if (solidarityProjectdataList.elementAt(i).getFavoriteState() == true) {
         listFavoriteProjects.add(solidarityProjectdataList.elementAt(i));
-      //}
     }
     return listFavoriteProjects;
   }
 
   /// Gets the list of all the formal projects that are not finished.
-  Future<List<ProjectModel>> getListFutureRunningFormalProjects() async {
+  Future<List<ProjectModel>> getListFutureRunningFormalProjects(String userId) async {
     List<ProjectModel> listRunningFormalProjects = <ProjectModel>[];
-    formalProjectdataList = await projectDao.getListOfProjects();
+    formalProjectdataList = await projectDao.getListOfFormalProjects(userId);
     for (int i = 0; i < formalProjectdataList.length; i ++) {
       if (formalProjectdataList.elementAt(i).getResultProject() <
           formalProjectdataList.elementAt(i).getDonationGoalProject()) {
@@ -245,6 +258,21 @@ class DataProjectTest {
       }
     }
     return listRunningFormalProjects;
+  }
+
+
+  /// Gets the list of all the solidarity projects that are not finished, for the admin part.
+  Future<List<ProjectModel>> getListFutureRunningSolidarityProjects() async {
+    List<ProjectModel> listRunningProjects = <ProjectModel>[];
+    solidarityProjectdataList = await projectDao.getListOfProjects();
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      if (solidarityProjectdataList.elementAt(i).getResultProject() <
+          solidarityProjectdataList.elementAt(i).getDonationGoalProject()) {
+        listRunningProjects.add(solidarityProjectdataList.elementAt(i));
+      }
+    }
+
+    return listRunningProjects;
   }
 
   Future<ProjectModel?> getFutureFormalProject(String idProject) async {
@@ -273,9 +301,23 @@ class DataProjectTest {
 
 
   /// Creates and gets the list of all the finished formal projects.
-  Future<List<ProjectView>> getListFutureFinishedFormalProjectsViews() async {
+  Future<List<ProjectView>> getListFutureFinishedFormalProjectsViews(String userId) async {
     List<ProjectView> list = <ProjectView>[];
-    List<ProjectModel> listFutureFinishedFormalProjects = await getListFutureFinishedFormalProjects();
+    List<ProjectModel> listFutureFinishedFormalProjects = await getListFutureFinishedFormalProjects(userId);
+    for (int i = 0; i < listFutureFinishedFormalProjects.length; i ++) {
+      ProjectView projectView = ProjectView(
+        project: listFutureFinishedFormalProjects.elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
+  /// Creates and gets the list of all the finished solidarity projects.
+  Future<List<ProjectView>> getListFutureFinishedSolidarityProjectsViews() async {
+    List<ProjectView> list = <ProjectView>[];
+    List<ProjectModel> listFutureFinishedFormalProjects = await getListFutureFinishedSolidarityProjects();
     for (int i = 0; i < listFutureFinishedFormalProjects.length; i ++) {
       ProjectView projectView = ProjectView(
         project: listFutureFinishedFormalProjects.elementAt(i),
@@ -299,7 +341,6 @@ class DataProjectTest {
     return list;
   }
 
-// TODO : IMANE : Recuperer liste des projet SOLIDAIRE et pas SOUTENU ici :)
   /// Creates and gets the list of all the finished solidarity projects for the admin part.
   List<ProjectViewAdmin> getListFinishedSolidarityProjectsViewsAdmin() {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
@@ -315,12 +356,12 @@ class DataProjectTest {
 
 
   /// Creates and gets the list of all the finished formal projects for the admin part.Future
-  Future<List<ProjectViewAdmin>> getListFutureFinishedFormalProjectsViewsAdmin() async {
+  Future<List<ProjectViewAdmin>> getListFutureFinishedSolidarityProjectsViewsAdmin() async {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
-    List<ProjectModel> listFinishedFormalProjects = await getListFutureFinishedFormalProjects();
-    for (int i = 0; i < listFinishedFormalProjects.length; i ++) {
+    List<ProjectModel> listFinishedSolidarityProjects = await getListFutureFinishedSolidarityProjects();
+    for (int i = 0; i < listFinishedSolidarityProjects.length; i ++) {
       ProjectViewAdmin projectView = ProjectViewAdmin(
-        project: listFinishedFormalProjects.elementAt(i),
+        project: listFinishedSolidarityProjects.elementAt(i),
         contribution: 0,
       );
       list.add(projectView);
@@ -330,10 +371,10 @@ class DataProjectTest {
 
 
   /// Creates and gets the list of all the running formal projects.
-  Future<List<ProjectView>> getListFutureRunningFormalProjectsViews() async {
+  Future<List<ProjectView>> getListFutureRunningFormalProjectsViews(String userId) async {
     List<ProjectView> list = <ProjectView>[];
 
-    List<ProjectModel> listRunningFormalProjects = await getListFutureRunningFormalProjects();
+    List<ProjectModel> listRunningFormalProjects = await getListFutureRunningFormalProjects(userId);
     for (int i = 0; i < listRunningFormalProjects.length; i ++) {
       ProjectView projectView = ProjectView(
         project: listRunningFormalProjects.elementAt(i),
@@ -345,10 +386,10 @@ class DataProjectTest {
   }
 
 
-  /// Creates and gets the list of all the running formal projects for the admin part.
+  /// Creates and gets the list of all the running solidarity projects for the admin part.
   Future<List<ProjectViewAdmin>> getListFutureRunningSolidarityProjectsViewsAdmin() async {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
-    List<ProjectModel> listRunningSolidarityProjects = await getListFutureRunningFormalProjects();
+    List<ProjectModel> listRunningSolidarityProjects = await getListFutureRunningSolidarityProjects();
     for (int i = 0; i < listRunningSolidarityProjects.length; i ++) {
       ProjectViewAdmin projectView = ProjectViewAdmin(
         project: listRunningSolidarityProjects.elementAt(i),
