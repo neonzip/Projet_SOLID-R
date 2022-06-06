@@ -42,11 +42,25 @@ class UserDAO {
     return userModel;
   }
 
-  reducePurseUser(UserModel user, double donation) async {
+  setKilometersUser(UserModel user, double km) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/' + user.userID.toString()).update({
-      "userPurse" : (user.userPurse - donation).toString(),
+      "userTotalDistance" : (km).toString(),
+    });
+  }
+
+  addOneDonationUser(UserModel user) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('User/' + user.userID.toString()).update({
       "userTotalDonations" : (user.userTotalDonations + 1).toString(),
+    });
+  }
+
+
+  setPurseUser(UserModel user, double amount) async {
+    final ref = FirebaseDatabase.instance.ref();
+    await ref.child('User/' + user.userID.toString()).update({
+      "userPurse" : (amount).toString(),
     });
   }
 

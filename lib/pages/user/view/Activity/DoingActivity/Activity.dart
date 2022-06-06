@@ -4,33 +4,31 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:location/location.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
+import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/activityDAO.dart';
+import 'package:projet_solid_r/pages/user/model/ActivityModel.dart';
+import 'package:projet_solid_r/pages/user/model/SportModel.dart';
 
-import '../Activity/FinishedActivityAlert.dart';
-import 'ActivityButton.dart';
-//import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
+import '../../../model/UserModel.dart';
+import 'FinishedActivityAlert.dart';
+import '../ActivityButton.dart';
 
-// Pour avoir la localisation background en continue, ajouter
+// Pour avoir la localisation background en continu, ajouter
 //     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 // Au fichier androidManifest
 
 class Activity extends StatefulWidget {
-  const Activity({Key? key}) : super(key: key);
+  final UserModel user;
+  final SportModel sport;
+
+  const Activity({Key? key, required this.user, required this.sport}) : super(key: key);
   @override
   _ActivityState createState() => _ActivityState();
 }
 
 class _ActivityState extends State<Activity> {
-
-  /*late FlutterIsolate isolate;
-
-  Future<void> _start() async {
-    isolate = await FlutterIsolate.spawn(isolate1, "test");
-
-  }
-  Future<void> _resume() async { isolate.resume(); }
-  Future<void> _pause() async { isolate.pause(); }
-  Future<void> _stop() async { isolate.kill(); }
-*/
+  DateTime dateStart = DateTime.now();
+  late DateTime dateEnd;
 
   // Variables utilisables dans les widgets
   bool _isPlayed = true;
@@ -66,9 +64,8 @@ class _ActivityState extends State<Activity> {
   String muestrePasos = ""; String _km = "Unknown";
   String _calories = "Unknown"; String stepCountValue = 'Unknown';
   String _showcoin = '0'; late StreamSubscription<StepCount> _subscription;
-  late double _numerox;
   late num _kmx; late double burnedx;
-  num _coin = 0; late double _porciento;
+  num _coin = 0;
   late double _distanceRun; double _stepsWalkx = 0;
   double _kmWalkx = 0;
 
@@ -83,7 +80,7 @@ class _ActivityState extends State<Activity> {
   @override
   void initState() {
     sendNotification(
-      title: "Séance de Basketball",
+      title: "Séance de ${widget.sport.sportName}",
       body: "Temps : $timer\nDistance : $_km\nGains obtenus : $_coin",
     );
     _coin = 0;
@@ -156,10 +153,8 @@ class _ActivityState extends State<Activity> {
           });
           _locationSubscription.cancel();
         }).listen((LocationData currentLocation) {
-          setState(() {
-            _error = "";
-            _location = currentLocation;
-          });
+          _error = "";
+          _location = currentLocation;
         });
 
 
@@ -295,9 +290,8 @@ class _ActivityState extends State<Activity> {
 
     _stepsWalkx = _numerox - _initSteps;
     _kmWalkx = ((_stepsWalkx * 76) / 100000);
-    num coiny = (_kmWalkx * 1.2);
+    num coiny = (_kmWalkx * widget.sport.sportConversionRate);
     coiny = num.parse(coiny.toStringAsFixed(2));
-  print(_kmWalkx.toString()+ " //// "+ _kmWalkx.toStringAsFixed(2).toString());
     setState(() {
       _km = "$distance";
 
@@ -313,109 +307,83 @@ class _ActivityState extends State<Activity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      persistentFooterButtons: [
-        getFooter(),
-      ],
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Icon(
-                Icons.circle,
-                size: 20,
-                color: (_status == 'walking')
-                    ? Colors.green
-                    : _status == 'stopped'
-                    ? Colors.red
-                    : Colors.blue,
-              ),
-              /*const Text(
-              'Statut de marche :',
-              style: TextStyle(fontSize: 30),
-            ),
-
-            Center(
-              child: Text(
-                (_status == "walking")
-                    ? "Marche" : _status == "stopped"
-                    ? "Arrêt" : "Arrêt",
-                style: const TextStyle(color: Colors.red),
-              ),
-            ),*/
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                  "Séance de Basketball",
-                style: TextStyle(fontSize: 20),
-              ),
-              const SizedBox(height: 150,),
-              Column(
-                children: [
-                  Text(
-                    '$_coin €',
-                    style: const TextStyle(fontSize: 45),
-                  ),
-                  const Text("Argent obtenu"),
-                ],
-              ),
-              const SizedBox(
-                height: 60,
-              ),
-
-              //Pour afficher le nombre de pas effectués
-              /*
-            const Text(
-              'nombre de pas actuels:',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              _stepsWalk,
-              style: const TextStyle(fontSize: 60),
-            ),
-            */
-
-              Table(
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF0725A5),
+            title: const Text("Activité"),
+            centerTitle: true,
+          ),
+          persistentFooterButtons: [
+            getFooter(),
+          ],
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    TableRow(
+                    Icon(
+                      Icons.circle,
+                      size: 20,
+                      color: (_status == 'walking')
+                          ? Colors.green
+                          : _status == 'stopped'
+                          ? Colors.red
+                          : Colors.blue,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "Séance de ${widget.sport.sportName}",
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(height: 150,),
+                    Column(
+                      children: [
+                        Text(
+                          '$_coin €',
+                          style: const TextStyle(fontSize: 45),
+                        ),
+                        const Text("Argent obtenu"),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    Table(
                         children: [
-                          Column(
-                            children: [
-                              Text(
-                                _actualTime,
-                                style: const TextStyle(fontSize: 40),
-                              ),
-                              const Text('Temps'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "$_kmWalk km",
-                                style: const TextStyle(fontSize: 40),
-                              ),
-                              const Text('Distance parcourue',),
-                            ],
+                          TableRow(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      _actualTime,
+                                      style: const TextStyle(fontSize: 40),
+                                    ),
+                                    const Text('Temps'),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "$_kmWalk km",
+                                      style: const TextStyle(fontSize: 40),
+                                    ),
+                                    const Text('Distance parcourue',),
+                                  ],
+                                )
+                              ]
                           )
                         ]
-                    )
-                  ]
-              ),
-
-              // Location.speed
-              //const Text("Vitesse actuelle :",style: TextStyle(fontSize: 30, color: Colors.grey)),
-              //_calculateSpeedBetweenLocations(),
-
-              //Bouton pour envoyer une notif (a utiliser plus tard si on veut)
-            ],
+                    ),
+                  ],
+                ),
+              )
           ),
-        )
-      ),
     );
+
   }
 
   /// Returns a widget with the action buttons play/pause/stop
@@ -431,7 +399,23 @@ class _ActivityState extends State<Activity> {
             onPressedButton: () {
               _isPlayed = false;
               isFinished = true;
-              //_stop();
+              dateEnd = DateTime.now();
+              /// Here we add the finished activity to the database,
+              /// We modify the user's purse and its reached kilometers.
+              ActivityModel newActivity = ActivityModel("", dateStart);
+              print(dateEnd.toString() + "icuuuuuuuuuuuuuuu");
+              newActivity.setActivityEndDate(dateEnd);
+              newActivity.setSportID(widget.sport.sportID);
+
+              newActivity.setActivityDistance(double.parse(_kmWalk));
+              newActivity.setUserID(widget.user.userID);
+              newActivity.setCoin(double.parse(_coin.toString()));
+
+              activityDAO().addActivity(newActivity);
+
+              UserDAO().setPurseUser(widget.user, widget.user.userPurse + _coin);
+              UserDAO().setKilometersUser(widget.user, widget.user.userTotalDistance + double.parse(_kmWalk));
+
               showDialog<String>(
                   context: context,
                   builder: (BuildContext context) =>
@@ -439,7 +423,7 @@ class _ActivityState extends State<Activity> {
                         coins: _coin,
                         onPressedButton: () {
                           _stopListen();
-                        },
+                          },
                         kilometers: _kmWalk,
                       )
               );
@@ -462,7 +446,9 @@ class _ActivityState extends State<Activity> {
               color: Colors.blue[900],
               tooltip: 'Faire une pause',
             )
-        ):Visibility(
+        )
+            :
+        Visibility(
             visible: true,
             child: ActivityButton(
               onPressedButton: () {

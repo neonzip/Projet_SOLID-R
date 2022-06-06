@@ -50,4 +50,10 @@ class activityDAO {
     return list;
   }
 
+  addActivity(ActivityModel activity) {
+    final ref = FirebaseDatabase.instance.ref();
+    DatabaseReference newRef = ref.child('Activity/').push();
+    activity.activityID = newRef.key!;
+    newRef.set(activity.toJson());
+  }
 }

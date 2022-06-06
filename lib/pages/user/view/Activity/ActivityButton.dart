@@ -17,8 +17,7 @@ class _ActivityButtonState extends State<ActivityButton> {
     return button();
   }
 
-  /// Button to donate to the specific project.
-  /// Called "Donner".
+  /// Button that takes the function to begin/stop an activity.
   Widget button() {
     return IconButton(
       tooltip: widget.tooltip,

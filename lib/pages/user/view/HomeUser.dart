@@ -72,7 +72,7 @@ class _HomeUserState extends State<HomeUser> {
           floatingActionButton: MediaQuery.of(context).orientation == Orientation.landscape ? Wrap(
             direction: Axis.vertical, //use vertical to show  on vertical axis
             children: [
-              const HomeButtonActivity(),
+              HomeButtonActivity(user: widget.user,),
               HomeButtonAllProjects(user: widget.user,),
             ],
           ) : null,

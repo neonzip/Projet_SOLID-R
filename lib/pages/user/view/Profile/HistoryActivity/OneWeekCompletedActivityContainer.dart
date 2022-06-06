@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
-import '../../Activity/ActivityView.dart';
+import 'ActivityView.dart';
 
 const TableRow rowSpacer = TableRow(
     children: [
@@ -43,15 +43,15 @@ class _OneWeekCompletedActivityContainerState extends State<OneWeekCompletedActi
           2: FlexColumnWidth(2),
         },*/
                   children: [
-                    ActivityView(1, DateTime.now()).activityTemplate(),
+                    ActivityView("1", DateTime.now()).activityTemplate(),
                     rowSpacer,
-                    ActivityView(1, DateTime.now()).activityTemplate(),
+                    ActivityView("1", DateTime.now()).activityTemplate(),
                     rowSpacer,
-                    ActivityView(1, DateTime.now()).activityTemplate(),
+                    ActivityView("1", DateTime.now()).activityTemplate(),
                     rowSpacer,
-                    ActivityView(1, DateTime.now()).activityTemplate(),
+                    ActivityView("1", DateTime.now()).activityTemplate(),
                     rowSpacer,
-                    ActivityView(1, DateTime.now()).activityTemplate(),
+                    ActivityView("1", DateTime.now()).activityTemplate(),
                   ]
               ),
             ],

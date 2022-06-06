@@ -4,7 +4,7 @@ import 'dart:async';
 import '../../model/ActivityModel.dart';
 import '../../model/SportModel.dart';
 //import '../../dao/SportDAO.dart';
-class DataSportTest {
+class DataSportTest {/*
   List<SportModel> sportDataList = <SportModel>[];
 
   sportDAO dao = sportDAO();
@@ -65,5 +65,5 @@ class DataSportTest {
    return list;
   }
 
-
+*/
 }

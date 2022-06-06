@@ -27,10 +27,10 @@ class HomeBottomAppBar extends StatelessWidget {
               /* Favorites button. */
               HomeButtonFavoriteProjects(user: user,),
             ),
-            const SizedBox(
+            SizedBox(
               height: 100,
               width: 100,
-              child: HomeButtonActivity(),
+              child: HomeButtonActivity(user: user,),
             ),
 
             SizedBox(

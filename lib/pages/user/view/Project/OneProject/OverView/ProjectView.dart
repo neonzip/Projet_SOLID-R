@@ -211,7 +211,9 @@ class _ProjectViewState extends State<ProjectView>{
                     widget.project.projectResult += valueDonation;
                     ProjectDAO().setDonationState(widget.project);
 
-                    UserDAO().reducePurseUser(widget.user!, donation.sumOfDonation);
+                    UserDAO().setPurseUser(widget.user!, widget.user!.userPurse - donation.sumOfDonation);
+                    UserDAO().addOneDonationUser(widget.user!);
+
                     // TODO : We have to make sure that the input is correct. If it is not, display a message for the user.
 
                     /// After these things, we can pop the dialog and go to the next one for confirmation

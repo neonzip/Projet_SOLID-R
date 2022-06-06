@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:projet_solid_r/pages/user/view/Activity/ChoosingActivity/Activities.dart';
+
+import '../../../model/UserModel.dart';
 
 /// Floating action button "Activités".
 /// When the user clicks on it, he is automatically redirected to the activity page.
 class HomeButtonActivity extends StatelessWidget {
-  const HomeButtonActivity({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeButtonActivity({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,8 @@ class HomeButtonActivity extends StatelessWidget {
           child: FloatingActionButton(
             heroTag: "activity",
             onPressed: () {
-              Navigator.pushNamed(context, "/user/activities");
+             // Navigator.pushNamed(context, "/user/activities");
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Activities(user: user)));
             },
             tooltip: 'Activité',
             splashColor: Colors.yellow,

@@ -1,12 +1,12 @@
 
 class SportModel {
 
-  late int sportID;
+  late String sportID;
   late String sportName;
   late double sportConversionRate;
   late double sportMaxSpeed;
 
-  SportModel(int id, String name, double rate, double speed) {
+  SportModel(String id, String name, double rate, double speed) {
     sportID = id;
     sportName = name;
     sportConversionRate = rate;
@@ -14,7 +14,7 @@ class SportModel {
   }
 
   SportModel.fromJson(Map<dynamic, dynamic> json)
-      : sportID = int.parse(json['sportID'] as String),
+      : sportID = json['sportID'] as String,
         sportName = json['sportName'] as String,
         sportConversionRate = double.parse(json['sportConversionRate'] as String),
         sportMaxSpeed = double.parse(json['sportMaxSpeed'] as String);
@@ -29,10 +29,10 @@ class SportModel {
 
   /***** GETTERS and SETTERS ******/
 
-  int getSportID(){
+  String getSportID(){
     return sportID;
   }
-  void setSportID(int id){
+  void setSportID(String id){
     sportID=id;
   }
   String getSportName(){

@@ -3,23 +3,23 @@ import '../model/SportModel.dart';
 import '../controller/Database.dart';
 
 
-class sportDAO {
-  late DatabaseReference _SportRef = FirebaseDatabase.instance.ref().child('Sport');
+class SportDAO {
+  late DatabaseReference sportRef = FirebaseDatabase.instance.ref().child('Sport');
   DataBase db = DataBase();
 
-  sportDAO(){
-    _SportRef = db.db.ref().child('Sport');
+  SportDAO(){
+    sportRef = db.db.ref().child('Sport');
   }
 
   Future<void> saveSport(SportModel sport) async {
-    _SportRef = db.db.ref().child('Sport/'+sport.sportID.toString());
-    await _SportRef.set(sport.toJson());
+    sportRef = db.db.ref().child('Sport/'+sport.sportID.toString());
+    await sportRef.set(sport.toJson());
       // another way that works
       //_SportRef.push().set(sport.toJson());
   }
 
   Query getSportQuery() {
-    return _SportRef;
+    return sportRef;
   }
 
   Future<SportModel> getSportByID(int id) async {
@@ -42,10 +42,12 @@ class sportDAO {
     SportModel sportOBJ;
 
    final sportSnapshot = await ref.child('Sport').get();
-   sportSnapshot.children.forEach((sport)=> {
-       sportOBJ = SportModel.fromJson(sport.value as Map<dynamic, dynamic>),
-        list.add(sportOBJ),
-       });
+   for (var sport in sportSnapshot.children) {
+     {
+       sportOBJ = SportModel.fromJson(sport.value as Map<dynamic, dynamic>);
+       list.add(sportOBJ);
+     }
+   }
    
    return  list;
   }

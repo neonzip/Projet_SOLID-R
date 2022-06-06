@@ -102,7 +102,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                 FloatingActionButton(
                   heroTag: "addProject",
                   onPressed: () {
-                    Navigator.pushNamed(context, "/admin/project/add");
+                    Navigator.pushNamed(context, "/admin/project/add").then((result) => setState(() {}));
                   },
                   tooltip: 'Ajouter un projet',
                   splashColor: const Color(0xFF0725A5),

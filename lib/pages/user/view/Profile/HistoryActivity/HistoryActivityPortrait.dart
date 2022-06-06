@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/Activity/ActivityView.dart';
+import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/ActivityView.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/OneWeekCompletedActivityContainer.dart';
 import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 
@@ -25,12 +25,12 @@ class _HistoryActivityPortraitState extends State<HistoryActivityPortrait> {
             children: [
               OneWeekCompletedActivityContainer(
                 startWeek: DateTime.now(),
-                listCompletedActivity: [ActivityView(1, DateTime.now())],
+                listCompletedActivity: [ActivityView("1", DateTime.now())],
                 endWeek: DateTime.now(),
               ),
               OneWeekCompletedActivityContainer(
                 startWeek: DateTime.now(),
-                listCompletedActivity: [ActivityView(1, DateTime.now())],
+                listCompletedActivity: [ActivityView("1", DateTime.now())],
                 endWeek: DateTime.now(),
               ),
               const SizedBox(

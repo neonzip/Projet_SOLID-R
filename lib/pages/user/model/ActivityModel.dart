@@ -1,37 +1,37 @@
-import 'SportModel.dart';
-
-
 class ActivityModel {
-  late int activityID;
+  late String activityID;
   late DateTime activityStartDate;
   late DateTime activityEndDate;
-  late int activityDistance;
-  late int userID;
-  late int sportID;
+  late double activityDistance;
+  late String userID;
+  late String sportID;
+  late double coin;
 
-  ActivityModel (int activity, DateTime activityStart) {
+  ActivityModel (String activity, DateTime activityStart) {
     activityID = activity;
     activityStartDate = activityStart;
     activityEndDate = DateTime(0);
     activityDistance = 0;
-    userID = -1;
-    sportID = -1;
+    userID = "";
+    sportID = "";
   }
-  ActivityModel.ActivityModelFullConstructor(int activity, DateTime activityStart,int userId,int sportId):
+  ActivityModel.ActivityModelFullConstructor(String activity, DateTime activityStart,String userId,String sportId):
         activityID = activity,
         activityStartDate = activityStart,
         activityEndDate = DateTime(0),
         activityDistance = 0,
         userID = userId,
-        sportID = sportId;
+        sportID = sportId,
+        coin = 0.0;
 
   ActivityModel.fromJson(Map<dynamic, dynamic> json)
-      : activityID = int.parse(json['activityID'] as String),
+      : activityID = json['activityID'] as String,
         activityStartDate = DateTime.parse(json['startDate'] as String),
         activityEndDate = DateTime.parse(json['endDate'] as String),
-        activityDistance = int.parse(json['distance'] as String),
-        userID = int.parse(json['userID'] as String),
-        sportID = int.parse(json['sportID'] as String);
+        activityDistance = double.parse(json['distance'] as String),
+        userID = json['userID'] as String,
+        sportID = json['sportID'] as String,
+        coin = double.parse(json['coin'] as String);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
     'activityID': activityID.toString(),
@@ -40,14 +40,15 @@ class ActivityModel {
     'distance':  activityDistance.toString(),
     'userID' : userID.toString(),
     'sportID' : sportID.toString(),
+    'coin' : coin,
   };
 
   /****** Getters and Setters *****/
 
-   int getActivityID(){
+   String getActivityID(){
      return activityID;
    }
-   void setActivityID(int id){
+   void setActivityID(String id){
      activityID = id;
    }
 
@@ -61,26 +62,33 @@ class ActivityModel {
     return activityStartDate;
   }
   void setActivityEndDate(DateTime d){
-    activityStartDate=d;
+    activityEndDate=d;
   }
-  int getActivityDistance(){
+  double getActivityDistance(){
     return activityDistance;
   }
-  void setActivityDistance(int d){
+  void setActivityDistance(double d){
     activityDistance = d;
   }
 
-  int getUserID(){
+  String getUserID(){
     return userID;
   }
-  void setUserID(int id){
+  void setUserID(String id){
     userID = id;
   }
 
-  int getSportID(){
+  String getSportID(){
     return sportID;
   }
-  void setSportID(int id){
+  void setSportID(String id){
     sportID = id;
+  }
+
+  double getCoin(){
+    return coin;
+  }
+  void setCoin(double value){
+    coin = value;
   }
 }

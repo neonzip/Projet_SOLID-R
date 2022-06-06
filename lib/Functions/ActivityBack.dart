@@ -12,7 +12,7 @@ import 'package:location/location.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../pages/user/view/Activity/Activity.dart';
+import '../pages/user/view/Activity/DoingActivity/Activity.dart';
 // Import
 //import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 
