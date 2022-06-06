@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/view/templates/Separator.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
 import 'ActivityView.dart';
 
@@ -10,6 +9,7 @@ const TableRow rowSpacer = TableRow(
       SizedBox(height: 20,),
     ]
 );
+
 
 /// Table/Container which contains a list of completed activities.
 /// We call it to build a table for every week in the "Activités réalisée" page.

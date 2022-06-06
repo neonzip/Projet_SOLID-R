@@ -14,6 +14,7 @@ class _HistoryActivityPortraitState extends State<HistoryActivityPortrait> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF0725A5),

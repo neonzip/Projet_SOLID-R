@@ -7,6 +7,7 @@ class DataAdvertisementTest {
 
 
   DataAdvertisementTest() {
+    /*
   //  advertisementDAO dao   = advertisementDAO();
 
     AdvertisementModel ad1 = AdvertisementModel(1, "assets/AdvertisementNetworks/video1.mp4");
@@ -21,6 +22,7 @@ class DataAdvertisementTest {
 
     advertisementDataList.add(ad3);
     dao.saveAdvertisement(ad3);
+     */
 
   }
 

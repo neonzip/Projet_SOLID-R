@@ -15,7 +15,6 @@ class HomeButtonFavoriteProjects extends StatelessWidget {
       heroTag: "favorites",
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> Favorites(user: user)));
-        Navigator.pushNamed(context, "/user/favorites");
       },
       tooltip: 'Favoris',
       splashColor: Colors.indigo,
