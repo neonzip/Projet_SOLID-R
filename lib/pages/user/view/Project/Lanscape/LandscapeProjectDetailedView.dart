@@ -209,6 +209,7 @@ class _LandscapeProjectDetailedViewState extends State<LandscapeProjectDetailedV
                 child: Column(
                   children: [
                     GlobalInformation(
+                      user: widget.user,
                       project: widget.project,
                       goalDate: DateTime.now(),
                       onPressed: showDonationInputDialog,

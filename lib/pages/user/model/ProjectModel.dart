@@ -17,19 +17,22 @@ class ProjectModel {
   late double projectResult;      // Project's progression
   late String projectResultDescription; // Project's result description when it is finished
   late DateTime projectStartDate; // Date when the project begins
-  late bool projectIsFavorite;    // True if it is a favorite project, false then
+
+  // By default, none of the project is favorite
+  bool projectIsFavorite = false;    // True if it is a favorite project, false then
+
   late List<PictureModel> projectPictures = <PictureModel>[];
   late AssociationModel projectAssociation;   // Association of the project
   late EntityModel projectEntity;      // Entity which collaborates for this project
 
   /// Constructor
-  ProjectModel(String idProject, bool isFavorite, String nameProject, String descriptionProject) {
+  ProjectModel(String idProject, String nameProject, String descriptionProject) {
     projectID = idProject;
     projectName = nameProject;
     projectDescription = descriptionProject;
     projectResultDescription = "";
-    projectIsFavorite = isFavorite;
     projectResult = 0;
+
     projectDonationGoal=0.0;
     projectStartDate=DateTime(0);
     projectPictures =<PictureModel>[];
@@ -45,7 +48,7 @@ class ProjectModel {
         projectResult = double.parse(json['projectResult'] as String),
         projectResultDescription =  json['projectResultDescription'] as String,
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
-        projectIsFavorite = json['projectIsFavorite'] as bool,
+
         // disclaimer : the following attributes will be retreived in dao
         projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel(0,""),""),
         projectEntity = EntityModel(json['projectEntityId'] as String,"","",AdvertisementModel(0,"")),
@@ -59,7 +62,6 @@ class ProjectModel {
     'projectResult': projectResult.toString(),
     'projectResultDescription': projectResultDescription.toString(),
     'projectStartDate': projectStartDate.toString(),
-    'projectIsFavorite': projectIsFavorite,
     'projectAssociationId' : projectAssociation.getAssociationId().toString(),
     'projectEntityId' : projectEntity.getEntityId().toString(),
     //the list of pictures will be saved in Dao.

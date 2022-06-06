@@ -219,9 +219,9 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   /// Interaction with the DB
   /// ///////////////////////
   Future<List<ProjectView>> getListFavoriteProjects() async {
-    return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews();
+    return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews(widget.user.userID);
   }
   Future<List<ProjectView>> getListAllProjects() async {
-    return await DataProjectTest().getListFutureSolidarityProjectsViews();
+    return await DataProjectTest().getListFutureSolidarityProjectsViewsWithFavorite(widget.user.userID);
   }
 }

@@ -56,6 +56,7 @@ class _ProjectViewState extends State<ProjectView>{
                           //buttonFavorite(),
                           FavoriteButton(
                               project: widget.project,
+                              user: widget.user!,
                           ),
                         ]
                     ),

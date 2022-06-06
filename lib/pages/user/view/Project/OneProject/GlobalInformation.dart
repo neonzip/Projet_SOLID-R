@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
 import '../AboutDonation/DonationButton.dart';
 import 'FavoriteButton.dart';
@@ -9,8 +10,9 @@ class GlobalInformation extends StatefulWidget {
   final void Function()? onPressed;
   final DateTime goalDate;
   final ProjectModel project;
+  final UserModel user;
 
-  const GlobalInformation({Key? key, required this.goalDate, this.onPressed, required this.project}) : super(key: key);
+  const GlobalInformation({Key? key, required this.goalDate, this.onPressed, required this.project, required this.user}) : super(key: key);
   @override
   _GlobalInformationState createState() => _GlobalInformationState();
 }
@@ -77,6 +79,7 @@ class _GlobalInformationState extends State<GlobalInformation> {
                     child:
                     FavoriteButton(
                       project: widget.project,
+                      user: widget.user,
                     ),
                   ),
                   (widget.project.projectResult < widget.project.projectDonationGoal)?

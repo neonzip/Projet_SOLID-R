@@ -145,8 +145,13 @@ class UserDAO {
   }
 
   Future<void> addProjectToUserLikedProjects(UserModel user, ProjectModel project) async {
-    var ref = db.db.ref().child('User/'+user.userID.toString()+'/userLikedProject/'+project.projectID.toString());
-    ref.set( project.toJson());
+    var ref = db.db.ref().child('User/' + user.userID.toString() + '/userLikedProject/' + project.projectID.toString());
+    ref.set(project.toJson());
     user.userLikedProject.add(project);
+  }
+
+  Future<void> removeProjectToUserLikedProjects(UserModel user, ProjectModel project) async {
+    var ref = db.db.ref().child('User/' + user.userID.toString() + '/userLikedProject/' + project.projectID.toString()).remove();
+    user.userLikedProject.remove(project);
   }
 }

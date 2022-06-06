@@ -1,19 +1,22 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
+import '../../../model/UserModel.dart';
+
 class FavoriteButton extends StatefulWidget {
-  ProjectModel project;
+  final ProjectModel project;
+  final UserModel user;
 
 //  static int idProject;
-  FavoriteButton({Key? key, required this.project}) : super(key: key);
+  const FavoriteButton({Key? key, required this.project, required this.user}) : super(key: key);
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
 class _FavoriteButtonState extends State<FavoriteButton> {
-  //bool isFav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,16 @@ class _FavoriteButtonState extends State<FavoriteButton> {
           // Setting the state
           setState(() {
             widget.project.projectIsFavorite = !widget.project.projectIsFavorite;
-            ProjectDAO().setFavoriteState(widget.project);
+
+            /// If the user make the project favorite, we add it to his favorite projects list in the database.
+            /// Else, we remove it.
+            if (widget.project.projectIsFavorite) {
+              UserDAO().addProjectToUserLikedProjects(widget.user, widget.project);
+            }
+            else {
+              UserDAO().removeProjectToUserLikedProjects(widget.user, widget.project);
+            }
+           // ProjectDAO().setFavoriteState(widget.project);
           });
         });
   }

@@ -3,9 +3,6 @@ import 'package:projet_solid_r/pages/admin/view/AddProject/FormAssociation.dart'
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormConfirmation.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormMecene.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormProject.dart';
-import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
-import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 
 class AddingProject extends StatefulWidget {
@@ -17,7 +14,7 @@ class AddingProject extends StatefulWidget {
 }
 
 // TODO : Change constructors here... In order not to have the id to set.
-final ProjectModel projectData = ProjectModel("-1", false, "", "");
+final ProjectModel projectData = ProjectModel("-1", "", "");
 
 class _AddingProjectState extends State<AddingProject> {
 

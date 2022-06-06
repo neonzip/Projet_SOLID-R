@@ -129,6 +129,20 @@ class DataProjectTest {
     return list;
   }
 
+  /// Creates and gets the list of all the names of solidarity projects (future) with the favorite projects of the user.
+  Future<List<ProjectView>> getListFutureSolidarityProjectsViewsWithFavorite(String userId) async {
+    List<ProjectView> list = <ProjectView>[];
+    solidarityProjectdataList = await projectDao.getListOfProjectsWithFavorite(userId);
+    for (int i = 0; i < solidarityProjectdataList.length; i ++) {
+      ProjectView projectView = ProjectView(
+        project: solidarityProjectdataList.elementAt(i),
+        contribution: 0,
+      );
+      list.add(projectView);
+    }
+    return list;
+  }
+
 
   /// Creates and gets the list of all the names of formal projects. (future>
   Future<List<ProjectView>> getListFutureFormalProjectsViews() async {
@@ -208,19 +222,19 @@ class DataProjectTest {
   }
 
 
-  /// Gets the list of all the favorite solidarity projects. Future
-  Future<List<ProjectModel>> getListFutureFavoriteSolidarityProjects() async {
+  /// Gets the list of all the favorite solidarity projects of the user.
+  Future<List<ProjectModel>> getListFutureFavoriteSolidarityProjects(String userId) async {
     List<ProjectModel> listFavoriteProjects = <ProjectModel>[];
-    solidarityProjectdataList = await projectDao.getListOfProjects();
+    solidarityProjectdataList = await projectDao.getLikedProjects(userId);//getListOfProjects();
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
-      if (solidarityProjectdataList.elementAt(i).getFavoriteState() == true) {
+      //if (solidarityProjectdataList.elementAt(i).getFavoriteState() == true) {
         listFavoriteProjects.add(solidarityProjectdataList.elementAt(i));
-      }
+      //}
     }
     return listFavoriteProjects;
   }
 
-  /// Gets the list of all the formal projects that are not finished. future
+  /// Gets the list of all the formal projects that are not finished.
   Future<List<ProjectModel>> getListFutureRunningFormalProjects() async {
     List<ProjectModel> listRunningFormalProjects = <ProjectModel>[];
     formalProjectdataList = await projectDao.getListOfProjects();
@@ -231,28 +245,6 @@ class DataProjectTest {
       }
     }
     return listRunningFormalProjects;
-  }
-
-
-
-  /// Gets the list of the projects that we want to have.
-  /// Selects the list we want and returns it.
-  /// Useful for the filter for example, and to display the good view of projects in the pages.
-  Future<List<ProjectModel>?> getListFutureProjects() async {
-    switch (statusSection) {
-      case statusAllFormal:
-        return getListFutureFormalProjects();
-      case statusAllSolidarity:
-        return getListFutureSolidarityProjects();
-      case statusFavoriteSolidarity:
-        return getListFutureFavoriteSolidarityProjects();
-      case statusFinishedFormal:
-        return getListFutureFinishedFormalProjects();
-      case statusRunningFormal:
-        return getListFutureRunningFormalProjects();
-      default:
-        return null;
-    }
   }
 
   Future<ProjectModel?> getFutureFormalProject(String idProject) async {
@@ -280,7 +272,7 @@ class DataProjectTest {
   }
 
 
-  /// Creates and gets the list of all the finished formal projects. Future
+  /// Creates and gets the list of all the finished formal projects.
   Future<List<ProjectView>> getListFutureFinishedFormalProjectsViews() async {
     List<ProjectView> list = <ProjectView>[];
     List<ProjectModel> listFutureFinishedFormalProjects = await getListFutureFinishedFormalProjects();
@@ -367,11 +359,10 @@ class DataProjectTest {
     return list;
   }
 
-  /// Creates and gets the list of all the favorite solidarity projects.
-  Future<
-      List<ProjectView>> getListFutureFavoriteSolidarityProjectsViews() async {
+  /// Creates and gets the list of all the favorite solidarity projects of the user.
+  Future<List<ProjectView>> getListFutureFavoriteSolidarityProjectsViews(String userId) async {
     List<ProjectView> list = <ProjectView>[];
-    List<ProjectModel> listFutureFavoriteSolidarityProjects = await getListFutureFavoriteSolidarityProjects();
+    List<ProjectModel> listFutureFavoriteSolidarityProjects = await getListFutureFavoriteSolidarityProjects(userId);
     for (int i = 0; i < listFutureFavoriteSolidarityProjects.length; i ++) {
       ProjectView projectView = ProjectView(
         project: listFutureFavoriteSolidarityProjects.elementAt(i),

@@ -217,6 +217,7 @@ class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedVie
                 child: Column(
                   children: [
                     GlobalInformation(
+                      user: widget.user,
                       project: widget.project,
                       goalDate: DateTime.now(),
                       onPressed: showDonationInputDialog,

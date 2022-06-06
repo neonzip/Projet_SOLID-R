@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:projet_solid_r/pages/user/model/PictureModel.dart';
+import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 import '../model/ProjectModel.dart';
 import '../controller/Database.dart';
 import 'associationDAO.dart';
@@ -75,20 +76,10 @@ class ProjectDAO {
           "projectDonationGoal" : project.projectDonationGoal.toString(),
           "projectEntityId" : project.projectEntity.entityID.toString(),
           "projectID" : project.projectID.toString(),
-          "projectIsFavorite" : project.projectIsFavorite,
           "projectName" : project.projectName,
           "projectResult" : project.projectResult.toString(),
           "projectResultDescription" : project.projectResultDescription,
           "projectStartDate" : project.projectStartDate.toString(),
-        }
-    );
-  }
-
-  setFavoriteState(ProjectModel project) async {
-    final ref = FirebaseDatabase.instance.ref();
-    await ref.child('Project/' + project.projectID.toString()).update(
-        {
-          "projectIsFavorite" : project.projectIsFavorite,
         }
     );
   }
@@ -111,13 +102,12 @@ class ProjectDAO {
 
 
   Future<List<ProjectModel>> getListOfProjects() async {
-
     final List<ProjectModel> list = <ProjectModel>[];
     final projectsSnapshot = await FirebaseDatabase.instance.ref('Project').get();
-    projectsSnapshot.children.forEach((project) async {
+    for (var project in projectsSnapshot.children) {
       var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
       list.add(projectOBJ);
-    });
+    }
 
     // update projects associations && projects entities
     associationDAO assocDao = associationDAO();
@@ -145,5 +135,88 @@ class ProjectDAO {
     return list;
   }
 
+  Future<List<ProjectModel>> getLikedProjects(String userId) async {
+    final List<ProjectModel> list = <ProjectModel>[];
+    final projectsSnapshot = await FirebaseDatabase.instance.ref('User/' + userId + '/userLikedProject').get();
+    for (var project in projectsSnapshot.children) {
+      var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
+      projectOBJ.projectIsFavorite = true;
 
+      list.add(projectOBJ);
+    }
+    // update projects associations && projects entities
+    associationDAO assocDao = associationDAO();
+    entityDAO entityDao = entityDAO();
+
+    for(int i =0; i<list.length;i++) {
+      // update project association
+      String idAsso = list[i].getProjectAssociation().getAssociationId();
+      list[i].setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
+
+      // update project entitie
+      String idEntity = list[i].getEntityProject().getEntityId();
+      list[i].setEntityProject(await entityDao.getEntityByID(idEntity));
+
+      // retreiving project pictures :
+      list[i].projectPictures= <PictureModel>[];
+      String id = list[i].getIdProject();
+      final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
+      projectPicturesSnopshot.children.forEach((picture) {
+        var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);
+        list[i].projectPictures.add(pictureOBJ);
+
+      });
+    }
+    return list;
+  }
+
+  Future<List<ProjectModel>> getListOfProjectsWithFavorite(String userId) async {
+
+    /// Gets the list of the favorite projects of the user
+    final List<ProjectModel> listFavorite = <ProjectModel>[];
+    final favoritesProjectsSnapshot = await FirebaseDatabase.instance.ref('User/' + userId + '/userLikedProject').get();
+
+    for (var project in favoritesProjectsSnapshot.children) {
+      var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
+      listFavorite.add(projectOBJ);
+    }
+
+    /// Gets the list of all projects
+    final List<ProjectModel> list = <ProjectModel>[];
+    final projectsSnapshot = await FirebaseDatabase.instance.ref('Project').get();
+    for (var project in projectsSnapshot.children) {
+      var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
+      for (var favoriteProject in listFavorite) {
+        if (favoriteProject.projectID == projectOBJ.projectID) {
+          projectOBJ.projectIsFavorite = true;
+        }
+      }
+      list.add(projectOBJ);
+    }
+
+    // update projects associations && projects entities
+    associationDAO assocDao = associationDAO();
+    entityDAO entityDao = entityDAO();
+
+    for(int i = 0; i < list.length;i++) {
+      // update project association
+      String idAsso = list[i].getProjectAssociation().getAssociationId();
+      list[i].setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
+
+      // update project entitie
+      String idEntity = list[i].getEntityProject().getEntityId();
+      list[i].setEntityProject(await entityDao.getEntityByID(idEntity));
+
+      // retreiving project pictures :
+      list[i].projectPictures= <PictureModel>[];
+      String id = list[i].getIdProject();
+      final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
+      projectPicturesSnopshot.children.forEach((picture) {
+        var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);
+        list[i].projectPictures.add(pictureOBJ);
+
+      });
+    }
+    return list;
+  }
 }
