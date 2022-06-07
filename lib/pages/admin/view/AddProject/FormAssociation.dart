@@ -8,7 +8,6 @@ import '../../../user/model/AssociationModel.dart';
 import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
 
 class FormAssociation extends StatefulWidget {
   final PageController controller;

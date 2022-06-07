@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
 import '../../../user/model/EntityModel.dart';
 import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
 
 class FormMecene extends StatefulWidget {
   final PageController controller;
