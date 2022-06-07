@@ -198,7 +198,7 @@ class DataProjectTest {
   }
 
 
-  /// Creates and gets the list of all the finished formal projects.
+  /// Creates and gets the list of all the finished solidarity projects.
   List<ProjectModel> getListFinishedSolidarityProjects() {
     List<ProjectModel> listFinishedSolidarityProjects = <ProjectModel>[];
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {
@@ -344,9 +344,9 @@ class DataProjectTest {
   /// Creates and gets the list of all the finished solidarity projects for the admin part.
   List<ProjectViewAdmin> getListFinishedSolidarityProjectsViewsAdmin() {
     List<ProjectViewAdmin> list = <ProjectViewAdmin>[];
-    for (int i = 0; i < getListFinishedFormalProjects().length; i ++) {
+    for (int i = 0; i < getListFinishedSolidarityProjects().length; i ++) {
       ProjectViewAdmin projectView = ProjectViewAdmin(
-        project: getListFinishedFormalProjects().elementAt(i),
+        project: getListFinishedSolidarityProjects().elementAt(i),
         contribution: 0,
       );
       list.add(projectView);
