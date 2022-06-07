@@ -35,7 +35,7 @@ class _YellowBubbleMoneyState extends State<YellowBubbleMoney> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      widget.user.userPurse.toString(),
+                      widget.user.userPurse.toStringAsFixed(2),
                       style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold)

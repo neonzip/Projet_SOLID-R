@@ -29,6 +29,7 @@ class PortraitProjectDetailedView extends StatefulWidget {
 /// Widget which only contains the participation part that you can see in the first container of the detailed project page.
 class _PortraitProjectDetailedViewState extends State<PortraitProjectDetailedView> {
   double valueDonation = 0.0;
+  double valueParticipation = 0.0;
 
   Widget participationInformationTemplate() {
     double progressGoal = double.parse(((widget.project.projectResult * 100) / widget.project.projectDonationGoal).toStringAsFixed(2));

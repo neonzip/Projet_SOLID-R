@@ -97,6 +97,12 @@ class ProjectDAO {
     );
   }
 
+  /// Gets the participation of the user for one project.
+  getParticipationForOneFormalProject(String userID, String projectId) {
+    // TODO
+  }
+
+
   /// Add a project in the database.
   addProject(ProjectModel project) {
     project.projectStartDate = DateTime.now();

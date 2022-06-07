@@ -60,7 +60,6 @@ class _ProjectsViewState extends State<ProjectsView> {
           ), //// widget.filter,
       ) : null,
       body: OrientationBuilder(builder: (context, orientation) {
-
         if (MediaQuery.of(context).size.width > 600) {
           isLargeScreen = true;
         } else {
@@ -84,10 +83,11 @@ class _ProjectsViewState extends State<ProjectsView> {
               }
             },
               listProjects: widget.listProjects,
-              count: widget.listProjects!.length, user: widget.user,
+              count: widget.listProjects!.length,
+              user: widget.user,
             ),
           ),
-          isLargeScreen ? Expanded(child: LandscapeProjectsView(project: widget.listProjects!.elementAt(selectedValue).project, user: widget.user,)) : Container(color: const Color(0xFF0725A5),),
+              (isLargeScreen && widget.listProjects!.isNotEmpty) ? Expanded(child: LandscapeProjectsView(project: widget.listProjects!.elementAt(selectedValue).project, user: widget.user,)) : Container(color: const Color(0xFF0725A5),),
         ]);
       }),
     );
