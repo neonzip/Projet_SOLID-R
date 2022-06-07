@@ -14,8 +14,8 @@ class SloganLaunchHome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
-          AutoSizeText("Avancons ensemble vers un sport\n", style: TextStyle(fontSize: 15, color: Colors.white)),
-          AutoSizeText("+ inclusif\n+ responsable\n+ solidaire", style: TextStyle(fontSize: 15, color: Colors.yellow)),
+          AutoSizeText("Avançons ensemble vers un sport\n", style: TextStyle(fontSize: 18, color: Colors.white)),
+          AutoSizeText("+ inclusif\n+ responsable\n+ solidaire", style: TextStyle(fontSize: 20, color: Colors.yellow)),
         ],
       ),
     );
