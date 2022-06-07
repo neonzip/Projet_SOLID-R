@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import '../../../dao/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
+import '../../../../DAO/UserDAO.dart';
 import '../../templates/FormTextField.dart';
 import '../../templates/MessageSnackbar.dart';
 

@@ -1,12 +1,11 @@
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
-import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
+import 'package:projet_solid_r/pages/MODEL/AssociationModel.dart';
 
-import '../../dao/associationDAO.dart';
+import '../../../DAO/AssociationDAO.dart';
 import '../../model/AdvertisementModel.dart';
 class DataAssociationTest {
   late List<AssociationModel> assoDataList = <AssociationModel>[];
   //late DataAdvertisementTest dataAdvertisementTest = DataAdvertisementTest();
-  late associationDAO dao = associationDAO();
+  late AssociationDAO dao = AssociationDAO();
 
   /// Creates what we have to replace with the database.
   DataAssociationTest() {
@@ -21,21 +20,13 @@ class DataAssociationTest {
     assoDataList.add(asso2);
     assoDataList.add(asso3);
 
-    dao.saveAssociation(asso1);
-    dao.saveAssociation(asso2);
-    dao.saveAssociation(asso3);
+    DAO.saveAssociation(asso1);
+    DAO.saveAssociation(asso2);
+    DAO.saveAssociation(asso3);
 
-    dao.getAssociationyByID("1");
+    DAO.getAssociationyByID("1");
 
      */
-  }
-
-  List<String> getNameAssociationDataList() {
-    List<String> list = <String>[];
-    for (int i = 0; i < assoDataList.length; i++) {
-      list.add(assoDataList.elementAt(i).entityName);
-    }
-    return list;
   }
 
   Future<List<AssociationModel>> getAssoDataList() async {

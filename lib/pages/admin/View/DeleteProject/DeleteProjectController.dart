@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/user/controller/DataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
 import '../../../user/view/templates/MessageSnackbar.dart';
 

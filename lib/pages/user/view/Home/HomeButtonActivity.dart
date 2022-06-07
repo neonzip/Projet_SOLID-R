@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Activity/ChoosingActivity/Activities.dart';
 
-import '../../model/UserModel.dart';
+import '../../../MODEL/UserModel.dart';
 
 /// Floating action button "Activités".
 /// When the user clicks on it, he is automatically redirected to the activity page.

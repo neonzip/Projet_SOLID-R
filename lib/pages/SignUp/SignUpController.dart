@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/DAO/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/user/view/templates/MessageSnackbar.dart';
 import 'package:projet_solid_r/pages/LaunchHome/PartIn/SignupButton.dart';

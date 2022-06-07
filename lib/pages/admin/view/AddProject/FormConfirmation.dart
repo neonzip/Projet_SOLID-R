@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
+import 'package:projet_solid_r/pages/DAO/ProjectDAO.dart';
 
-import '../../../user/model/ProjectModel.dart';
+import '../../../DAO/AssociationDAO.dart';
+import '../../../DAO/EntityDAO.dart';
+import '../../../MODEL/ProjectModel.dart';
 
 class FormConfirmation extends StatefulWidget {
   final PageController controller;
@@ -179,8 +179,8 @@ class _FormConfirmationState extends State<FormConfirmation> with AutomaticKeepA
                     onPressed: () {
 
                       /// Adding the information about the new project in the database.
-                      entityDAO().addEntity(widget.project.projectEntity);
-                      associationDAO().addAssociation(widget.project.projectAssociation);
+                      EntityDAO().addEntity(widget.project.projectEntity);
+                      AssociationDAO().addAssociation(widget.project.projectAssociation);
                       ProjectDAO().addProject(widget.project);
 
                       showConfirmation();

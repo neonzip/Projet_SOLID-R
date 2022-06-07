@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../../../user/model/AssociationModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
+import '../../../DAO/AssociationDAO.dart';
+import '../../../MODEL/AssociationModel.dart';
 import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
@@ -23,10 +23,8 @@ class FormAssociation extends StatefulWidget {
 /// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
 class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAliveClientMixin<FormAssociation> {
 
-  // List in the dropdown list that we have to replace by the list in the database
-  // var items = associationDAO().getListOfAssociations();
-
-  var items = ["Aucune"];// = DataAssociationTest().getNameAssociationDataList();
+  // List in the dropdown list in the database
+  var items = ["Aucune"];
 
   // string for next selected value in the dropdown list
   String? _dropdownValue = "";
@@ -277,7 +275,7 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
   /// Widget which builds the dropdown with the list of associations.
   Widget dropDownAssociations() {
     return FutureBuilder<List<AssociationModel>>(
-        future: associationDAO().getListOfAssociations(),
+        future: AssociationDAO().getListOfAssociations(),
         builder: (BuildContext context,
             AsyncSnapshot<List<AssociationModel>> snapshot,
             ) {

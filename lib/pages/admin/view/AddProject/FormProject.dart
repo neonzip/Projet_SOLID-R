@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/FormMultilineTextField.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
 
-import '../../../user/model/ProjectModel.dart';
+import '../../../MODEL/ProjectModel.dart';
 
 class FormProject extends StatefulWidget {
   final PageController controller;

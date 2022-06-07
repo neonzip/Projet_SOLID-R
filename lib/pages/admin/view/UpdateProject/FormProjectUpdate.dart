@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
 import '../Templates/FormMultilineTextField.dart';
 

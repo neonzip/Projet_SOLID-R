@@ -1,10 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
-import 'package:projet_solid_r/pages/user/model/PictureModel.dart';
-import '../model/ProjectModel.dart';
-import '../controller/Database.dart';
-import 'associationDAO.dart';
-import 'entityDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/DonationModel.dart';
+import 'package:projet_solid_r/pages/MODEL/PictureModel.dart';
+import '../user/controller/Database.dart';
+import '../MODEL/ProjectModel.dart';
+import 'AssociationDAO.dart';
+import 'EntityDAO.dart';
 
 class ProjectDAO {
   late DatabaseReference _projectRef = FirebaseDatabase.instance.ref().child('Project');
@@ -25,10 +25,10 @@ class ProjectDAO {
     * */
     /* Be careful when you retreive the object from the database !*/
     //saving the list of pictures into the project :
-    project.projectPictures.forEach((elt) {
+    for (var elt in project.projectPictures) {
       var ref = db.db.ref().child('Project/'+project.projectID.toString()+'/projectPictures/'+elt.pictureID.toString());
       ref.set( elt.toJson());
-    });
+    }
   }
 
   Query getProjectQuery() {
@@ -44,12 +44,12 @@ class ProjectDAO {
     final projectOBJ = ProjectModel.fromJson(json);
 
     /* we have to retreive the project association*/
-    associationDAO assocDao = associationDAO();
+    AssociationDAO assocDao = AssociationDAO();
     String idAsso = projectOBJ.getProjectAssociation().getAssociationId();
     projectOBJ.setProjectAssociation(await  assocDao.getAssociationyByID(idAsso));
 
     /* we have to retreive the project entity*/
-    entityDAO entityDao = entityDAO();
+    EntityDAO entityDao = EntityDAO();
     String idEntity = projectOBJ.getEntityProject().getEntityId();
     projectOBJ.setEntityProject(await entityDao.getEntityByID(idEntity));
 
@@ -126,8 +126,8 @@ class ProjectDAO {
 
 
     // update projects associations && projects entities
-    associationDAO assocDao = associationDAO();
-    entityDAO entityDao = entityDAO();
+    AssociationDAO assocDao = AssociationDAO();
+    EntityDAO entityDao = EntityDAO();
 
     for(int i =0; i<list.length;i++) {
       // update project association
@@ -185,8 +185,8 @@ class ProjectDAO {
     }
 
     // update projects associations && projects entities
-    associationDAO assocDao = associationDAO();
-    entityDAO entityDao = entityDAO();
+    AssociationDAO assocDao = AssociationDAO();
+    EntityDAO entityDao = EntityDAO();
 
     for(int i =0; i<listFormalProjects.length;i++) {
       // update project association
@@ -222,8 +222,8 @@ class ProjectDAO {
       list.add(projectOBJ);
     }
     // update projects associations && projects entities
-    associationDAO assocDao = associationDAO();
-    entityDAO entityDao = entityDAO();
+    AssociationDAO assocDao = AssociationDAO();
+    EntityDAO entityDao = EntityDAO();
 
     for(int i =0; i<list.length;i++) {
       // update project association
@@ -264,13 +264,11 @@ class ProjectDAO {
     final List<ProjectModel> list = <ProjectModel>[];
 
     final projectsSnapshot = await FirebaseDatabase.instance.ref('Project').get();
-    int i = 0;
+
     for (var project in projectsSnapshot.children) {
       var projectOBJ = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
       for (var favoriteProject in listFavorite) {
         if (favoriteProject.projectID == projectOBJ.projectID) {
-
-
           projectOBJ.projectIsFavorite = true;    //  This project is favorite
         }
       }
@@ -278,9 +276,9 @@ class ProjectDAO {
     }
 
     // update projects associations && projects entities
-    associationDAO assocDao = associationDAO();
+    AssociationDAO assocDao = AssociationDAO();
 
-    entityDAO entityDao = entityDAO();
+    EntityDAO entityDao = EntityDAO();
 
     for(int i = 0; i < list.length;i++) {
       // update project association
@@ -295,11 +293,11 @@ class ProjectDAO {
       list[i].projectPictures= <PictureModel>[];
       String id = list[i].getIdProject();
       final projectPicturesSnopshot =  await FirebaseDatabase.instance.ref().child('Project/'+ id.toString()+'/projectPictures').get();
-      projectPicturesSnopshot.children.forEach((picture) {
+      for (var picture in projectPicturesSnopshot.children) {
         var pictureOBJ = PictureModel.fromJson(picture.value as Map<dynamic, dynamic>);
         list[i].projectPictures.add(pictureOBJ);
 
-      });
+      }
     }
     return list;
   }

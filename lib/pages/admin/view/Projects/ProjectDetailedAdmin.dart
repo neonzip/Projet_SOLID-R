@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:marquee/marquee.dart';
 
-import '../../../user/model/ProjectModel.dart';
+import '../../../MODEL/ProjectModel.dart';
 import '../../../user/view/Project/OneProject/ProjectProgressBar.dart';
 import 'ProjectCharts.dart';
 import 'ProjectDetailedContentAdmin.dart';

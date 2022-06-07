@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/dao/sportDAO.dart';
-import 'package:projet_solid_r/pages/user/model/SportModel.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/SportModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 
-import '../../templates/ProgressIndicatorAsync.dart';
 import '../DoingActivity/Activity.dart';
 import '../ActivityButton.dart';
 

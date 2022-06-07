@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 
 import '../AboutDonation/DonationButton.dart';
 import 'FavoriteButton.dart';

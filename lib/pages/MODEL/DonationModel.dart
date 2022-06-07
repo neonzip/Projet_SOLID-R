@@ -29,7 +29,7 @@ class DonationModel {
         'projectID': projectID.toString(),
       };
 
-/****** Getters and Setters *****/
+/// **** Getters and Setters *****/
 
   setDonationID(String id){
   donationID=id;

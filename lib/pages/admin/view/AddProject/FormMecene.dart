@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
-import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../../../user/model/EntityModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
+import '../../../DAO/EntityDAO.dart';
+import '../../../MODEL/EntityModel.dart';
 import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
@@ -205,7 +205,7 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
   /// Widget which builds the dropdown with the list of entities.
   Widget dropDownMecenes() {
     return FutureBuilder<List<EntityModel>>(
-        future: entityDAO().getListOfEntities(),
+        future: EntityDAO().getListOfEntities(),
         builder: (
             BuildContext context,
             AsyncSnapshot<List<EntityModel>> snapshot,

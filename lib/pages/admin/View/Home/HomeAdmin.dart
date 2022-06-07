@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ListProjectViewAdmin.dart';
 import 'package:projet_solid_r/pages/admin/view/Projects/ProjectCharts.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 
 import '../../../user/view/Home/ContainerWithBackground.dart';
 import '../Profile/ProfileAdmin.dart';

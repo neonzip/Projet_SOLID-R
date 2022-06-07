@@ -3,7 +3,7 @@ import 'package:projet_solid_r/pages/admin/view/AddProject/FormAssociation.dart'
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormConfirmation.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormMecene.dart';
 import 'package:projet_solid_r/pages/admin/view/AddProject/FormProject.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
 class AddingProject extends StatefulWidget {
   const AddingProject({Key? key}) : super(key: key);

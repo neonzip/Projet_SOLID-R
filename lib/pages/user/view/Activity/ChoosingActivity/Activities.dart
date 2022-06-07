@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Activity/ChoosingActivity/DropDownActivities.dart';
 
-import '../../../dao/sportDAO.dart';
-import '../../../model/SportModel.dart';
+import '../../../../DAO/SportDAO.dart';
+import '../../../../MODEL/SportModel.dart';
 import '../../templates/ProgressIndicatorAsync.dart';
 
 class Activities extends StatefulWidget {

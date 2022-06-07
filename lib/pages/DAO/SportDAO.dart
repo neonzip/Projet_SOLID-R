@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
-import '../model/SportModel.dart';
-import '../controller/Database.dart';
+
+import '../user/controller/Database.dart';
+import '../MODEL/SportModel.dart';
 
 
 class SportDAO {
@@ -22,6 +23,7 @@ class SportDAO {
     return sportRef;
   }
 
+  /// Get a sport with its ID.
   Future<SportModel> getSportByID(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     final sportSnapshot = await ref.child('Sport/'+ id.toString()).get();
@@ -30,11 +32,14 @@ class SportDAO {
     return sportOBJ;
   }
 
+
+  /// Remove a sport in the database.
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Sport/'+ id.toString()).remove();
   }
 
+  /// Gets the list of all sports.
   Future<List<SportModel>> getListOfSports()  async {
 
     List<SportModel> list =  <SportModel>[];

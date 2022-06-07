@@ -1,8 +1,7 @@
-import 'package:projet_solid_r/pages/user/dao/DonationDAO.dart';
-import 'package:projet_solid_r/pages/user/model/DonationModel.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/DAO/DonationDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/DonationModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
-///!!!!!!!!!!!!!    likedProjects is not done yet
 class UserModel {
 
   late String userID;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
-import '../../model/UserModel.dart';
+import '../../../MODEL/UserModel.dart';
 import 'ContainerWithBackground.dart';
 import 'HomeAppBar/HomeAppBar.dart';
 import 'HomeBottomAppBar/HomeBottomAppBar.dart';

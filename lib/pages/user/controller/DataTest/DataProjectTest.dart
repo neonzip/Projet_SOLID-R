@@ -1,5 +1,5 @@
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
+import 'package:projet_solid_r/pages/DAO/ProjectDAO.dart';
 import '../../../admin/view/Projects/ProjectViewAdmin.dart';
 import '../../view/Project/OneProject/OverView/ProjectView.dart';
 
@@ -132,7 +132,6 @@ class DataProjectTest {
   /// Creates and gets the list of all the names of solidarity projects (future) with the favorite projects of the user.
   Future<List<ProjectView>> getListFutureSolidarityProjectsViewsWithFavorite(String userId) async {
     List<ProjectView> list = <ProjectView>[];
-    print("okkkk");
 
     solidarityProjectdataList = await projectDao.getListOfProjectsWithFavorite(userId);
     for (int i = 0; i < solidarityProjectdataList.length; i ++) {

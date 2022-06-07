@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 
-import '../../../../controller/fakeDataTest/DataProjectTest.dart';
+import '../../../../controller/DataTest/DataProjectTest.dart';
 import '../../../templates/ItemFilter.dart';
 import '../../../templates/ProgressIndicatorAsync.dart';
 import '../../OneProject/OverView/ProjectView.dart';

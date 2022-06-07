@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/DAO/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 import '../../templates/FormTextField.dart';
 import '../../templates/MessageSnackbar.dart';
 

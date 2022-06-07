@@ -1,8 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
-import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
@@ -16,20 +13,12 @@ import 'pages/user/controller/Authentification.dart';
 
 void main() async {
 
+  /// Connaction to Firabase.
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseApp firebaseApp = await Firebase.initializeApp();
   AuthentificationService _auth = AuthentificationService();
   await _auth.signIn("sport.solidr.test@gmail.com", "abmmtijm");
   DataBase db = DataBase();
-
-  DataAdvertisementTest advTest = DataAdvertisementTest();
-  List<AdvertisementModel>  list = await advTest.getAdvertisementDataList();
-  if (kDebugMode) {
-    print("from main : !!!!");
-  }
-  for (var elt in list) { if (kDebugMode) {
-    print(" adv : "+ elt.advertisementID.toString() + " url :"+ elt.advertisementURL);
-  } }
 
 
   return runApp(

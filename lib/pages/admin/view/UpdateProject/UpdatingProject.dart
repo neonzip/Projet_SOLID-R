@@ -3,10 +3,7 @@ import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormAssociationUpd
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormConfirmationUpdate.dart';
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormMeceneUpdate.dart';
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/FormProjectUpdate.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-
-import '../../../user/model/AssociationModel.dart';
-import '../../../user/model/EntityModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
 class UpdatingProject extends StatefulWidget {
   final ProjectModel project;

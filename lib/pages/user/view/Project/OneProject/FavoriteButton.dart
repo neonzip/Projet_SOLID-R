@@ -1,10 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/DAO/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
-import '../../../model/UserModel.dart';
+import '../../../../MODEL/UserModel.dart';
 
 class FavoriteButton extends StatefulWidget {
   final ProjectModel project;

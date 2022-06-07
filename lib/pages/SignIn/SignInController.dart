@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/SignIn/ForgotPasswordController.dart';
-import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/DAO/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/templates/FormTextField.dart';
 import 'package:projet_solid_r/pages/LaunchHome/PartIn/SigninButton.dart';
 
@@ -64,8 +64,6 @@ class _SignInControllerState extends State<SignInController> {
     /// We get the last modified value of the email text field and create a specific variable to use it.
     String email = textEditingControllerForEmail.text;
 
-    print("Last email value : " + email);                   // Temporary : prints to the console the value of the email
-
     // The email is empty
     if (email.isEmpty) {
       messageErrorEmail = "Veuillez saisir votre mail.";
@@ -87,8 +85,6 @@ class _SignInControllerState extends State<SignInController> {
 
     /// We get the last modified value of the password text field and create a specific variable to use it.
     String password = textEditingControllerForPassword.text;
-
-    print("Last password value : " + password);                   // Temporary : prints to the console the value of the password
 
     // The password is empty
     if (password.isEmpty) {

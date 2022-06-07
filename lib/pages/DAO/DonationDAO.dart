@@ -1,17 +1,15 @@
-import 'dart:ffi';
-
 import 'package:firebase_database/firebase_database.dart';
-import '../model/DonationModel.dart';
-import '../controller/Database.dart';
-import '../model/ProjectModel.dart';
-import '../model/ProjectModel.dart';
+import 'package:flutter/foundation.dart';
+import '../user/controller/Database.dart';
+import '../MODEL/DonationModel.dart';
+import '../MODEL/ProjectModel.dart';
 
 class DonationDAO {
-  late DatabaseReference _DonationRef = FirebaseDatabase.instance.ref().child('Donation');
+  late DatabaseReference donationRef = FirebaseDatabase.instance.ref().child('Donation');
   DataBase db = DataBase();
 
   DonationDAO(){
-    _DonationRef = db.db.ref().child('Donation');
+    donationRef = db.db.ref().child('Donation');
   }
 
   Future<void> saveDonation(DonationModel donation) async {
@@ -20,15 +18,16 @@ class DonationDAO {
     //donation.donationID = datasnapshot.children.length+1;
 
     //this works but does not increment the id automatically
-    _DonationRef = db.db.ref().child('Donation/'+donation.getDonationID().toString());
-    await _DonationRef.set(donation.toJson());
+    donationRef = db.db.ref().child('Donation/'+donation.getDonationID().toString());
+    await donationRef.set(donation.toJson());
   }
 
   Query getDonationQuery() {
-    return _DonationRef;
+    return donationRef;
   }
 
-  Future<DonationModel> getDonationByID(int id) async {
+  /// Gets a donation with its ID.
+  Future<DonationModel> getDonationByID(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     final donationSnapshot = await ref.child('Donation/'+ id.toString()).get();
     final json = donationSnapshot.value as Map<dynamic, dynamic>;
@@ -36,11 +35,13 @@ class DonationDAO {
     return donationOBJ;
   }
 
-  deleteById(int id) async {
+  /// Remove a donation in the database.
+  deleteById(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Donation/'+ id.toString()).remove();
   }
 
+  /// Add a donation to the database.
   addDonation(DonationModel donation) {
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('Donation/').push();
@@ -48,6 +49,7 @@ class DonationDAO {
     newRef.set(donation.toJson());
   }
 
+  /// Gets the list of all donations.
   Future<List<DonationModel>> getListOfDonations() async {
 
     List<DonationModel> list = <DonationModel>[];
@@ -56,22 +58,20 @@ class DonationDAO {
     DonationModel donationOBJ;
 
     final donationSnapshot = await ref.child('Donation').get();
-    donationSnapshot.children.forEach((donation)=> {
-      donationOBJ = DonationModel.fromJson(donation.value as Map<dynamic, dynamic>),
-      list.add(donationOBJ),
-    });
-
-    /*
-    print(" list of Donations ");
-    list.forEach((e) { print("  " + e.sumOfDonation.toString()); });
-    */
+    for (var donation in donationSnapshot.children) {
+      {
+        donationOBJ = DonationModel.fromJson(donation.value as Map<dynamic, dynamic>);
+        list.add(donationOBJ);
+      }
+    }
     return list;
   }
 
+  /// Gets the number of donations during a month
   Future<Map<String, double>> nbOfUsersDonatedToEachProject(int month) async {
 
     Map<String, double> resultmap = Map<String, double>();
-    Map<int, double> tempmap = Map<int, double>();
+    Map<String, double> tempmap = Map<String, double>();
     DonationModel donationOBJ;
     String idProject;
     double? usersCount=0;
@@ -81,37 +81,36 @@ class DonationDAO {
       if(donationOBJ.donationDate.month == month){
         idProject = donationOBJ.getProjectID(),
         if(!tempmap.containsKey(idProject)){
-          //tempmap[idProject]=1,
-        }//TODO
-        //TODO
-        //TODO
-        //TODO
-        //TODO
-        //TODO
+          tempmap[idProject]=1,
+        }
         else{
         usersCount = tempmap[idProject],
-        //tempmap[idProject] = 1 + usersCount!,
+        tempmap[idProject] = 1 + usersCount!,
         }
       }
     });
     // writing the tempmap into the result map;
     ProjectModel projectObj;
     var projectDataSnapshot = await FirebaseDatabase.instance.ref().child('Project').get();
-    projectDataSnapshot.children.forEach((project) {
+    for (var project in projectDataSnapshot.children) {
       projectObj = ProjectModel.fromJson(project.value as Map<dynamic, dynamic>);
       String id = projectObj.getIdProject();
     if(tempmap.containsKey(id)){
       resultmap[projectObj.getNameProject()]= tempmap[id]!;
     }
-    });
+    }
 
-    // print the resultMap ;
-   /*
-   resultmap.forEach((key, value) {print("result map of number of users donated to each project :"+ key + " : " + value.toString() + '\n');});
-   */
+    // print the resultMap
+   resultmap.forEach((key, value) {
+     if (kDebugMode) {
+       print("result map of number of users donated to each project :"+ key + " : " + value.toString() + '\n');
+     }
+   });
+
     return resultmap;
   }
 
+  /// Gets the amount of donations for each months.
   Future<Map<String, double>> sumOfDonationsToEachMonth() async {
     Map<String, double> resultmap = Map<String, double>();
     // we will be using the tempmap to store data as it is easier
@@ -190,9 +189,11 @@ class DonationDAO {
         default : monthStr ="unknown" ; break;
     }
     // print the resultMap
-    /*
-    resultmap.forEach((key, value) {print("result map of sum of donations each month :"+ key + " : " + value.toString() + '\n');});
-    */
+    resultmap.forEach((key, value) {
+      if (kDebugMode) {
+        print("result map of sum of donations each month :"+ key + " : " + value.toString() + '\n');
+      }
+    });
     return resultmap;
   }
 }

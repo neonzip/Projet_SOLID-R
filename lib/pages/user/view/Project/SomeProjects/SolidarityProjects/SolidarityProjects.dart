@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/user/controller/DataTest/DataProjectTest.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 
 import '../../../templates/ItemFilter.dart';
 import '../../../templates/ProgressIndicatorAsync.dart';
@@ -221,9 +221,8 @@ class _SolidarityProjectsState extends State<SolidarityProjects> {
   Future<List<ProjectView>> getListFavoriteProjects() async {
     return await DataProjectTest().getListFutureFavoriteSolidarityProjectsViews(widget.user.userID);
   }
-  Future<List<ProjectView>> getListAllProjects() async {
-    print("okkk");
 
+  Future<List<ProjectView>> getListAllProjects() async {
     return await DataProjectTest().getListFutureSolidarityProjectsViewsWithFavorite(widget.user.userID);
   }
 }

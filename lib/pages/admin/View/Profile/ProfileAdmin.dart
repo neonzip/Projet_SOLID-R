@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 
-import '../../../user/model/UserModel.dart';
+import '../../../MODEL/UserModel.dart';
 import '../../../user/view/Home/HomeUser.dart';
 import '../../../user/view/Profile/LogoutButton.dart';
 import '../../../user/view/Profile/ProfileButton.dart';

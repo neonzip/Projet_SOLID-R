@@ -5,7 +5,7 @@ import 'package:projet_solid_r/pages/admin/view/DeleteProject/DeleteProjectContr
 import 'package:projet_solid_r/pages/admin/view/UpdateProject/UpdatingProject.dart';
 import 'package:projet_solid_r/pages/user/view/Project/OneProject/DetailedView/MeceneInformation.dart';
 
-import '../../../user/model/ProjectModel.dart';
+import '../../../MODEL/ProjectModel.dart';
 import '../../../user/view/Project/OneProject/ProjectProgressBar.dart';
 import '../../../user/view/templates/Separator.dart';
 import 'GlobalInformationAdmin.dart';

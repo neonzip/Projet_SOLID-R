@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataProjectTest.dart';
-import 'package:projet_solid_r/pages/user/dao/ProjectDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import 'package:projet_solid_r/pages/DAO/ProjectDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
 
+import '../../../DAO/AssociationDAO.dart';
+import '../../../DAO/EntityDAO.dart';
 import '../Projects/ProjectDetailedAdmin.dart';
 
 class FormConfirmationUpdate extends StatefulWidget {
@@ -111,13 +110,8 @@ class _FormConfirmationUpdateState extends State<FormConfirmationUpdate> with Au
                   child: ElevatedButton(
                     onPressed: () {
                       ProjectDAO().updateProject(widget.project);
-                      associationDAO().updateAssociation(widget.project.projectAssociation);
-                      entityDAO().updateEntity(widget.project.projectEntity);
-                      //TODO: Update all the objects below in the database.
-                      print("OUI CA PASSE :\nProjet = " + widget.project.projectDonationGoal.toString() + "\t" + widget.project.projectDescription + '\t' + widget.project.projectName);
-                      print("Association = " + widget.project.projectAssociation.associationMail + "\t" + widget.project.projectAssociation.entityDescription + "\t" + widget.project.projectAssociation.entityName);
-                      print("Mécène = " + widget.project.projectEntity.entityDescription + "\t" + widget.project.projectEntity.entityName);
-
+                      AssociationDAO().updateAssociation(widget.project.projectAssociation);
+                      EntityDAO().updateEntity(widget.project.projectEntity);
                       showConfirmation();
                     },
                     style: //ButtonStyle

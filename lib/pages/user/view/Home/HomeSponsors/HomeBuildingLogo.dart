@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/UserModel.dart';
+import '../../../../MODEL/UserModel.dart';
 import '../../Project/SomeProjects/SolidarityProjects/SelectedAssociationProjects.dart';
 
 

@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/ActivityModel.dart';
+import 'package:projet_solid_r/pages/MODEL/ActivityModel.dart';
 
 /// Class of one instance of activity.
 class ActivityView extends ActivityModel{

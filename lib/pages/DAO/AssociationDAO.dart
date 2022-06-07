@@ -1,14 +1,15 @@
 import 'package:firebase_database/firebase_database.dart';
-import '../model/AssociationModel.dart';
-import '../controller/Database.dart';
 
-class associationDAO {
-  late DatabaseReference _AssociationRef = FirebaseDatabase.instance.ref().child('Association');
+import '../user/controller/Database.dart';
+import '../MODEL/AssociationModel.dart';
+
+class AssociationDAO {
+  late DatabaseReference associationRef = FirebaseDatabase.instance.ref().child('Association');
 
   DataBase db = DataBase();
 
-  associationDAO(){
-    _AssociationRef = db.db.ref().child('Association');
+  AssociationDAO(){
+    associationRef = db.db.ref().child('Association');
   }
 
   /*
@@ -19,16 +20,18 @@ class associationDAO {
   */
 
   Future<void> saveAssociation(AssociationModel association) async {
-    _AssociationRef = db.db.ref().child('Association/'+association.getEntityId().toString());
-    await _AssociationRef.set(association.toJson());
+    associationRef = db.db.ref().child('Association/'+association.getEntityId().toString());
+    await associationRef.set(association.toJson());
     // another way that works
     //_SportRef.push().set(sport.toJson());
   }
 
   Query getAssociationQuery() {
-    return _AssociationRef;
+    return associationRef;
   }
 
+
+  /// Gets one association by its ID.
   Future<AssociationModel> getAssociationyByID(String id) async {
     final ref = FirebaseDatabase.instance.ref();
     final associationSnapshot = await ref.child('Association/'+ id.toString()).get();
@@ -37,11 +40,13 @@ class associationDAO {
     return associationOBJ;
   }
 
+  /// Delete an association in the database.
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Association/'+ id.toString()).remove();
   }
 
+  /// Add an association in the database.
   addAssociation(AssociationModel associationModel) async {
     final ref = FirebaseDatabase.instance.ref();
 
@@ -50,6 +55,7 @@ class associationDAO {
     newRef.set(associationModel.toJson());
   }
 
+  /// Updates totally an association in the database.
   updateAssociation(AssociationModel associationModel) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('Association/' + associationModel.entityID.toString()).update(
@@ -65,6 +71,7 @@ class associationDAO {
     // TODO : update Advertisement !
   }
 
+  /// Gets the list of all associations.
   Future<List<AssociationModel>> getListOfAssociations() async {
 
     final List<AssociationModel> list = <AssociationModel>[];
@@ -79,7 +86,4 @@ class associationDAO {
 
     return list;
   }
-
-
-
 }

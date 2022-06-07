@@ -1,26 +1,25 @@
-import 'dart:collection';
-
 import 'package:firebase_database/firebase_database.dart';
-import '../model/AdvertisementModel.dart';
-import '../controller/Database.dart';
-class advertisementDAO {
-  late DatabaseReference _advertisementRef = FirebaseDatabase.instance.ref().child('Advertisement');
+import '../user/controller/Database.dart';
+import '../MODEL/AdvertisementModel.dart';
+
+class AdvertisementDAO {
+  late DatabaseReference advertisementRef = FirebaseDatabase.instance.ref().child('Advertisement');
 
   DataBase db = DataBase();
 
   AdvertisementDAO(){
-    _advertisementRef = db.db.ref().child('Advertisement');
+    advertisementRef = db.db.ref().child('Advertisement');
   }
 
   Future<void> saveAdvertisement(AdvertisementModel advOBJ) async {
-    _advertisementRef= db.db.ref().child('Advertisement/'+advOBJ.getAdvertisementID().toString());
-    await _advertisementRef.set(advOBJ.toJson());
+    advertisementRef= db.db.ref().child('Advertisement/'+advOBJ.getAdvertisementID().toString());
+    await advertisementRef.set(advOBJ.toJson());
     // another way that works
     //_AdvertisementRef.push().set(Advertisement.toJson());
   }
 
   Query getAdvertisementQuery() {
-    return _advertisementRef;
+    return advertisementRef;
   }
 
   Future<AdvertisementModel> getAdvertisementByID(int id) async {

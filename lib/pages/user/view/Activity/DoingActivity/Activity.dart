@@ -4,12 +4,12 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:location/location.dart';
 import 'package:projet_solid_r/Functions/Notification.dart';
-import 'package:projet_solid_r/pages/user/dao/UserDAO.dart';
-import 'package:projet_solid_r/pages/user/dao/activityDAO.dart';
-import 'package:projet_solid_r/pages/user/model/ActivityModel.dart';
-import 'package:projet_solid_r/pages/user/model/SportModel.dart';
+import 'package:projet_solid_r/pages/DAO/UserDAO.dart';
+import 'package:projet_solid_r/pages/MODEL/ActivityModel.dart';
+import 'package:projet_solid_r/pages/MODEL/SportModel.dart';
 
-import '../../../model/UserModel.dart';
+import '../../../../DAO/ActivityDAO.dart';
+import '../../../../MODEL/UserModel.dart';
 import 'FinishedActivityAlert.dart';
 import '../ActivityButton.dart';
 
@@ -403,7 +403,6 @@ class _ActivityState extends State<Activity> {
               /// Here we add the finished activity to the database,
               /// We modify the user's purse and its reached kilometers.
               ActivityModel newActivity = ActivityModel("", dateStart);
-              print(dateEnd.toString() + "icuuuuuuuuuuuuuuu");
               newActivity.setActivityEndDate(dateEnd);
               newActivity.setSportID(widget.sport.sportID);
 
@@ -411,7 +410,7 @@ class _ActivityState extends State<Activity> {
               newActivity.setUserID(widget.user.userID);
               newActivity.setCoin(double.parse(_coin.toString()));
 
-              activityDAO().addActivity(newActivity);
+              ActivityDAO().addActivity(newActivity);
 
               UserDAO().setPurseUser(widget.user, widget.user.userPurse + _coin);
               UserDAO().setKilometersUser(widget.user, widget.user.userTotalDistance + double.parse(_kmWalk));

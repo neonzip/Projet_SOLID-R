@@ -1,12 +1,9 @@
-import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
-import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
-import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
-
-import '../../model/AdvertisementModel.dart';
+import 'package:projet_solid_r/pages/MODEL/EntityModel.dart';
+import '../../../DAO/EntityDAO.dart';
 
 class DataEntityTest {
   late List<EntityModel> entitydataList = <EntityModel>[];
-  entityDAO dao = entityDAO();
+  EntityDAO dao = EntityDAO();
 
   /// Creates what we have to replace with the database.
   DataEntityTest() {
@@ -20,19 +17,12 @@ class DataEntityTest {
     entitydataList.add(entity1);
     entitydataList.add(entity2);
 
-    dao.saveEntity(entity1);
-    dao.saveEntity(entity2);
-    dao.saveEntity(entity3);
+    DAO.saveEntity(entity1);
+    DAO.saveEntity(entity2);
+    DAO.saveEntity(entity3);
  */
   }
 
-  List<String> getNameEntityDataList() {
-    List<String> list = <String>[];
-    for (int i = 0; i < entitydataList.length; i++) {
-      list.add(entitydataList.elementAt(i).entityName);
-    }
-    return list;
-  }
   Future<List<EntityModel>> getEntityDataList() async {
     entitydataList = await dao.getListOfEntities();
     return entitydataList;

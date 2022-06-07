@@ -1,7 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
-import '../model/UserModel.dart';
-import '../controller/Database.dart';
+import 'package:projet_solid_r/pages/MODEL/ProjectModel.dart';
+
+import '../user/controller/Database.dart';
+import '../MODEL/UserModel.dart';
 
 class UserDAO {
   /// This is the user who will be able to signin.
@@ -26,6 +27,8 @@ class UserDAO {
     }
   }
 
+  /// Gets a user from the database with his email and his password.
+  /// This function is used for the connexion.
   Future<UserModel> getUserFromDatabase(String mail, String password) async {
     List<UserModel> users = await getListOfUsers();
 
@@ -42,6 +45,8 @@ class UserDAO {
     return userModel;
   }
 
+  /// Sets the total distance of the user.
+  /// It is used when the user has finished an activity.
   setKilometersUser(UserModel user, double km) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/' + user.userID.toString()).update({
@@ -49,6 +54,8 @@ class UserDAO {
     });
   }
 
+  /// Sets the total donations of the user.
+  /// It is used when the user have done a donation to a project.
   addOneDonationUser(UserModel user) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/' + user.userID.toString()).update({
@@ -56,7 +63,8 @@ class UserDAO {
     });
   }
 
-
+  /// Sets the purse of the user.
+  /// It is called when the user made a donation and when the user has made an activity and won some money.
   setPurseUser(UserModel user, double amount) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/' + user.userID.toString()).update({
@@ -64,6 +72,7 @@ class UserDAO {
     });
   }
 
+  /// Add a user to the database.
   addUser(UserModel user) {
     final ref = FirebaseDatabase.instance.ref();
     DatabaseReference newRef = ref.child('User/').push();
@@ -75,6 +84,7 @@ class UserDAO {
     return _userRef;
   }
 
+  /// Gets a user with his ID.
   Future<UserModel> getUserByID(String id)  async {
     //getting the user without the list liked projects :
     final userSnapshot = await FirebaseDatabase.instance.ref().child('User/'+ id.toString()).get();
@@ -91,11 +101,14 @@ class UserDAO {
     return userOBJ;
   }
 
+  /// Delete a user in the database.
   deleteById(int id) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/'+ id.toString()).remove();
   }
 
+  /// Update the user in the database.
+  /// It is called when the user made some changes in his information in the profile.
   updateUser(UserModel user) async {
     final ref = FirebaseDatabase.instance.ref();
     await ref.child('User/' + user.userID.toString()).update(
@@ -107,6 +120,7 @@ class UserDAO {
         );
   }
 
+  /// Gets the list of all users.
   Future<List<UserModel>> getListOfUsers() async {
    // 2-step process :
 
@@ -131,9 +145,10 @@ class UserDAO {
     return list;
   }
 
+  /// Get the list of faovrite projects of one user with his ID.
   Future<List<ProjectModel>> getUserLikedProjectsByUserId(String id) async {
 
-    // retreiving the users liked projects
+    // retrieving the users liked projects
     List<ProjectModel> list = <ProjectModel>[];
     final likedProjectsSnopshot =  await FirebaseDatabase.instance.ref().child('User/'+ id.toString()+'/userLikedProject').get();
           for (var project in likedProjectsSnopshot.children) {
@@ -144,14 +159,16 @@ class UserDAO {
     return list;
   }
 
+  /// Add a project to the favorite projects of the user.
   Future<void> addProjectToUserLikedProjects(UserModel user, ProjectModel project) async {
     var ref = db.db.ref().child('User/' + user.userID.toString() + '/userLikedProject/' + project.projectID.toString());
     ref.set(project.toJson());
     user.userLikedProject.add(project);
   }
 
+  /// Remove a projects in the favorite projects of the user.
   Future<void> removeProjectToUserLikedProjects(UserModel user, ProjectModel project) async {
-    var ref = db.db.ref().child('User/' + user.userID.toString() + '/userLikedProject/' + project.projectID.toString()).remove();
+    db.db.ref().child('User/' + user.userID.toString() + '/userLikedProject/' + project.projectID.toString()).remove();
     user.userLikedProject.remove(project);
   }
 }

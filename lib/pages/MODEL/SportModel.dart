@@ -1,4 +1,3 @@
-
 class SportModel {
 
   late String sportID;
@@ -27,7 +26,7 @@ class SportModel {
     'sportMaxSpeed':  sportMaxSpeed.toString(),
   };
 
-  /***** GETTERS and SETTERS ******/
+  /// *** GETTERS and SETTERS ******/
 
   String getSportID(){
     return sportID;

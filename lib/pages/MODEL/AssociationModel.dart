@@ -1,5 +1,5 @@
-import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
-import 'package:projet_solid_r/pages/user/model/EntityModel.dart';
+import 'package:projet_solid_r/pages/MODEL/AdvertisementModel.dart';
+import 'package:projet_solid_r/pages/MODEL/EntityModel.dart';
 
 class AssociationModel extends EntityModel {
   late String associationLogo;               // Association's logo
@@ -15,10 +15,10 @@ class AssociationModel extends EntityModel {
   }
 
   AssociationModel.fromJson(Map<dynamic, dynamic> json) : super.fromJson(json)  {
-    this.entityID = json['entityID'] as String;
-     this.entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);  //later
-    this.entityDescription = json['entityDescription'];
-    this.entityName = json['entityName']  as String;
+    entityID = json['entityID'] as String;
+     entityAdvertisement = AdvertisementModel.fromJson(json['entityAdvertisement']);  //later
+    entityDescription = json['entityDescription'];
+    entityName = json['entityName']  as String;
     associationLogo = json['associationLogo'] as String;
     associationWebSiteURL = json['associationWebSiteURL'] as String ;
     //associationAdvertisement = json['associationAdvertisement'];
@@ -29,10 +29,10 @@ class AssociationModel extends EntityModel {
   @override
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>  {
 
-    'entityID': this.entityID.toString(),
-    'entityAdvertisement': this.entityAdvertisement.toJson(),
-    'entityDescription': this.entityDescription.toString(),
-    'entityName': this.entityName.toString(),
+    'entityID': entityID.toString(),
+    'entityAdvertisement': entityAdvertisement.toJson(),
+    'entityDescription': entityDescription.toString(),
+    'entityName': entityName.toString(),
     'associationLogo': associationLogo.toString(),
     'associationWebSiteURL': associationWebSiteURL.toString(),
     //'associationAdvertisementURL': associationAdvertisement,

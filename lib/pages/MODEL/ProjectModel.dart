@@ -1,4 +1,4 @@
-import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
+import 'package:projet_solid_r/pages/MODEL/AdvertisementModel.dart';
 
 import 'AssociationModel.dart';
 import 'EntityModel.dart';
@@ -52,7 +52,7 @@ class ProjectModel {
         projectStartDate = DateTime.parse( json['projectStartDate'] as String),
         projectEndDate = DateTime.parse( json['projectStartDate'] as String),
 
-        // disclaimer : the following attributes will be retreived in dao
+        // disclaimer : the following attributes will be retreived in DAO
         projectAssociation =  AssociationModel(json['projectAssociationId'] as String,"","","",AdvertisementModel("0",""),""),
         projectEntity = EntityModel(json['projectEntityId'] as String,"","",AdvertisementModel("0","")),
         projectPictures = <PictureModel>[];
@@ -70,7 +70,7 @@ class ProjectModel {
     'projectEndDate' : projectEndDate.toString(),
     //the list of pictures will be saved in Dao.
   };
-  
+
   /// //////////////////////////////////////////////////////////////////////////
   /// Getters and setters
   /// //////////////////////////////////////////////////////////////////////////

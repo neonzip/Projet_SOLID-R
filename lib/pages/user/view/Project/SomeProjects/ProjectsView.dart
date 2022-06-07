@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_solid_r/pages/user/model/UserModel.dart';
+import 'package:projet_solid_r/pages/MODEL/UserModel.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Lanscape/LandscapeProjectsView.dart';
 import 'package:projet_solid_r/pages/user/view/Project/Portrait/PortraitProjectsView.dart';
 import 'ListProjects.dart';

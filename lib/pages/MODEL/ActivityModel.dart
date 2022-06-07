@@ -43,7 +43,7 @@ class ActivityModel {
     'coin' : coin,
   };
 
-  /****** Getters and Setters *****/
+  /// **** Getters and Setters *****/
 
    String getActivityID(){
      return activityID;
