@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/view/templates/SeparatorWithText.dart';
-import '../model/UserModel.dart';
-import 'Home/ContainerWithBackground.dart';
-import 'Home/HomeAppBar/HomeAppBar.dart';
-import 'Home/HomeBottomAppBar/HomeBottomAppBar.dart';
-import 'Home/HomeBottomAppBar/HomeButtonActivity.dart';
-import 'Home/HomeBottomAppBar/HomeButtonAllProjects.dart';
-import 'Home/HomeInformationUser/HomeUserInformation.dart';
-import 'Home/HomeSponsors/HomeSponsors.dart';
+import '../../model/UserModel.dart';
+import 'ContainerWithBackground.dart';
+import 'HomeAppBar/HomeAppBar.dart';
+import 'HomeBottomAppBar/HomeBottomAppBar.dart';
+import 'HomeBottomAppBar/HomeButtonActivity.dart';
+import 'HomeBottomAppBar/HomeButtonAllProjects.dart';
+import 'HomeInformationUser/HomeUserInformation.dart';
+import 'HomeSponsors/HomeSponsors.dart';
 
 /// Widget view which builds the entire widget for the home of the user part.
 class HomeUser extends StatefulWidget {
@@ -46,7 +46,7 @@ class _HomeUserState extends State<HomeUser> {
                       width: 500,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withOpacity(0.55),
                           borderRadius: BorderRadius.circular(10), //border corner radius
                         ),
                         margin: const EdgeInsets.all(15),

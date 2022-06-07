@@ -16,13 +16,14 @@ class HomeUserName extends StatelessWidget {
             style: const TextStyle(
               shadows: <Shadow>[
                 Shadow(
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 2.0,
-                  color: Colors.black,
+                  offset: Offset(1, 1),
+                  blurRadius: 4.0,
+                  color: Colors.black54,
                 ),
               ],
               color: Colors.black,
-              fontSize: 20.0,
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold
             )
         )
     );

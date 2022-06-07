@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import 'package:projet_solid_r/pages/user/view/HomeUser.dart';
+import 'package:projet_solid_r/pages/user/view/Home/HomeUser.dart';
 
 import 'admin/view/Home/HomeAdmin.dart';
 
