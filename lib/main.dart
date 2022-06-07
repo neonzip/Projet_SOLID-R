@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAdvertisementTest.dart';
 import 'package:projet_solid_r/pages/user/model/AdvertisementModel.dart';
-import 'package:projet_solid_r/pages/user/view/Activity/DoingActivity/Activity.dart';
 import 'package:projet_solid_r/pages/SignUp/SignUpView.dart';
 import 'package:projet_solid_r/pages/admin/View/AddProject/AddingProject.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryActivityPortrait.dart';
@@ -12,13 +11,8 @@ import 'package:projet_solid_r/pages/user/controller/Authentification.dart';
 import 'package:projet_solid_r/pages/user/controller/Database.dart';
 import 'package:projet_solid_r/pages/LaunchHome/LaunchHome.dart';
 import 'package:projet_solid_r/pages/SignIn/SignInView.dart';
-import 'package:projet_solid_r/pages/user/view/Activity/ChoosingActivity/Activities.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/FormalProjects/FormalProjects.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/Favorites.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/SolidarityProjects/SolidarityProjects.dart';
 import 'pages/user/controller/Authentification.dart';
-import 'pages/user/view/Activity/ChoosingActivity/Activities.dart';
 
 void main() async {
 

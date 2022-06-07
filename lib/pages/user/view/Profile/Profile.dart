@@ -5,7 +5,7 @@ import 'package:projet_solid_r/pages/user/view/Profile/HistoryActivity/HistoryAc
 import 'package:projet_solid_r/pages/user/view/Profile/APropos/AProposPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/MyInformation/MyInformationPortrait.dart';
 import 'package:projet_solid_r/pages/user/view/Profile/ToAdminButton.dart';
-import '../Project/SomeProjects/FormalProjects/FormalProjects.dart';
+import 'FormalProjects/FormalProjects.dart';
 import 'LogoutButton.dart';
 import 'ProfileButton.dart';
 import '../templates/Separator.dart';

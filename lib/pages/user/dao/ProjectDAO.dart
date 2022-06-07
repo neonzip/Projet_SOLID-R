@@ -158,7 +158,9 @@ class ProjectDAO {
     final donationsSnapshot = await FirebaseDatabase.instance.ref('Donation').get();
     for (var donation in donationsSnapshot.children) {
       var donationOBJ = DonationModel.fromJson(donation.value as Map<dynamic, dynamic>);
-      listDonations.add(donationOBJ);
+      if (donationOBJ.userID == userId) {
+        listDonations.add(donationOBJ);
+      }
     }
 
 

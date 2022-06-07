@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
-import '../../../../controller/fakeDataTest/DataProjectTest.dart';
-import '../../../templates/ItemFilter.dart';
-import '../../../templates/ProgressIndicatorAsync.dart';
-import '../../OneProject/OverView/ProjectView.dart';
-import '../ProjectsView.dart';
+import '../../../controller/fakeDataTest/DataProjectTest.dart';
+import '../../Project/OneProject/OverView/ProjectView.dart';
+import '../../Project/SomeProjects/ProjectsView.dart';
+import '../../templates/ItemFilter.dart';
+import '../../templates/ProgressIndicatorAsync.dart';
 
 class FormalProjects extends StatefulWidget {
   final UserModel user;

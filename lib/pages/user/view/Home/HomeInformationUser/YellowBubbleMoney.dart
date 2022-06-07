@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
-import 'package:projet_solid_r/pages/user/view/Project/SomeProjects/FormalProjects/FormalProjects.dart';
+
+import '../../Profile/FormalProjects/FormalProjects.dart';
 
 class YellowBubbleMoney extends StatefulWidget {
   final UserModel user;
