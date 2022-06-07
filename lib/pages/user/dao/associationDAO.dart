@@ -70,10 +70,12 @@ class associationDAO {
     final List<AssociationModel> list = <AssociationModel>[];
     final associationSnapshot = await FirebaseDatabase.instance.ref().child('Association').get();
     AssociationModel  assocOBJ;
-    associationSnapshot.children.forEach((assoc)=> {
-      assocOBJ = AssociationModel.fromJson(assoc.value as Map<dynamic, dynamic>),
-      list.add(assocOBJ),
-    });
+    for (var assoc in associationSnapshot.children) {
+      {
+        assocOBJ = AssociationModel.fromJson(assoc.value as Map<dynamic, dynamic>);
+        list.add(assocOBJ);
+      }
+    }
 
     return list;
   }

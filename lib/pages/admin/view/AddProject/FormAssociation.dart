@@ -1,7 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/user/dao/associationDAO.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import '../../../user/model/AssociationModel.dart';
+import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataAssociationTest.dart';
@@ -23,10 +27,10 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
   // List in the dropdown list that we have to replace by the list in the database
   // var items = associationDAO().getListOfAssociations();
 
-  var items = DataAssociationTest().getNameAssociationDataList();
+  var items = ["Aucune"];// = DataAssociationTest().getNameAssociationDataList();
 
   // string for next selected value in the dropdown list
-  String? _dropdownValue;
+  String? _dropdownValue = "";
 
   // string of the current association chosen
   String? currentAssociation;
@@ -67,57 +71,58 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
         body: SingleChildScrollView(
           child: Center(
               child: Visibility(
-                child: (alreadyExist == false) ? Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      child: const Text("Association", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("L'association existe déjà ?"),
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  alreadyExist = true;
-                                });
-                              },
-                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                              child: const Text(
-                                "Sélectionner une association",
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  child: (alreadyExist == false) ?
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text("Association", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("L'association existe déjà ?"),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    alreadyExist = true;
+                                  });
+                                },
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                                child: const Text(
+                                  "Sélectionner une association",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                    ),
-                    FormTextFieldAdmin(
-                      key: widget.key,
-                      inputType: TextInputType.text,
-                      errorMessage: errorMessageNameAssociation,
-                      labelHint: "Entrez le nom de l'association",
-                      label: "Nom",
-                      textEditingController: textEditingControllerNameAssociation,
-                    ),
-                    FormMultilineTextField(
+                            ],
+                          )
+                      ),
+                      FormTextFieldAdmin(
+                        key: widget.key,
+                        inputType: TextInputType.text,
+                        errorMessage: errorMessageNameAssociation,
+                        labelHint: "Entrez le nom de l'association",
+                        label: "Nom",
+                        textEditingController: textEditingControllerNameAssociation,
+                      ),
+                      FormMultilineTextField(
                         key: widget.key,
                         errorMessage: "",
                         labelHint: "Entrez la description de l'association",
                         label: "Description",
-                      textEditingController: textEditingControllerDescriptionAssociation,
-                    ),
-                    FormTextFieldAdmin(
-                      key: widget.key,
-                      inputType: TextInputType.text,
-                      errorMessage: errorMessageMailAssociation,
-                      labelHint: "Entrez le courriel de l'association",
-                      label: "Courriel",
-                      textEditingController: textEditingControllerMailAssociation,
-                    ),
+                        textEditingController: textEditingControllerDescriptionAssociation,
+                      ),
+                      FormTextFieldAdmin(
+                        key: widget.key,
+                        inputType: TextInputType.text,
+                        errorMessage: errorMessageMailAssociation,
+                        labelHint: "Entrez le courriel de l'association",
+                        label: "Courriel",
+                        textEditingController: textEditingControllerMailAssociation,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -142,65 +147,18 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                           ),
                           const CarouselPictures(),
                         ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: const Text("Logo"),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
-                        ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                alreadyExist = false;
-                              });
-                            },
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                            child: const Text(
-                              "Ajouter un logo",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: const Text("Logo"),
+                            padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
                           ),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0),
-                        ),
-                        Padding(
-                          child: Image.asset('assets/logo_solid_R.png'),
-                          padding: const EdgeInsets.only(left:20, right:20, bottom: 20),
-                        ),
-                      ],
-                    )
-                  ],
-                )
-                    :
-                Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      child: const Text("Association", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Sélectionnez une association existante :"),
-                            dropDownAssociations(),
-                          ],
-                        )
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("L'association n'existe pas encore ?"),
-                            ElevatedButton(
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
                                   alreadyExist = false;
@@ -208,17 +166,65 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
                               },
                               style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
                               child: const Text(
-                                "Ajouter une association",
+                                "Ajouter un logo",
                                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ),
-                          ],
-                        )
-                    ),
-                  ],
-                ),
-              )
+                            padding: const EdgeInsets.only(right:20.0, left:20.0),
+                          ),
+                          Padding(
+                            child: Image.asset('assets/logo_solid_R.png'),
+                            padding: const EdgeInsets.only(left:20, right:20, bottom: 20),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                      :
 
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text("Association", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Sélectionnez une association existante :"),
+                              dropDownAssociations(),
+                            ],
+                          )
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("L'association n'existe pas encore ?"),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    alreadyExist = false;
+                                  });
+                                },
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                                child: const Text(
+                                  "Ajouter une association",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                    ],
+                  )
+
+              )
           ),
         )
     );
@@ -232,8 +238,6 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
 
     /// We get the last modified value of the email text field and create a specific variable to use it.
     String email = textEditingControllerMailAssociation.text;
-
-    print("Last email value : " + email);                   // Temporary : prints to the console the value of the email
 
     // The email is empty
     if (email.isEmpty) {
@@ -252,8 +256,6 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
   void onChangedName() {
     /// We get the last modified value of the name text field and create a specific variable to use it.
     String name = textEditingControllerNameAssociation.text;
-
-    print("Last name value : " + name);                   // Temporary : prints to the console the value of the email
 
     // The name is empty
     if (name.isEmpty) {
@@ -275,30 +277,57 @@ class _FormAssociationState extends State<FormAssociation> with AutomaticKeepAli
 
   /// Widget which builds the dropdown with the list of associations.
   Widget dropDownAssociations() {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0))
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          elevation: 1,
-          isExpanded: true,
-          value: items.elementAt(0),
-          focusColor: Colors.yellow,
-          hint: const Text("Choisir une association"),
-          items: items.map(buildMenuItem).toList(),
-          onChanged: dropDownCallback,
-        ),
-      ),
+    return FutureBuilder<List<AssociationModel>>(
+        future: associationDAO().getListOfAssociations(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<AssociationModel>> snapshot,
+            ) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const ProgressIndicatorAsync();
+          }
+          else if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              if (kDebugMode) {
+                print("snap = " + snapshot.data.toString());
+              }
+              return Text('Erreur. ' + snapshot.error.toString());
+            } else if (snapshot.hasData) {
+              items = ["Aucune"];
+              snapshot.data?.forEach((element) {
+                items.add(element.entityName);
+              });
+              return Container(
+                margin: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0))
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    elevation: 1,
+                    isExpanded: true,
+                    value: items.elementAt(0),
+                    focusColor: Colors.yellow,
+                    hint: const Text("Choisir une association"),
+                    items: items.map(buildMenuItem).toList(),
+                    onChanged: dropDownCallback,
+                  ),
+                ),
+              );
+            } else {
+              return const Text('Aucune donnée');
+            }
+          } else {
+            return Text("Etat : ${snapshot.connectionState}");
+          }
+        }
     );
   }
 

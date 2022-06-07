@@ -47,8 +47,6 @@ class _AllProjectsViewState extends State<AllProjectsView> {
     );
   }
 
-  bool _showBackToTopButton = false;        // false to hide the button, true to show it
-
   late ScrollController _scrollController;  // Scroll controller that we will use
 
   /// Shows or not the button. It depends on where we are in the page.
@@ -59,14 +57,6 @@ class _AllProjectsViewState extends State<AllProjectsView> {
     _scrollController = ScrollController()
       ..addListener(() {
         setState(() {
-          /* Before 400, the button does not appear because the user can scrolls itself without difficulty to return to the filter.
-           * After 400, the button is shown and the user can click in it if he wants to go back to the filter or to the top of the page.
-           */
-          if (_scrollController.offset >= 400) {
-            _showBackToTopButton = true; // show the back-to-top button
-          } else {
-            _showBackToTopButton = false; // hide the back-to-top button
-          }
         });
       });
   }
@@ -182,6 +172,6 @@ class _AllProjectsViewState extends State<AllProjectsView> {
   }
 
   Future<List<ProjectViewAdmin>> getListFinishedProjects() async {
-    return DataProjectTest().getListFinishedSolidarityProjectsViewsAdmin();
+    return DataProjectTest().getListFutureFinishedSolidarityProjectsViewsAdmin();
   }
 }

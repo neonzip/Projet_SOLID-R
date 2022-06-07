@@ -1,7 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:projet_solid_r/pages/admin/view/Templates/FormTextFieldAdmin.dart';
+import 'package:projet_solid_r/pages/user/dao/entityDAO.dart';
+import 'package:projet_solid_r/pages/user/model/AssociationModel.dart';
 import 'package:projet_solid_r/pages/user/model/ProjectModel.dart';
+import '../../../user/model/EntityModel.dart';
+import '../../../user/view/templates/ProgressIndicatorAsync.dart';
 import '../Templates/FormMultilineTextField.dart';
 import '../Templates/CarousselPictures.dart';
 import 'package:projet_solid_r/pages/user/controller/fakeDataTest/DataEntityTest.dart';
@@ -20,7 +25,7 @@ class FormMecene extends StatefulWidget {
 /// https://stackoverflow.com/questions/45944777/losing-widget-state-when-switching-pages-in-a-flutter-pageview
 class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMixin<FormMecene>{
 
-  var items = DataEntityTest().getNameEntityDataList();
+  var items = ["Aucun"];// = DataEntityTest().getEntityDataList();
 
   // string for next selected value in the dropdown list
   String? _dropdownValue;
@@ -57,102 +62,58 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
         body: SingleChildScrollView(
           child: Center(
               child: Visibility(
-                child: (alreadyExist == false) ? Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      child: const Text("Mécène", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Le mécène existe déjà ?"),
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  alreadyExist = true;
-                                });
-                              },
-                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                              child: const Text(
-                                "Sélectionner un mécène",
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  child: (alreadyExist == false) ? Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text("Mécène", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Le mécène existe déjà ?"),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    alreadyExist = true;
+                                  });
+                                },
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                                child: const Text(
+                                  "Sélectionner un mécène",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                    ),
-                    FormTextFieldAdmin(
-                      key: widget.key,
-                      inputType: TextInputType.text,
-                      errorMessage: errorMessageNameMecene,
-                      labelHint: "Entrez le nom du mécène",
-                      label: "Nom",
-                      textEditingController: textEditingControllerNameMecene,
-                    ),
-                    FormMultilineTextField(
+                            ],
+                          )
+                      ),
+                      FormTextFieldAdmin(
+                        key: widget.key,
+                        inputType: TextInputType.text,
+                        errorMessage: errorMessageNameMecene,
+                        labelHint: "Entrez le nom du mécène",
+                        label: "Nom",
+                        textEditingController: textEditingControllerNameMecene,
+                      ),
+                      FormMultilineTextField(
                         key: widget.key,
                         errorMessage: "",
                         labelHint: "Entrez la description du mécène",
                         label: "Description",
-                      textEditingController: textEditingControllerDescriptionMecene,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: const Text("Images"),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
-                        ),
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                alreadyExist = false;
-                              });
-                            },
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
-                            child: const Text(
-                              "Ajouter une photo",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
+                        textEditingController: textEditingControllerDescriptionMecene,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: const Text("Images"),
+                            padding: const EdgeInsets.only(right:20.0, left:20.0, top: 20),
                           ),
-                          padding: const EdgeInsets.only(right:20.0, left:20.0),
-                        ),
-                        const CarouselPictures(),
-                      ],
-                    ),
-                  ],
-                )
-                    :
-                Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      child: const Text("Mécène", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Sélectionnez un mécène existant :"),
-                            dropDownMecenes(),
-                          ],
-                        )
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Le mécène n'existe pas encore ?"),
-                            ElevatedButton(
+                          Container(
+                            child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
                                   alreadyExist = false;
@@ -160,15 +121,60 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
                               },
                               style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
                               child: const Text(
-                                "Ajouter un mécène",
+                                "Ajouter une photo",
                                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ),
-                          ],
-                        )
-                    ),
-                  ],
-                ),
+                            padding: const EdgeInsets.only(right:20.0, left:20.0),
+                          ),
+                          const CarouselPictures(),
+                        ],
+                      ),
+                    ],
+                  )
+                      :
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text("Mécène", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Sélectionnez un mécène existant :"),
+                              dropDownMecenes(),
+                            ],
+                          )
+                      ),
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Le mécène n'existe pas encore ?"),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    alreadyExist = false;
+                                  });
+                                },
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0725A5))),
+                                child: const Text(
+                                  "Ajouter un mécène",
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                    ],
+                  )
+
               )
           ),
         )
@@ -179,7 +185,6 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
     /// We get the last modified value of the name text field and create a specific variable to use it.
     String name = textEditingControllerNameMecene.text;
 
-    print("Last name value : " + name);                   // Temporary : prints to the console the value of the email
 
     // The name is empty
     if (name.isEmpty) {
@@ -201,30 +206,58 @@ class _FormMeceneState extends State<FormMecene> with AutomaticKeepAliveClientMi
 
   /// Widget which builds the dropdown with the list of entities.
   Widget dropDownMecenes() {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0))
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          elevation: 1,
-          isExpanded: true,
-          value: items.elementAt(0),
-          focusColor: Colors.yellow,
-          hint: const Text("Choisir un mécène"),
-          items: items.map(buildMenuItem).toList(),
-          onChanged: dropDownCallback,
-        ),
-      ),
+    return FutureBuilder<List<EntityModel>>(
+        future: entityDAO().getListOfEntities(),
+        builder: (
+            BuildContext context,
+            AsyncSnapshot<List<EntityModel>> snapshot,
+            ) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const ProgressIndicatorAsync();
+          }
+          else if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              if (kDebugMode) {
+                print("snap = " + snapshot.data.toString());
+              }
+              return Text('Erreur. ' + snapshot.error.toString());
+            } else if (snapshot.hasData) {
+              items = ["Aucun"];
+              snapshot.data?.forEach((element) {
+                items.add(element.entityName);
+              });
+              return  Container(
+                margin: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0))
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    elevation: 1,
+                    isExpanded: true,
+                    value: items.elementAt(0),
+                    focusColor: Colors.yellow,
+                    hint: const Text("Choisir un mécène"),
+                    items: items.map(buildMenuItem).toList(),
+                    onChanged: dropDownCallback,
+                  ),
+                ),
+              );
+            } else {
+              return const Text('Aucune donnée');
+            }
+          } else {
+            return Text("Etat : ${snapshot.connectionState}");
+          }
+        }
     );
   }
 

@@ -52,14 +52,16 @@ class entityDAO {
     newRef.set(entity.toJson());
   }
 
-  Future<List<EntityModel>> getListOfEntitys() async {
+  Future<List<EntityModel>> getListOfEntities() async {
     final List<EntityModel> list = <EntityModel>[];
     final entitySnapshot = await FirebaseDatabase.instance.ref().child('Entity').get();
     EntityModel  entityOBJ;
-    entitySnapshot.children.forEach((entity)=> {
-      entityOBJ = EntityModel.fromJson(entity.value as Map<dynamic, dynamic>),
-      list.add(entityOBJ),
-    });
+    for (var entity in entitySnapshot.children) {
+      {
+      entityOBJ = EntityModel.fromJson(entity.value as Map<dynamic, dynamic>);
+      list.add(entityOBJ);
+    };
+    }
     return list;
   }
 

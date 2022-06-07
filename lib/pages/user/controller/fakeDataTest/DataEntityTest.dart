@@ -34,7 +34,7 @@ class DataEntityTest {
     return list;
   }
   Future<List<EntityModel>> getEntityDataList() async {
-    entitydataList = await dao.getListOfEntitys();
+    entitydataList = await dao.getListOfEntities();
     return entitydataList;
   }
 }
