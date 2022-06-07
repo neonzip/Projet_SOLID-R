@@ -19,7 +19,6 @@ class ToAdminButton extends StatelessWidget {
       child:
       ElevatedButton(
         onPressed: () {
-          // Navigator.pushNamed(context, "/admin/home");
           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomeAdmin(user: user)));
         },
         style: ButtonStyle(

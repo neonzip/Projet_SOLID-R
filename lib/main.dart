@@ -47,6 +47,7 @@ void main() async {
   initialRoute: "/",
 
   routes: {
+        // TODO : Get the user token and if the user token is OK, avoid the connexion in order to make him access directly to his home page.
     "/": (context) => const LaunchHome(),
     "/signup": (context) => const SignUpView(),
     "/signin": (context) => const SignInView(),
@@ -57,6 +58,9 @@ void main() async {
     /////////////////////////////////////////////////////////////
 
     "/user/APropos": (context) => const AProposPortrait(),
+
+    // TODO : Make the activity history specific for one user.
+    // TODO : Do the same for the notifications
     "/user/activityHistory": (context) => const HistoryActivityPortrait(),
     "/user/notifications": (context) => const NotificationsLandscape(),
 
@@ -64,17 +68,8 @@ void main() async {
     ////////////////////////// ADMIN ////////////////////////////
     /////////////////////////////////////////////////////////////
 
-    /* HOME */
-    //"/admin/home": (context) => const HomeAdmin(),
-
-    /* PROJECTS */
-    //"/admin/projects": (context) => const ListProjectViewAdmin(),
-
     /* FORM TO ADD PROJET */
     "/admin/project/add": (context) => const AddingProject(),
-
-    /* PROFIL */
-    //"/admin/profile": (context) => const ProfileAdmin(),
 
   },
 ));}

@@ -133,7 +133,6 @@ class _HomeAdminState extends State<HomeAdmin> {
           heroTag: "projects",
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ListProjectViewAdmin(user: widget.user)));
-            //Navigator.pushNamed(context, "/admin/projects");
           },
           tooltip: 'Projets',
           splashColor: Colors.yellow,
