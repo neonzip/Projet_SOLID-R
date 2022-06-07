@@ -133,7 +133,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                       listProjects = getListAllProjects();
                     });
                   },
-                  child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1)? FontWeight.bold : FontWeight.normal),),
+                  child: Text('Tous', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 1) ? FontWeight.bold : FontWeight.normal, decoration: (selectedFilter == 1) ? TextDecoration.underline : null),),
                 ),
                 PopupMenuItem(
                   onTap: () {
@@ -142,7 +142,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                       listProjects = getListRunningProjects();
                     });
                   },
-                  child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal),),
+                  child:  Text('En cours', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 2)? FontWeight.bold : FontWeight.normal, decoration: (selectedFilter == 2) ? TextDecoration.underline : null),),
                 ),
                 PopupMenuItem(
                   onTap: () {
@@ -151,7 +151,7 @@ class _AllProjectsViewState extends State<AllProjectsView> {
                       listProjects = getListFinishedProjects();
                     });
                   },
-                  child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal),),
+                  child:  Text('Terminés', style: TextStyle(color: const Color(0xFF0725A5), fontWeight: (selectedFilter == 3)? FontWeight.bold : FontWeight.normal, decoration: (selectedFilter == 3) ? TextDecoration.underline : null),),
                 ),
               ]
           )

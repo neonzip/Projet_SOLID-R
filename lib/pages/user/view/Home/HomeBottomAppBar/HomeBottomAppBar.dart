@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_solid_r/pages/user/model/UserModel.dart';
 
-import 'HomeButtonActivity.dart';
+import '../HomeButtonActivity.dart';
 import 'HomeButtonAllProjects.dart';
 import 'HomeButtonFavoriteProjects.dart';
 
@@ -14,11 +14,13 @@ class HomeBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
         color: Colors.white,
-        elevation: 0,
+        elevation: 20,
+        notchMargin: 5,
+        shape: const CircularNotchedRectangle(),
         child:
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
               height: 100,
@@ -27,11 +29,7 @@ class HomeBottomAppBar extends StatelessWidget {
               /* Favorites button. */
               HomeButtonFavoriteProjects(user: user,),
             ),
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: HomeButtonActivity(user: user,),
-            ),
+
 
             SizedBox(
               height: 100,

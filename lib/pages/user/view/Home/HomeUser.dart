@@ -4,7 +4,7 @@ import '../../model/UserModel.dart';
 import 'ContainerWithBackground.dart';
 import 'HomeAppBar/HomeAppBar.dart';
 import 'HomeBottomAppBar/HomeBottomAppBar.dart';
-import 'HomeBottomAppBar/HomeButtonActivity.dart';
+import 'HomeButtonActivity.dart';
 import 'HomeBottomAppBar/HomeButtonAllProjects.dart';
 import 'HomeInformationUser/HomeUserInformation.dart';
 import 'HomeSponsors/HomeSponsors.dart';
@@ -35,8 +35,7 @@ class _HomeUserState extends State<HomeUser> {
               backgroundColor: const Color(0xFF0725A5),
               title: HomeAppBar(user: widget.user),
           ),
-
-          /// The customized widget ContainerWithBackground is created to add a background to the page we want to show.
+        /// The customized widget ContainerWithBackground is created to add a background to the page we want to show.
           body: ContainerWithBackground(
             content: Center (
                 child: SingleChildScrollView(
@@ -68,14 +67,20 @@ class _HomeUserState extends State<HomeUser> {
                 )
             ),
           ),
-
+          floatingActionButtonLocation: MediaQuery.of(context).orientation == Orientation.landscape ? null : FloatingActionButtonLocation.centerDocked,
           floatingActionButton: MediaQuery.of(context).orientation == Orientation.landscape ? Wrap(
             direction: Axis.vertical, //use vertical to show  on vertical axis
             children: [
               HomeButtonActivity(user: widget.user,),
               HomeButtonAllProjects(user: widget.user,),
             ],
-          ) : null,
+          )
+        :
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: HomeButtonActivity(user: widget.user,),
+          ),
 
           /// Menu at the bottom with the 2 other buttons "Projets" and "Favoris".
           bottomNavigationBar:  MediaQuery.of(context).orientation == Orientation.portrait ? HomeBottomAppBar(user: widget.user,) : null,
